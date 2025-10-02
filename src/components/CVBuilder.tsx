@@ -36,7 +36,6 @@ export default function CVBuilder({
 }: CVBuilderProps) {
   const [currentStep, setCurrentStep] = useState(0);
 
-  // Load saved CV on mount
   useEffect(() => {
     const saved = localStorage.getItem("cvData");
     if (saved) {
@@ -167,26 +166,26 @@ export default function CVBuilder({
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100">
+    <div className="min-h-screen bg-white text-[#1E3A8A]">
       {/* Top Navigation */}
-      <nav className="border-b bg-white/90 sticky top-0 z-50 backdrop-blur-sm">
+      <nav className="border-b bg-white sticky top-0 z-50 shadow-sm">
         <div className="max-w-4xl mx-auto flex flex-col sm:flex-row items-center justify-between px-4 py-4 gap-2 sm:gap-0">
           <button
             onClick={goHome}
-            className="flex items-center space-x-2 px-4 py-2 bg-white border border-slate-300 rounded-lg hover:bg-slate-50 transition-colors font-medium w-full sm:w-auto justify-center"
+            className="flex items-center space-x-2 px-4 py-2 bg-white border border-[#D1D5DB] rounded-lg hover:bg-[#F9FAFB] transition-colors font-medium w-full sm:w-auto justify-center"
           >
             <ChevronLeft className="h-5 w-5" />
             <span>Home</span>
           </button>
 
-          <h1 className="text-lg sm:text-xl font-bold text-slate-900">
+          <h1 className="text-lg sm:text-xl font-bold text-[#1E3A8A]">
             CV Builder
           </h1>
 
           <div className="flex space-x-2 w-full sm:w-auto justify-center">
             <button
               onClick={onPreview}
-              className="flex items-center space-x-2 px-4 py-2 bg-slate-800 text-white rounded-lg hover:bg-slate-700 transition-colors flex-1 justify-center"
+              className="flex items-center space-x-2 px-4 py-2 bg-[#1E3A8A] text-white rounded-lg hover:bg-[#2A4EB0] transition-colors flex-1 justify-center"
             >
               <Eye className="h-4 w-4" />
               <span>Preview</span>
@@ -213,29 +212,29 @@ export default function CVBuilder({
                 onClick={() => setCurrentStep(index)}
                 className={`whitespace-nowrap px-4 py-2 min-w-[80px] rounded-lg text-sm font-medium transition-colors ${
                   index === currentStep
-                    ? "bg-slate-800 text-white"
+                    ? "bg-[#1E3A8A] text-white"
                     : index < currentStep
-                    ? "bg-slate-200 text-slate-700 hover:bg-slate-300"
-                    : "bg-white text-slate-600 hover:bg-slate-50"
+                    ? "bg-[#DDE7FF] text-[#1E3A8A] hover:bg-[#A0C4FF]"
+                    : "bg-white text-[#1E3A8A] hover:bg-[#F9FAFB]"
                 }`}
               >
                 {step.label}
                 {step.required && <span className="text-red-400 ml-1">*</span>}
               </button>
               {index < steps.length - 1 && (
-                <ChevronRight className="h-4 w-4 text-slate-400 mx-1 flex-shrink-0" />
+                <ChevronRight className="h-4 w-4 text-[#A0C4FF] mx-1 flex-shrink-0" />
               )}
             </div>
           ))}
         </div>
 
         {/* Step Content */}
-        <div className="bg-white rounded-2xl shadow-sm border border-slate-200 p-4 sm:p-8 mb-6">
+        <div className="bg-white rounded-2xl shadow-sm border border-[#D1D5DB] p-4 sm:p-8 mb-6">
           <div className="mb-6">
-            <h2 className="text-xl sm:text-2xl font-semibold text-slate-900 mb-2">
+            <h2 className="text-xl sm:text-2xl font-semibold text-[#1E3A8A] mb-2">
               {steps[currentStep].label}
             </h2>
-            <p className="text-slate-600 text-sm sm:text-base">
+            <p className="text-[#3B82F6] text-sm sm:text-base">
               {steps[currentStep].required
                 ? "This section is required"
                 : "This section is optional - leave blank to exclude from your CV"}
@@ -250,7 +249,7 @@ export default function CVBuilder({
           <button
             onClick={handlePrevious}
             disabled={currentStep === 0}
-            className="flex items-center space-x-2 px-6 py-3 bg-white border border-slate-300 text-slate-700 rounded-lg hover:bg-slate-50 transition-colors disabled:opacity-50 disabled:cursor-not-allowed font-medium justify-center w-full sm:w-auto"
+            className="flex items-center space-x-2 px-6 py-3 bg-white border border-[#D1D5DB] text-[#1E3A8A] rounded-lg hover:bg-[#F9FAFB] transition-colors disabled:opacity-50 disabled:cursor-not-allowed font-medium justify-center w-full sm:w-auto"
           >
             <ChevronLeft className="h-4 w-4" />
             <span>Previous</span>
@@ -259,7 +258,7 @@ export default function CVBuilder({
           <button
             onClick={handleNext}
             disabled={!isStepValid()}
-            className="flex items-center space-x-2 px-6 py-3 bg-slate-800 text-white rounded-lg hover:bg-slate-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed font-medium justify-center w-full sm:w-auto"
+            className="flex items-center space-x-2 px-6 py-3 bg-[#1E3A8A] text-white rounded-lg hover:bg-[#2A4EB0] transition-colors disabled:opacity-50 disabled:cursor-not-allowed font-medium justify-center w-full sm:w-auto"
           >
             <span>
               {currentStep === steps.length - 1 ? "Preview CV" : "Next"}
