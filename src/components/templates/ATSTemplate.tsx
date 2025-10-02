@@ -120,15 +120,6 @@ export default function ATSTemplatePDF({ data }: ATSTemplateProps) {
                 </Text>
               ))}
           </View>
-          <View style={styles.contactRow}>
-            {[data.personalInfo.linkedin, data.personalInfo.website]
-              .filter(Boolean)
-              .map((c, i) => (
-                <Text key={i} style={styles.contactText}>
-                  {i > 0 && '• '} {c}
-                </Text>
-              ))}
-          </View>
         </View>
 
         {/* Summary */}

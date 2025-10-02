@@ -153,7 +153,7 @@ export default function CreativeTemplate({ data }: CreativeTemplateProps) {
             <View style={styles.subSection}>
               <Text style={styles.sectionTitle}>Profile</Text>
               {data.personalInfo.summary.split('\n').map((line, idx) => (
-                <Text key={idx} style={styles.bullet}>• {line}</Text>
+                <Text key={idx} style={styles.bullet}>{line}</Text>
               ))}
             </View>
           )}

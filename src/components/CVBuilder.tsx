@@ -179,7 +179,7 @@ export default function CVBuilder({
           </button>
 
           <h1 className="text-lg sm:text-xl font-bold text-[#1E3A8A]">
-            CV Builder
+            QuickCV
           </h1>
 
           <div className="flex space-x-2 w-full sm:w-auto justify-center">
