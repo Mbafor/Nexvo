@@ -1,0 +1,76 @@
+{
+  "personal": [
+    "Use a professional email address. A simple format like firstname.lastname@email.com presents a professional image. Avoid informal ones like 'gamerboi123@yahoo.com'.",
+    "Always use your full legal name on your CV (first name + last name). Avoid nicknames or shortened names unless they are your official name. Example: 'Robert Mitchell'",
+    "Include a phone number you actively use and ensure your voicemail is professional.",
+    "Include a professional photo only if they have requested for it. If you add one, make sure it’s a clear, high-resolution headshot with a neutral background and professional clothing.",
+    "Write a short personal summary (2–4 sentences) to introduce yourself. Include what you’re currently doing, your strengths, and your career goals. Example: 'Recent business graduate with a strong foundation in finance and Excel. Seeking to start my career in a data-driven role within a progressive company.'"
+  ],
+  "education": [
+    "List your most recent education first (reverse-chronological order). Example: 'Diploma in Software Development – NZ Institute of Technology (2022–2023)'.",
+    "Include institution name, degree/diploma/certificate, location, and completion year. Example: 'Bachelor of Science in Computer Engineering – KNUST, Ghana (Expected 2027)'.",
+    "If you lack work experience, add relevant coursework or academic projects. Example: 'Relevant modules: Mobile App Development, UX Design, Agile Project Management'.",
+    "If you received scholarships, awards, or honors, list them under education to highlight academic excellence."
+  ],
+  "experience": [
+    "List your work experience in reverse-chronological order (most recent first). Example: 'Customer Service Assistant – The Warehouse, Auckland | May 2021 – Oct 2023'.",
+    "Include job title, company name, location, and start–end dates (month + year).",
+    "Describe your responsibilities using bullet points. (Bullet points have been inserted by default). Focus on achievements, not just tasks.",
+    "Use strong action verbs such as 'Led', 'Organised', 'Implemented', 'Improved'. Example: 'Improved order processing times by 20% by introducing a new tracking method.'",
+    "Quantify achievements when possible. Numbers make impact clear. Example: 'Handled 50+ customer inquiries daily with 95% satisfaction rate.'",
+    "If you have internships or part-time jobs, include them. Employers value transferable skills even if unrelated to the industry."
+  ],
+  "volunteer": [
+    "Include volunteering roles to show community involvement and transferable skills.",
+    "Highlight leadership and teamwork roles. Example: 'Team Leader – University Food Drive: Managed 8 volunteers to distribute 500+ food parcels in 2 days.'",
+    "Show impact, not just participation. Example: 'Organised a school fundraiser that raised $2,500 for local flood relief efforts.'",
+    "If you volunteered in an area related to your career, emphasize that. Example: 'Volunteered as a coding tutor for high school students, teaching HTML and CSS.'"
+  ],
+  "skills": [
+    "Focus on job-relevant skills. Read the job description carefully and include matching keywords.",
+    "Separate technical and soft skills for clarity. Example: 'Technical: Microsoft Excel, Python, Tableau | Soft Skills: Teamwork, Adaptability, Critical Thinking'.",
+    "Be honest about your level of proficiency. Example: 'Python – Intermediate' or 'Excel – Advanced'.",
+    "Avoid generic skills that don’t add value, like 'Email' or 'Typing', unless specifically relevant."
+  ],
+  "projects": [
+    "Include personal, academic, or freelance projects to showcase your skills, especially if you lack experience.",
+    "Give each project a title, a short description, your role, and the technologies/tools used.",
+    "Example: 'Personal Portfolio Website: Designed and built a responsive portfolio website using ReactJS and Tailwind CSS. Showcases UI/UX case studies and projects. URL: https://myname.dev'.",
+    "Example: 'Mental Health App (Team Project): Designed user flow and prototyped UI. Conducted user testing with 10 participants and iterated based on feedback.'",
+    "If available, include links to GitHub, Behance, Dribbble, or personal websites."
+  ],
+  "achievements": [
+    "List achievements that demonstrate excellence, leadership, or impact.",
+    "Include academic, professional, or personal achievements relevant to the job.",
+    "Use numbers or evidence to support. Example: 'Increased Instagram followers by 150% in 6 months through content strategy and analytics.'",
+    "Example: 'Top Salesperson at Countdown (Q3 2023)' or 'Dean’s List – KNUST (2024)'.",
+    "Avoid unrelated or outdated achievements (e.g., 'Won a local chess competition in 2010') unless relevant."
+  ],
+  "languages": [
+    "Only include languages you can speak.",
+    "Indicate proficiency e.g beginner, advanced.",
+    "Examples: 'French – Fluent (C1)', 'Mandarin – Intermediate (HSK Level 4)', 'Spanish – Basic Conversation'.",
+    "If bilingual or multilingual, highlight this as it’s valuable in global roles."
+  ],
+  "references": [
+    "Include references only if requested. Most employers will ask at the final stages of hiring.",
+    "‘Available upon request’ is acceptable and keeps your CV clean.",
+    "If you include referees, provide their name, job title, company, phone, and email (with their permission).",
+    "Choose references who can speak about your work ethic, skills, or academic performance (e.g., former employer, manager, lecturer)."
+  ],
+  "hobbies": [
+    "Add hobbies that show personality or transferable skills. Choose activities that highlight qualities like leadership, creativity, or discipline. Example: 'Photography – Developed a travel blog with 10,000+ monthly views, showing creativity and consistency.'",
+    "Keep it concise and professional. Stick to 2–3 hobbies that could positively reflect on you as a candidate."
+  ],
+  "certifications": [
+    "Include certifications relevant to your industry or role. Prioritize official or recognized credentials that prove upskilling, compliance, or technical expertise. Example: 'Google Data Analytics Certificate – Coursera (2024)' or 'Forklift Operator License – Worksafe NZ (valid to 2026)'.",
+    "Add the issuing organization and date of completion. This adds credibility and helps employers validate your qualifications."
+  ],
+  "checklist": [
+   "Complete all required sections: Personal Info, Education, and Experience.",
+    "Double-check spelling and grammar throughout your CV.",
+    "Tailor your CV to emphasize skills and experiences relevant to the role.",
+    "Add optional sections like Skills, Languages, Projects, and References if they strengthen your profile.",
+    "Preview your CV before saving to ensure everything appears correctly."
+  ]
+}

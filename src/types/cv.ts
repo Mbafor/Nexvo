@@ -90,5 +90,7 @@ export interface CVData {
   achievements: Achievement[];
   references: Reference[];
   languages?: Language[];
+  hobbies?: string[];        // NEW
+  certifications?: string[];
 }
 export type TemplateType = 'default' | 'modern' | 'creative' | 'ats';
