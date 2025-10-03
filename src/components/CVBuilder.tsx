@@ -331,8 +331,8 @@ case "certifications":
   onClick={goHome}
   className="flex items-center space-x-2 text-lg font-semibold text-[#1E3A8A] cursor-pointer"
 >
-  <ChevronLeft className="h-5 w-5" />
-  <span>Home</span>
+  <ChevronLeft className="h-8 w-8" />
+  <span></span>
 </span>
 
 

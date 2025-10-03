@@ -129,11 +129,11 @@ export default function LandingPage({ onGetStarted }: LandingPageProps) {
             <p className="text-xl text-[#2A4EB0] mb-6 leading-relaxed">Create a professional, ATS-friendly CV using our beautiful templates. No account needed to start. Download instantly after completion.</p>
             <button onClick={onGetStarted} className="inline-flex items-center space-x-2 px-8 py-4 bg-[#2A4EB0] hover:bg-[#1B3380] rounded-xl shadow-lg text-white text-lg font-semibold">
               <span>Create Your CV Now</span>
-              <FileText className="h-5 w-5 text-white" />
             </button>
           </div>
 
-          <div className="relative w-full h-96 flex items-center justify-center hidden md:flex">
+         <div className="relative w-full h-96 items-center justify-center hidden md:flex">
+
             <img src="/Images/hero.jpg" alt="CV Builder illustration" className="w-full h-full object-contain" />
           </div>
         </section>
