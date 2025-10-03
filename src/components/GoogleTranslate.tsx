@@ -20,6 +20,7 @@ const GoogleTranslate = () => {
         {
           pageLanguage: "en",
           includedLanguages: "en,fr,es,de,it,sw", // add languages you want
+           autoDisplay: false,
           layout: window.google.translate.TranslateElement.InlineLayout.SIMPLE,
         },
         "google_translate_element"
