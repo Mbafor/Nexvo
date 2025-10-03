@@ -60,26 +60,37 @@ export default function CVBuilder({ cvData, onUpdateCVData, onPreview }: CVBuild
   const currentSection = allStepsWithChecklist[currentStep];
 
 
-// Load saved CV data once on mount
+// Load saved CV data and sections once on mount
 useEffect(() => {
-  const saved = localStorage.getItem("cvData");
-  if (saved) {
+  // Load CV data
+  const savedCV = localStorage.getItem("cvData");
+  if (savedCV) {
     try {
-      const parsed = JSON.parse(saved) as CVData;
+      const parsed = JSON.parse(savedCV) as CVData;
       onUpdateCVData(parsed);
     } catch (err) {
       console.error("Failed to parse saved CV:", err);
     }
   }
+
+  // Load saved sections
+  const savedSections = localStorage.getItem("cvSections");
+  if (savedSections) {
+    try {
+      const sectionIds: string[] = JSON.parse(savedSections);
+      const loadedSections = allSections.filter((s) => sectionIds.includes(s.id));
+      setSteps(loadedSections);
+    } catch (err) {
+      console.error("Failed to parse saved sections:", err);
+    }
+  }
 }, []);
 
-// Auto-save with debounce
+// Auto-save CV data with debounce
 const saveTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
 useEffect(() => {
-  if (saveTimeoutRef.current) {
-    clearTimeout(saveTimeoutRef.current);
-  }
+  if (saveTimeoutRef.current) clearTimeout(saveTimeoutRef.current);
 
   // Wait 1.5 seconds after last change before saving
   saveTimeoutRef.current = setTimeout(() => {
@@ -96,32 +107,41 @@ useEffect(() => {
   };
 }, [cvData]);
 
+// Navigation
+const handleNext = () => {
+  if (currentStep < allStepsWithChecklist.length - 1) {
+    setCurrentStep(currentStep + 1);
+  } else {
+    onPreview();
+  }
+};
 
-  // Navigation
-  const handleNext = () => {
-    if (currentStep < allStepsWithChecklist.length - 1) {
-      setCurrentStep(currentStep + 1);
-    } else {
-      onPreview();
-    }
-  };
+const handlePrevious = () => {
+  if (currentStep > 0) setCurrentStep(currentStep - 1);
+};
 
-  const handlePrevious = () => {
-    if (currentStep > 0) setCurrentStep(currentStep - 1);
-  };
+const goHome = () => (window.location.href = "/");
 
-  const goHome = () => (window.location.href = "/");
+// Section manager with persistence
+const toggleSection = (id: string) => {
+  let updatedSteps;
+  if (steps.some((s) => s.id === id)) {
+    updatedSteps = steps.filter((s) => s.id !== id);
+    if (allStepsWithChecklist[currentStep]?.id === id) setCurrentStep(0);
+  } else {
+    const sectionToAdd = allSections.find((s) => s.id === id);
+    updatedSteps = sectionToAdd ? [...steps, sectionToAdd] : steps;
+  }
 
-  // Section manager
-  const toggleSection = (id: string) => {
-    if (steps.some((s) => s.id === id)) {
-      setSteps(steps.filter((s) => s.id !== id));
-      if (allStepsWithChecklist[currentStep]?.id === id) setCurrentStep(0);
-    } else {
-      const sectionToAdd = allSections.find((s) => s.id === id);
-      if (sectionToAdd) setSteps([...steps, sectionToAdd]);
-    }
-  };
+  setSteps(updatedSteps);
+
+  // Save selected sections to localStorage
+  localStorage.setItem(
+    "cvSections",
+    JSON.stringify(updatedSteps.map((s) => s.id))
+  );
+};
+
 
   // Checklist status
   const getChecklistStatus = (id: string) => {
@@ -303,36 +323,40 @@ case "certifications":
     <div className="min-h-screen bg-white text-[#1E3A8A] flex flex-col lg:flex-row">
       {/* Main Content */}
       <div className="flex-1">
-        {/* Top Navigation */}
-        <nav className="border-b bg-white sticky top-0 z-50 shadow-sm">
-          <div className="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between px-4 py-4 gap-2 sm:gap-0">
-            <button
-              onClick={goHome}
-              className="flex items-center space-x-2 px-4 py-2 bg-white border border-[#D1D5DB] rounded-lg hover:bg-[#F9FAFB] transition-colors font-medium w-full sm:w-auto justify-center"
-            >
-              <ChevronLeft className="h-5 w-5" />
-              <span>Home</span>
-            </button>
+      {/* Top Navigation */}
+<nav className="border-b bg-white sticky top-0 z-50 shadow-sm">
+  <div className="max-w-6xl mx-auto flex items-center justify-between px-4 py-4">
+    {/* Home Text on the Left */}
+  <span
+  onClick={goHome}
+  className="flex items-center space-x-2 text-lg font-semibold text-[#1E3A8A] cursor-pointer"
+>
+  <ChevronLeft className="h-5 w-5" />
+  <span>Home</span>
+</span>
 
-            <div className="flex space-x-2 w-full sm:w-auto justify-center">
-              <button
-                onClick={() => setShowSectionManager(!showSectionManager)}
-                className="flex items-center space-x-2 px-4 py-2 bg-yellow-500 text-white rounded-lg hover:bg-yellow-400 transition-colors"
-              >
-                <Settings className="h-4 w-4" />
-                <span>Manage Sections</span>
-              </button>
 
-              <button
-                onClick={onPreview}
-                className="flex items-center space-x-2 px-4 py-2 bg-[#1E3A8A] text-white rounded-lg hover:bg-[#2A4EB0] transition-colors"
-              >
-                <Eye className="h-4 w-4" />
-                <span>Preview</span>
-              </button>
-            </div>
-          </div>
-        </nav>
+    {/* Buttons on the Right */}
+    <div className="flex space-x-2">
+      <button
+        onClick={() => setShowSectionManager(!showSectionManager)}
+        className="flex items-center space-x-2 px-4 py-2 bg-[#1E3A8A] text-white rounded-lg hover:bg-[#2A4EB0] transition-colors"
+      >
+        <Settings className="h-4 w-4" />
+        <span>Manage Sections</span>
+      </button>
+
+      <button
+        onClick={onPreview}
+        className="flex items-center space-x-2 px-4 py-2 bg-[#1E3A8A] text-white rounded-lg hover:bg-[#2A4EB0] transition-colors"
+      >
+        <Eye className="h-4 w-4" />
+        <span>Preview</span>
+      </button>
+    </div>
+  </div>
+</nav>
+
 
         {/* Stepper & Forms */}
         <div className="max-w-4xl mx-auto px-2 sm:px-4 py-8">
