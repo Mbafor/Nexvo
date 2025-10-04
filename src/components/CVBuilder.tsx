@@ -1,4 +1,5 @@
-// src/components/CVBuilder.tsx
+
+
 import { useState, useEffect, useRef } from "react";
 import {
   ChevronLeft,
@@ -22,6 +23,21 @@ import LanguagesForm from "./forms/LanguagesForm";
 import ReferencesForm from "./forms/ReferencesForm";
 import HobbiesForm from "./forms/HobbiesForm";
 import CertificationsForm from "./forms/CertificationsForm";
+
+// CV Upload
+import CVUpload from "./CVUpload";
+
+// CV Parser
+import { mapTextToCV } from "../utils/MapTextToCV";
+
+// src/components/CVBuilder.tsx
+
+import * as pdfjsLib from "pdfjs-dist/legacy/build/pdf";
+import * as mammoth from "mammoth";
+
+// Set the worker (Vite-compatible)
+pdfjsLib.GlobalWorkerOptions.workerSrc =
+  `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.12.313/pdf.worker.min.js`;
 
 // Load dynamic tips
 import tipsData from "../data/tips.json";
@@ -58,6 +74,57 @@ export default function CVBuilder({ cvData, onUpdateCVData, onPreview }: CVBuild
 
   const allStepsWithChecklist = [...steps, { id: "checklist", label: "CV Checklist" }];
   const currentSection = allStepsWithChecklist[currentStep];
+
+const handleFileUpload = async (file: File) => {
+  try {
+    const text = await extractTextFromFile(file);
+    const parsedData = mapTextToCV(text);
+    onUpdateCVData({ ...cvData, ...parsedData });
+  } catch (error) {
+    console.error("Error processing file:", error);
+    throw error;
+  }
+};
+
+const extractTextFromFile = async (file: File): Promise<string> => {
+  const fileName = file.name.toLowerCase();
+
+  if (file.type === "application/pdf" || fileName.endsWith(".pdf")) {
+    const arrayBuffer = await file.arrayBuffer();
+    const pdf = await pdfjsLib.getDocument({ data: arrayBuffer }).promise;
+
+    let fullText = "";
+    for (let i = 1; i <= pdf.numPages; i++) {
+      const page = await pdf.getPage(i);
+      const content = await page.getTextContent();
+      fullText += content.items
+        .map((item: any) => ("str" in item ? item.str : ""))
+        .join(" ") + "\n";
+    }
+    return fullText;
+  } else if (
+    file.type ===
+      "application/vnd.openxmlformats-officedocument.wordprocessingml.document" ||
+    fileName.endsWith(".docx") ||
+    file.type === "application/msword" ||
+    fileName.endsWith(".doc")
+  ) {
+    const arrayBuffer = await file.arrayBuffer();
+    const result = await mammoth.extractRawText({ arrayBuffer });
+    return result.value;
+  } else if (file.type === "text/plain" || fileName.endsWith(".txt")) {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onload = () => resolve(reader.result as string);
+      reader.onerror = () => reject(new Error("Failed to read text file"));
+      reader.readAsText(file);
+    });
+  } else {
+    throw new Error("Unsupported file type");
+  }
+};
+
+
 
 
 // Load saved CV data and sections once on mount
@@ -187,10 +254,13 @@ case "certifications":
     switch (currentSection.id) {
       case "personal":
         return (
-          <PersonalInfoForm
-            data={cvData.personalInfo}
-            onChange={(personalInfo) => onUpdateCVData({ ...cvData, personalInfo })}
-          />
+          <>
+            <CVUpload onFileUpload={handleFileUpload} />
+            <PersonalInfoForm
+              data={cvData.personalInfo}
+              onChange={(personalInfo) => onUpdateCVData({ ...cvData, personalInfo })}
+            />
+          </>
         );
       case "education":
         return (
@@ -460,7 +530,7 @@ case "certifications":
       </div>
 
       {/* Tips Sidebar */}
-    {/* Tips Sidebar */}
+{/* Tips Sidebar */}
 <div
   ref={sidebarRef}
   className="relative bg-gray-50 border-t lg:border-t-0 lg:border-l w-full lg:w-auto"
@@ -478,15 +548,21 @@ case "certifications":
 
   <div className="p-4 w-full">
     <div className="bg-white border rounded-2xl shadow-sm p-4">
+      {/* Adjustable Button */}
       <button
         onClick={() => setShowTips(!showTips)}
-        className="text-sm font-semibold text-[#1E3A8A] mb-2"
+        style={{ fontSize: '16px' }} // <-- Change this to adjust button text size
+        className="font-semibold text-[#1E3A8A] mb-2"
       >
         {showTips ? "Hide Tips" : "Show Tips"}
       </button>
 
+      {/* Adjustable Tips List */}
       {showTips && currentSection && (
-        <ul className="list-disc pl-5 space-y-1 text-sm text-gray-600">
+        <ul
+          className="list-disc pl-5 space-y-1 text-gray-600"
+          style={{ fontSize: '15px' }} // <-- Change this to adjust list text size
+        >
           {(tipsData as any)[currentSection.id]?.map((tip: string, idx: number) => (
             <li key={idx}>{tip}</li>
           ))}
@@ -495,6 +571,7 @@ case "certifications":
     </div>
   </div>
 </div>
+
 
 
     </div>

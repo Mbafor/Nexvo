@@ -1,7 +1,11 @@
+
 // src/components/LandingPage.tsx
 import { useState, useEffect } from "react";
 import { FileText, Zap, Download, Sparkles, Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+
+import LatestPosts from "../components/LatestPosts";
+
 
 const templates = [
   { img: "creative.png", name: "Creative" },
@@ -76,6 +80,7 @@ export default function LandingPage({ onGetStarted }: LandingPageProps) {
             <button onClick={() => document.getElementById("templates")?.scrollIntoView({ behavior: "smooth" })} className="text-white font-medium hover:text-[#3B82F6] transition-colors">Templates</button>
             <button onClick={() => document.getElementById("faq")?.scrollIntoView({ behavior: "smooth" })} className="text-white font-medium hover:text-[#3B82F6] transition-colors">Q&A</button>
             <button onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })} className="text-white font-medium hover:text-[#3B82F6] transition-colors">Contact</button>
+            <a href="/blogs" className="text-white font-medium hover:text-[#3B82F6] transition-colors">Blogs</a>
           </div>
 
           <div className="hidden md:flex space-x-4">
@@ -110,6 +115,7 @@ export default function LandingPage({ onGetStarted }: LandingPageProps) {
                 <a href="#templates" onClick={(e) => handleMobileNavClick(e, "templates")} className="text-white font-medium hover:text-[#3B82F6] text-left transition-colors">Templates</a>
                 <a href="#faq" onClick={(e) => handleMobileNavClick(e, "faq")} className="text-white font-medium hover:text-[#3B82F6] text-left transition-colors">Q&A</a>
                 <a href="#contact" onClick={(e) => handleMobileNavClick(e, "contact")} className="text-white font-medium hover:text-[#3B82F6] text-left transition-colors">Contact</a>
+                   <a href="/blogs" onClick={() => setMobileMenuOpen(false)} className="text-white font-medium hover:text-[#3B82F6] text-left transition-colors">Blogs</a>
                 <button onClick={() => { onGetStarted(); setMobileMenuOpen(false); }} className="px-4 py-2 bg-[#2A4EB0] hover:bg-[#1B3380] rounded-lg text-white font-medium mt-2">Create CV</button>
               </div>
             </motion.nav>
@@ -227,6 +233,16 @@ export default function LandingPage({ onGetStarted }: LandingPageProps) {
             })}
           </div>
         </section>
+
+          {/* Latest Blog Posts */}
+        {/* Latest Blog Posts */}
+<section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 bg-[#F9FAFB]">
+  <h2 className="text-3xl sm:text-4xl font-bold text-center text-[#1E3A8A] mb-12">
+    Latest Posts
+  </h2>
+  <LatestPosts />
+</section>
+
 
         {/* Contact */}
         <section id="contact" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 bg-white text-[#1E3A8A]">
