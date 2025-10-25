@@ -26,6 +26,11 @@ const BlogPost: React.FC = () => {
   const post = slug ? getBlogPostBySlug(slug) : null;
   const relatedPosts = post ? getRelatedPosts(post, blogData.posts, 3) : [];
 
+  // Scroll to top when blog post changes
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [slug]);
+
   // Reading progress tracking
   useEffect(() => {
     const handleScroll = () => {

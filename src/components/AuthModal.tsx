@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { X, Loader2, Download, Shield, CheckCircle2 } from 'lucide-react';
-import { useAuth } from '../context';
+import { useAuth } from '../context/AuthContext';
 import { downloadIntentService } from '../utils/downloadIntent';
 
 interface AuthModalProps {

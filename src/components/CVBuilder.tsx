@@ -657,7 +657,6 @@ export default function CVBuilder({ cvData, onUpdateCVData, onPreview, onSignIn,
       case "personal":
         return (
           <>
-            <CVUpload onFileUpload={handleFileUpload} />
             <PersonalInfoForm
               data={cvData.personalInfo}
               onChange={(personalInfo) => onUpdateCVData({ ...cvData, personalInfo })}

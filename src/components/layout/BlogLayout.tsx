@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 
 interface BlogLayoutProps {
@@ -13,6 +13,7 @@ const BlogLayout: React.FC<BlogLayoutProps> = ({
   description = "Expert insights on CV building, career development, and job search strategies" 
 }) => {
   const navigate = useNavigate();
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   // Set document title and meta description dynamically
   useEffect(() => {
@@ -69,24 +70,26 @@ const BlogLayout: React.FC<BlogLayoutProps> = ({
               >
                 Blog
               </button>
-              <button
-                onClick={() => navigate("/templates")}
-                className="text-gray-600 hover:text-blue-600 font-medium transition-colors"
-              >
-                Templates
-              </button>
+              
             </div>
 
             {/* Mobile Menu Button */}
             <div className="md:hidden">
               <button
                 type="button"
+                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
                 className="text-gray-600 hover:text-blue-600 transition-colors"
-                aria-label="Open menu"
+                aria-label="Toggle menu"
               >
-                <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-                </svg>
+                {isMobileMenuOpen ? (
+                  <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                ) : (
+                  <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                  </svg>
+                )}
               </button>
             </div>
 
@@ -101,6 +104,53 @@ const BlogLayout: React.FC<BlogLayoutProps> = ({
             </div>
           </div>
         </div>
+
+        {/* Mobile Menu */}
+        {isMobileMenuOpen && (
+          <div className="md:hidden border-t border-gray-200 bg-white">
+            <div className="px-4 py-3 space-y-3">
+              <button
+                onClick={() => {
+                  navigate("/");
+                  setIsMobileMenuOpen(false);
+                }}
+                className="block w-full text-left px-3 py-2 text-gray-600 hover:text-blue-600 font-medium transition-colors"
+              >
+                Home
+              </button>
+              <button
+                onClick={() => {
+                  navigate("/builder");
+                  setIsMobileMenuOpen(false);
+                }}
+                className="block w-full text-left px-3 py-2 text-gray-600 hover:text-blue-600 font-medium transition-colors"
+              >
+                CV Builder
+              </button>
+              <button
+                onClick={() => {
+                  navigate("/blogs");
+                  setIsMobileMenuOpen(false);
+                }}
+                className="block w-full text-left px-3 py-2 text-blue-600 font-medium border-l-2 border-blue-600"
+              >
+                Blog
+              </button>
+    
+              <div className="pt-3">
+                <button
+                  onClick={() => {
+                    navigate("/builder");
+                    setIsMobileMenuOpen(false);
+                  }}
+                  className="w-full bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg font-medium transition-colors shadow-sm"
+                >
+                  Create CV
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
       </nav>
 
       {/* Main Content */}

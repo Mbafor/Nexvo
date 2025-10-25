@@ -1,24 +1,30 @@
 import { ArrowLeft, Users, Award, Globe, Heart, Mail } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 
-interface AboutPageProps {
-  onBack?: () => void;
-}
+export default function AboutPage() {
+  const navigate = useNavigate();
 
-export default function AboutPage({ onBack }: AboutPageProps) {
+  const handleBack = () => {
+    // Try to go back in history, fallback to home page
+    if (window.history.length > 1) {
+      navigate(-1);
+    } else {
+      navigate('/');
+    }
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 to-purple-50">
       {/* Styled Header */}
       <div className="bg-white shadow-lg border-b border-gray-200">
         <div className="max-w-4xl mx-auto px-6 py-8">
-          {onBack && (
-            <button
-              onClick={onBack}
-              className="flex items-center space-x-2 text-gray-600 hover:text-purple-600 mb-6 transition-colors"
-            >
-              <ArrowLeft className="h-5 w-5" />
-              <span>Back</span>
-            </button>
-          )}
+          <button
+            onClick={handleBack}
+            className="flex items-center space-x-2 text-gray-600 hover:text-purple-600 mb-6 transition-colors"
+          >
+            <ArrowLeft className="h-5 w-5" />
+            <span>Back</span>
+          </button>
           <div className="text-center">
             <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-r from-purple-600 to-blue-600 rounded-full mb-4">
               <Users className="h-8 w-8 text-white" />

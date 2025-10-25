@@ -1,32 +1,37 @@
 import { ArrowLeft, Scale, Calendar, Mail } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 
-interface TermsConditionsProps {
-  onBack?: () => void;
-}
-
-export default function TermsConditions({ onBack }: TermsConditionsProps) {
+export default function TermsConditions() {
+  const navigate = useNavigate();
   const lastUpdated = "January 15, 2025";
   const effectiveDate = "January 15, 2025";
+
+  const handleBack = () => {
+    // Try to go back in history, fallback to home page
+    if (window.history.length > 1) {
+      navigate(-1);
+    } else {
+      navigate('/');
+    }
+  };
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50">
       {/* Styled Header */}
       <div className="bg-white shadow-lg border-b border-gray-200">
-        <div className="max-w-4xl mx-auto px-6 py-8">
-          {onBack && (
-            <button
-              onClick={onBack}
-              className="flex items-center space-x-2 text-gray-600 hover:text-blue-600 mb-6 transition-colors"
-            >
-              <ArrowLeft className="h-5 w-5" />
-              <span>Back</span>
-            </button>
-          )}
+        <div className="max-w-4xl mx-auto px-6 py-4">
+          <button
+            onClick={handleBack}
+            className="flex items-center space-x-2 text-gray-600 hover:text-blue-600 mb-4 transition-colors"
+          >
+            <ArrowLeft className="h-5 w-5" />
+            <span>Back</span>
+          </button>
           <div className="text-center">
-            <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full mb-4">
-              <Scale className="h-8 w-8 text-white" />
+            <div className="inline-flex items-center justify-center w-12 h-12 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full mb-3">
+              <Scale className="h-6 w-6 text-white" />
             </div>
-            <h1 className="text-4xl font-bold text-gray-900 mb-2">Terms of Service</h1>
+            <h1 className="text-2xl md:text-3xl font-bold text-gray-900 mb-2">Terms of Service</h1>
             <div className="flex items-center justify-center space-x-4 text-sm text-gray-600">
               <div className="flex items-center space-x-1">
                 <Calendar className="h-4 w-4" />

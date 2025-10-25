@@ -253,11 +253,11 @@ function App() {
         <Route path="/cv/shared/:id" element={<SharedCV />} />
         <Route path="/blogs" element={<BlogList />} />
         <Route path="/blog/:slug" element={<BlogPost />} />
-        <Route path="/contact" element={<ContactPage onBack={() => window.history.back()} />} />
-        <Route path="/terms" element={<TermsConditions onBack={() => window.history.back()} />} />
-        <Route path="/privacy" element={<PrivacyPolicy onBack={() => window.history.back()} />} />
-        <Route path="/help" element={<ContactPage onBack={() => window.history.back()} />} />
-        <Route path="/about" element={<AboutPage onBack={() => window.history.back()} />} />
+        <Route path="/contact" element={<ContactPage />} />
+        <Route path="/terms" element={<TermsConditions />} />
+        <Route path="/privacy" element={<PrivacyPolicy />} />
+        <Route path="/help" element={<ContactPage />} />
+        <Route path="/about" element={<AboutPage />} />
       </Routes>
 
       <AuthModal isOpen={showAuthModal} onClose={() => setShowAuthModal(false)} onSuccess={handleAuthSuccess} />
