@@ -3,7 +3,6 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { 
   Mail, 
   Phone, 
-  MapPin, 
   Clock, 
   Send, 
   CheckCircle2, 

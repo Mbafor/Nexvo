@@ -1,14 +1,12 @@
 
 // src/components/LandingPage.tsx
 import { useState } from "react";
-import { FileText, Zap, Sparkles, Menu, X, ArrowRight, Shield, Users, Award, Play, Globe, TrendingUp, Mail, Phone, MapPin, Clock, Send, MessageCircle, Linkedin, Twitter } from "lucide-react";
+import { FileText, Zap, Sparkles, Menu, X, ArrowRight, Shield, Users, Award, Play, Globe, TrendingUp, Mail, Phone, MapPin, Clock, Send, MessageCircle, Linkedin, Twitter, Briefcase, BarChart3, Palette, Headphones } from "lucide-react";
 import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion";
 import { Link } from "react-router-dom";
 import LatestPosts from "../components/LatestPosts";
-import { Briefcase, BarChart3, Palette, Headphones } from "lucide-react";
 import { sendContactMessage } from "../utils/contactService";
 
-import LatestPosts from "../components/LatestPosts";
 
 
 const templates = [
@@ -241,7 +239,6 @@ export default function LandingPage({ onGetStarted, onSignIn }: LandingPageProps
         />
       </div>
 
-<<<<<<< HEAD
       {/* Enhanced Navbar */}
       <nav className="sticky top-0 z-50 backdrop-blur-xl bg-white/95 border-b border-blue-100 shadow-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
@@ -254,52 +251,6 @@ export default function LandingPage({ onGetStarted, onSignIn }: LandingPageProps
             >
               <div className="w-10 h-10 bg-gradient-to-br from-blue-400 to-blue-600 rounded-xl flex items-center justify-center">
                 <FileText className="h-6 w-6 text-white" />
-=======
-          </div>
-
-          {/* Desktop Menu */}
-          <div className="hidden md:flex space-x-8">
-            <button onClick={() => document.getElementById("templates")?.scrollIntoView({ behavior: "smooth" })} className="text-white font-medium hover:text-[#3B82F6] transition-colors">Templates</button>
-            <button onClick={() => document.getElementById("faq")?.scrollIntoView({ behavior: "smooth" })} className="text-white font-medium hover:text-[#3B82F6] transition-colors">Q&A</button>
-            <button onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })} className="text-white font-medium hover:text-[#3B82F6] transition-colors">Contact</button>
-            <a href="/blogs" className="text-white font-medium hover:text-[#3B82F6] transition-colors">Blogs</a>
-          </div>
-
-          <div className="hidden md:flex space-x-4">
-            <button onClick={onGetStarted} className="px-6 py-2 bg-[#2A4EB0] hover:bg-[#1B3380] rounded-lg text-white font-medium transition-colors">Create CV</button>
-          </div>
-
-          {/* Mobile Menu Button */}
-          <div className="md:hidden">
-            <button
-              onClick={() => setMobileMenuOpen((s) => !s)}
-              aria-expanded={mobileMenuOpen}
-              aria-controls="mobile-menu"
-              className="p-2"
-            >
-              {mobileMenuOpen ? <X className="h-6 w-6 text-white" /> : <Menu className="h-6 w-6 text-white" />}
-            </button>
-          </div>
-        </div>
-
-        {/* Mobile Menu */}
-        <AnimatePresence>
-          {mobileMenuOpen && (
-            <motion.nav
-              id="mobile-menu"
-              initial={{ opacity: 0, y: -8 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -8 }}
-              transition={{ duration: 0.18 }}
-              className="md:hidden bg-[#1E3A8A] border-t border-[#162B5A]"
-            >
-              <div className="flex flex-col space-y-2 px-4 py-4">
-                <a href="#templates" onClick={(e) => handleMobileNavClick(e, "templates")} className="text-white font-medium hover:text-[#3B82F6] text-left transition-colors">Templates</a>
-                <a href="#faq" onClick={(e) => handleMobileNavClick(e, "faq")} className="text-white font-medium hover:text-[#3B82F6] text-left transition-colors">Q&A</a>
-                <a href="#contact" onClick={(e) => handleMobileNavClick(e, "contact")} className="text-white font-medium hover:text-[#3B82F6] text-left transition-colors">Contact</a>
-                   <a href="/blogs" onClick={() => setMobileMenuOpen(false)} className="text-white font-medium hover:text-[#3B82F6] text-left transition-colors">Blogs</a>
-                <button onClick={() => { onGetStarted(); setMobileMenuOpen(false); }} className="px-4 py-2 bg-[#2A4EB0] hover:bg-[#1B3380] rounded-lg text-white font-medium mt-2">Create CV</button>
->>>>>>> f100b2e5753ae8c64942b4494f3bb8bff3aa15d4
               </div>
               <h2 className="text-3xl font-bold bg-gradient-to-r from-gray-900 to-blue-700 bg-clip-text text-transparent">
                 QuickCV
@@ -878,7 +829,6 @@ export default function LandingPage({ onGetStarted, onSignIn }: LandingPageProps
   </div>
 </section>
 
-<<<<<<< HEAD
 {/* Final CTA Section */}
 <section className="py-24 bg-blue-50">
   <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
@@ -918,30 +868,6 @@ export default function LandingPage({ onGetStarted, onSignIn }: LandingPageProps
     </motion.div>
   </div>
 </section>
-=======
-          {/* Latest Blog Posts */}
-        {/* Latest Blog Posts */}
-<section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 bg-[#F9FAFB]">
-  <h2 className="text-3xl sm:text-4xl font-bold text-center text-[#1E3A8A] mb-12">
-    Latest Posts
-  </h2>
-  <LatestPosts />
-</section>
-
-
-        {/* Contact */}
-        <section id="contact" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 bg-white text-[#1E3A8A]">
-          <h2 className="text-3xl font-bold text-center mb-10">Contact Us</h2>
-          <div className="max-w-2xl mx-auto">
-            <form action="mailto:mbaforfoghang@gmail.com" method="post" encType="text/plain" className="space-y-6">
-              <input type="text" name="name" placeholder="Your Name" required className="w-full px-4 py-3 rounded-xl border border-[#3B82F6] focus:ring-2 focus:ring-[#3B82F6] outline-none text-[#1E3A8A] bg-[#F9FAFB]" />
-              <input type="email" name="email" placeholder="Your Email" required className="w-full px-4 py-3 rounded-xl border border-[#3B82F6] focus:ring-2 focus:ring-[#3B82F6] outline-none text-[#1E3A8A] bg-[#F9FAFB]" />
-              <textarea name="message" placeholder="Your Message" required className="w-full px-4 py-3 rounded-xl border border-[#3B82F6] focus:ring-2 focus:ring-[#3B82F6] outline-none h-32 text-[#1E3A8A] bg-[#F9FAFB]"></textarea>
-              <button type="submit" className="w-full px-6 py-4 bg-[#2A4EB0] hover:bg-[#1B3380] rounded-xl text-white font-semibold transition-colors">Send Message</button>
-            </form>
-          </div>
-        </section>
->>>>>>> f100b2e5753ae8c64942b4494f3bb8bff3aa15d4
 
 
 {/* Contact Section */}
