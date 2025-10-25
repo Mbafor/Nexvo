@@ -41,6 +41,9 @@ export default function HobbiesForm({ data, onChange }: HobbiesFormProps) {
             </div>
             <input
               type="text"
+              name={idx === 0 ? "hobby" : undefined}
+              id={idx === 0 ? "hobby" : undefined}
+              data-field={idx === 0 ? "hobbies.0" : undefined}
               value={hobby}
               onChange={(e) => updateHobby(idx, e.target.value)}
               className="w-full px-3 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-slate-500 focus:border-transparent"

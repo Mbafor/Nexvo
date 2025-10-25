@@ -1,23 +1,129 @@
-// src/components/PreviewPage.tsx
-
-import { useState } from 'react';
-import { ChevronLeft, Download } from 'lucide-react';
+// Stunning CV Preview Page - Professional Template Gallery
+import { useState, useEffect } from 'react';
+import { ChevronLeft, Download, Lock, Shield, Eye, Sparkles, Zap, Crown, Minimize2, Code, FileText } from 'lucide-react';
 import { CVData, TemplateType } from '../types/cv';
 import { PDFViewer } from '@react-pdf/renderer';
 import { generatePDFBlob, getTemplate } from '../lib/pdfGenerator';
 import { saveAs } from 'file-saver';
+import { useAuth } from '../context';
+import { downloadIntentService } from '../utils/downloadIntent';
 
 interface PreviewPageProps {
   cvData: CVData;
   onBack: () => void;
+  onDownload?: (templateType: TemplateType) => void;
+  onShowAuth?: () => void;
 }
 
-export default function PreviewPage({ cvData, onBack }: PreviewPageProps) {
-  const [selectedTemplate, setSelectedTemplate] = useState<TemplateType>('modern');
+// Template metadata with enhanced styling
+const templateConfig = {
+  modern: {
+    name: 'Modern Professional',
+    description: 'Clean, contemporary design with perfect visual hierarchy',
+    icon: Sparkles,
+    color: 'from-blue-500 to-purple-600',
+    bgColor: 'bg-blue-50',
+    borderColor: 'border-blue-200',
+    textColor: 'text-blue-700',
+    category: 'Professional',
+    features: ['Two-column layout', 'Progress indicators', 'Modern typography']
+  },
+  creative: {
+    name: 'Creative Studio',
+    description: 'Bold, artistic design that showcases your creativity',
+    icon: Zap,
+    color: 'from-purple-500 to-pink-600',
+    bgColor: 'bg-purple-50',
+    borderColor: 'border-purple-200',
+    textColor: 'text-purple-700',
+    category: 'Creative',
+    features: ['Artistic header', 'Visual elements', 'Creative layout']
+  },
+  executive: {
+    name: 'Executive Elite',
+    description: 'Sophisticated design for leadership positions',
+    icon: Crown,
+    color: 'from-gray-800 to-yellow-600',
+    bgColor: 'bg-yellow-50',
+    borderColor: 'border-yellow-200',
+    textColor: 'text-yellow-700',
+    category: 'Leadership',
+    features: ['Luxury styling', 'Premium layout', 'Gold accents']
+  },
+  minimalist: {
+    name: 'Pure Minimalist',
+    description: 'Ultra-clean design focusing on content clarity',
+    icon: Minimize2,
+    color: 'from-gray-400 to-gray-600',
+    bgColor: 'bg-gray-50',
+    borderColor: 'border-gray-200',
+    textColor: 'text-gray-700',
+    category: 'Minimal',
+    features: ['Clean typography', 'White space', 'Elegant simplicity']
+  },
+  tech: {
+    name: 'Tech Developer',
+    description: 'Modern terminal-inspired design for tech professionals',
+    icon: Code,
+    color: 'from-green-500 to-teal-600',
+    bgColor: 'bg-green-50',
+    borderColor: 'border-green-200',
+    textColor: 'text-green-700',
+    category: 'Technology',
+    features: ['Terminal styling', 'Neon accents', 'Developer aesthetics']
+  },
+  ats: {
+    name: 'ATS Optimized',
+    description: 'Perfect compatibility with applicant tracking systems',
+    icon: FileText,
+    color: 'from-orange-500 to-red-600',
+    bgColor: 'bg-orange-50',
+    borderColor: 'border-orange-200',
+    textColor: 'text-orange-700',
+    category: 'ATS-Ready',
+    features: ['ATS compatible', 'Clean structure', 'Professional format']
+  }
+};
+
+export default function PreviewPage({ cvData, onBack, onDownload, onShowAuth }: PreviewPageProps) {
+  const { user } = useAuth();
+  const [selectedTemplate, setSelectedTemplate] = useState<TemplateType>(() => {
+    const savedTemplate = localStorage.getItem('selectedTemplate') as TemplateType;
+    return savedTemplate || 'modern';
+  });
+  const [isPreviewMode, setIsPreviewMode] = useState(false);
+  const [animatedTemplate, setAnimatedTemplate] = useState<string | null>(null);
+
+  // Save selected template to localStorage
+  useEffect(() => {
+    localStorage.setItem('selectedTemplate', selectedTemplate);
+  }, [selectedTemplate]);
+
+  const handleTemplateSelect = (template: TemplateType) => {
+    setAnimatedTemplate(template);
+    setTimeout(() => {
+      setSelectedTemplate(template);
+      setAnimatedTemplate(null);
+    }, 200);
+  };
 
   const handleDownload = async () => {
     if (!cvData.personalInfo.fullName) {
       alert('Please provide your full name in Personal Info before downloading.');
+      return;
+    }
+
+    if (!user) {
+      console.log('🔒 User not authenticated, saving download intent...');
+      downloadIntentService.saveIntent(cvData, selectedTemplate, '/dashboard');
+      if (onShowAuth) {
+        onShowAuth();
+      }
+      return;
+    }
+
+    if (onDownload) {
+      onDownload(selectedTemplate);
       return;
     }
 
@@ -31,71 +137,234 @@ export default function PreviewPage({ cvData, onBack }: PreviewPageProps) {
   };
 
   return (
-    <div className="min-h-screen bg-white text-[#1E3A8A]">
-      <div className="max-w-7xl mx-auto px-4 py-8">
-        {/* Top Buttons */}
-        <div className="flex items-center justify-between mb-6 flex-wrap gap-2">
-          <button
-            onClick={onBack}
-            className="flex items-center space-x-2 px-4 py-2 bg-white border border-[#D1D5DB] rounded-lg hover:bg-[#F9FAFB] transition-colors font-medium"
-          >
-            <ChevronLeft className="h-4 w-4 text-[#1E3A8A]" />
-            <span>Back to Editor</span>
-          </button>
-
-          <button
-            onClick={handleDownload}
-            className="flex items-center space-x-2 px-6 py-3 bg-[#1E3A8A] text-white rounded-lg hover:bg-[#2A4EB0] transition-colors font-semibold"
-          >
-            <Download className="h-5 w-5" />
-            <span>Download CV</span>
-          </button>
-        </div>
-
-        {/* Template Selection */}
-        <div className="mb-6">
-          <h2 className="text-2xl font-bold text-[#1E3A8A] mb-3">Choose Your Template</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-            {(['modern', 'creative', 'ats'] as TemplateType[]).map((type) => (
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-blue-50">
+      {/* Stunning Header with Glassmorphism Effect */}
+      <header className="sticky top-0 z-50 backdrop-blur-xl bg-white/80 border-b border-white/20 shadow-lg shadow-black/5">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-between h-16">
+            {/* Left: Enhanced Back Button */}
+            <div className="flex items-center space-x-4">
               <button
-                key={type}
-                onClick={() => setSelectedTemplate(type)}
-                className={`p-4 rounded-lg border-2 transition-all text-left ${
-                  selectedTemplate === type
-                    ? 'border-[#1E3A8A] bg-[#1E3A8A] text-white'
-                    : 'border-[#D1D5DB] bg-white hover:border-[#2A4EB0] hover:bg-[#EFF6FF]'
-                }`}
+                onClick={() => {
+                  localStorage.setItem('cvData', JSON.stringify(cvData));
+                  onBack();
+                }}
+                className="group flex items-center space-x-2 px-4 py-2 text-gray-600 hover:text-white hover:bg-gradient-to-r hover:from-blue-600 hover:to-purple-600 rounded-xl transition-all duration-300 border border-gray-200 hover:border-transparent shadow-sm hover:shadow-md"
               >
-                <h3 className="font-bold text-lg mb-1">
-                  {type === 'modern'
-                    ? 'Modern'
-                    : type === 'creative'
-                    ? 'Creative'
-                    : 'ATS-Friendly'}
-                </h3>
-                <p
-                  className={`text-sm ${
-                    selectedTemplate === type ? 'text-slate-200' : 'text-[#1E3A8A]'
-                  }`}
-                >
-                  {type === 'modern'
-                    ? 'Clean and professional with gradient header'
-                    : type === 'creative'
-                    ? 'Eye-catching two-column design with color'
-                    : 'Simple format optimized for ATS systems'}
-                </p>
+                <ChevronLeft className="h-5 w-5 transition-transform group-hover:-translate-x-1" />
+                <span className="font-medium">Back to Editor</span>
               </button>
-            ))}
+              
+              <div className="hidden sm:block">
+                <h1 className="text-2xl font-bold bg-gradient-to-r from-gray-900 via-blue-900 to-purple-900 bg-clip-text text-transparent">
+                  Template Gallery
+                </h1>
+                <p className="text-sm text-gray-500 mt-1">Choose your perfect CV design</p>
+              </div>
+            </div>
+
+            {/* Right: Action Buttons */}
+            <div className="flex items-center space-x-3">
+              {!user && (
+                <div className="hidden sm:flex items-center space-x-2 text-sm text-amber-700 bg-gradient-to-r from-amber-50 to-orange-50 px-4 py-2 rounded-xl border border-amber-200 shadow-sm">
+                  <Lock className="h-4 w-4" />
+                  <span className="font-medium">Sign in to download</span>
+                </div>
+              )}
+              
+              <button
+                onClick={() => setIsPreviewMode(!isPreviewMode)}
+                className="hidden lg:flex items-center space-x-2 px-4 py-2 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-xl transition-colors font-medium"
+              >
+                <Eye className="h-4 w-4" />
+                <span>{isPreviewMode ? 'Gallery' : 'Preview'}</span>
+              </button>
+
+              <button
+                onClick={handleDownload}
+                className="group relative flex items-center space-x-2 px-6 py-2 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-xl hover:from-blue-700 hover:to-purple-700 transition-all duration-300 shadow-lg hover:shadow-xl font-medium overflow-hidden"
+              >
+                <div className="absolute inset-0 bg-gradient-to-r from-blue-400 to-purple-400 opacity-0 group-hover:opacity-20 transition-opacity duration-300"></div>
+                {!user && <Lock className="h-4 w-4 relative z-10" />}
+                <Download className="h-4 w-4 relative z-10" />
+                <span className="relative z-10">{user ? 'Download PDF' : 'Get Started'}</span>
+              </button>
+            </div>
           </div>
         </div>
+      </header>
 
-        {/* CV Preview using PDFViewer */}
-        <div className="bg-white p-2 sm:p-4 rounded-lg shadow-inner overflow-auto border border-[#D1D5DB]" style={{ height: '80vh' }}>
-          <PDFViewer style={{ width: '100%', height: '100%', border: 'none' }}>
-            {getTemplate(selectedTemplate, cvData)}
-          </PDFViewer>
+      {/* Main Content */}
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        {/* Auth Notice with Enhanced Design */}
+        {!user && (
+          <div className="mb-8 relative overflow-hidden bg-gradient-to-r from-blue-50 via-indigo-50 to-purple-50 border border-blue-200/50 rounded-2xl p-6 shadow-lg shadow-blue-100/50">
+            <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-blue-400/20 to-purple-400/20 rounded-full -translate-y-16 translate-x-16"></div>
+            <div className="relative flex items-start space-x-4">
+              <div className="flex-shrink-0 w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-600 rounded-xl flex items-center justify-center shadow-lg">
+                <Shield className="h-6 w-6 text-white" />
+              </div>
+              <div className="flex-1">
+                <h3 className="text-xl font-bold text-gray-900 mb-2">Create Your Professional CV Today</h3>
+                <p className="text-gray-700 mb-4 leading-relaxed">
+                  Join thousands of professionals who have crafted stunning CVs with our platform. 
+                  Create a free account to download your CV and access your personal dashboard.
+                </p>
+                <button
+                  onClick={handleDownload}
+                  className="inline-flex items-center space-x-2 px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-xl hover:from-blue-700 hover:to-purple-700 transition-all duration-300 font-medium shadow-lg hover:shadow-xl"
+                >
+                  <Sparkles className="h-5 w-5" />
+                  <span>Start Creating for Free</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
+
+        <div className={`grid ${isPreviewMode ? 'lg:grid-cols-2' : 'grid-cols-1'} gap-8`}>
+          {/* Template Gallery */}
+          <div className={`${isPreviewMode ? '' : 'max-w-4xl mx-auto'}`}>
+            <div className="text-center mb-8">
+              <h2 className="text-3xl font-bold text-gray-900 mb-3">
+                Choose Your Perfect Template
+              </h2>
+              <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+                Each template is professionally designed to make you stand out. 
+                Select the one that best represents your professional story.
+              </p>
+            </div>
+
+            {/* Template Grid */}
+            <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+              {(Object.entries(templateConfig) as [TemplateType, typeof templateConfig.modern][]).map(([template, config]) => {
+                const IconComponent = config.icon;
+                const isSelected = selectedTemplate === template;
+                const isAnimating = animatedTemplate === template;
+                
+                return (
+                  <div
+                    key={template}
+                    className={`group relative cursor-pointer transition-all duration-300 ${
+                      isAnimating ? 'scale-95' : 'hover:scale-105'
+                    }`}
+                    onClick={() => handleTemplateSelect(template)}
+                  >
+                    {/* Card Container */}
+                    <div className={`relative overflow-hidden rounded-2xl border-2 transition-all duration-300 ${
+                      isSelected 
+                        ? `${config.borderColor} shadow-2xl shadow-${template === 'tech' ? 'green' : template === 'creative' ? 'purple' : template === 'executive' ? 'yellow' : template === 'minimalist' ? 'gray' : template === 'ats' ? 'orange' : 'blue'}-200/50` 
+                        : 'border-gray-200 hover:border-gray-300 shadow-lg hover:shadow-xl'
+                    } bg-white`}>
+                      
+                      {/* Selected Indicator */}
+                      {isSelected && (
+                        <div className={`absolute top-4 right-4 w-6 h-6 bg-gradient-to-r ${config.color} rounded-full flex items-center justify-center z-10 shadow-lg`}>
+                          <div className="w-2 h-2 bg-white rounded-full"></div>
+                        </div>
+                      )}
+
+                      {/* Header with Gradient */}
+                      <div className={`relative p-6 ${config.bgColor} border-b border-gray-100`}>
+                        <div className={`absolute top-0 right-0 w-24 h-24 bg-gradient-to-br ${config.color} opacity-10 rounded-full -translate-y-12 translate-x-12`}></div>
+                        <div className="relative flex items-center space-x-3">
+                          <div className={`w-12 h-12 bg-gradient-to-br ${config.color} rounded-xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300`}>
+                            <IconComponent className="h-6 w-6 text-white" />
+                          </div>
+                          <div>
+                            <h3 className="font-bold text-gray-900 text-lg">{config.name}</h3>
+                            <span className={`inline-block px-2 py-1 text-xs font-medium ${config.textColor} ${config.bgColor} rounded-full border ${config.borderColor} mt-1`}>
+                              {config.category}
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Content */}
+                      <div className="p-6">
+                        <p className="text-gray-600 mb-4 text-sm leading-relaxed">
+                          {config.description}
+                        </p>
+                        
+                        {/* Features */}
+                        <div className="space-y-2">
+                          <p className="text-xs font-semibold text-gray-500 uppercase tracking-wider">Features</p>
+                          <div className="flex flex-wrap gap-1">
+                            {config.features.map((feature, idx) => (
+                              <span
+                                key={idx}
+                                className="inline-block px-2 py-1 text-xs bg-gray-100 text-gray-600 rounded-md"
+                              >
+                                {feature}
+                              </span>
+                            ))}
+                          </div>
+                        </div>
+
+                        {/* Action Button */}
+                        <button className={`w-full mt-4 py-2 text-sm font-medium rounded-xl transition-all duration-300 ${
+                          isSelected
+                            ? `bg-gradient-to-r ${config.color} text-white shadow-lg`
+                            : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                        }`}>
+                          {isSelected ? 'Selected' : 'Select Template'}
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+
+            {/* Mobile Preview Toggle */}
+            <div className="lg:hidden mt-8 text-center">
+              <button
+                onClick={() => setIsPreviewMode(!isPreviewMode)}
+                className="inline-flex items-center space-x-2 px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-xl hover:from-blue-700 hover:to-purple-700 transition-all duration-300 font-medium shadow-lg"
+              >
+                <Eye className="h-5 w-5" />
+                <span>{isPreviewMode ? 'Back to Gallery' : 'Preview Selected'}</span>
+              </button>
+            </div>
+          </div>
+
+          {/* Enhanced Preview Panel */}
+          {(isPreviewMode || window.innerWidth >= 1024) && (
+            <div className="sticky top-24 h-fit">
+              <div className="bg-white rounded-2xl shadow-xl border border-gray-200 overflow-hidden">
+                {/* Preview Header */}
+                <div className="bg-gradient-to-r from-gray-50 to-blue-50 p-6 border-b border-gray-200">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <h3 className="text-xl font-bold text-gray-900 mb-1">Live Preview</h3>
+                      <p className="text-sm text-gray-600">
+                        <span className="font-medium">{templateConfig[selectedTemplate].name}</span> Template
+                      </p>
+                    </div>
+                    <div className={`px-3 py-1 text-xs font-medium ${templateConfig[selectedTemplate].textColor} ${templateConfig[selectedTemplate].bgColor} rounded-full border ${templateConfig[selectedTemplate].borderColor}`}>
+                      {templateConfig[selectedTemplate].category}
+                    </div>
+                  </div>
+                </div>
+                
+                {/* PDF Viewer Container */}
+                <div className="relative bg-gray-100">
+                  <div className="w-full" style={{ height: '70vh', minHeight: '500px' }}>
+                    <PDFViewer
+                      width="100%"
+                      height="100%"
+                      showToolbar={true}
+                      className="border-0 rounded-b-2xl"
+                    >
+                      {getTemplate(selectedTemplate, cvData)}
+                    </PDFViewer>
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
         </div>
-      </div>
+      </main>
     </div>
   );
 }

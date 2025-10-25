@@ -59,6 +59,9 @@ export default function EducationForm({ data, onChange }: EducationFormProps) {
                 </label>
                 <input
                   type="text"
+                  name={index === 0 ? "institution" : undefined}
+                  id={index === 0 ? "institution" : undefined}
+                  data-field={index === 0 ? "education.0.institution" : undefined}
                   value={edu.institution}
                   onChange={(e) => updateEducation(edu.id, 'institution', e.target.value)}
                   className="w-full px-3 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-slate-500 focus:border-transparent"
@@ -70,6 +73,9 @@ export default function EducationForm({ data, onChange }: EducationFormProps) {
                 <label className="block text-sm font-medium text-slate-700 mb-1">Degree</label>
                 <input
                   type="text"
+                  name={index === 0 ? "degree" : undefined}
+                  id={index === 0 ? "degree" : undefined}
+                  data-field={index === 0 ? "education.0.degree" : undefined}
                   value={edu.degree}
                   onChange={(e) => updateEducation(edu.id, 'degree', e.target.value)}
                   className="w-full px-3 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-slate-500 focus:border-transparent"
@@ -84,6 +90,9 @@ export default function EducationForm({ data, onChange }: EducationFormProps) {
               </label>
               <input
                 type="text"
+                name={index === 0 ? "field" : undefined}
+                id={index === 0 ? "field" : undefined}
+                data-field={index === 0 ? "education.0.field" : undefined}
                 value={edu.field}
                 onChange={(e) => updateEducation(edu.id, 'field', e.target.value)}
                 className="w-full px-3 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-slate-500 focus:border-transparent"

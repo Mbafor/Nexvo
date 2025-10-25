@@ -26,7 +26,10 @@ export default function ProjectsForm({ data, onChange }: ProjectsFormProps) {
 
   const updateProject = (id: string, field: keyof Project, value: string) => {
     onChange(
-      data.map((proj) => (proj.id === id ? { ...proj, [field]: value } : proj))
+      data.map((proj) => (proj.id === id ? { 
+        ...proj, 
+        [field]: field === 'technologies' ? value : value // Ensure technologies is always a string in forms
+      } : proj))
     );
   };
 
@@ -57,6 +60,9 @@ export default function ProjectsForm({ data, onChange }: ProjectsFormProps) {
               </label>
               <input
                 type="text"
+                name={index === 0 ? "projectName" : undefined}
+                id={index === 0 ? "projectName" : undefined}
+                data-field={index === 0 ? "projects.0.name" : undefined}
                 value={proj.name}
                 onChange={(e) => updateProject(proj.id, 'name', e.target.value)}
                 className="w-full px-3 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-slate-500 focus:border-transparent"
@@ -83,7 +89,7 @@ export default function ProjectsForm({ data, onChange }: ProjectsFormProps) {
               </label>
               <input
                 type="text"
-                value={proj.technologies}
+                value={Array.isArray(proj.technologies) ? proj.technologies.join(', ') : proj.technologies}
                 onChange={(e) => updateProject(proj.id, 'technologies', e.target.value)}
                 className="w-full px-3 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-slate-500 focus:border-transparent"
                 placeholder="React, Node.js, MongoDB"

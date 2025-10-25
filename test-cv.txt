@@ -1,0 +1,69 @@
+John Smith
+Software Engineer
+
+Email: john.smith@example.com
+Phone: (555) 123-4567
+Location: San Francisco, CA
+LinkedIn: linkedin.com/in/johnsmith
+Website: johnsmith.dev
+
+PROFESSIONAL SUMMARY
+Experienced software engineer with 5+ years of expertise in full-stack development, specializing in React, Node.js, and cloud technologies. Passionate about creating scalable web applications and leading development teams.
+
+EXPERIENCE
+
+Senior Software Engineer at Tech Solutions Inc
+January 2022 - Present
+• Led development of customer-facing web applications serving 100k+ users
+• Implemented microservices architecture reducing system downtime by 40%
+• Mentored junior developers and conducted code reviews
+• Technologies: React, Node.js, AWS, Docker, PostgreSQL
+
+Software Developer at StartupCorp
+June 2019 - December 2021
+• Developed and maintained e-commerce platform with 50k+ monthly transactions
+• Built responsive web interfaces using React and TypeScript
+• Integrated payment systems and third-party APIs
+• Collaborated with cross-functional teams in Agile environment
+
+EDUCATION
+
+Bachelor of Science in Computer Science
+University of California, Berkeley
+September 2015 - May 2019
+GPA: 3.8/4.0
+
+SKILLS
+JavaScript, TypeScript, React, Node.js, Python, AWS, Docker, PostgreSQL, MongoDB, Git, Agile, Scrum
+
+PROJECTS
+
+E-Commerce Platform
+Developed a full-stack e-commerce application with React frontend and Node.js backend
+Technologies: React, Node.js, Express, MongoDB, Stripe API
+
+Task Management App
+Built a collaborative task management tool with real-time updates
+Technologies: React, Socket.io, Firebase, Material-UI
+
+CERTIFICATIONS
+AWS Certified Solutions Architect
+Google Cloud Professional Developer
+
+LANGUAGES
+English - Native
+Spanish - Fluent
+French - Intermediate
+
+ACHIEVEMENTS
+• Employee of the Month - Tech Solutions Inc (March 2023)
+• Best Innovation Award - StartupCorp Hackathon 2020
+• Dean's List - UC Berkeley (2017-2019)
+
+VOLUNTEER WORK
+Code for America - Volunteer Developer
+Helped build civic technology solutions for local communities
+2020 - Present
+
+HOBBIES
+Photography, Hiking, Chess, Guitar Playing, Reading Tech Blogs

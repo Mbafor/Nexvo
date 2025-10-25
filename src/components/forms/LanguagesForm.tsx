@@ -35,7 +35,7 @@ export default function LanguagesForm({ data, onChange }: LanguagesFormProps) {
       )}
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        {data.map(lang => (
+        {data.map((lang, index) => (
           <div key={lang.id} className="border border-slate-200 rounded-lg p-4">
             <div className="flex justify-between items-start mb-3">
               <label className="block text-sm font-medium text-slate-700">Language</label>
@@ -50,6 +50,9 @@ export default function LanguagesForm({ data, onChange }: LanguagesFormProps) {
             <div className="space-y-3">
               <input
                 type="text"
+                name={index === 0 ? "language" : undefined}
+                id={index === 0 ? "language" : undefined}
+                data-field={index === 0 ? "languages.0.name" : undefined}
                 value={lang.name}
                 onChange={(e) => updateLanguage(lang.id, 'name', e.target.value)}
                 className="w-full px-3 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-slate-500 focus:border-transparent"

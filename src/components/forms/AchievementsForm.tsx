@@ -52,6 +52,9 @@ export default function AchievementsForm({ data, onChange }: AchievementsFormPro
               <label className="block text-sm font-medium text-slate-700 mb-1">Title</label>
               <input
                 type="text"
+                name={index === 0 ? "achievementTitle" : undefined}
+                id={index === 0 ? "achievementTitle" : undefined}
+                data-field={index === 0 ? "achievements.0.title" : undefined}
                 value={ach.title}
                 onChange={(e) => updateAchievement(ach.id, 'title', e.target.value)}
                 className="w-full px-3 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-slate-500 focus:border-transparent"

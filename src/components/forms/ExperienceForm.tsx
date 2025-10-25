@@ -57,6 +57,9 @@ export default function ExperienceForm({ data, onChange }: ExperienceFormProps) 
                 <label className="block text-sm font-medium text-slate-700 mb-1">Company</label>
                 <input
                   type="text"
+                  name={index === 0 ? "company" : undefined}
+                  id={index === 0 ? "company" : undefined}
+                  data-field={index === 0 ? "experience.0.company" : undefined}
                   value={exp.company}
                   onChange={(e) => updateExperience(exp.id, 'company', e.target.value)}
                   className="w-full px-3 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-slate-500 focus:border-transparent"
@@ -68,6 +71,9 @@ export default function ExperienceForm({ data, onChange }: ExperienceFormProps) 
                 <label className="block text-sm font-medium text-slate-700 mb-1">Position</label>
                 <input
                   type="text"
+                  name={index === 0 ? "position" : undefined}
+                  id={index === 0 ? "position" : undefined}
+                  data-field={index === 0 ? "experience.0.position" : undefined}
                   value={exp.position}
                   onChange={(e) => updateExperience(exp.id, 'position', e.target.value)}
                   className="w-full px-3 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-slate-500 focus:border-transparent"

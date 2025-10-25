@@ -1,4 +1,4 @@
-// src/components/templates/ATSTemplatePDF.tsx
+// ATS-Optimized Elite Template - Designed for Maximum ATS Compatibility and Professional Impact
 import { CVData } from '../../types/cv';
 import { Document, Page, View, Text, StyleSheet } from '@react-pdf/renderer';
 
@@ -7,263 +7,621 @@ interface ATSTemplateProps {
 }
 
 const styles = StyleSheet.create({
-  page: {
-    fontFamily: 'Helvetica',
-    padding: 30,
-    width: '210mm',
-    minHeight: '297mm',
-    color: '#111827',
+  page: { 
+    fontFamily: 'Helvetica', 
+    padding: 50, 
+    backgroundColor: '#ffffff',
+    color: '#2c2c2c',
     fontSize: 11,
-    lineHeight: 1.4,
+    lineHeight: 1.6
   },
-  header: {
-    marginBottom: 2, // slightly more space after header
-    paddingBottom: 12,
-    alignItems: 'center',
-  },
-  name: {
-    fontSize: 20,
-    fontWeight: 'bold',
+  
+  // Header - Clean and ATS-friendly
+  header: { 
+    marginBottom: 40, 
     textAlign: 'center',
-    marginBottom: 15, // more space before contacts
-    textTransform: 'uppercase',
-  },
-  contactRow: {
-    fontSize: 10,
-    textAlign: 'center',
-    marginBottom: 3, // increased spacing between rows
-    flexDirection: 'row',
-    justifyContent: 'center',
-    flexWrap: 'wrap',
-  },
-  contactText: {
-    marginHorizontal: 8, // more breathing room between items
-  },
-  section: {
-    marginBottom: 10,
-  },
-  sectionTitle: {
-    fontSize: 12,
-    fontWeight: 'bold',
-    marginBottom: 6,
-    textTransform: 'uppercase',
+    paddingBottom: 25,
     borderBottomWidth: 1,
-    borderBottomColor: '#d1d5db',
-    paddingBottom: 3,
+    borderBottomColor: '#e1e5e9'
   },
-  subItem: {
+  name: { 
+    fontSize: 24, 
+    fontWeight: 'bold', 
+    color: '#1a1a1a',
+    marginBottom: 8,
+    letterSpacing: 0.5
+  },
+  jobTitle: { 
+    fontSize: 14, 
+    color: '#4a5568',
+    marginBottom: 15,
+    fontWeight: 400
+  },
+  contactInfo: { 
+    flexDirection: 'row', 
+    flexWrap: 'wrap', 
+    justifyContent: 'space-between',
+    gap: 8
+  },
+  contactItem: { 
+    fontSize: 10, 
+    color: '#4a5568',
+    marginBottom: 3,
+    flexShrink: 1
+  },
+  summary: { 
+    fontSize: 11, 
+    color: '#2c2c2c',
+    lineHeight: 1.6,
+    textAlign: 'justify',
+    marginBottom: 25
+  },
+  
+  // Section Styling - Clean and structured
+  section: { 
+    marginBottom: 20 
+  },
+  sectionTitle: { 
+    fontSize: 14, 
+    fontWeight: 'bold', 
+    color: '#2c2c2c',
+    textTransform: 'uppercase',
+    letterSpacing: 1,
+    marginBottom: 12,
+    paddingBottom: 4,
+    borderBottomWidth: 1,
+    borderBottomColor: '#e1e5e9'
+  },
+  
+  // Experience Section
+  experienceItem: { 
+    marginBottom: 15,
+    paddingBottom: 12,
+    borderBottomWidth: 1,
+    borderBottomColor: '#f7fafc'
+  },
+  positionTitle: { 
+    fontSize: 13, 
+    fontWeight: 'bold', 
+    color: '#2c2c2c',
+    marginBottom: 3
+  },
+  companyInfo: { 
+    flexDirection: 'row', 
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginBottom: 8
+  },
+  companyName: { 
+    fontSize: 12, 
+    color: '#4a5568',
+    fontWeight: 600
+  },
+  experienceDate: { 
+    fontSize: 11, 
+    color: '#718096'
+  },
+  locationInfo: { 
+    fontSize: 10, 
+    color: '#718096',
+    marginBottom: 8,
+    fontStyle: 'italic'
+  },
+  achievementsList: { 
+    marginLeft: 15 
+  },
+  achievementItem: { 
+    fontSize: 10, 
+    color: '#4a5568',
+    lineHeight: 1.5,
+    marginBottom: 3
+  },
+  bulletPoint: { 
+    marginRight: 8, 
+    color: '#718096' 
+  },
+  
+  // Education Section
+  educationItem: { 
+    marginBottom: 12,
+    paddingBottom: 10,
+    borderBottomWidth: 1,
+    borderBottomColor: '#f7fafc'
+  },
+  educationHeader: { 
+    flexDirection: 'row', 
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginBottom: 4
+  },
+  degreeTitle: { 
+    fontSize: 12, 
+    fontWeight: 'bold', 
+    color: '#2c2c2c'
+  },
+  graduationDate: { 
+    fontSize: 10, 
+    color: '#718096' 
+  },
+  institutionName: { 
+    fontSize: 11, 
+    color: '#4a5568',
+    marginBottom: 3
+  },
+  educationDetails: { 
+    fontSize: 10, 
+    color: '#718096',
+    lineHeight: 1.4
+  },
+  
+  // Skills Section - ATS optimized
+  skillsContainer: { 
+    flexDirection: 'row', 
+    flexWrap: 'wrap',
+    gap: 15
+  },
+  skillCategory: { 
+    width: '48%',
+    marginBottom: 12
+  },
+  skillCategoryTitle: { 
+    fontSize: 12, 
+    fontWeight: 'bold', 
+    color: '#2c2c2c',
     marginBottom: 6,
+    textTransform: 'uppercase',
+    letterSpacing: 0.5
   },
-  jobTitle: {
-    fontSize: 11.5,
-    fontWeight: 'bold',
+  skillList: { 
+    flexDirection: 'row', 
+    flexWrap: 'wrap' 
   },
-  company: {
-    fontSize: 10,
-    color: '#4b5563',
-    marginBottom: 1,
-  },
-  dates: {
-    fontSize: 10,
-    color: '#6b7280',
-    textAlign: 'right',
-  },
-  bullet: {
-    fontSize: 10.5,
-    marginLeft: 10,
-    marginBottom: 2,
-  },
-  skillText: {
-    fontSize: 10.5,
+  skillItem: { 
+    fontSize: 10, 
+    color: '#4a5568',
+    backgroundColor: '#f7fafc',
+    paddingHorizontal: 8,
+    paddingVertical: 3,
     marginRight: 6,
+    marginBottom: 4,
+    borderRadius: 3
   },
-  projectBox: {
-    marginBottom: 6,
+  
+  // Projects Section
+  projectItem: { 
+    marginBottom: 15,
+    paddingBottom: 10,
+    borderBottomWidth: 1,
+    borderBottomColor: '#f7fafc'
   },
-  referenceBox: {
-    marginBottom: 6,
+  projectHeader: { 
+    flexDirection: 'row', 
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginBottom: 6
   },
+  projectName: { 
+    fontSize: 12, 
+    fontWeight: 'bold', 
+    color: '#2c2c2c'
+  },
+  projectDate: { 
+    fontSize: 10, 
+    color: '#718096' 
+  },
+  projectDescription: { 
+    fontSize: 10, 
+    color: '#4a5568',
+    lineHeight: 1.5,
+    marginBottom: 6
+  },
+  projectTechs: { 
+    flexDirection: 'row', 
+    flexWrap: 'wrap' 
+  },
+  techItem: { 
+    fontSize: 9, 
+    color: '#718096',
+    backgroundColor: '#edf2f7',
+    paddingHorizontal: 6,
+    paddingVertical: 2,
+    marginRight: 4,
+    marginBottom: 3,
+    borderRadius: 2
+  },
+  
+  // Certifications Section
+  certificationItem: { 
+    marginBottom: 10,
+    paddingBottom: 8,
+    borderBottomWidth: 1,
+    borderBottomColor: '#f7fafc'
+  },
+  certificationName: { 
+    fontSize: 11, 
+    fontWeight: 'bold', 
+    color: '#2c2c2c',
+    marginBottom: 2
+  },
+  certificationInfo: { 
+    flexDirection: 'row', 
+    justifyContent: 'space-between',
+    alignItems: 'center'
+  },
+  certificationIssuer: { 
+    fontSize: 10, 
+    color: '#4a5568' 
+  },
+  certificationDate: { 
+    fontSize: 9, 
+    color: '#718096' 
+  },
+  
+  // Languages Section
+  languagesContainer: { 
+    flexDirection: 'row', 
+    flexWrap: 'wrap',
+    gap: 10
+  },
+  languageItem: { 
+    flexDirection: 'row', 
+    alignItems: 'center',
+    marginBottom: 6
+  },
+  languageName: { 
+    fontSize: 11, 
+    color: '#2c2c2c',
+    fontWeight: 600,
+    marginRight: 8
+  },
+  languageLevel: { 
+    fontSize: 10, 
+    color: '#4a5568',
+    backgroundColor: '#f7fafc',
+    paddingHorizontal: 6,
+    paddingVertical: 2,
+    borderRadius: 3
+  },
+  
+  // Achievements Section
+  achievementCard: { 
+    marginBottom: 12,
+    paddingBottom: 10,
+    borderBottomWidth: 1,
+    borderBottomColor: '#f7fafc'
+  },
+  achievementTitle: { 
+    fontSize: 12, 
+    fontWeight: 'bold', 
+    color: '#2c2c2c',
+    marginBottom: 3
+  },
+  achievementDate: { 
+    fontSize: 10, 
+    color: '#718096',
+    marginBottom: 5
+  },
+  achievementDescription: { 
+    fontSize: 10, 
+    color: '#4a5568',
+    lineHeight: 1.5
+  },
+  
+  // Volunteer Work Section
+  volunteerItem: { 
+    marginBottom: 12,
+    paddingBottom: 8,
+    borderBottomWidth: 1,
+    borderBottomColor: '#f7fafc'
+  },
+  volunteerRole: { 
+    fontSize: 11, 
+    fontWeight: 'bold', 
+    color: '#2c2c2c',
+    marginBottom: 2
+  },
+  volunteerOrganization: { 
+    fontSize: 10, 
+    color: '#4a5568',
+    marginBottom: 2
+  },
+  volunteerDate: { 
+    fontSize: 9, 
+    color: '#718096',
+    marginBottom: 4
+  },
+  volunteerDescription: { 
+    fontSize: 10, 
+    color: '#4a5568',
+    lineHeight: 1.4
+  },
+  
+  // References Section
+  referencesContainer: { 
+    flexDirection: 'row', 
+    flexWrap: 'wrap',
+    gap: 15
+  },
+  referenceItem: { 
+    width: '47%',
+    marginBottom: 10
+  },
+  referenceName: { 
+    fontSize: 11, 
+    fontWeight: 'bold', 
+    color: '#2c2c2c',
+    marginBottom: 2
+  },
+  referenceTitle: { 
+    fontSize: 10, 
+    color: '#4a5568',
+    marginBottom: 2
+  },
+  referenceContact: { 
+    fontSize: 9, 
+    color: '#718096' 
+  },
+  
+  // Hobbies Section
+  hobbiesContainer: { 
+    flexDirection: 'row', 
+    flexWrap: 'wrap' 
+  },
+  hobbyTag: { 
+    backgroundColor: '#f7fafc',
+    paddingHorizontal: 8,
+    paddingVertical: 4,
+    marginRight: 6,
+    marginBottom: 4,
+    borderRadius: 4
+  },
+  hobbiesText: { 
+    fontSize: 10, 
+    color: '#4a5568' 
+  }
 });
 
-export default function ATSTemplatePDF({ data }: ATSTemplateProps) {
-  const formatDate = (date: string) => {
-    if (!date) return '';
-    const [year, month] = date.split('-');
-    const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-    return `${months[parseInt(month) - 1]} ${year}`;
-  };
-
-  const hasContent = (arr: any[]) =>
-    arr && arr.length > 0 && arr.some(item =>
-      Object.values(item).some(val => val && val !== '' && (typeof val !== 'object' || Object.keys(val).length > 0))
-    );
-
-  const renderBulletText = (text: string) => {
-    return text.split('\n').map((line, idx) => (
-      <Text key={idx} style={styles.bullet}>• {line}</Text>
-    ));
+export const ATSTemplate = ({ data }: ATSTemplateProps) => {
+  // Helper function to group skills by category
+  const groupSkillsByCategory = () => {
+    if (!data.skills || data.skills.length === 0) return {};
+    
+    const categories: { [key: string]: typeof data.skills } = {};
+    data.skills.forEach(skill => {
+      const category = 'Technical Skills'; // Since category doesn't exist on Skill type
+      if (!categories[category]) {
+        categories[category] = [];
+      }
+      categories[category].push(skill);
+    });
+    
+    return categories;
   };
 
   return (
     <Document>
       <Page size="A4" style={styles.page}>
-        {/* Header */}
+        
+        {/* Header Section */}
         <View style={styles.header}>
           <Text style={styles.name}>{data.personalInfo.fullName}</Text>
-
-          <View style={styles.contactRow}>
-            {[data.personalInfo.email, data.personalInfo.phone, data.personalInfo.location]
-              .filter(Boolean)
-              .map((c, i) => (
-                <Text key={i} style={styles.contactText}>
-                  {i > 0 && '• '} {c}
-                </Text>
-              ))}
+          <Text style={styles.jobTitle}>{data.experience?.[0]?.position || 'Professional'}</Text>
+          
+          <View style={styles.contactInfo}>
+            {data.personalInfo.email && (
+              <Text style={styles.contactItem}>Email: {data.personalInfo.email}</Text>
+            )}
+            {data.personalInfo.phone && (
+              <Text style={styles.contactItem}>Phone: {data.personalInfo.phone}</Text>
+            )}
+            {data.personalInfo.location && (
+              <Text style={styles.contactItem}>Location: {data.personalInfo.location}</Text>
+            )}
+            {data.personalInfo.website && (
+              <Text style={styles.contactItem}>Website: {data.personalInfo.website}</Text>
+            )}
+            {data.personalInfo.linkedin && (
+              <Text style={styles.contactItem}>LinkedIn: {data.personalInfo.linkedin}</Text>
+            )}
           </View>
         </View>
 
-        {/* Summary */}
+        {/* Professional Summary */}
         {data.personalInfo.summary && (
           <View style={styles.section}>
-            <Text style={styles.sectionTitle}>Summary</Text>
-            {renderBulletText(data.personalInfo.summary)}
+            <Text style={styles.sectionTitle}>Professional Summary</Text>
+            <Text style={styles.summary}>{data.personalInfo.summary}</Text>
           </View>
         )}
 
-        {/* Education */}
-        {hasContent(data.education || []) && (
+        {/* Experience Section */}
+        {data.experience && data.experience.length > 0 && (
           <View style={styles.section}>
-            <Text style={styles.sectionTitle}>Education</Text>
-            {(data.education || []).map(edu => (
-              <View key={edu.id} style={styles.subItem}>
-                <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
-                  <View>
-                    <Text style={styles.jobTitle}>{edu.degree} in {edu.field}</Text>
-                    <Text style={styles.company}>{edu.institution}</Text>
-                  </View>
-                  <Text style={styles.dates}>{formatDate(edu.startDate)} - {edu.current ? 'Present' : formatDate(edu.endDate)}</Text>
+            <Text style={styles.sectionTitle}>Professional Experience</Text>
+            {data.experience.map((exp, index) => (
+              <View key={index} style={styles.experienceItem}>
+                <Text style={styles.positionTitle}>{exp.position}</Text>
+                <View style={styles.companyInfo}>
+                  <Text style={styles.companyName}>{exp.company}</Text>
+                  <Text style={styles.experienceDate}>
+                    {exp.startDate} - {exp.endDate || 'Present'}
+                  </Text>
                 </View>
-                {edu.description && renderBulletText(edu.description)}
+                {exp.location && (
+                  <Text style={styles.locationInfo}>{exp.location}</Text>
+                )}
+                {exp.description && (
+                  <View style={styles.achievementsList}>
+                    {exp.description.split('\n').filter(line => line.trim()).map((line, idx) => (
+                      <Text key={idx} style={styles.achievementItem}>
+                        <Text style={styles.bulletPoint}>•</Text>
+                        {line.trim()}
+                      </Text>
+                    ))}
+                  </View>
+                )}
               </View>
             ))}
           </View>
         )}
 
-        {/* Skills */}
-        {hasContent(data.skills || []) && (
+        {/* Education Section */}
+        {data.education && data.education.length > 0 && (
           <View style={styles.section}>
-            <Text style={styles.sectionTitle}>Skills</Text>
-            <View style={{ flexDirection: 'row', flexWrap: 'wrap' }}>
-              {(data.skills || []).map((skill, i) => (
-                <Text key={skill.id} style={styles.skillText}>
-                  {skill.name}{i < data.skills.length - 1 ? ' • ' : ''}
-                </Text>
+            <Text style={styles.sectionTitle}>Education</Text>
+            {data.education.map((edu, index) => (
+              <View key={index} style={styles.educationItem}>
+                <View style={styles.educationHeader}>
+                  <Text style={styles.degreeTitle}>{edu.degree}</Text>
+                  <Text style={styles.graduationDate}>{edu.graduationDate || edu.endDate}</Text>
+                </View>
+                <Text style={styles.institutionName}>{edu.institution}</Text>
+                {edu.description && (
+                  <Text style={styles.educationDetails}>{edu.description}</Text>
+                )}
+              </View>
+            ))}
+          </View>
+        )}
+
+        {/* Skills Section */}
+        {data.skills && data.skills.length > 0 && (
+          <View style={styles.section}>
+            <Text style={styles.sectionTitle}>Technical Skills</Text>
+            <View style={styles.skillsContainer}>
+              {Object.entries(groupSkillsByCategory()).map(([category, skills]) => (
+                <View key={category} style={styles.skillCategory}>
+                  <Text style={styles.skillCategoryTitle}>{category}</Text>
+                  <View style={styles.skillList}>
+                    {skills.map((skill, idx) => (
+                      <Text key={idx} style={styles.skillItem}>{skill.name}</Text>
+                    ))}
+                  </View>
+                </View>
               ))}
             </View>
           </View>
         )}
 
-        {/* Projects */}
-        {hasContent(data.projects || []) && (
+        {/* Projects Section */}
+        {data.projects && data.projects.length > 0 && (
           <View style={styles.section}>
-            <Text style={styles.sectionTitle}>Projects</Text>
-            {(data.projects || []).map(proj => (
-              <View key={proj.id} style={styles.projectBox}>
-                <Text style={styles.jobTitle}>{proj.name}</Text>
-                {proj.description && renderBulletText(proj.description)}
-                {proj.technologies && <Text>Technologies: {proj.technologies}</Text>}
-                {proj.link && <Text>Link: {proj.link}</Text>}
-              </View>
-            ))}
-          </View>
-        )}
-
-        
-        {/* Work Experience */}
-        {hasContent(data.experience || []) && (
-          <View style={styles.section}>
-            <Text style={styles.sectionTitle}>Work Experience</Text>
-            {(data.experience || []).map(exp => (
-              <View key={exp.id} style={styles.subItem}>
-                <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
-                  <View>
-                    <Text style={styles.jobTitle}>{exp.position}</Text>
-                    <Text style={styles.company}>{exp.company}{exp.location ? ` | ${exp.location}` : ''}</Text>
-                  </View>
-                  <Text style={styles.dates}>{formatDate(exp.startDate)} - {exp.current ? 'Present' : formatDate(exp.endDate)}</Text>
+            <Text style={styles.sectionTitle}>Key Projects</Text>
+            {data.projects.map((project, index) => (
+              <View key={index} style={styles.projectItem}>
+                <View style={styles.projectHeader}>
+                  <Text style={styles.projectName}>{project.name}</Text>
+                  <Text style={styles.projectDate}>{project.startDate} - {project.endDate || 'Present'}</Text>
                 </View>
-                {exp.description && renderBulletText(exp.description)}
-              </View>
-            ))}
-          </View>
-        )}
-
-        {/* Volunteer */}
-        {hasContent(data.volunteerWork || []) && (
-          <View style={styles.section}>
-            <Text style={styles.sectionTitle}>Volunteer Work</Text>
-            {(data.volunteerWork || []).map(vol => (
-              <View key={vol.id} style={styles.subItem}>
-                <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
-                  <View>
-                    <Text style={styles.jobTitle}>{vol.role}</Text>
-                    <Text style={styles.company}>{vol.organization}</Text>
+                {project.description && (
+                  <Text style={styles.projectDescription}>{project.description}</Text>
+                )}
+                {project.technologies && (
+                  <View style={styles.projectTechs}>
+                    {(Array.isArray(project.technologies) ? project.technologies : [project.technologies]).map((tech, idx) => (
+                      <Text key={idx} style={styles.techItem}>{tech}</Text>
+                    ))}
                   </View>
-                  <Text style={styles.dates}>{formatDate(vol.startDate)} - {vol.current ? 'Present' : formatDate(vol.endDate)}</Text>
-                </View>
-                {vol.description && renderBulletText(vol.description)}
+                )}
               </View>
             ))}
           </View>
         )}
 
-        {/* Achievements */}
-        {hasContent(data.achievements || []) && (
+        {/* Certifications Section */}
+        {data.certifications && data.certifications.length > 0 && (
+          <View style={styles.section}>
+            <Text style={styles.sectionTitle}>Certifications</Text>
+            {data.certifications.map((cert, index) => (
+              <View key={index} style={styles.certificationItem}>
+                <Text style={styles.certificationName}>{cert}</Text>
+              </View>
+            ))}
+          </View>
+        )}
+
+        {/* Languages Section */}
+        {data.languages && data.languages.length > 0 && (
+          <View style={styles.section}>
+            <Text style={styles.sectionTitle}>Languages</Text>
+            <View style={styles.languagesContainer}>
+              {data.languages.map((lang, index) => (
+                <View key={index} style={styles.languageItem}>
+                  <Text style={styles.languageName}>{lang.name || lang.language}</Text>
+                  <Text style={styles.languageLevel}>{lang.level || lang.proficiency}</Text>
+                </View>
+              ))}
+            </View>
+          </View>
+        )}
+
+        {/* Achievements Section */}
+        {data.achievements && data.achievements.length > 0 && (
           <View style={styles.section}>
             <Text style={styles.sectionTitle}>Achievements & Awards</Text>
-            {(data.achievements || []).map(ach => (
-              <View key={ach.id} style={styles.subItem}>
-                {/* Align title + date in one row */}
-                <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
-                  <Text style={styles.jobTitle}>{ach.title}</Text>
-                  {ach.date && <Text style={styles.dates}>{formatDate(ach.date)}</Text>}
-                </View>
-                {ach.description && renderBulletText(ach.description)}
+            {data.achievements.map((achievement, index) => (
+              <View key={index} style={styles.achievementCard}>
+                <Text style={styles.achievementTitle}>{achievement.title}</Text>
+                <Text style={styles.achievementDate}>{achievement.date}</Text>
+                {achievement.description && (
+                  <Text style={styles.achievementDescription}>{achievement.description}</Text>
+                )}
               </View>
             ))}
           </View>
         )}
 
-       {/* Languages */}
-{hasContent(data.languages || []) && (
-  <View style={styles.section}>
-    <Text style={styles.sectionTitle}>Languages</Text>
-    <View style={{ flexDirection: 'row', flexWrap: 'wrap' }}>
-      {(data.languages ?? []).map((lang, i, arr) => (
-        <Text key={lang.id} style={styles.skillText}>
-          {lang.name} ({lang.level}){i < arr.length - 1 ? ' • ' : ''}
-        </Text>
-      ))}
-    </View>
-  </View>
-)}
-
-
-        {/* References */}
-        {hasContent(data.references || []) && (
+        {/* Volunteer Work Section */}
+        {data.volunteerWork && data.volunteerWork.length > 0 && (
           <View style={styles.section}>
-            <Text style={styles.sectionTitle}>References</Text>
-            {(data.references || []).map(ref => (
-              <View key={ref.id} style={styles.referenceBox}>
-                <Text style={styles.jobTitle}>{ref.name}</Text>
-                <Text>{ref.position} at {ref.company}</Text>
-                {ref.email && <Text>{ref.email}</Text>}
-                {ref.phone && <Text>{ref.phone}</Text>}
+            <Text style={styles.sectionTitle}>Volunteer Experience</Text>
+            {data.volunteerWork.map((vol, index) => (
+              <View key={index} style={styles.volunteerItem}>
+                <Text style={styles.volunteerRole}>{vol.role}</Text>
+                <Text style={styles.volunteerOrganization}>{vol.organization}</Text>
+                <Text style={styles.volunteerDate}>{vol.startDate} - {vol.endDate || 'Present'}</Text>
+                {vol.description && (
+                  <Text style={styles.volunteerDescription}>{vol.description}</Text>
+                )}
               </View>
             ))}
           </View>
         )}
+
+        {/* References Section */}
+        {data.references && data.references.length > 0 && (
+          <View style={styles.section}>
+            <Text style={styles.sectionTitle}>Professional References</Text>
+            <View style={styles.referencesContainer}>
+              {data.references.map((ref, index) => (
+                <View key={index} style={styles.referenceItem}>
+                  <Text style={styles.referenceName}>{ref.name}</Text>
+                  <Text style={styles.referenceTitle}>{ref.position} at {ref.company}</Text>
+                  <Text style={styles.referenceContact}>{ref.email}</Text>
+                  {ref.phone && <Text style={styles.referenceContact}>{ref.phone}</Text>}
+                </View>
+              ))}
+            </View>
+          </View>
+        )}
+
+        {/* Hobbies Section */}
+        {data.hobbies && data.hobbies.length > 0 && (
+          <View style={styles.section}>
+            <Text style={styles.sectionTitle}>Interests & Hobbies</Text>
+            <View style={styles.hobbiesContainer}>
+              {data.hobbies.map((hobby, index) => (
+                <View key={index} style={styles.hobbyTag}>
+                  <Text style={styles.hobbiesText}>{hobby}</Text>
+                </View>
+              ))}
+            </View>
+          </View>
+        )}
+
       </Page>
     </Document>
   );
-}
+};
+
+export default ATSTemplate;

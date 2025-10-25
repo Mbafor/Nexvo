@@ -55,6 +55,9 @@ export default function ReferencesForm({ data, onChange }: ReferencesFormProps) 
                 <label className="block text-sm font-medium text-slate-700 mb-1">Name</label>
                 <input
                   type="text"
+                  name={index === 0 ? "referenceName" : undefined}
+                  id={index === 0 ? "referenceName" : undefined}
+                  data-field={index === 0 ? "references.0.name" : undefined}
                   value={ref.name}
                   onChange={(e) => updateReference(ref.id, 'name', e.target.value)}
                   className="w-full px-3 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-slate-500 focus:border-transparent"

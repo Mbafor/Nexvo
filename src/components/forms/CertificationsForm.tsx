@@ -41,6 +41,9 @@ export default function CertificationsForm({ data, onChange }: CertificationsFor
             </div>
             <input
               type="text"
+              name={idx === 0 ? "certification" : undefined}
+              id={idx === 0 ? "certification" : undefined}
+              data-field={idx === 0 ? "certifications.0.name" : undefined}
               value={cert}
               onChange={(e) => updateCert(idx, e.target.value)}
               className="w-full px-3 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-slate-500 focus:border-transparent"

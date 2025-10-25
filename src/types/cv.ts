@@ -18,12 +18,15 @@ export interface Education {
   endDate: string;
   current: boolean;
   description?: string;
+  graduationDate?: string; // Added missing property
+  gpa?: string; // Added missing property
 }
 
 export interface Experience {
   id: string;
   company: string;
   position: string;
+  jobTitle?: string; // Added missing property (alias for position)
   location: string;
   startDate: string;
   endDate: string;
@@ -51,8 +54,9 @@ export interface Project {
   id: string;
   name: string;
   description: string;
-  technologies: string;
+  technologies: string | string[]; // Allow both string and array
   link?: string;
+  url?: string; // Added missing property (alias for link)
   startDate: string;
   endDate: string;
 }
@@ -76,7 +80,9 @@ export interface Reference {
 export interface Language {
   id: string;
   name: string;
+  language?: string; // Added missing property (alias for name)
   level: 'Beginner' | 'Intermediate' | 'Advanced' | 'Fluent' | 'Native';
+  proficiency?: string; // Added missing property (alias for level)
 }
 
 
@@ -93,4 +99,4 @@ export interface CVData {
   hobbies?: string[];        // NEW
   certifications?: string[];
 }
-export type TemplateType = 'default' | 'modern' | 'creative' | 'ats';
+export type TemplateType = 'modern' | 'creative' | 'ats' | 'executive' | 'minimalist' | 'tech';

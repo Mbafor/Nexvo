@@ -35,7 +35,7 @@ export default function SkillsForm({ data, onChange }: SkillsFormProps) {
       )}
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        {data.map((skill) => (
+        {data.map((skill, index) => (
           <div key={skill.id} className="border border-slate-200 rounded-lg p-4">
             <div className="flex justify-between items-start mb-3">
               <label className="block text-sm font-medium text-slate-700">Skill</label>
@@ -50,6 +50,9 @@ export default function SkillsForm({ data, onChange }: SkillsFormProps) {
             <div className="space-y-3">
               <input
                 type="text"
+                name={index === 0 ? "skill" : undefined}
+                id={index === 0 ? "skill" : undefined}
+                data-field={index === 0 ? "skills.0.name" : undefined}
                 value={skill.name}
                 onChange={(e) => updateSkill(skill.id, 'name', e.target.value)}
                 className="w-full px-3 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-slate-500 focus:border-transparent"

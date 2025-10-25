@@ -3,15 +3,18 @@ import { pdf } from '@react-pdf/renderer';
 import { CVData, TemplateType } from '../types/cv';
 
 // Import @react-pdf templates
-import ModernTemplatePDF from '../components/templates/ModernTemplate';
-import CreativeTemplatePDF from '../components/templates/CreativeTemplate';
-import ATSTemplatePDF from '../components/templates/ATSTemplate';
+import ModernTemplate from '../components/templates/ModernTemplate';
+import CreativeTemplate from '../components/templates/CreativeTemplate';
+import ATSTemplate from '../components/templates/ATSTemplate';
+import ExecutiveTemplate from '../components/templates/ExecutiveTemplate';
+import MinimalistTemplate from '../components/templates/MinimalistTemplate';
+import TechTemplate from '../components/templates/TechTemplate';
 
 // ======================
 // TEMPLATE SWITCHER
 // ======================
 export const getTemplate = (template: TemplateType, data: CVData) => {
-  // Ensure languages exists to prevent undefined errors
+  // Ensure all optional fields exist to prevent undefined errors
   const safeData: CVData = {
     ...data,
     languages: data.languages || [],
@@ -22,17 +25,25 @@ export const getTemplate = (template: TemplateType, data: CVData) => {
     volunteerWork: data.volunteerWork || [],
     achievements: data.achievements || [],
     references: data.references || [],
+    certifications: data.certifications || [],
+    hobbies: data.hobbies || [],
   };
 
   switch (template) {
     case 'modern':
-      return <ModernTemplatePDF data={safeData} />;
+      return <ModernTemplate data={safeData} />;
     case 'creative':
-      return <CreativeTemplatePDF data={safeData} />;
+      return <CreativeTemplate data={safeData} />;
     case 'ats':
-      return <ATSTemplatePDF data={safeData} />;
+      return <ATSTemplate data={safeData} />;
+    case 'executive':
+      return <ExecutiveTemplate data={safeData} />;
+    case 'minimalist':
+      return <MinimalistTemplate data={safeData} />;
+    case 'tech':
+      return <TechTemplate data={safeData} />;
     default:
-      return <ModernTemplatePDF data={safeData} />;
+      return <ModernTemplate data={safeData} />;
   }
 };
 

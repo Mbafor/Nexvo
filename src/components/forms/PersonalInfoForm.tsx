@@ -20,6 +20,9 @@ export default function PersonalInfoForm({ data, onChange }: PersonalInfoFormPro
           </label>
           <input
             type="text"
+            name="fullName"
+            id="fullName"
+            data-field="personalInfo.fullName"
             value={data.fullName}
             onChange={(e) => handleChange('fullName', e.target.value)}
             className="w-full px-3 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-slate-500 focus:border-transparent"
@@ -69,6 +72,9 @@ export default function PersonalInfoForm({ data, onChange }: PersonalInfoFormPro
           </label>
           <input
             type="email"
+            name="email"
+            id="email"
+            data-field="personalInfo.email"
             value={data.email}
             onChange={(e) => handleChange('email', e.target.value)}
             className="w-full px-3 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-slate-500 focus:border-transparent"
@@ -81,6 +87,9 @@ export default function PersonalInfoForm({ data, onChange }: PersonalInfoFormPro
           <label className="block text-sm font-medium text-slate-700 mb-1">Phone</label>
           <input
             type="tel"
+            name="phone"
+            id="phone"
+            data-field="personalInfo.phone"
             value={data.phone || ''}
             onChange={(e) => handleChange('phone', e.target.value)}
             className="w-full px-3 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-slate-500 focus:border-transparent"
@@ -95,6 +104,9 @@ export default function PersonalInfoForm({ data, onChange }: PersonalInfoFormPro
           <label className="block text-sm font-medium text-slate-700 mb-1">Location</label>
           <input
             type="text"
+            name="location"
+            id="location"
+            data-field="personalInfo.location"
             value={data.location || ''}
             onChange={(e) => handleChange('location', e.target.value)}
             className="w-full px-3 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-slate-500 focus:border-transparent"
@@ -106,6 +118,9 @@ export default function PersonalInfoForm({ data, onChange }: PersonalInfoFormPro
           <label className="block text-sm font-medium text-slate-700 mb-1">LinkedIn</label>
           <input
             type="url"
+            name="linkedin"
+            id="linkedin"
+            data-field="personalInfo.linkedin"
             value={data.linkedin || ''}
             onChange={(e) => handleChange('linkedin', e.target.value)}
             className="w-full px-3 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-slate-500 focus:border-transparent"
@@ -119,6 +134,9 @@ export default function PersonalInfoForm({ data, onChange }: PersonalInfoFormPro
         <label className="block text-sm font-medium text-slate-700 mb-1">Website</label>
         <input
           type="url"
+          name="website"
+          id="website"
+          data-field="personalInfo.website"
           value={data.website || ''}
           onChange={(e) => handleChange('website', e.target.value)}
           className="w-full px-3 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-slate-500 focus:border-transparent"
@@ -132,6 +150,9 @@ export default function PersonalInfoForm({ data, onChange }: PersonalInfoFormPro
           Professional Summary
         </label>
         <textarea
+          name="summary"
+          id="summary"
+          data-field="personalInfo.summary"
           value={data.summary || ''}
           onChange={(e) => handleChange('summary', e.target.value)}
           className="w-full px-3 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-slate-500 focus:border-transparent"
