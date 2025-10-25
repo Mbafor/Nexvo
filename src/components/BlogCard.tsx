@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React, { useState } from "react";
 import { BlogPost } from "../types/blog";
 import { formatDate, generateExcerpt, formatEngagementNumber, getReadTimeText } from "../utils/blogUtils";
@@ -116,10 +117,62 @@ const BlogCard: React.FC<BlogCardProps> = ({ post, onClick, featured = false }) 
             <span
               key={tag}
               className="inline-flex items-center px-2.5 py-1 rounded-md text-xs font-medium bg-gray-100 text-gray-700 hover:bg-gray-200 transition-colors"
+=======
+import React from "react";
+
+interface BlogCardProps {
+  id: number;
+  title: string;
+  date: string;
+  author: string;
+  thumbnail: string;
+  tags: string[];
+  views: number;
+  likes: number;
+  onClick: (id: number) => void;
+}
+
+const BlogCard: React.FC<BlogCardProps> = ({
+  id,
+  title,
+  date,
+  author,
+  thumbnail,
+  tags,
+  onClick,
+}) => {
+  return (
+    <div
+      onClick={() => onClick(id)}
+      className="cursor-pointer bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-lg transition-transform transform hover:-translate-y-2 flex flex-col overflow-hidden"
+    >
+      {/* Thumbnail */}
+      <img
+        src={thumbnail}
+        alt={title}
+        className="w-full h-48 object-cover rounded-t-2xl"
+      />
+
+      {/* Content */}
+      <div className="p-5 flex flex-col flex-1">
+        <h3 className="text-xl font-semibold text-[#1E3A8A] mb-2 line-clamp-2">
+          {title}
+        </h3>
+        <p className="text-sm text-gray-500 mb-3">
+          {date} • {author}
+        </p>
+
+        <div className="flex flex-wrap gap-2 mb-4">
+          {tags.map((tag) => (
+            <span
+              key={tag}
+              className="bg-blue-100 text-blue-800 px-2 py-1 rounded-full text-xs font-medium"
+>>>>>>> f100b2e5753ae8c64942b4494f3bb8bff3aa15d4
             >
               #{tag}
             </span>
           ))}
+<<<<<<< HEAD
           {post.tags.length > 3 && (
             <span className="inline-flex items-center px-2.5 py-1 rounded-md text-xs font-medium bg-gray-100 text-gray-700">
               +{post.tags.length - 3} more
@@ -173,6 +226,15 @@ const BlogCard: React.FC<BlogCardProps> = ({ post, onClick, featured = false }) 
         </div>
       </div>
     </article>
+=======
+        </div>
+
+        <div className="mt-auto flex justify-between text-gray-600 text-sm">
+      
+        </div>
+      </div>
+    </div>
+>>>>>>> f100b2e5753ae8c64942b4494f3bb8bff3aa15d4
   );
 };
 

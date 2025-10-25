@@ -1,4 +1,8 @@
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> f100b2e5753ae8c64942b4494f3bb8bff3aa15d4
 import { useState, useEffect, useRef } from "react";
 import {
   ChevronLeft,
@@ -30,6 +34,7 @@ import ReferencesForm from "./forms/ReferencesForm";
 import HobbiesForm from "./forms/HobbiesForm";
 import CertificationsForm from "./forms/CertificationsForm";
 
+<<<<<<< HEAD
 // Enhanced Components
 import ProgressEnhancement from "./ProgressEnhancement";
 import ContextualTips from "./ContextualTips";
@@ -46,6 +51,22 @@ import { EnterpriseAutoFillEngine } from "../utils/enterpriseAutoFill";
 
 // Validation
 import { CVValidator, SectionValidation } from "../utils/cvValidator";
+=======
+// CV Upload
+import CVUpload from "./CVUpload";
+
+// CV Parser
+import { mapTextToCV } from "../utils/MapTextToCV";
+
+// src/components/CVBuilder.tsx
+
+import * as pdfjsLib from "pdfjs-dist/legacy/build/pdf";
+import * as mammoth from "mammoth";
+
+// Set the worker (Vite-compatible)
+pdfjsLib.GlobalWorkerOptions.workerSrc =
+  `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.12.313/pdf.worker.min.js`;
+>>>>>>> f100b2e5753ae8c64942b4494f3bb8bff3aa15d4
 
 // Load dynamic tips
 import tipsData from "../data/tips.json";
@@ -103,8 +124,62 @@ export default function CVBuilder({ cvData, onUpdateCVData, onPreview, onSignIn,
   const [toastType, setToastType] = useState<'success' | 'info' | 'dashboard' | 'hidden'>('hidden');
   const [toastMessage, setToastMessage] = useState('');
 
+<<<<<<< HEAD
   const currentSection = steps[currentStep];
   const saveTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+=======
+const handleFileUpload = async (file: File) => {
+  try {
+    const text = await extractTextFromFile(file);
+    const parsedData = mapTextToCV(text);
+    onUpdateCVData({ ...cvData, ...parsedData });
+  } catch (error) {
+    console.error("Error processing file:", error);
+    throw error;
+  }
+};
+
+const extractTextFromFile = async (file: File): Promise<string> => {
+  const fileName = file.name.toLowerCase();
+
+  if (file.type === "application/pdf" || fileName.endsWith(".pdf")) {
+    const arrayBuffer = await file.arrayBuffer();
+    const pdf = await pdfjsLib.getDocument({ data: arrayBuffer }).promise;
+
+    let fullText = "";
+    for (let i = 1; i <= pdf.numPages; i++) {
+      const page = await pdf.getPage(i);
+      const content = await page.getTextContent();
+      fullText += content.items
+        .map((item: any) => ("str" in item ? item.str : ""))
+        .join(" ") + "\n";
+    }
+    return fullText;
+  } else if (
+    file.type ===
+      "application/vnd.openxmlformats-officedocument.wordprocessingml.document" ||
+    fileName.endsWith(".docx") ||
+    file.type === "application/msword" ||
+    fileName.endsWith(".doc")
+  ) {
+    const arrayBuffer = await file.arrayBuffer();
+    const result = await mammoth.extractRawText({ arrayBuffer });
+    return result.value;
+  } else if (file.type === "text/plain" || fileName.endsWith(".txt")) {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onload = () => resolve(reader.result as string);
+      reader.onerror = () => reject(new Error("Failed to read text file"));
+      reader.readAsText(file);
+    });
+  } else {
+    throw new Error("Unsupported file type");
+  }
+};
+
+
+
+>>>>>>> f100b2e5753ae8c64942b4494f3bb8bff3aa15d4
 
   // Check if user should see onboarding
   useEffect(() => {
@@ -655,10 +730,13 @@ export default function CVBuilder({ cvData, onUpdateCVData, onPreview, onSignIn,
     switch (currentSection.id) {
       case "personal":
         return (
-          <PersonalInfoForm
-            data={cvData.personalInfo}
-            onChange={(personalInfo) => onUpdateCVData({ ...cvData, personalInfo })}
-          />
+          <>
+            <CVUpload onFileUpload={handleFileUpload} />
+            <PersonalInfoForm
+              data={cvData.personalInfo}
+              onChange={(personalInfo) => onUpdateCVData({ ...cvData, personalInfo })}
+            />
+          </>
         );
       case "education":
         return (
@@ -1240,6 +1318,7 @@ export default function CVBuilder({ cvData, onUpdateCVData, onPreview, onSignIn,
         </div>
       </div>
 
+<<<<<<< HEAD
       {/* Section Manager Modal */}
       <AnimatePresence>
         {showSectionManager && (
@@ -1306,6 +1385,50 @@ export default function CVBuilder({ cvData, onUpdateCVData, onPreview, onSignIn,
                             </p>
                           </div>
                         </div>
+=======
+      {/* Tips Sidebar */}
+{/* Tips Sidebar */}
+<div
+  ref={sidebarRef}
+  className="relative bg-gray-50 border-t lg:border-t-0 lg:border-l w-full lg:w-auto"
+  style={{
+    width: window.innerWidth < 1024 ? '100%' : sidebarWidth, // full width on mobile, resizable on desktop
+    minWidth: window.innerWidth < 1024 ? '100%' : 200,
+    maxWidth: window.innerWidth < 1024 ? '100%' : 600,
+  }}
+>
+  {/* Resizer only on desktop */}
+  <div
+    className="hidden lg:block absolute top-0 left-0 w-1 h-full cursor-ew-resize z-50"
+    onMouseDown={onMouseDown}
+  />
+
+  <div className="p-4 w-full">
+    <div className="bg-white border rounded-2xl shadow-sm p-4">
+      {/* Adjustable Button */}
+      <button
+        onClick={() => setShowTips(!showTips)}
+        style={{ fontSize: '16px' }} // <-- Change this to adjust button text size
+        className="font-semibold text-[#1E3A8A] mb-2"
+      >
+        {showTips ? "Hide Tips" : "Show Tips"}
+      </button>
+
+      {/* Adjustable Tips List */}
+      {showTips && currentSection && (
+        <ul
+          className="list-disc pl-5 space-y-1 text-gray-600"
+          style={{ fontSize: '15px' }} // <-- Change this to adjust list text size
+        >
+          {(tipsData as any)[currentSection.id]?.map((tip: string, idx: number) => (
+            <li key={idx}>{tip}</li>
+          ))}
+        </ul>
+      )}
+    </div>
+  </div>
+</div>
+>>>>>>> f100b2e5753ae8c64942b4494f3bb8bff3aa15d4
 
                         <button
                           onClick={() => toggleSection(section.id)}
@@ -1337,6 +1460,7 @@ export default function CVBuilder({ cvData, onUpdateCVData, onPreview, onSignIn,
                 </div>
               </div>
 
+<<<<<<< HEAD
               <div className="p-6 border-t border-slate-200 bg-slate-50">
                 <div className="flex justify-between items-center">
                   <p className="text-sm text-slate-600">
@@ -1423,6 +1547,9 @@ export default function CVBuilder({ cvData, onUpdateCVData, onPreview, onSignIn,
           </div>
         </div>
       </div>
+=======
+
+>>>>>>> f100b2e5753ae8c64942b4494f3bb8bff3aa15d4
     </div>
   );
 }
