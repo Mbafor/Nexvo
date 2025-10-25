@@ -37,7 +37,6 @@ import CompletionCelebration from "./CompletionCelebration";
 import NavigationHelper from "./NavigationHelper";
 import SubtleToast from "./SubtleToast";
 import OnboardingTour from "./OnboardingTour";
-import CVUpload from "./CVUpload";
 
 // CV Upload
 import { AdvancedFileParser, ParseProgress } from "../utils/advancedFileParser2";
