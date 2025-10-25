@@ -214,7 +214,7 @@ export default function LandingPage({ onGetStarted, onSignIn }: LandingPageProps
       {/* Animated background elements */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none">
         <motion.div 
-          className="absolute -top-40 -right-40 w-80 h-80 bg-blue-500/8 rounded-full blur-3xl"
+          className="absolute -top-40 -right-40 w-80 h-80 bg-purple-500/8 rounded-full blur-3xl"
           animate={{ 
             scale: [1, 1.2, 1],
             opacity: [0.3, 0.5, 0.3]
@@ -230,7 +230,7 @@ export default function LandingPage({ onGetStarted, onSignIn }: LandingPageProps
           transition={{ duration: 10, repeat: Infinity }}
         />
         <motion.div 
-          className="absolute top-1/2 left-1/2 w-64 h-64 bg-blue-300/4 rounded-full blur-2xl"
+          className="absolute top-1/2 left-1/2 w-64 h-64 bg-purple-300/4 rounded-full blur-2xl"
           animate={{ 
             x: [0, 100, 0],
             y: [0, -50, 0]
@@ -240,7 +240,7 @@ export default function LandingPage({ onGetStarted, onSignIn }: LandingPageProps
       </div>
 
       {/* Enhanced Navbar */}
-      <nav className="sticky top-0 z-50 backdrop-blur-xl bg-white/95 border-b border-blue-100 shadow-sm">
+      <nav className="sticky top-0 z-50 backdrop-blur-xl bg-white/95 border-b border-purple-100 shadow-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
           <div className="flex items-center justify-between">
             <motion.div 
@@ -249,10 +249,10 @@ export default function LandingPage({ onGetStarted, onSignIn }: LandingPageProps
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6 }}
             >
-              <div className="w-10 h-10 bg-gradient-to-br from-blue-400 to-blue-600 rounded-xl flex items-center justify-center">
+              <div className="w-10 h-10 bg-gradient-to-br from-blue-600 to-purple-600 rounded-xl flex items-center justify-center">
                 <FileText className="h-6 w-6 text-white" />
               </div>
-              <h2 className="text-3xl font-bold bg-gradient-to-r from-gray-900 to-blue-700 bg-clip-text text-transparent">
+              <h2 className="text-3xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
                 QuickCV
               </h2>
             </motion.div>
@@ -285,7 +285,7 @@ export default function LandingPage({ onGetStarted, onSignIn }: LandingPageProps
               
               <motion.button 
                 onClick={onGetStarted}
-                className="px-6 py-3 bg-gradient-to-r from-blue-500 to-blue-700 hover:from-blue-600 hover:to-blue-800 rounded-xl text-white font-semibold shadow-lg hover:shadow-blue-500/25 transition-all duration-300 group"
+                className="px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 rounded-xl text-white font-semibold shadow-lg hover:shadow-purple-500/25 transition-all duration-300 group"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
@@ -314,7 +314,7 @@ export default function LandingPage({ onGetStarted, onSignIn }: LandingPageProps
                 initial={{ opacity: 0, height: 0 }}
                 animate={{ opacity: 1, height: "auto" }}
                 exit={{ opacity: 0, height: 0 }}
-                className="md:hidden mt-4 py-4 border-t border-blue-100 bg-white/95"
+                className="md:hidden mt-4 py-4 border-t border-purple-100 bg-white/95"
               >
                 <div className="flex flex-col space-y-4">
                   <a href="#templates" onClick={(e) => handleMobileNavClick(e, "templates")} 
@@ -340,7 +340,7 @@ export default function LandingPage({ onGetStarted, onSignIn }: LandingPageProps
                   )}
                   
                   <button onClick={() => { onGetStarted(); setMobileMenuOpen(false); }} 
-                    className="px-6 py-3 bg-gradient-to-r from-blue-500 to-blue-700 rounded-xl text-white font-semibold mt-2">
+                    className="px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 rounded-xl text-white font-semibold mt-2">
                     Create CV
                   </button>
                 </div>
@@ -354,7 +354,7 @@ export default function LandingPage({ onGetStarted, onSignIn }: LandingPageProps
         {/* Hero Section - Enhanced with animations and modern design */}
         <section className="relative min-h-screen flex items-center overflow-hidden">
           <motion.div style={{ y, opacity }} className="absolute inset-0 z-0">
-            <div className="absolute inset-0 bg-gradient-to-br from-blue-50/80 via-white to-blue-50/40" />
+            <div className="absolute inset-0 bg-gradient-to-br from-blue-50/80 via-white to-purple-50/40" />
           </motion.div>
           
           <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
@@ -366,7 +366,7 @@ export default function LandingPage({ onGetStarted, onSignIn }: LandingPageProps
                 className="space-y-8"
               >
                 <motion.div variants={itemVariants}>
-                  <div className="inline-flex items-center space-x-2 bg-blue-100 backdrop-blur-sm px-4 py-2 rounded-full border border-blue-200">
+                  <div className="inline-flex items-center space-x-2 bg-purple-100 backdrop-blur-sm px-4 py-2 rounded-full border border-purple-200">
                     <Sparkles className="h-4 w-4 text-blue-600" />
                     <span className="text-sm font-medium text-blue-800">Trusted by 50,000+ professionals</span>
                   </div>
@@ -376,7 +376,7 @@ export default function LandingPage({ onGetStarted, onSignIn }: LandingPageProps
                   variants={itemVariants}
                   className="text-5xl lg:text-7xl font-bold leading-tight"
                 >
-                  <span className="bg-gradient-to-r from-gray-900 via-blue-700 to-blue-900 bg-clip-text text-transparent">
+                  <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-blue-700 bg-clip-text text-transparent">
                     Build Your Perfect CV
                   </span>
                   <br />
@@ -397,7 +397,7 @@ export default function LandingPage({ onGetStarted, onSignIn }: LandingPageProps
                 >
                   <motion.button
                     onClick={onGetStarted}
-                    className="group px-8 py-4 bg-gradient-to-r from-blue-500 to-blue-700 hover:from-blue-600 hover:to-blue-800 rounded-2xl text-white text-lg font-semibold shadow-2xl shadow-blue-500/30 hover:shadow-blue-500/50 transition-all duration-300"
+                    className="group px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 rounded-2xl text-white text-lg font-semibold shadow-2xl shadow-purple-500/30 hover:shadow-purple-500/50 transition-all duration-300"
                     whileHover={{ scale: 1.05, y: -2 }}
                     whileTap={{ scale: 0.95 }}
                   >
@@ -518,7 +518,7 @@ export default function LandingPage({ onGetStarted, onSignIn }: LandingPageProps
       transition={{ duration: 0.6 }}
       viewport={{ once: true }}
     >
-      <h2 className="text-4xl lg:text-5xl font-bold mb-6 bg-gradient-to-r from-blue-700 to-blue-900 bg-clip-text text-transparent">
+      <h2 className="text-4xl lg:text-5xl font-bold mb-6 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
         Why Choose Us
       </h2>
       <p className="text-lg text-gray-700 max-w-3xl mx-auto">
@@ -592,7 +592,7 @@ export default function LandingPage({ onGetStarted, onSignIn }: LandingPageProps
       transition={{ duration: 0.6 }}
       viewport={{ once: true }}
     >
-      <h2 className="text-4xl lg:text-5xl font-bold mb-6 bg-gradient-to-r from-blue-600 to-blue-800 bg-clip-text text-transparent">
+      <h2 className="text-4xl lg:text-5xl font-bold mb-6 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
         Professional Templates
       </h2>
       <p className="text-lg text-gray-600 max-w-3xl mx-auto">
@@ -628,7 +628,7 @@ export default function LandingPage({ onGetStarted, onSignIn }: LandingPageProps
             </p>
             <button 
               onClick={onGetStarted}
-              className="w-full py-3 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 rounded-xl text-white font-semibold transition-all duration-300 shadow-sm hover:shadow-blue-500/25"
+              className="w-full py-3 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 rounded-xl text-white font-semibold transition-all duration-300 shadow-sm hover:shadow-purple-500/25"
             >
               Use This Template
             </button>
@@ -649,7 +649,7 @@ export default function LandingPage({ onGetStarted, onSignIn }: LandingPageProps
               transition={{ duration: 0.6 }}
               viewport={{ once: true }}
             >
-              <h2 className="text-4xl lg:text-5xl font-bold mb-6 bg-gradient-to-r from-blue-600 to-blue-800 bg-clip-text text-transparent">
+              <h2 className="text-4xl lg:text-5xl font-bold mb-6 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
                 Why Choose QuickCV?
               </h2>
               <p className="text-xl text-gray-600 max-w-3xl mx-auto">
@@ -693,7 +693,7 @@ export default function LandingPage({ onGetStarted, onSignIn }: LandingPageProps
               transition={{ duration: 0.6 }}
               viewport={{ once: true }}
             >
-              <h2 className="text-4xl lg:text-5xl font-bold mb-6 bg-gradient-to-r from-gray-900 to-blue-700 bg-clip-text text-transparent">
+              <h2 className="text-4xl lg:text-5xl font-bold mb-6 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
                 Success Stories
               </h2>
               <p className="text-xl text-gray-700 max-w-3xl mx-auto">
@@ -748,7 +748,7 @@ export default function LandingPage({ onGetStarted, onSignIn }: LandingPageProps
       transition={{ duration: 0.6 }}
       viewport={{ once: true }}
     >
-      <h2 className="text-4xl lg:text-5xl font-bold mb-6 text-blue-900">
+      <h2 className="text-4xl lg:text-5xl font-bold mb-6 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
         Expert Career Insights
       </h2>
       <p className="text-xl text-blue-700 max-w-3xl mx-auto">
@@ -772,7 +772,7 @@ export default function LandingPage({ onGetStarted, onSignIn }: LandingPageProps
       transition={{ duration: 0.6 }}
       viewport={{ once: true }}
     >
-      <h2 className="text-4xl lg:text-5xl font-bold mb-6 text-blue-800">
+      <h2 className="text-4xl lg:text-5xl font-bold mb-6 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
         Frequently Asked Questions
       </h2>
       <p className="text-xl text-blue-600/80">
@@ -848,7 +848,7 @@ export default function LandingPage({ onGetStarted, onSignIn }: LandingPageProps
       <div className="flex flex-col sm:flex-row gap-4 justify-center">
         <motion.button
           onClick={onGetStarted}
-          className="px-8 py-4 bg-gradient-to-r from-blue-500 to-blue-700 hover:from-blue-600 hover:to-blue-800 rounded-2xl text-white text-lg font-semibold shadow-lg hover:shadow-blue-400/50 transition-all duration-300"
+          className="px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 rounded-2xl text-white text-lg font-semibold shadow-lg hover:shadow-purple-400/50 transition-all duration-300"
           whileHover={{ scale: 1.05, y: -2 }}
           whileTap={{ scale: 0.95 }}
         >
