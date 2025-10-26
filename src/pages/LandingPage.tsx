@@ -1,6 +1,6 @@
 
 // src/components/LandingPage.tsx
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { FileText, Zap, Sparkles, Menu, X, ArrowRight, Shield, Users, Award, Play, Globe, TrendingUp, Mail, Phone, MapPin, Clock, Send, MessageCircle, Linkedin, Twitter, Briefcase, BarChart3, Palette, Headphones } from "lucide-react";
 import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion";
 import { Link } from "react-router-dom";
@@ -116,6 +116,11 @@ export default function LandingPage({ onGetStarted, onSignIn }: LandingPageProps
   const { scrollYProgress } = useScroll();
   const y = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
   const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
+
+  // Scroll to top when component mounts
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   // Testimonial carousel
   // useEffect(() => {
@@ -638,51 +643,6 @@ export default function LandingPage({ onGetStarted, onSignIn }: LandingPageProps
     </div>
   </div>
 </section>
-
-        {/* Features Section - White & Blue Theme */}
-        <section id="features" className="py-24 bg-white">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <motion.div
-              className="text-center mb-16"
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              viewport={{ once: true }}
-            >
-              <h2 className="text-4xl lg:text-5xl font-bold mb-6 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-                Why Choose QuickCV?
-              </h2>
-              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-                Powerful features designed to help you create the perfect CV and land your dream job
-              </p>
-            </motion.div>
-
-            <div className="grid lg:grid-cols-2 xl:grid-cols-4 gap-8">
-              {features.map((feature, idx) => (
-                <motion.div
-                  key={idx}
-                  className="group text-center bg-white border border-gray-100 rounded-2xl p-8 hover:border-blue-200 hover:shadow-lg transition-all duration-500"
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: idx * 0.1 }}
-                  viewport={{ once: true }}
-                  whileHover={{ scale: 1.05, y: -8 }}
-                >
-                  <div className={`w-16 h-16 mx-auto mb-6 rounded-2xl bg-gradient-to-br ${feature.gradient} flex items-center justify-center group-hover:scale-110 transition-transform duration-300`}>
-                    <feature.icon className="w-8 h-8 text-white" />
-                  </div>
-                  <h3 className="text-xl font-semibold text-gray-900 mb-4">
-                    {feature.title}
-                  </h3>
-                  <p className="text-gray-600 leading-relaxed">
-                    {feature.description}
-                  </p>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-        </section>
-
         {/* Testimonials Section - Enhanced */}
         <section className="py-24 bg-blue-50/50 backdrop-blur-sm">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -871,7 +831,7 @@ export default function LandingPage({ onGetStarted, onSignIn }: LandingPageProps
 
 
 {/* Contact Section */}
-<section id="contact" className="py-24 bg-gradient-to-br from-blue-900 to-slate-900 text-white">
+<section id="contact" className="py-24 bg-white">
   <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <motion.div
       className="text-center mb-16"
@@ -880,10 +840,10 @@ export default function LandingPage({ onGetStarted, onSignIn }: LandingPageProps
       transition={{ duration: 0.6 }}
       viewport={{ once: true }}
     >
-      <h2 className="text-4xl lg:text-5xl font-bold mb-6">
-        Get in <span className="text-blue-400">Touch</span>
+      <h2 className="text-4xl lg:text-5xl font-bold mb-6 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+        Get in <span className="text-blue-600">Touch</span>
       </h2>
-      <p className="text-xl text-blue-100 max-w-3xl mx-auto">
+      <p className="text-xl text-gray-700 max-w-3xl mx-auto">
         Have questions? Need help? Want to partner with us? We'd love to hear from you.
       </p>
     </motion.div>
@@ -897,73 +857,73 @@ export default function LandingPage({ onGetStarted, onSignIn }: LandingPageProps
         viewport={{ once: true }}
         className="space-y-8"
       >
-        <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 border border-white/20">
-          <h3 className="text-2xl font-bold mb-6 flex items-center">
-            <MessageCircle className="h-6 w-6 mr-3 text-blue-400" />
+        <div className="bg-blue-50 backdrop-blur-sm rounded-2xl p-8 border border-blue-200">
+          <h3 className="text-2xl font-bold mb-6 flex items-center text-blue-900">
+            <MessageCircle className="h-6 w-6 mr-3 text-blue-600" />
             Contact Information
           </h3>
           
           <div className="space-y-6">
             <div className="flex items-center space-x-4">
-              <div className="p-3 bg-blue-500/20 rounded-lg">
-                <Mail className="h-6 w-6 text-blue-400" />
+              <div className="p-3 bg-blue-100 rounded-lg">
+                <Mail className="h-6 w-6 text-blue-600" />
               </div>
               <div>
-                <p className="font-semibold">Email Us</p>
-                <a href="mailto:mbaforfoghang@gmail.com" className="text-blue-300 hover:text-blue-200 transition-colors">
+                <p className="font-semibold text-gray-900">Email Us</p>
+                <a href="mailto:mbaforfoghang@gmail.com" className="text-blue-600 hover:text-blue-700 transition-colors">
                   mbaforfoghang@gmail.com
                 </a>
               </div>
             </div>
             
             <div className="flex items-center space-x-4">
-              <div className="p-3 bg-green-500/20 rounded-lg">
-                <Phone className="h-6 w-6 text-green-400" />
+              <div className="p-3 bg-green-100 rounded-lg">
+                <Phone className="h-6 w-6 text-green-600" />
               </div>
               <div>
-                <p className="font-semibold">Call Us</p>
-                <a href="tel:+15551234567" className="text-blue-300 hover:text-blue-200 transition-colors">
+                <p className="font-semibold text-gray-900">Call Us</p>
+                <a href="tel:+15551234567" className="text-blue-600 hover:text-blue-700 transition-colors">
                   +1 (555) 123-4567
                 </a>
               </div>
             </div>
             
             <div className="flex items-center space-x-4">
-              <div className="p-3 bg-purple-500/20 rounded-lg">
-                <MapPin className="h-6 w-6 text-purple-400" />
+              <div className="p-3 bg-purple-100 rounded-lg">
+                <MapPin className="h-6 w-6 text-purple-600" />
               </div>
               <div>
-                <p className="font-semibold">Visit Us</p>
-                <p className="text-blue-200">123 Business Ave, Suite 100</p>
-                <p className="text-blue-200">San Francisco, CA 94107</p>
+                <p className="font-semibold text-gray-900">Visit Us</p>
+                <p className="text-gray-700">123 Business Ave, Suite 100</p>
+                <p className="text-gray-700">San Francisco, CA 94107</p>
               </div>
             </div>
             
             <div className="flex items-center space-x-4">
-              <div className="p-3 bg-yellow-500/20 rounded-lg">
-                <Clock className="h-6 w-6 text-yellow-400" />
+              <div className="p-3 bg-yellow-100 rounded-lg">
+                <Clock className="h-6 w-6 text-yellow-600" />
               </div>
               <div>
-                <p className="font-semibold">Business Hours</p>
-                <p className="text-blue-200">Mon-Fri: 8am-6pm PST</p>
-                <p className="text-blue-200">Sat-Sun: 10am-4pm PST</p>
+                <p className="font-semibold text-gray-900">Business Hours</p>
+                <p className="text-gray-700">Mon-Fri: 8am-6pm PST</p>
+                <p className="text-gray-700">Sat-Sun: 10am-4pm PST</p>
               </div>
             </div>
           </div>
         </div>
 
         {/* Social Links */}
-        <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 border border-white/20">
-          <h4 className="text-lg font-bold mb-4">Follow Us</h4>
+        <div className="bg-blue-50 backdrop-blur-sm rounded-2xl p-8 border border-blue-200">
+          <h4 className="text-lg font-bold mb-4 text-blue-900">Follow Us</h4>
           <div className="flex space-x-4">
             <a href="https://linkedin.com/company/quickcv" className="p-3 bg-blue-600 rounded-lg hover:bg-blue-700 transition-colors">
-              <Linkedin className="h-5 w-5" />
+              <Linkedin className="h-5 w-5 text-white" />
             </a>
             <a href="https://twitter.com/quickcv" className="p-3 bg-sky-500 rounded-lg hover:bg-sky-600 transition-colors">
-              <Twitter className="h-5 w-5" />
+              <Twitter className="h-5 w-5 text-white" />
             </a>
             <a href="mailto:hello@quickcv.com" className="p-3 bg-gray-600 rounded-lg hover:bg-gray-700 transition-colors">
-              <Mail className="h-5 w-5" />
+              <Mail className="h-5 w-5 text-white" />
             </a>
           </div>
         </div>
@@ -976,9 +936,9 @@ export default function LandingPage({ onGetStarted, onSignIn }: LandingPageProps
         transition={{ duration: 0.6 }}
         viewport={{ once: true }}
       >
-        <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 border border-white/20">
-          <h3 className="text-2xl font-bold mb-6 flex items-center">
-            <Send className="h-6 w-6 mr-3 text-blue-400" />
+        <div className="bg-blue-50 backdrop-blur-sm rounded-2xl p-8 border border-blue-200">
+          <h3 className="text-2xl font-bold mb-6 flex items-center text-blue-900">
+            <Send className="h-6 w-6 mr-3 text-blue-600" />
             Send us a Message
           </h3>
           
@@ -989,7 +949,7 @@ export default function LandingPage({ onGetStarted, onSignIn }: LandingPageProps
                 value={contactForm.name}
                 onChange={(e) => setContactForm(prev => ({ ...prev, name: e.target.value }))}
                 placeholder="Your Name"
-                className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-blue-200 focus:ring-2 focus:ring-blue-400 focus:border-transparent transition-colors"
+                className="w-full px-4 py-3 bg-white border border-blue-200 rounded-lg text-gray-900 placeholder-gray-500 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors"
                 required
               />
             </div>
@@ -999,7 +959,7 @@ export default function LandingPage({ onGetStarted, onSignIn }: LandingPageProps
                 value={contactForm.email}
                 onChange={(e) => setContactForm(prev => ({ ...prev, email: e.target.value }))}
                 placeholder="Your Email"
-                className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-blue-200 focus:ring-2 focus:ring-blue-400 focus:border-transparent transition-colors"
+                className="w-full px-4 py-3 bg-white border border-blue-200 rounded-lg text-gray-900 placeholder-gray-500 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors"
                 required
               />
             </div>
@@ -1009,14 +969,14 @@ export default function LandingPage({ onGetStarted, onSignIn }: LandingPageProps
                 value={contactForm.message}
                 onChange={(e) => setContactForm(prev => ({ ...prev, message: e.target.value }))}
                 placeholder="Your Message"
-                className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-blue-200 focus:ring-2 focus:ring-blue-400 focus:border-transparent transition-colors resize-vertical"
+                className="w-full px-4 py-3 bg-white border border-blue-200 rounded-lg text-gray-900 placeholder-gray-500 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors resize-vertical"
                 required
               />
             </div>
             <button
               type="submit"
               disabled={contactStatus === 'sending' || contactStatus === 'success'}
-              className="w-full flex items-center justify-center space-x-2 px-6 py-3 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg hover:from-blue-600 hover:to-purple-700 transition-all duration-200 shadow-lg font-semibold disabled:opacity-50"
+              className="w-full flex items-center justify-center space-x-2 px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg hover:from-blue-700 hover:to-purple-700 transition-all duration-200 shadow-lg font-semibold text-white disabled:opacity-50"
             >
               {contactStatus === 'sending' ? (
                 <>
@@ -1040,55 +1000,132 @@ export default function LandingPage({ onGetStarted, onSignIn }: LandingPageProps
 </section>
 
 {/* Footer */}
-<footer className="bg-blue-900 text-white py-16">
+<footer className="bg-white border-t border-blue-100 text-gray-800 py-12 md:py-16">
   <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div className="grid md:grid-cols-4 gap-8">
-      <div className="space-y-4">
-        <h3 className="text-xl font-bold">QuickCV</h3>
-        <p className="text-blue-100 leading-relaxed">
+    {/* Main Footer Content */}
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-6">
+      {/* Company Info - Full width on mobile, spans 2 cols on sm+ */}
+      <div className="sm:col-span-2 lg:col-span-1 space-y-4">
+        <h3 className="text-xl lg:text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+          QuickCV
+        </h3>
+        <p className="text-gray-600 leading-relaxed text-sm lg:text-base max-w-sm">
           Create professional, ATS-optimized CVs that land interviews at top companies.
         </p>
-        <div className="flex space-x-4">
-          <div className="w-10 h-10 bg-blue-700 rounded-full flex items-center justify-center hover:bg-blue-600 transition-colors cursor-pointer">
-            <Globe className="h-5 w-5 text-white" />
+        <div className="flex space-x-3">
+          <div className="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center hover:bg-blue-200 transition-colors cursor-pointer">
+            <Globe className="h-5 w-5 text-blue-600" />
           </div>
-          <div className="w-10 h-10 bg-blue-700 rounded-full flex items-center justify-center hover:bg-blue-600 transition-colors cursor-pointer">
-            <TrendingUp className="h-5 w-5 text-white" />
+          <div className="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center hover:bg-blue-200 transition-colors cursor-pointer">
+            <TrendingUp className="h-5 w-5 text-blue-600" />
           </div>
         </div>
       </div>
 
+      {/* Product Links */}
       <div className="space-y-4">
-        <h4 className="font-semibold text-white">Product</h4>
-        <ul className="space-y-2">
-          <li><a href="#templates" className="text-blue-100 hover:text-white transition-colors">Templates</a></li>
-          <li><a href="#features" className="text-blue-100 hover:text-white transition-colors">Features</a></li>
-          <li><button onClick={onGetStarted} className="text-blue-100 hover:text-white transition-colors">CV Builder</button></li>
+        <h4 className="font-semibold text-blue-900 text-lg">Product</h4>
+        <ul className="space-y-3">
+          <li>
+            <a 
+              href="#templates" 
+              className="text-gray-600 hover:text-blue-600 transition-colors text-sm lg:text-base block py-1"
+            >
+              Templates
+            </a>
+          </li>
+          <li>
+            <a 
+              href="#features" 
+              className="text-gray-600 hover:text-blue-600 transition-colors text-sm lg:text-base block py-1"
+            >
+              Features
+            </a>
+          </li>
+          <li>
+            <button 
+              onClick={onGetStarted} 
+              className="text-gray-600 hover:text-blue-600 transition-colors text-sm lg:text-base text-left py-1"
+            >
+              CV Builder
+            </button>
+          </li>
         </ul>
       </div>
 
+      {/* Support Links */}
       <div className="space-y-4">
-        <h4 className="font-semibold text-white">Support</h4>
-        <ul className="space-y-2">
-          <li><a href="#faq" className="text-blue-100 hover:text-white transition-colors">FAQ</a></li>
-          <li><Link to="/contact" className="text-blue-100 hover:text-white transition-colors">Contact Us</Link></li>
-          <li><Link to="/help" className="text-blue-100 hover:text-white transition-colors">Help Center</Link></li>
+        <h4 className="font-semibold text-blue-900 text-lg">Support</h4>
+        <ul className="space-y-3">
+          <li>
+            <Link 
+              to="/faq" 
+              className="text-gray-600 hover:text-blue-600 transition-colors text-sm lg:text-base block py-1"
+            >
+              FAQ
+            </Link>
+          </li>
+          <li>
+            <Link 
+              to="/contact" 
+              className="text-gray-600 hover:text-blue-600 transition-colors text-sm lg:text-base block py-1"
+            >
+              Contact Us
+            </Link>
+          </li>
+          <li>
+            <Link 
+              to="/help" 
+              className="text-gray-600 hover:text-blue-600 transition-colors text-sm lg:text-base block py-1"
+            >
+              Help Center
+            </Link>
+          </li>
         </ul>
       </div>
 
+      {/* Company Links */}
       <div className="space-y-4">
-        <h4 className="font-semibold text-white">Company</h4>
-        <ul className="space-y-2">
-          <li><Link to="/about" className="text-blue-100 hover:text-white transition-colors">About</Link></li>
-          <li><Link to="/privacy" className="text-blue-100 hover:text-white transition-colors">Privacy Policy</Link></li>
-          <li><Link to="/terms" className="text-blue-100 hover:text-white transition-colors">Terms of Service</Link></li>
+        <h4 className="font-semibold text-blue-900 text-lg">Company</h4>
+        <ul className="space-y-3">
+          <li>
+            <Link 
+              to="/about" 
+              className="text-gray-600 hover:text-blue-600 transition-colors text-sm lg:text-base block py-1"
+            >
+              About
+            </Link>
+          </li>
+          <li>
+            <Link 
+              to="/privacy" 
+              className="text-gray-600 hover:text-blue-600 transition-colors text-sm lg:text-base block py-1"
+            >
+              Privacy Policy
+            </Link>
+          </li>
+          <li>
+            <Link 
+              to="/terms" 
+              className="text-gray-600 hover:text-blue-600 transition-colors text-sm lg:text-base block py-1"
+            >
+              Terms of Service
+            </Link>
+          </li>
         </ul>
       </div>
     </div>
 
-    <div className="border-t border-blue-700 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
-      <p className="text-blue-200">© 2025 QuickCV. All rights reserved.</p>
-      <p className="text-blue-200 mt-4 md:mt-0">Built with ❤️ for job seekers worldwide</p>
+    {/* Bottom Bar */}
+    <div className="border-t border-blue-100 mt-8 lg:mt-12 pt-6 lg:pt-8">
+      <div className="flex flex-col space-y-4 sm:flex-row sm:justify-between sm:items-center sm:space-y-0">
+        <p className="text-gray-500 text-sm text-center sm:text-left">
+          © 2025 QuickCV. All rights reserved.
+        </p>
+        <p className="text-gray-500 text-sm text-center sm:text-right">
+          Built with ❤️ for job seekers worldwide
+        </p>
+      </div>
     </div>
   </div>
 </footer>

@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
 import { 
   Mail, 
   Phone, 
@@ -19,6 +20,7 @@ import {
   Star
 } from 'lucide-react';
 import { sendContactMessage } from '../utils/contactService';
+import Footer from '../components/common/Footer';
 
 interface ContactForm {
   name: string;
@@ -31,6 +33,11 @@ interface ContactForm {
 
 export default function ContactPage() {
   const navigate = useNavigate();
+  
+  // Scroll to top when component mounts
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   
   const handleBack = () => {
     // Try to go back in history, fallback to home page
@@ -508,6 +515,8 @@ export default function ContactPage() {
           </div>
         </motion.div>
       </div>
+      
+      <Footer />
     </div>
   );
 }

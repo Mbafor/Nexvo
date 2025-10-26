@@ -10,6 +10,7 @@ import ContactPage from './pages/ContactPage';
 import TermsConditions from './pages/TermsConditions';
 import PrivacyPolicy from './pages/PrivacyPolicy';
 import AboutPage from './pages/AboutPage';
+import FAQPage from './pages/FAQPage';
 import AuthModal from './components/AuthModal';
 import VerificationSuccess from './components/VerificationSuccess';
 import { CVData, TemplateType } from './types/cv';
@@ -254,6 +255,7 @@ function App() {
         <Route path="/blogs" element={<BlogList />} />
         <Route path="/blog/:slug" element={<BlogPost />} />
         <Route path="/contact" element={<ContactPage />} />
+        <Route path="/faq" element={<FAQPage />} />
         <Route path="/terms" element={<TermsConditions />} />
         <Route path="/privacy" element={<PrivacyPolicy />} />
         <Route path="/help" element={<ContactPage />} />
