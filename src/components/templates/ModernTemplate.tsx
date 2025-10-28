@@ -1,6 +1,35 @@
-// Modern Elite Template - Google-inspired design with stunning visual hierarchy
+// Modern Elite Template - Professional design with visual hierarchy
 import { CVData } from '../../types/cv';
 import { Document, Page, View, Text, StyleSheet } from '@react-pdf/renderer';
+
+interface ModernTemplateProps {
+  data: CVData;
+}
+
+// Helper function to render bullet points
+const renderBulletPoints = (text: string | undefined, style: any) => {
+  if (!text || !text.trim()) return null;
+  
+  const lines = text.split('\n').filter(line => line.trim());
+  
+  return (
+    <View>
+      {lines.map((line, index) => {
+        const trimmedLine = line.trim();
+        // Ensure bullet point format
+        const bulletText = trimmedLine.startsWith('•') || trimmedLine.startsWith('-') 
+          ? trimmedLine 
+          : `• ${trimmedLine}`;
+        
+        return (
+          <Text key={index} style={[styles.bulletPoint, style]}>
+            {bulletText}
+          </Text>
+        );
+      })}
+    </View>
+  );
+};
 
 interface ModernTemplateProps {
   data: CVData;
@@ -16,12 +45,12 @@ const styles = StyleSheet.create({
     lineHeight: 1.6
   },
   
-  // Header Section - Hero style
+  // Header Section - Professional style
   headerContainer: {
     backgroundColor: '#f8fafc',
     paddingHorizontal: 40,
-    paddingTop: 50,
-    paddingBottom: 40,
+    paddingTop: 30,
+    paddingBottom: 25,
     position: 'relative'
   },
   headerAccent: {
@@ -32,11 +61,19 @@ const styles = StyleSheet.create({
     height: 4,
     backgroundColor: '#2563eb'
   },
+  headerContent: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between'
+  },
+  headerInfo: {
+    flex: 1
+  },
   name: { 
-    fontSize: 36, 
+    fontSize: 28, 
     fontWeight: 'bold', 
     color: '#0f172a',
-    marginBottom: 8,
+    marginBottom: 16,
     letterSpacing: -0.5
   },
   title: { 
@@ -49,18 +86,7 @@ const styles = StyleSheet.create({
   contactGrid: { 
     flexDirection: 'row', 
     flexWrap: 'wrap',
-    gap: 20
-  },
-  contactItem: { 
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginBottom: 6
-  },
-  contactIcon: {
-    width: 12,
-    height: 12,
-    marginRight: 8,
-    color: '#2563eb'
+    gap: 15
   },
   contactText: { 
     fontSize: 10,
@@ -92,11 +118,11 @@ const styles = StyleSheet.create({
   
   // Section Styling
   section: { 
-    marginBottom: 30
+    marginBottom: 20
   },
   sectionTitleContainer: {
-    marginBottom: 16,
-    paddingBottom: 8,
+    marginBottom: 12,
+    paddingBottom: 6,
     borderBottomWidth: 2,
     borderBottomColor: '#2563eb'
   },
@@ -119,16 +145,22 @@ const styles = StyleSheet.create({
   
   // Experience Styling
   experienceItem: {
-    marginBottom: 20,
-    paddingBottom: 16,
+    marginBottom: 16,
+    paddingBottom: 12,
     borderBottomWidth: 1,
     borderBottomColor: '#f1f5f9'
+  },
+  experienceHeader: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginBottom: 4
   },
   jobTitle: { 
     fontSize: 13, 
     fontWeight: 'bold', 
     color: '#1e293b',
-    marginBottom: 4
+    flex: 1
   },
   companyInfo: {
     flexDirection: 'row',
@@ -142,12 +174,15 @@ const styles = StyleSheet.create({
     fontWeight: 500
   },
   dateRange: {
-    fontSize: 9,
+    fontSize: 10,
     color: '#64748b',
-    backgroundColor: '#f1f5f9',
-    paddingHorizontal: 8,
-    paddingVertical: 3,
-    borderRadius: 12
+    fontWeight: 400
+  },
+  locationText: {
+    fontSize: 10,
+    fontStyle: 'italic',
+    color: '#64748b',
+    marginBottom: 6
   },
   bulletPoint: { 
     fontSize: 10, 
@@ -197,35 +232,6 @@ const styles = StyleSheet.create({
     marginBottom: 2
   },
   
-  // Projects Styling
-  projectItem: {
-    marginBottom: 18,
-    padding: 14,
-    backgroundColor: '#f8fafc',
-    borderRadius: 8,
-    borderWidth: 1,
-    borderColor: '#e2e8f0'
-  },
-  projectTitle: {
-    fontSize: 12,
-    fontWeight: 'bold',
-    color: '#1e293b',
-    marginBottom: 6
-  },
-  projectMeta: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginBottom: 8,
-    gap: 12
-  },
-  techStack: {
-    fontSize: 9,
-    color: '#2563eb',
-    backgroundColor: '#eff6ff',
-    paddingHorizontal: 6,
-    paddingVertical: 2,
-    borderRadius: 8
-  },
   
   // Achievements
   achievementItem: {
@@ -251,15 +257,20 @@ const styles = StyleSheet.create({
   
   // Sidebar sections
   sidebarSection: {
-    marginBottom: 24
+    marginBottom: 16
   },
   sidebarTitle: {
     fontSize: 12,
     fontWeight: 'bold',
     color: '#1e293b',
-    marginBottom: 10,
+    marginBottom: 8,
     textTransform: 'uppercase',
     letterSpacing: 0.8
+  },
+  hobbyText: {
+    fontSize: 9,
+    color: '#475569',
+    lineHeight: 1.4
   },
   
   // Language/Skills Progress
@@ -334,21 +345,18 @@ const styles = StyleSheet.create({
   }
 });
 
-export default function ModernTemplatePDF({ data }: ModernTemplateProps) {
-  const formatDate = (date?: string) => {
-    if (!date) return '';
-    const [year, month] = date.split('-');
-    const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-    return `${months[parseInt(month)-1]} ${year}`;
-  };
-
-  const hasContent = (arr: any[]) =>
-    arr && arr.length > 0 && arr.some(item =>
-      Object.values(item).some(val => val && val !== '' && (typeof val !== 'object' || Object.keys(val).length > 0))
-    );
-
+export default function ModernTemplate({ data }: ModernTemplateProps) {
   const getSkillLevel = (level: string) => {
-    const levels = { 'Beginner': 25, 'Intermediate': 50, 'Advanced': 75, 'Expert': 100 };
+    const levels = { 
+      'beginner': 25, 
+      'intermediate': 50, 
+      'advanced': 75, 
+      'expert': 100,
+      'Beginner': 25, 
+      'Intermediate': 50, 
+      'Advanced': 75, 
+      'Expert': 100 
+    };
     return levels[level as keyof typeof levels] || 50;
   };
 
@@ -359,38 +367,27 @@ export default function ModernTemplatePDF({ data }: ModernTemplateProps) {
         {/* Header Section */}
         <View style={styles.headerContainer}>
           <View style={styles.headerAccent} />
-          <Text style={styles.name}>{data.personalInfo.fullName}</Text>
-          {data.personalInfo.summary && (
-            <Text style={styles.title}>
-              {data.personalInfo.summary.split('\n')[0].substring(0, 120)}
-            </Text>
-          )}
-          <View style={styles.contactGrid}>
-            {data.personalInfo.email && (
-              <View style={styles.contactItem}>
-                <Text style={styles.contactText}>✉ {data.personalInfo.email}</Text>
+          <View style={styles.headerContent}>
+            <View style={styles.headerInfo}>
+              <Text style={styles.name}>{data.personalInfo.fullName}</Text>
+              <View style={styles.contactGrid}>
+                {data.personalInfo.email && (
+                  <Text style={styles.contactText}>{data.personalInfo.email}</Text>
+                )}
+                {data.personalInfo.phone && (
+                  <Text style={styles.contactText}>{data.personalInfo.phone}</Text>
+                )}
+                {data.personalInfo.location && (
+                  <Text style={styles.contactText}>{data.personalInfo.location}</Text>
+                )}
+                {data.personalInfo.linkedin && (
+                  <Text style={styles.contactText}>{data.personalInfo.linkedin}</Text>
+                )}
+                {data.personalInfo.website && (
+                  <Text style={styles.contactText}>{data.personalInfo.website}</Text>
+                )}
               </View>
-            )}
-            {data.personalInfo.phone && (
-              <View style={styles.contactItem}>
-                <Text style={styles.contactText}>📱 {data.personalInfo.phone}</Text>
-              </View>
-            )}
-            {data.personalInfo.location && (
-              <View style={styles.contactItem}>
-                <Text style={styles.contactText}>📍 {data.personalInfo.location}</Text>
-              </View>
-            )}
-            {data.personalInfo.linkedin && (
-              <View style={styles.contactItem}>
-                <Text style={styles.contactText}>💼 {data.personalInfo.linkedin}</Text>
-              </View>
-            )}
-            {data.personalInfo.website && (
-              <View style={styles.contactItem}>
-                <Text style={styles.contactText}>🌐 {data.personalInfo.website}</Text>
-              </View>
-            )}
+            </View>
           </View>
         </View>
 
@@ -412,51 +409,46 @@ export default function ModernTemplatePDF({ data }: ModernTemplateProps) {
               )}
 
               {/* Work Experience */}
-              {hasContent(data.experience || []) && (
+              {data.experience?.length > 0 && (
                 <View style={styles.section}>
                   <View style={styles.sectionTitleContainer}>
                     <Text style={styles.sectionTitle}>Professional Experience</Text>
                   </View>
-                  {(data.experience || []).map(exp => (
-                    <View key={exp.id} style={styles.experienceItem}>
-                      <Text style={styles.jobTitle}>{exp.position}</Text>
-                      <View style={styles.companyInfo}>
-                        <Text style={styles.companyName}>{exp.company}</Text>
+                  {data.experience.map((exp, i) => (
+                    <View key={i} style={styles.experienceItem}>
+                      <View style={styles.experienceHeader}>
+                        <Text style={styles.jobTitle}>{exp.position}, {exp.company}</Text>
                         <Text style={styles.dateRange}>
-                          {formatDate(exp.startDate)} - {exp.current ? 'Present' : formatDate(exp.endDate)}
+                          {exp.startDate} - {exp.endDate || 'Present'}
                         </Text>
                       </View>
                       {exp.location && (
-                        <Text style={[styles.contactText, { marginBottom: 6 }]}>📍 {exp.location}</Text>
+                        <Text style={styles.locationText}>{exp.location}</Text>
                       )}
-                      {exp.description && exp.description.split('\n').map((line, idx) => (
-                        <Text key={idx} style={styles.bulletPoint}>• {line}</Text>
-                      ))}
+                      {renderBulletPoints(exp.description, {})}
                     </View>
                   ))}
                 </View>
               )}
 
               {/* Projects */}
-              {hasContent(data.projects || []) && (
+              {data.projects && data.projects.length > 0 && (
                 <View style={styles.section}>
                   <View style={styles.sectionTitleContainer}>
                     <Text style={styles.sectionTitle}>Key Projects</Text>
                   </View>
-                  {(data.projects || []).map(project => (
-                    <View key={project.id} style={styles.projectItem}>
-                      <Text style={styles.projectTitle}>{project.name}</Text>
-                      <View style={styles.projectMeta}>
+                  {(data.projects || []).map((project, i) => (
+                    <View key={i} style={styles.experienceItem}>
+                      <View style={styles.experienceHeader}>
+                        <Text style={styles.jobTitle}>{project.name}</Text>
                         <Text style={styles.dateRange}>
-                          {formatDate(project.startDate)} - {project.endDate ? formatDate(project.endDate) : 'Present'}
+                          {project.startDate} - {project.endDate || 'Present'}
                         </Text>
-                        {project.technologies && (
-                          <Text style={styles.techStack}>{project.technologies}</Text>
-                        )}
                       </View>
-                      {project.description && project.description.split('\n').map((line, idx) => (
-                        <Text key={idx} style={styles.bulletPoint}>• {line}</Text>
-                      ))}
+                      {project.technologies && (
+                        <Text style={styles.locationText}>Technologies: {project.technologies}</Text>
+                      )}
+                      {renderBulletPoints(project.description, {})}
                       {project.link && (
                         <Text style={[styles.contactText, { marginTop: 4 }]}>🔗 {project.link}</Text>
                       )}
@@ -465,28 +457,21 @@ export default function ModernTemplatePDF({ data }: ModernTemplateProps) {
                 </View>
               )}
 
-              {/* Achievements */}
-              {hasContent(data.achievements || []) && (
+              {/* Volunteer Experience */}
+              {data.volunteerWork?.length > 0 && (
                 <View style={styles.section}>
                   <View style={styles.sectionTitleContainer}>
-                    <Text style={styles.sectionTitle}>Achievements & Awards</Text>
+                    <Text style={styles.sectionTitle}>Volunteer Experience</Text>
                   </View>
-                  {(data.achievements || []).map(ach => (
-                    <View key={ach.id} style={styles.achievementItem}>
-                      <View style={styles.achievementIcon} />
-                      <View style={{ flex: 1 }}>
-                        <Text style={[styles.achievementText, { fontWeight: 'bold', marginBottom: 2 }]}>
-                          {ach.title}
+                  {data.volunteerWork.map((vol, i) => (
+                    <View key={i} style={styles.experienceItem}>
+                      <View style={styles.experienceHeader}>
+                        <Text style={styles.jobTitle}>{vol.role}, {vol.organization}</Text>
+                        <Text style={styles.dateRange}>
+                          {vol.startDate} - {vol.endDate || 'Present'}
                         </Text>
-                        {ach.date && (
-                          <Text style={[styles.dateRange, { marginBottom: 4 }]}>
-                            {formatDate(ach.date)}
-                          </Text>
-                        )}
-                        {ach.description && ach.description.split('\n').map((line, idx) => (
-                          <Text key={idx} style={styles.achievementText}>• {line}</Text>
-                        ))}
                       </View>
+                      {renderBulletPoints(vol.description, {})}
                     </View>
                   ))}
                 </View>
@@ -497,11 +482,11 @@ export default function ModernTemplatePDF({ data }: ModernTemplateProps) {
             <View style={styles.rightColumn}>
               
               {/* Skills */}
-              {hasContent(data.skills || []) && (
+              {data.skills?.length > 0 && (
                 <View style={styles.sidebarSection}>
                   <Text style={styles.sidebarTitle}>Skills & Expertise</Text>
-                  {(data.skills || []).map(skill => (
-                    <View key={skill.id} style={styles.progressItem}>
+                  {data.skills.map((skill, i) => (
+                    <View key={i} style={styles.progressItem}>
                       <View style={styles.progressHeader}>
                         <Text style={styles.progressLabel}>{skill.name}</Text>
                         <Text style={styles.progressLevel}>{skill.level}</Text>
@@ -515,32 +500,28 @@ export default function ModernTemplatePDF({ data }: ModernTemplateProps) {
               )}
 
               {/* Education */}
-              {hasContent(data.education || []) && (
+              {data.education?.length > 0 && (
                 <View style={styles.sidebarSection}>
                   <Text style={styles.sidebarTitle}>Education</Text>
-                  {(data.education || []).map(edu => (
-                    <View key={edu.id} style={styles.educationItem}>
+                  {data.education.map((edu, i) => (
+                    <View key={i} style={styles.educationItem}>
                       <Text style={styles.degreeTitle}>{edu.degree}</Text>
                       <Text style={styles.institutionName}>{edu.institution}</Text>
-                      <Text style={styles.progressLevel}>
-                        {formatDate(edu.startDate)} - {edu.current ? 'Present' : formatDate(edu.endDate)}
+                      <Text style={styles.contactText}>
+                        {edu.startDate} - {edu.endDate || 'Present'}
                       </Text>
-                      {edu.description && (
-                        <Text style={[styles.bulletPoint, { marginLeft: 0, marginTop: 4 }]}>
-                          {edu.description}
-                        </Text>
-                      )}
+                      {renderBulletPoints(edu.description, { marginLeft: 0, marginTop: 4 })}
                     </View>
                   ))}
                 </View>
               )}
 
               {/* Languages */}
-              {hasContent(data.languages || []) && (
+              {data.languages && data.languages.length > 0 && (
                 <View style={styles.sidebarSection}>
                   <Text style={styles.sidebarTitle}>Languages</Text>
-                  {(data.languages || []).map(lang => (
-                    <View key={lang.id} style={styles.progressItem}>
+                  {data.languages.map((lang, i) => (
+                    <View key={i} style={styles.progressItem}>
                       <View style={styles.progressHeader}>
                         <Text style={styles.progressLabel}>{lang.name}</Text>
                         <Text style={styles.progressLevel}>{lang.level}</Text>
@@ -553,41 +534,30 @@ export default function ModernTemplatePDF({ data }: ModernTemplateProps) {
                 </View>
               )}
 
-              {/* Certifications */}
-              {hasContent(data.certifications || []) && (
+              {/* Achievements */}
+              {data.achievements?.length > 0 && (
                 <View style={styles.sidebarSection}>
-                  <Text style={styles.sidebarTitle}>Certifications</Text>
-                  {(data.certifications || []).map((cert, index) => (
-                    <View key={index} style={styles.certificationBadge}>
-                      <View style={styles.certIcon} />
-                      <Text style={styles.certText}>{cert}</Text>
-                    </View>
-                  ))}
-                </View>
-              )}
-
-              {/* Volunteer Work */}
-              {hasContent(data.volunteerWork || []) && (
-                <View style={styles.sidebarSection}>
-                  <Text style={styles.sidebarTitle}>Volunteer Experience</Text>
-                  {(data.volunteerWork || []).map(vol => (
-                    <View key={vol.id} style={[styles.educationItem, { backgroundColor: '#fef3c7' }]}>
-                      <Text style={styles.degreeTitle}>{vol.role}</Text>
-                      <Text style={styles.institutionName}>{vol.organization}</Text>
-                      <Text style={styles.progressLevel}>
-                        {formatDate(vol.startDate)} - {vol.current ? 'Present' : formatDate(vol.endDate)}
-                      </Text>
+                  <Text style={styles.sidebarTitle}>Achievements & Awards</Text>
+                  {data.achievements.map((ach, i) => (
+                    <View key={i} style={styles.educationItem}>
+                      <Text style={styles.degreeTitle}>{ach.title}</Text>
+                      {ach.date && (
+                        <Text style={styles.contactText}>{ach.date}</Text>
+                      )}
+                      {ach.description && (
+                        <Text style={styles.bulletPoint}>{ach.description}</Text>
+                      )}
                     </View>
                   ))}
                 </View>
               )}
 
               {/* Hobbies & Interests */}
-              {hasContent(data.hobbies || []) && (
+              {data.hobbies && data.hobbies.length > 0 && (
                 <View style={styles.sidebarSection}>
                   <Text style={styles.sidebarTitle}>Interests</Text>
                   <View style={styles.hobbiesContainer}>
-                    {(data.hobbies || []).map((hobby, index) => (
+                    {data.hobbies.map((hobby, index) => (
                       <Text key={index} style={styles.hobbyChip}>{hobby}</Text>
                     ))}
                   </View>
@@ -595,7 +565,7 @@ export default function ModernTemplatePDF({ data }: ModernTemplateProps) {
               )}
 
               {/* References */}
-              {hasContent(data.references || []) && (
+              {data.references && data.references.length > 0 && (
                 <View style={styles.sidebarSection}>
                   <Text style={styles.sidebarTitle}>References</Text>
                   {(data.references || []).map(ref => (
@@ -603,7 +573,7 @@ export default function ModernTemplatePDF({ data }: ModernTemplateProps) {
                       <Text style={styles.degreeTitle}>{ref.name}</Text>
                       <Text style={styles.institutionName}>{ref.position}</Text>
                       {ref.company && (
-                        <Text style={styles.progressLevel}>{ref.company}</Text>
+                        <Text style={styles.contactText}>{ref.company}</Text>
                       )}
                       {ref.email && (
                         <Text style={[styles.contactText, { fontSize: 8 }]}>✉ {ref.email}</Text>

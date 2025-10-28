@@ -1,5 +1,6 @@
 import { Plus, Trash2 } from 'lucide-react';
 import { VolunteerWork } from '../../types/cv';
+import BulletPointTextarea from '../common/BulletPointTextarea';
 
 interface VolunteerFormProps {
   data: VolunteerWork[];
@@ -118,18 +119,16 @@ export default function VolunteerForm({ data, onChange }: VolunteerFormProps) {
               </label>
             </div>
 
-            <div>
-              <label className="block text-sm font-medium text-slate-700 mb-1">
-                Description
-              </label>
-              <textarea
-                value={vol.description}
-                onChange={(e) => updateVolunteer(vol.id, 'description', e.target.value)}
-                className="w-full px-3 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-slate-500 focus:border-transparent"
-                rows={4}
-                placeholder="What you did and what impact you made..."
-              />
-            </div>
+            <BulletPointTextarea
+              label="Description"
+              value={vol.description}
+              onChange={(value) => updateVolunteer(vol.id, 'description', value)}
+              placeholder="• What you did and what impact you made...
+• Organized community events
+• Raised $5000 for charity
+• Trained 10 new volunteers"
+              rows={4}
+            />
           </div>
         </div>
       ))}

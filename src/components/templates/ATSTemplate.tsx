@@ -1,4 +1,4 @@
-// ATS-Optimized Elite Template - Designed for Maximum ATS Compatibility and Professional Impact
+// ATS-Optimized Elite Template - Single Column Edition (Refined for ATS + Visual Balance)
 import { CVData } from '../../types/cv';
 import { Document, Page, View, Text, StyleSheet } from '@react-pdf/renderer';
 
@@ -6,427 +6,404 @@ interface ATSTemplateProps {
   data: CVData;
 }
 
+// Helper function to render bullet points
+const renderBulletPoints = (text: string | undefined, style: any) => {
+  if (!text || !text.trim()) return null;
+  
+  const lines = text.split('\n').filter(line => line.trim());
+  
+  return (
+    <View style={styles.bulletGroup}>
+      {lines.map((line, index) => {
+        const trimmedLine = line.trim();
+        // Ensure bullet point format
+        const bulletText = trimmedLine.startsWith('•') || trimmedLine.startsWith('-') 
+          ? trimmedLine 
+          : `• ${trimmedLine}`;
+        
+        return (
+          <Text key={index} style={[styles.bulletItem, style]}>
+            {bulletText}
+          </Text>
+        );
+      })}
+    </View>
+  );
+};
+
 const styles = StyleSheet.create({
-  page: { 
-    fontFamily: 'Helvetica', 
-    padding: 50, 
+  page: {
+    fontFamily: 'Helvetica',
+    padding: 50,
     backgroundColor: '#ffffff',
     color: '#2c2c2c',
     fontSize: 11,
-    lineHeight: 1.6
+    lineHeight: 1.5,
   },
-  
-  // Header - Clean and ATS-friendly
-  header: { 
-    marginBottom: 40, 
+
+  // HEADER
+  header: {
     textAlign: 'center',
-    paddingBottom: 25,
+    marginBottom: 16,
+    paddingBottom: 6,
     borderBottomWidth: 1,
-    borderBottomColor: '#e1e5e9'
+    borderBottomColor: '#d9dee2',
   },
-  name: { 
-    fontSize: 24, 
-    fontWeight: 'bold', 
+  name: {
+    fontSize: 22,
+    fontWeight: 'bold',
     color: '#1a1a1a',
-    marginBottom: 8,
-    letterSpacing: 0.5
-  },
-  jobTitle: { 
-    fontSize: 14, 
-    color: '#4a5568',
-    marginBottom: 15,
-    fontWeight: 400
-  },
-  contactInfo: { 
-    flexDirection: 'row', 
-    flexWrap: 'wrap', 
-    justifyContent: 'space-between',
-    gap: 8
-  },
-  contactItem: { 
-    fontSize: 10, 
-    color: '#4a5568',
-    marginBottom: 3,
-    flexShrink: 1
-  },
-  summary: { 
-    fontSize: 11, 
-    color: '#2c2c2c',
-    lineHeight: 1.6,
-    textAlign: 'justify',
-    marginBottom: 25
-  },
-  
-  // Section Styling - Clean and structured
-  section: { 
-    marginBottom: 20 
-  },
-  sectionTitle: { 
-    fontSize: 14, 
-    fontWeight: 'bold', 
-    color: '#2c2c2c',
-    textTransform: 'uppercase',
-    letterSpacing: 1,
-    marginBottom: 12,
-    paddingBottom: 4,
-    borderBottomWidth: 1,
-    borderBottomColor: '#e1e5e9'
-  },
-  
-  // Experience Section
-  experienceItem: { 
-    marginBottom: 15,
-    paddingBottom: 12,
-    borderBottomWidth: 1,
-    borderBottomColor: '#f7fafc'
-  },
-  positionTitle: { 
-    fontSize: 13, 
-    fontWeight: 'bold', 
-    color: '#2c2c2c',
-    marginBottom: 3
-  },
-  companyInfo: { 
-    flexDirection: 'row', 
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    marginBottom: 8
-  },
-  companyName: { 
-    fontSize: 12, 
-    color: '#4a5568',
-    fontWeight: 600
-  },
-  experienceDate: { 
-    fontSize: 11, 
-    color: '#718096'
-  },
-  locationInfo: { 
-    fontSize: 10, 
-    color: '#718096',
-    marginBottom: 8,
-    fontStyle: 'italic'
-  },
-  achievementsList: { 
-    marginLeft: 15 
-  },
-  achievementItem: { 
-    fontSize: 10, 
-    color: '#4a5568',
-    lineHeight: 1.5,
-    marginBottom: 3
-  },
-  bulletPoint: { 
-    marginRight: 8, 
-    color: '#718096' 
-  },
-  
-  // Education Section
-  educationItem: { 
-    marginBottom: 12,
-    paddingBottom: 10,
-    borderBottomWidth: 1,
-    borderBottomColor: '#f7fafc'
-  },
-  educationHeader: { 
-    flexDirection: 'row', 
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    marginBottom: 4
-  },
-  degreeTitle: { 
-    fontSize: 12, 
-    fontWeight: 'bold', 
-    color: '#2c2c2c'
-  },
-  graduationDate: { 
-    fontSize: 10, 
-    color: '#718096' 
-  },
-  institutionName: { 
-    fontSize: 11, 
-    color: '#4a5568',
-    marginBottom: 3
-  },
-  educationDetails: { 
-    fontSize: 10, 
-    color: '#718096',
-    lineHeight: 1.4
-  },
-  
-  // Skills Section - ATS optimized
-  skillsContainer: { 
-    flexDirection: 'row', 
-    flexWrap: 'wrap',
-    gap: 15
-  },
-  skillCategory: { 
-    width: '48%',
-    marginBottom: 12
-  },
-  skillCategoryTitle: { 
-    fontSize: 12, 
-    fontWeight: 'bold', 
-    color: '#2c2c2c',
     marginBottom: 6,
+    letterSpacing: 0.5,
+  },
+  contactBlock: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    flexWrap: 'wrap',
+    marginTop: 2,
+    lineHeight: 1.4,
+  },
+  contactText: {
+    fontSize: 10,
+    color: '#4a5568',
+    marginHorizontal: 8,
+    marginVertical: 2,
+  },
+
+  // SECTIONS
+  section: {
+    marginBottom: 12,
+  },
+  sectionTitle: {
+    fontSize: 13,
+    fontWeight: 'bold',
+    color: '#2c2c2c',
     textTransform: 'uppercase',
-    letterSpacing: 0.5
-  },
-  skillList: { 
-    flexDirection: 'row', 
-    flexWrap: 'wrap' 
-  },
-  skillItem: { 
-    fontSize: 10, 
-    color: '#4a5568',
-    backgroundColor: '#f7fafc',
-    paddingHorizontal: 8,
-    paddingVertical: 3,
-    marginRight: 6,
-    marginBottom: 4,
-    borderRadius: 3
-  },
-  
-  // Projects Section
-  projectItem: { 
-    marginBottom: 15,
-    paddingBottom: 10,
+    letterSpacing: 0.8,
+    marginBottom: 6,
+    paddingBottom: 2,
     borderBottomWidth: 1,
-    borderBottomColor: '#f7fafc'
+    borderBottomColor: '#e1e5e9',
   },
-  projectHeader: { 
-    flexDirection: 'row', 
+
+  summary: {
+    fontSize: 10,
+    color: '#4a5568',
+    lineHeight: 1.4,
+  },
+
+  // EXPERIENCE
+  experienceItem: {
+    marginBottom: 8,
+  },
+  experienceHeader: {
+    flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    marginBottom: 6
+    marginBottom: 2,
   },
-  projectName: { 
-    fontSize: 12, 
-    fontWeight: 'bold', 
-    color: '#2c2c2c'
+  positionTitle: {
+    fontSize: 12,
+    fontWeight: 'bold',
+    color: '#1a1a1a',
+    flex: 1,
   },
-  projectDate: { 
-    fontSize: 10, 
-    color: '#718096' 
+  companyLine: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginBottom: 2,
   },
-  projectDescription: { 
-    fontSize: 10, 
+  companyName: {
+    fontSize: 10.5,
     color: '#4a5568',
-    lineHeight: 1.5,
-    marginBottom: 6
   },
-  projectTechs: { 
-    flexDirection: 'row', 
-    flexWrap: 'wrap' 
+  dateRange: {
+    fontSize: 10,
+    color: '#4a5568',
+    marginHorizontal: 8,
+    marginVertical: 2,
   },
-  techItem: { 
-    fontSize: 9, 
-    color: '#718096',
-    backgroundColor: '#edf2f7',
-    paddingHorizontal: 6,
-    paddingVertical: 2,
-    marginRight: 4,
+  locationText: {
+    fontSize: 10,
+    fontStyle: 'italic',
+    color: '#6b7280',
     marginBottom: 3,
-    borderRadius: 2
   },
-  
-  // Certifications Section
-  certificationItem: { 
-    marginBottom: 10,
-    paddingBottom: 8,
-    borderBottomWidth: 1,
-    borderBottomColor: '#f7fafc'
+  bulletGroup: {
+    marginLeft: 0,
+    marginTop: 2,
   },
-  certificationName: { 
-    fontSize: 11, 
-    fontWeight: 'bold', 
-    color: '#2c2c2c',
-    marginBottom: 2
+  bulletItem: {
+    fontSize: 10,
+    color: '#4a5568',
+    marginBottom: 1,
+    lineHeight: 1.4,
   },
-  certificationInfo: { 
-    flexDirection: 'row', 
+
+  // EDUCATION
+  educationItem: {
+    marginBottom: 8,
+  },
+  degreeTitle: {
+    fontSize: 11.5,
+    fontWeight: 'bold',
+    color: '#1a1a1a',
+  },
+  educationHeader: {
+    flexDirection: 'row',
     justifyContent: 'space-between',
-    alignItems: 'center'
-  },
-  certificationIssuer: { 
-    fontSize: 10, 
-    color: '#4a5568' 
-  },
-  certificationDate: { 
-    fontSize: 9, 
-    color: '#718096' 
-  },
-  
-  // Languages Section
-  languagesContainer: { 
-    flexDirection: 'row', 
-    flexWrap: 'wrap',
-    gap: 10
-  },
-  languageItem: { 
-    flexDirection: 'row', 
     alignItems: 'center',
-    marginBottom: 6
+    marginBottom: 2,
   },
-  languageName: { 
-    fontSize: 11, 
-    color: '#2c2c2c',
-    fontWeight: 600,
-    marginRight: 8
+  institutionName: {
+    fontSize: 10.5,
+    color: '#4a5568',
   },
-  languageLevel: { 
-    fontSize: 10, 
+  graduationDate: {
+    fontSize: 10,
+    color: '#4a5568',
+    marginHorizontal: 8,
+    marginVertical: 2,
+  },
+  educationDetails: {
+    fontSize: 10,
+    color: '#6b7280',
+    lineHeight: 1.4,
+  },
+
+  // SKILLS
+  skillList: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    gap: 2,
+  },
+  skillItem: {
+    fontSize: 10,
     color: '#4a5568',
     backgroundColor: '#f7fafc',
     paddingHorizontal: 6,
     paddingVertical: 2,
-    borderRadius: 3
+    borderRadius: 3,
+    marginRight: 3,
+    marginBottom: 3,
   },
-  
-  // Achievements Section
-  achievementCard: { 
-    marginBottom: 12,
-    paddingBottom: 10,
-    borderBottomWidth: 1,
-    borderBottomColor: '#f7fafc'
+  skillCategory: {
+    marginBottom: 1,
   },
-  achievementTitle: { 
-    fontSize: 12, 
-    fontWeight: 'bold', 
-    color: '#2c2c2c',
-    marginBottom: 3
+  skillCategoryTitle: {
+    fontSize: 10.5,
+    fontWeight: 'bold',
+    color: '#1a1a1a',
+    marginBottom: 1,
   },
-  achievementDate: { 
-    fontSize: 10, 
-    color: '#718096',
-    marginBottom: 5
-  },
-  achievementDescription: { 
-    fontSize: 10, 
+  skillText: {
+    fontSize: 10,
     color: '#4a5568',
-    lineHeight: 1.5
+    lineHeight: 1.4,
   },
-  
-  // Volunteer Work Section
-  volunteerItem: { 
-    marginBottom: 12,
-    paddingBottom: 8,
-    borderBottomWidth: 1,
-    borderBottomColor: '#f7fafc'
+
+  // PROJECTS
+  projectItem: {
+    marginBottom: 8,
   },
-  volunteerRole: { 
-    fontSize: 11, 
-    fontWeight: 'bold', 
-    color: '#2c2c2c',
-    marginBottom: 2
+  projectHeader: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginBottom: 2,
   },
-  volunteerOrganization: { 
-    fontSize: 10, 
+  projectName: {
+    fontSize: 11.5,
+    fontWeight: 'bold',
+    color: '#1a1a1a',
+  },
+  projectDate: {
+    fontSize: 10,
     color: '#4a5568',
-    marginBottom: 2
+    marginHorizontal: 8,
+    marginVertical: 2,
   },
-  volunteerDate: { 
-    fontSize: 9, 
-    color: '#718096',
-    marginBottom: 4
-  },
-  volunteerDescription: { 
-    fontSize: 10, 
+  projectDescription: {
+    fontSize: 10,
     color: '#4a5568',
-    lineHeight: 1.4
+    marginBottom: 3,
+    lineHeight: 1.4,
   },
-  
-  // References Section
-  referencesContainer: { 
-    flexDirection: 'row', 
+  projectTechs: {
+    flexDirection: 'row',
     flexWrap: 'wrap',
-    gap: 15
+    gap: 2,
   },
-  referenceItem: { 
-    width: '47%',
-    marginBottom: 10
+  techItem: {
+    fontSize: 9,
+    color: '#6b7280',
+    backgroundColor: '#edf2f7',
+    paddingHorizontal: 4,
+    paddingVertical: 2,
+    borderRadius: 2,
+    marginRight: 3,
+    marginBottom: 2,
   },
-  referenceName: { 
-    fontSize: 11, 
-    fontWeight: 'bold', 
-    color: '#2c2c2c',
-    marginBottom: 2
-  },
-  referenceTitle: { 
-    fontSize: 10, 
-    color: '#4a5568',
-    marginBottom: 2
-  },
-  referenceContact: { 
-    fontSize: 9, 
-    color: '#718096' 
-  },
-  
-  // Hobbies Section
-  hobbiesContainer: { 
-    flexDirection: 'row', 
-    flexWrap: 'wrap' 
-  },
-  hobbyTag: { 
-    backgroundColor: '#f7fafc',
-    paddingHorizontal: 8,
-    paddingVertical: 4,
-    marginRight: 6,
+
+  // CERTIFICATIONS
+  certificationItem: {
     marginBottom: 4,
-    borderRadius: 4
   },
-  hobbiesText: { 
-    fontSize: 10, 
-    color: '#4a5568' 
-  }
+  certificationName: {
+    fontSize: 10.5,
+    fontWeight: 'bold',
+    color: '#1a1a1a',
+  },
+
+  // LANGUAGES
+  languageItem: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 3,
+  },
+  languageName: {
+    fontSize: 10.5,
+    fontWeight: 'bold',
+    color: '#1a1a1a',
+    marginRight: 6,
+  },
+  languageLevel: {
+    fontSize: 10,
+    color: '#4a5568',
+  },
+  languageText: {
+    fontSize: 10,
+    color: '#4a5568',
+    lineHeight: 1.4,
+  },
+
+  // ACHIEVEMENTS
+  achievementItem: {
+    marginBottom: 6,
+  },
+  achievementHeader: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginBottom: 2,
+  },
+  achievementTitle: {
+    fontSize: 11,
+    fontWeight: 'bold',
+    color: '#1a1a1a',
+  },
+  achievementDate: {
+    fontSize: 10,
+    color: '#4a5568',
+    marginHorizontal: 8,
+    marginVertical: 2,
+  },
+  achievementDescription: {
+    fontSize: 10,
+    color: '#4a5568',
+    lineHeight: 1.4,
+  },
+
+  // VOLUNTEER
+  volunteerItem: {
+    marginBottom: 8,
+  },
+  volunteerRole: {
+    fontSize: 10.5,
+    fontWeight: 'bold',
+    color: '#1a1a1a',
+    marginBottom: 2,
+  },
+  volunteerHeader: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginBottom: 2,
+  },
+  volunteerOrganization: {
+    fontSize: 10,
+    color: '#4a5568',
+  },
+  volunteerDate: {
+    fontSize: 10,
+    color: '#4a5568',
+    marginHorizontal: 8,
+    marginVertical: 2,
+  },
+  volunteerDescription: {
+    fontSize: 10,
+    color: '#4a5568',
+    lineHeight: 1.4,
+  },
+
+  // REFERENCES
+  referenceItem: {
+    marginBottom: 4,
+  },
+  referenceName: {
+    fontSize: 10.5,
+    fontWeight: 'bold',
+    color: '#1a1a1a',
+    marginBottom: 1,
+  },
+  referenceTitle: {
+    fontSize: 10,
+    color: '#4a5568',
+    marginBottom: 1,
+  },
+  referenceContact: {
+    fontSize: 9.5,
+    color: '#6b7280',
+  },
+
+  // HOBBIES
+  hobbyList: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    gap: 2,
+  },
+  hobbyTag: {
+    backgroundColor: '#f7fafc',
+    borderRadius: 4,
+    paddingHorizontal: 6,
+    paddingVertical: 2,
+    marginRight: 3,
+    marginBottom: 3,
+  },
+  hobbyText: {
+    fontSize: 10,
+    color: '#4a5568',
+  },
 });
 
 export const ATSTemplate = ({ data }: ATSTemplateProps) => {
-  // Helper function to group skills by category
-  const groupSkillsByCategory = () => {
-    if (!data.skills || data.skills.length === 0) return {};
-    
-    const categories: { [key: string]: typeof data.skills } = {};
-    data.skills.forEach(skill => {
-      const category = 'Technical Skills'; // Since category doesn't exist on Skill type
-      if (!categories[category]) {
-        categories[category] = [];
-      }
-      categories[category].push(skill);
-    });
-    
-    return categories;
-  };
-
   return (
     <Document>
       <Page size="A4" style={styles.page}>
-        
-        {/* Header Section */}
+        {/* HEADER */}
         <View style={styles.header}>
           <Text style={styles.name}>{data.personalInfo.fullName}</Text>
-          <Text style={styles.jobTitle}>{data.experience?.[0]?.position || 'Professional'}</Text>
-          
-          <View style={styles.contactInfo}>
+          <View style={styles.contactBlock}>
             {data.personalInfo.email && (
-              <Text style={styles.contactItem}>Email: {data.personalInfo.email}</Text>
+              <Text style={styles.contactText}>{data.personalInfo.email}</Text>
             )}
             {data.personalInfo.phone && (
-              <Text style={styles.contactItem}>Phone: {data.personalInfo.phone}</Text>
+              <Text style={styles.contactText}>{data.personalInfo.phone}</Text>
             )}
             {data.personalInfo.location && (
-              <Text style={styles.contactItem}>Location: {data.personalInfo.location}</Text>
-            )}
-            {data.personalInfo.website && (
-              <Text style={styles.contactItem}>Website: {data.personalInfo.website}</Text>
+              <Text style={styles.contactText}>{data.personalInfo.location}</Text>
             )}
             {data.personalInfo.linkedin && (
-              <Text style={styles.contactItem}>LinkedIn: {data.personalInfo.linkedin}</Text>
+              <Text style={styles.contactText}>{data.personalInfo.linkedin}</Text>
+            )}
+            {data.personalInfo.website && (
+              <Text style={styles.contactText}>{data.personalInfo.website}</Text>
             )}
           </View>
         </View>
 
-        {/* Professional Summary */}
+        {/* SUMMARY */}
         {data.personalInfo.summary && (
           <View style={styles.section}>
             <Text style={styles.sectionTitle}>Professional Summary</Text>
@@ -434,28 +411,96 @@ export const ATSTemplate = ({ data }: ATSTemplateProps) => {
           </View>
         )}
 
-        {/* Experience Section */}
-        {data.experience && data.experience.length > 0 && (
+        {/* EXPERIENCE */}
+        {data.experience?.length > 0 && (
           <View style={styles.section}>
             <Text style={styles.sectionTitle}>Professional Experience</Text>
-            {data.experience.map((exp, index) => (
-              <View key={index} style={styles.experienceItem}>
-                <Text style={styles.positionTitle}>{exp.position}</Text>
-                <View style={styles.companyInfo}>
-                  <Text style={styles.companyName}>{exp.company}</Text>
-                  <Text style={styles.experienceDate}>
+            {data.experience.map((exp, i) => (
+              <View key={i} style={styles.experienceItem}>
+                <View style={styles.experienceHeader}>
+                  <Text style={styles.positionTitle}>{exp.position}, {exp.company}</Text>
+                  <Text style={styles.dateRange}>
                     {exp.startDate} - {exp.endDate || 'Present'}
                   </Text>
                 </View>
-                {exp.location && (
-                  <Text style={styles.locationInfo}>{exp.location}</Text>
+                {exp.location && <Text style={styles.locationText}>{exp.location}</Text>}
+                {renderBulletPoints(exp.description, {})}
+              </View>
+            ))}
+          </View>
+        )}
+
+        {/* EDUCATION */}
+        {data.education?.length > 0 && (
+          <View style={styles.section}>
+            <Text style={styles.sectionTitle}>Education</Text>
+            {data.education.map((edu, i) => (
+              <View key={i} style={styles.educationItem}>
+                <View style={styles.educationHeader}>
+                  <Text style={styles.degreeTitle}>{edu.degree}</Text>
+                  <Text style={styles.graduationDate}>{edu.endDate}</Text>
+                </View>
+                <Text style={styles.institutionName}>{edu.institution}</Text>
+                {edu.field && (
+                  <Text style={styles.educationDetails}>Field: {edu.field}</Text>
                 )}
-                {exp.description && (
-                  <View style={styles.achievementsList}>
-                    {exp.description.split('\n').filter(line => line.trim()).map((line, idx) => (
-                      <Text key={idx} style={styles.achievementItem}>
-                        <Text style={styles.bulletPoint}>•</Text>
-                        {line.trim()}
+                {renderBulletPoints(edu.description, styles.educationDetails)}
+              </View>
+            ))}
+          </View>
+        )}
+
+        {/* SKILLS */}
+        {data.skills?.length > 0 && (() => {
+          const technicalSkills = data.skills.filter(skill => skill.type === 'technical');
+          const softSkills = data.skills.filter(skill => skill.type === 'soft');
+          
+          return (
+            <View style={styles.section}>
+              <Text style={styles.sectionTitle}>Skills</Text>
+              
+              {technicalSkills.length > 0 && (
+                <View style={[styles.skillCategory, { marginBottom: softSkills.length > 0 ? 3 : 0 }]}>
+                  <Text style={styles.skillCategoryTitle}>Technical:</Text>
+                  <Text style={styles.skillText}>
+                    {technicalSkills.map(skill => skill.name).join(', ')}
+                  </Text>
+                </View>
+              )}
+              
+              {softSkills.length > 0 && (
+                <View style={[styles.skillCategory, { marginBottom: 0 }]}>
+                  <Text style={styles.skillCategoryTitle}>Soft Skills:</Text>
+                  <Text style={styles.skillText}>
+                    {softSkills.map(skill => skill.name).join(', ')}
+                  </Text>
+                </View>
+              )}
+            </View>
+          );
+        })()}
+
+        {/* PROJECTS */}
+        {data.projects?.length > 0 && (
+          <View style={styles.section}>
+            <Text style={styles.sectionTitle}>Key Projects</Text>
+            {data.projects.map((proj, i) => (
+              <View key={i} style={styles.projectItem}>
+                <View style={styles.projectHeader}>
+                  <Text style={styles.projectName}>{proj.name}</Text>
+                  <Text style={styles.projectDate}>
+                    {proj.startDate} - {proj.endDate || 'Present'}
+                  </Text>
+                </View>
+                {renderBulletPoints(proj.description, styles.projectDescription)}
+                {proj.technologies && (
+                  <View style={styles.projectTechs}>
+                    {(Array.isArray(proj.technologies)
+                      ? proj.technologies
+                      : [proj.technologies]
+                    ).map((t, j) => (
+                      <Text key={j} style={styles.techItem}>
+                        {t}
                       </Text>
                     ))}
                   </View>
@@ -465,160 +510,93 @@ export const ATSTemplate = ({ data }: ATSTemplateProps) => {
           </View>
         )}
 
-        {/* Education Section */}
-        {data.education && data.education.length > 0 && (
-          <View style={styles.section}>
-            <Text style={styles.sectionTitle}>Education</Text>
-            {data.education.map((edu, index) => (
-              <View key={index} style={styles.educationItem}>
-                <View style={styles.educationHeader}>
-                  <Text style={styles.degreeTitle}>{edu.degree}</Text>
-                  <Text style={styles.graduationDate}>{edu.graduationDate || edu.endDate}</Text>
-                </View>
-                <Text style={styles.institutionName}>{edu.institution}</Text>
-                {edu.description && (
-                  <Text style={styles.educationDetails}>{edu.description}</Text>
-                )}
-              </View>
-            ))}
-          </View>
-        )}
-
-        {/* Skills Section */}
-        {data.skills && data.skills.length > 0 && (
-          <View style={styles.section}>
-            <Text style={styles.sectionTitle}>Technical Skills</Text>
-            <View style={styles.skillsContainer}>
-              {Object.entries(groupSkillsByCategory()).map(([category, skills]) => (
-                <View key={category} style={styles.skillCategory}>
-                  <Text style={styles.skillCategoryTitle}>{category}</Text>
-                  <View style={styles.skillList}>
-                    {skills.map((skill, idx) => (
-                      <Text key={idx} style={styles.skillItem}>{skill.name}</Text>
-                    ))}
-                  </View>
-                </View>
-              ))}
-            </View>
-          </View>
-        )}
-
-        {/* Projects Section */}
-        {data.projects && data.projects.length > 0 && (
-          <View style={styles.section}>
-            <Text style={styles.sectionTitle}>Key Projects</Text>
-            {data.projects.map((project, index) => (
-              <View key={index} style={styles.projectItem}>
-                <View style={styles.projectHeader}>
-                  <Text style={styles.projectName}>{project.name}</Text>
-                  <Text style={styles.projectDate}>{project.startDate} - {project.endDate || 'Present'}</Text>
-                </View>
-                {project.description && (
-                  <Text style={styles.projectDescription}>{project.description}</Text>
-                )}
-                {project.technologies && (
-                  <View style={styles.projectTechs}>
-                    {(Array.isArray(project.technologies) ? project.technologies : [project.technologies]).map((tech, idx) => (
-                      <Text key={idx} style={styles.techItem}>{tech}</Text>
-                    ))}
-                  </View>
-                )}
-              </View>
-            ))}
-          </View>
-        )}
-
-        {/* Certifications Section */}
+        {/* CERTIFICATIONS */}
         {data.certifications && data.certifications.length > 0 && (
           <View style={styles.section}>
             <Text style={styles.sectionTitle}>Certifications</Text>
-            {data.certifications.map((cert, index) => (
-              <View key={index} style={styles.certificationItem}>
-                <Text style={styles.certificationName}>{cert}</Text>
+            {data.certifications.map((cert, i) => (
+              <View key={i} style={styles.certificationItem}>
+                <Text style={styles.certificationName}>
+                  {cert}
+                </Text>
               </View>
             ))}
           </View>
         )}
 
-        {/* Languages Section */}
+        {/* LANGUAGES */}
         {data.languages && data.languages.length > 0 && (
           <View style={styles.section}>
             <Text style={styles.sectionTitle}>Languages</Text>
-            <View style={styles.languagesContainer}>
-              {data.languages.map((lang, index) => (
-                <View key={index} style={styles.languageItem}>
-                  <Text style={styles.languageName}>{lang.name || lang.language}</Text>
-                  <Text style={styles.languageLevel}>{lang.level || lang.proficiency}</Text>
-                </View>
-              ))}
-            </View>
+            <Text style={styles.languageText}>
+              {data.languages.map((lang) => 
+                `${lang.name || lang.language} (${lang.level || lang.proficiency})`
+              ).join(', ')}
+            </Text>
           </View>
         )}
 
-        {/* Achievements Section */}
-        {data.achievements && data.achievements.length > 0 && (
+        {/* ACHIEVEMENTS */}
+        {data.achievements?.length > 0 && (
           <View style={styles.section}>
             <Text style={styles.sectionTitle}>Achievements & Awards</Text>
-            {data.achievements.map((achievement, index) => (
-              <View key={index} style={styles.achievementCard}>
-                <Text style={styles.achievementTitle}>{achievement.title}</Text>
-                <Text style={styles.achievementDate}>{achievement.date}</Text>
-                {achievement.description && (
-                  <Text style={styles.achievementDescription}>{achievement.description}</Text>
-                )}
+            {data.achievements.map((ach, i) => (
+              <View key={i} style={styles.achievementItem}>
+                <View style={styles.achievementHeader}>
+                  <Text style={styles.achievementTitle}>{ach.title}</Text>
+                  <Text style={styles.achievementDate}>{ach.date}</Text>
+                </View>
+                {renderBulletPoints(ach.description, styles.achievementDescription)}
               </View>
             ))}
           </View>
         )}
 
-        {/* Volunteer Work Section */}
-        {data.volunteerWork && data.volunteerWork.length > 0 && (
+        {/* VOLUNTEER */}
+        {data.volunteerWork?.length > 0 && (
           <View style={styles.section}>
             <Text style={styles.sectionTitle}>Volunteer Experience</Text>
-            {data.volunteerWork.map((vol, index) => (
-              <View key={index} style={styles.volunteerItem}>
-                <Text style={styles.volunteerRole}>{vol.role}</Text>
-                <Text style={styles.volunteerOrganization}>{vol.organization}</Text>
-                <Text style={styles.volunteerDate}>{vol.startDate} - {vol.endDate || 'Present'}</Text>
-                {vol.description && (
-                  <Text style={styles.volunteerDescription}>{vol.description}</Text>
-                )}
+            {data.volunteerWork.map((v, i) => (
+              <View key={i} style={styles.volunteerItem}>
+                <Text style={styles.volunteerRole}>{v.role}</Text>
+                <View style={styles.volunteerHeader}>
+                  <Text style={styles.volunteerOrganization}>{v.organization}</Text>
+                  <Text style={styles.volunteerDate}>
+                    {v.startDate} - {v.endDate || 'Present'}
+                  </Text>
+                </View>
+                {renderBulletPoints(v.description, styles.volunteerDescription)}
               </View>
             ))}
           </View>
         )}
 
-        {/* References Section */}
-        {data.references && data.references.length > 0 && (
+        {/* REFERENCES */}
+        {data.references?.length > 0 && (
           <View style={styles.section}>
             <Text style={styles.sectionTitle}>Professional References</Text>
-            <View style={styles.referencesContainer}>
-              {data.references.map((ref, index) => (
-                <View key={index} style={styles.referenceItem}>
-                  <Text style={styles.referenceName}>{ref.name}</Text>
-                  <Text style={styles.referenceTitle}>{ref.position} at {ref.company}</Text>
-                  <Text style={styles.referenceContact}>{ref.email}</Text>
-                  {ref.phone && <Text style={styles.referenceContact}>{ref.phone}</Text>}
-                </View>
-              ))}
-            </View>
+            {data.references.map((r, i) => (
+              <View key={i} style={styles.referenceItem}>
+                <Text style={styles.referenceName}>{r.name}</Text>
+                <Text style={styles.referenceTitle}>
+                  {r.position} at {r.company}
+                </Text>
+                {r.email && <Text style={styles.referenceContact}>{r.email}</Text>}
+                {r.phone && <Text style={styles.referenceContact}>{r.phone}</Text>}
+              </View>
+            ))}
           </View>
         )}
 
-        {/* Hobbies Section */}
+        {/* HOBBIES */}
         {data.hobbies && data.hobbies.length > 0 && (
           <View style={styles.section}>
             <Text style={styles.sectionTitle}>Interests & Hobbies</Text>
-            <View style={styles.hobbiesContainer}>
-              {data.hobbies.map((hobby, index) => (
-                <View key={index} style={styles.hobbyTag}>
-                  <Text style={styles.hobbiesText}>{hobby}</Text>
-                </View>
-              ))}
-            </View>
+            <Text style={styles.hobbyText}>
+              {data.hobbies.join(', ')}
+            </Text>
           </View>
         )}
-
       </Page>
     </Document>
   );

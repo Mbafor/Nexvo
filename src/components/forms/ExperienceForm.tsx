@@ -1,5 +1,6 @@
 import { Plus, Trash2 } from 'lucide-react';
 import { Experience } from '../../types/cv';
+import BulletPointTextarea from '../common/BulletPointTextarea';
 
 interface ExperienceFormProps {
   data: Experience[];
@@ -131,18 +132,16 @@ export default function ExperienceForm({ data, onChange }: ExperienceFormProps) 
               </label>
             </div>
 
-            <div>
-              <label className="block text-sm font-medium text-slate-700 mb-1">
-                Description
-              </label>
-              <textarea
-                value={exp.description}
-                onChange={(e) => updateExperience(exp.id, 'description', e.target.value)}
-                className="w-full px-3 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-slate-500 focus:border-transparent"
-                rows={4}
-                placeholder="Key responsibilities and achievements..."
-              />
-            </div>
+            <BulletPointTextarea
+              label="Description"
+              value={exp.description}
+              onChange={(value) => updateExperience(exp.id, 'description', value)}
+              placeholder="• Key responsibilities and achievements...
+• Led team of 5 developers
+• Increased performance by 30%
+• Delivered projects on time"
+              rows={4}
+            />
           </div>
         </div>
       ))}

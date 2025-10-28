@@ -10,10 +10,10 @@ const styles = StyleSheet.create({
   page: {
     fontFamily: 'Helvetica',
     padding: 0,
-    backgroundColor: '#0a0e1a',
-    color: '#ffffff',
+    backgroundColor: '#fff', // pure white
+    color: '#222',
     fontSize: 10,
-    lineHeight: 1.6,
+    lineHeight: 1.55,
   },
   
   // Modern Layout with Split Design
@@ -25,10 +25,10 @@ const styles = StyleSheet.create({
   // Enhanced Left Sidebar - Terminal-inspired
   sidebar: {
     width: '38%',
-    backgroundColor: '#0f1629',
-    padding: 30,
+    backgroundColor: '#fff', // pure white
+    padding: 28,
     borderRightWidth: 3,
-    borderRightColor: '#00f5ff',
+    borderRightColor: '#1976d2', // blue accent
     position: 'relative',
   },
   sidebarGlow: {
@@ -44,19 +44,19 @@ const styles = StyleSheet.create({
   // Main Content Area - Code Editor Style
   mainContent: {
     width: '62%',
-    padding: 35,
-    backgroundColor: '#0a0e1a',
+    padding: 32,
+    backgroundColor: '#fff', // pure white
     position: 'relative',
   },
   
   // Profile Header with Tech Aesthetics
   profileHeader: {
-    marginBottom: 25,
-    padding: 25,
-    backgroundColor: '#151b2c',
+    marginBottom: 18,
+    padding: 18,
+    backgroundColor: '#fff', // pure white
     borderRadius: 12,
     borderLeftWidth: 4,
-    borderLeftColor: '#00f5ff',
+    borderLeftColor: '#1976d2', // blue accent
     position: 'relative',
   },
   profileAccent: {
@@ -72,9 +72,12 @@ const styles = StyleSheet.create({
   name: {
     fontSize: 32,
     fontWeight: 'bold',
-    color: '#ffffff',
-    marginBottom: 8,
-    letterSpacing: 1.5,
+    color: '#1976d2', // blue accent
+    marginBottom: 2,
+    letterSpacing: 1.2,
+    textAlign: 'center',
+    backgroundColor: 'transparent',
+    borderRadius: 6,
   },
   roleTitle: {
     fontSize: 16,
@@ -269,18 +272,18 @@ const styles = StyleSheet.create({
   
   // Main Content Sections - Code Editor Style
   section: {
-    marginBottom: 30,
+    marginBottom: 16,
   },
   sectionTitle: {
     fontSize: 18,
     fontWeight: 'bold',
-    color: '#00f5ff',
+    color: '#1976d2', // blue accent
     marginBottom: 20,
     textTransform: 'uppercase',
     letterSpacing: 1.5,
     paddingBottom: 8,
     borderBottomWidth: 2,
-    borderBottomColor: '#2d3748',
+    borderBottomColor: '#e3e3e3',
     position: 'relative',
   },
   sectionAccent: {
@@ -294,12 +297,12 @@ const styles = StyleSheet.create({
   
   // Experience Cards - Modern Developer Style
   experienceItem: {
-    marginBottom: 25,
-    padding: 20,
-    backgroundColor: '#151b2c',
+    marginBottom: 12,
+    padding: 12,
+    backgroundColor: '#fff', // pure white
     borderRadius: 10,
     borderLeftWidth: 4,
-    borderLeftColor: '#00f5ff',
+    borderLeftColor: '#1976d2', // blue accent
     position: 'relative',
   },
   experienceGlow: {
@@ -335,7 +338,7 @@ const styles = StyleSheet.create({
   },
   companyName: {
     fontSize: 12,
-    color: '#00f5ff',
+    color: '#1976d2', // blue accent
     fontWeight: 'bold',
     marginBottom: 3,
   },
@@ -371,10 +374,10 @@ const styles = StyleSheet.create({
   projectItem: {
     marginBottom: 20,
     padding: 18,
-    backgroundColor: '#1a202c',
+    backgroundColor: '#fff', // pure white
     borderRadius: 8,
     borderWidth: 1,
-    borderColor: '#2d3748',
+    borderColor: '#e3e3e3',
     position: 'relative',
   },
   projectHeader: {
@@ -386,7 +389,7 @@ const styles = StyleSheet.create({
   projectName: {
     fontSize: 13,
     fontWeight: 'bold',
-    color: '#00f5ff',
+    color: '#1976d2', // blue accent
     letterSpacing: 0.5,
   },
   projectStatus: {
@@ -464,7 +467,7 @@ const styles = StyleSheet.create({
   },
   institution: {
     fontSize: 11,
-    color: '#00f5ff',
+    color: '#1976d2', // blue accent
     marginBottom: 6,
     fontWeight: 'bold',
   },
@@ -476,12 +479,12 @@ const styles = StyleSheet.create({
   
   // Achievement Highlights - Award Style
   achievementCard: {
-    marginBottom: 18,
-    padding: 18,
-    backgroundColor: '#1a202c',
+    marginBottom: 10,
+    padding: 10,
+    backgroundColor: '#fff', // pure white
     borderRadius: 10,
     borderLeftWidth: 4,
-    borderLeftColor: '#ffd700',
+    borderLeftColor: '#1976d2', // blue accent
     position: 'relative',
   },
   achievementIcon: {
@@ -494,7 +497,7 @@ const styles = StyleSheet.create({
   achievementTitle: {
     fontSize: 13,
     fontWeight: 'bold',
-    color: '#ffffff',
+    color: '#1976d2', // blue accent
     marginBottom: 6,
     letterSpacing: 0.5,
   },
@@ -516,10 +519,10 @@ const styles = StyleSheet.create({
   volunteerItem: {
     marginBottom: 16,
     padding: 15,
-    backgroundColor: '#151b2c',
+    backgroundColor: '#fff', // pure white
     borderRadius: 8,
     borderLeftWidth: 3,
-    borderLeftColor: '#68d391',
+    borderLeftColor: '#1976d2', // blue accent
   },
   volunteerRole: {
     fontSize: 12,
@@ -529,7 +532,7 @@ const styles = StyleSheet.create({
   },
   volunteerOrganization: {
     fontSize: 11,
-    color: '#68d391',
+    color: '#1976d2', // blue accent
     marginBottom: 6,
     fontWeight: 'bold',
   },
@@ -611,9 +614,10 @@ const styles = StyleSheet.create({
   },
   bullet: {
     fontSize: 10,
-    color: '#e2e8f0',
-    marginLeft: 15,
-    marginBottom: 3,
+    color: '#a0aec0',
+    marginLeft: 10,
+    marginBottom: 2,
+    paddingLeft: 4,
   },
   projectDesc: {
     fontSize: 10,
@@ -667,27 +671,27 @@ export default function TechTemplate({ data }: TechTemplateProps) {
               <Text style={styles.sidebarTitle}>Contact</Text>
               {data.personalInfo.email && (
                 <View style={styles.contactItem}>
-                  <Text style={styles.contactText}>✉ {data.personalInfo.email}</Text>
+                  <Text style={styles.contactText}>Email: {data.personalInfo.email}</Text>
                 </View>
               )}
               {data.personalInfo.phone && (
                 <View style={styles.contactItem}>
-                  <Text style={styles.contactText}>📱 {data.personalInfo.phone}</Text>
+                  <Text style={styles.contactText}>Phone: {data.personalInfo.phone}</Text>
                 </View>
               )}
               {data.personalInfo.location && (
                 <View style={styles.contactItem}>
-                  <Text style={styles.contactText}>📍 {data.personalInfo.location}</Text>
+                  <Text style={styles.contactText}>Location: {data.personalInfo.location}</Text>
                 </View>
               )}
               {data.personalInfo.linkedin && (
                 <View style={styles.contactItem}>
-                  <Text style={styles.contactText}>💼 LinkedIn</Text>
+                  <Text style={styles.contactText}>LinkedIn</Text>
                 </View>
               )}
               {data.personalInfo.website && (
                 <View style={styles.contactItem}>
-                  <Text style={styles.contactText}>🌐 Portfolio</Text>
+                  <Text style={styles.contactText}>Portfolio</Text>
                 </View>
               )}
             </View>
@@ -753,11 +757,6 @@ export default function TechTemplate({ data }: TechTemplateProps) {
             {/* Header */}
             <View style={styles.header}>
               <Text style={styles.name}>{data.personalInfo.fullName}</Text>
-              {data.personalInfo.summary && (
-                <Text style={styles.title}>
-                  {data.personalInfo.summary.split('.')[0]}
-                </Text>
-              )}
             </View>
 
             {/* Summary */}
@@ -843,6 +842,23 @@ export default function TechTemplate({ data }: TechTemplateProps) {
                     <Text style={styles.achievementTitle}>{ach.title}</Text>
                     {ach.date && <Text style={styles.achievementDate}>{formatDate(ach.date)}</Text>}
                     {ach.description && <Text style={styles.achievementDesc}>{ach.description}</Text>}
+                  </View>
+                ))}
+              </View>
+            )}
+
+            {/* Volunteer Experience */}
+            {hasContent(data.volunteerWork || []) && (
+              <View style={styles.section}>
+                <Text style={styles.sectionTitle}>Volunteer Experience</Text>
+                {(data.volunteerWork || []).map(vol => (
+                  <View key={vol.id} style={styles.volunteerItem}>
+                    <Text style={styles.volunteerRole}>{vol.role}</Text>
+                    <Text style={styles.volunteerOrganization}>{vol.organization}</Text>
+                    <Text style={styles.volunteerDate}>
+                      {formatDate(vol.startDate)} - {vol.current ? 'Present' : formatDate(vol.endDate)}
+                    </Text>
+                    {vol.description && <Text style={styles.volunteerDescription}>{vol.description}</Text>}
                   </View>
                 ))}
               </View>

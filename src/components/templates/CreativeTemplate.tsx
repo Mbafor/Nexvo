@@ -6,278 +6,301 @@ interface CreativeTemplateProps {
   data: CVData;
 }
 
+// Helper function to render bullet points
+const renderBulletPoints = (text: string | undefined, style: any) => {
+  if (!text || !text.trim()) return null;
+  
+  const lines = text.split('\n').filter(line => line.trim());
+  
+  return (
+    <View>
+      {lines.map((line, index) => {
+        const trimmedLine = line.trim();
+        // Ensure bullet point format
+        const bulletText = trimmedLine.startsWith('•') || trimmedLine.startsWith('-') 
+          ? trimmedLine 
+          : `• ${trimmedLine}`;
+        
+        return (
+          <Text key={index} style={[styles.bulletPoint, style]}>
+            {bulletText}
+          </Text>
+        );
+      })}
+    </View>
+  );
+};
+
 const styles = StyleSheet.create({
   page: { 
     fontFamily: 'Helvetica', 
     padding: 0, 
-    backgroundColor: '#0f0f23',
-    color: '#ffffff',
+    backgroundColor: '#ffffff',
+    color: '#1a1a1a',
     fontSize: 10,
-    lineHeight: 1.5
+    lineHeight: 1.6
   },
   
-  // Artistic Header with Gradient Effect
+  // Modern Creative Header
   headerContainer: {
-    backgroundColor: '#1a1a3a',
+    backgroundColor: '#2563eb',
     paddingHorizontal: 40,
-    paddingVertical: 50,
+    paddingVertical: 40,
     position: 'relative',
-    borderBottomWidth: 4,
-    borderBottomColor: '#ff6b6b'
+    overflow: 'hidden'
   },
   decorativeElement: {
     position: 'absolute',
-    top: 0,
-    right: 0,
-    width: 200,
-    height: 200,
-    backgroundColor: '#4ecdc4',
-    opacity: 0.1,
-    borderRadius: 100
+    top: -50,
+    right: -50,
+    width: 150,
+    height: 150,
+    backgroundColor: '#60a5fa',
+    opacity: 0.2,
+    borderRadius: 75
+  },
+  decorativeElement2: {
+    position: 'absolute',
+    bottom: -30,
+    left: -30,
+    width: 100,
+    height: 100,
+    backgroundColor: '#3b82f6',
+    opacity: 0.15,
+    borderRadius: 50
   },
   name: { 
-    fontSize: 42, 
+    fontSize: 32, 
     fontWeight: 'bold', 
     color: '#ffffff',
-    marginBottom: 12,
-    letterSpacing: -1,
-    textTransform: 'uppercase'
+    marginBottom: 8,
+    letterSpacing: -0.5,
+    zIndex: 1
   },
   titleContainer: {
-    backgroundColor: '#ff6b6b',
-    paddingHorizontal: 20,
-    paddingVertical: 8,
-    borderRadius: 25,
+    backgroundColor: 'rgba(255, 255, 255, 0.15)',
+    paddingHorizontal: 16,
+    paddingVertical: 6,
+    borderRadius: 20,
     alignSelf: 'flex-start',
-    marginBottom: 20
+    marginBottom: 16,
+    backdropFilter: 'blur(10px)'
   },
   title: { 
-    fontSize: 14, 
+    fontSize: 12, 
     color: '#ffffff',
-    fontWeight: 'bold',
-    textTransform: 'uppercase',
-    letterSpacing: 1
+    fontWeight: 500,
+    letterSpacing: 0.5,
+    textAlign: 'center'
   },
+
+
   contactGrid: { 
     flexDirection: 'row', 
     flexWrap: 'wrap',
-    gap: 15
+    gap: 10,
+    marginTop: 12
   },
   contactChip: { 
-    backgroundColor: '#2a2a4a',
+    backgroundColor: 'rgba(255, 255, 255, 0.1)',
     paddingHorizontal: 12,
     paddingVertical: 6,
-    borderRadius: 15,
+    borderRadius: 12,
     borderWidth: 1,
-    borderColor: '#4ecdc4'
+    borderColor: '#2563eb'
   },
   contactText: { 
     fontSize: 9,
-    color: '#4ecdc4',
-    fontWeight: 500
+    color: '#ffffff',
+    fontWeight: 400
   },
   
-  // Content with Creative Layout
+  // Content Area - Clean and Modern
   contentArea: {
     paddingHorizontal: 40,
-    paddingTop: 30,
-    backgroundColor: '#ffffff',
-    color: '#1a1a1a',
-    minHeight: 600
+    paddingTop: 25,
+    backgroundColor: '#ffffff'
   },
   
-  // Creative Two-column with asymmetric design
+  // Professional Two-column Layout - Increased both columns
   asymmetricContainer: {
     flexDirection: 'row',
-    gap: 25
+    gap: 8
   },
   mainColumn: {
-    flex: 2.5,
-    paddingRight: 20
+    flex: 2.8,
+    paddingRight: 5
   },
   accentColumn: {
-    flex: 1,
-    paddingLeft: 20,
-    borderLeftWidth: 3,
-    borderLeftColor: '#ff6b6b'
+    flex: 1.3,
+    paddingLeft: 5,
+    borderLeftWidth: 2,
+    borderLeftColor: '#e5e7eb'
   },
   
-  // Section Styling with Creative Flair
+  // Clean Section Styling
   section: { 
-    marginBottom: 35
+    marginBottom: 25
   },
   sectionHeader: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginBottom: 18
+    marginBottom: 15,
+    paddingBottom: 8,
+    borderBottomWidth: 2,
+    borderBottomColor: '#2563eb'
   },
   sectionIcon: {
-    width: 24,
-    height: 24,
-    backgroundColor: '#ff6b6b',
-    borderRadius: 12,
-    marginRight: 12
+    width: 16,
+    height: 16,
+    backgroundColor: '#2563eb',
+    borderRadius: 8,
+    marginRight: 10
   },
   sectionTitle: { 
-    fontSize: 16, 
+    fontSize: 14, 
     fontWeight: 'bold', 
-    color: '#1a1a3a',
+    color: '#1f2937',
     textTransform: 'uppercase',
-    letterSpacing: 1.5
+    letterSpacing: 1
   },
   
-  // Professional Profile with Creative Styling
+  // Professional Profile
   profileContainer: {
-    backgroundColor: '#f8f9ff',
+    backgroundColor: '#f8fafc',
     padding: 20,
-    borderRadius: 15,
+    borderRadius: 12,
     borderLeftWidth: 4,
-    borderLeftColor: '#4ecdc4',
-    marginBottom: 20
+    borderLeftColor: '#2563eb',
+    marginBottom: 25
   },
   profileText: { 
     fontSize: 11, 
-    lineHeight: 1.8,
-    color: '#2a2a4a',
-    textAlign: 'justify',
-    fontStyle: 'italic'
+    lineHeight: 1.7,
+    color: '#374151',
+    textAlign: 'justify'
   },
   
-  // Experience with Creative Cards
+  // Modern Experience Cards - Increased size
   experienceCard: {
     backgroundColor: '#ffffff',
-    padding: 20,
-    marginBottom: 18,
+    padding: 24,
+    marginBottom: 20,
     borderRadius: 12,
     borderWidth: 1,
-    borderColor: '#e1e8ff',
+    borderColor: '#e5e7eb',
     shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.1,
-    shadowRadius: 4,
+    shadowOffset: { width: 0, height: 1 },
+    shadowOpacity: 0.05,
+    shadowRadius: 3,
     position: 'relative'
   },
   experienceAccent: {
     position: 'absolute',
     top: 0,
     left: 0,
-    width: 4,
+    width: 3,
     height: '100%',
-    backgroundColor: '#4ecdc4'
+    backgroundColor: '#2563eb'
   },
   jobTitleRow: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'flex-start',
-    marginBottom: 8
+    marginBottom: 6
   },
   jobTitle: { 
-    fontSize: 14, 
+    fontSize: 13, 
     fontWeight: 'bold', 
-    color: '#1a1a3a',
+    color: '#1f2937',
     flex: 1
   },
-  dateChip: {
-    backgroundColor: '#ff6b6b',
-    paddingHorizontal: 10,
-    paddingVertical: 4,
-    borderRadius: 12
-  },
+
   dateText: {
-    fontSize: 8,
-    color: '#ffffff',
-    fontWeight: 'bold'
-  },
-  companyInfo: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginBottom: 12
-  },
-  companyName: { 
-    fontSize: 12, 
-    color: '#4ecdc4', 
-    fontWeight: 'bold',
-    marginRight: 10
+    fontSize: 9,
+    color: '#2563eb',
+    fontWeight: 500,
+    textAlign: 'center'
   },
   locationBadge: {
-    backgroundColor: '#f0f8ff',
+    backgroundColor: '#eff6ff',
     paddingHorizontal: 8,
     paddingVertical: 2,
-    borderRadius: 8,
+    borderRadius: 6,
     borderWidth: 1,
-    borderColor: '#4ecdc4'
+    borderColor: '#bfdbfe',
+    marginBottom: 8,
+    alignSelf: 'flex-start',
+    alignItems: 'center',
+    justifyContent: 'center'
   },
   locationText: {
     fontSize: 8,
-    color: '#2a2a4a'
+    color: '#2563eb',
+    fontWeight: 500,
+    textAlign: 'center'
   },
-  descriptionText: { 
+  bulletPoint: { 
     fontSize: 10, 
-    marginLeft: 0, 
-    marginBottom: 4,
-    color: '#4a4a6a',
-    lineHeight: 1.6
+    marginLeft: 12, 
+    marginBottom: 3,
+    color: '#4b5563',
+    lineHeight: 1.5
   },
   
-  // Skills with Creative Progress Bars
-  skillsGrid: {
-    gap: 12
-  },
-  skillItem: {
-    backgroundColor: '#f8f9ff',
-    padding: 12,
-    borderRadius: 10,
-    marginBottom: 8
-  },
-  skillHeader: {
+  // Skills with Compact Tags - Space efficient
+  skillTagsContainer: {
     flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    marginBottom: 6
+    flexWrap: 'wrap',
+    gap: 4
   },
-  skillName: {
-    fontSize: 11,
-    fontWeight: 'bold',
-    color: '#1a1a3a'
-  },
-  skillLevel: {
+  skillCategoryTitle: {
     fontSize: 9,
-    color: '#6a6a8a',
-    backgroundColor: '#e1e8ff',
+    fontWeight: 'bold',
+    color: '#4b5563',
+    textTransform: 'uppercase',
+    letterSpacing: 0.5
+  },
+  skillTag: {
     paddingHorizontal: 6,
-    paddingVertical: 2,
-    borderRadius: 8
+    paddingVertical: 3,
+    borderRadius: 6,
+    marginBottom: 2,
+    alignItems: 'center',
+    justifyContent: 'center'
   },
-  skillBarContainer: {
-    height: 6,
-    backgroundColor: '#e1e8ff',
-    borderRadius: 3,
-    overflow: 'hidden'
+  skillTagText: {
+    fontSize: 8,
+    color: '#2563eb',
+    fontWeight: 500,
+    textAlign: 'center'
   },
-  skillBar: {
-    height: 6,
-    backgroundColor: '#4ecdc4',
-    borderRadius: 3
+  skillListText: {
+    fontSize: 9,
+    color: '#2563eb',
+    lineHeight: 1.4,
+    textAlign: 'left'
   },
   
-  // Projects with Creative Layout
+  // Modern Project Cards - Increased size
   projectCard: {
-    backgroundColor: '#1a1a3a',
-    padding: 18,
-    marginBottom: 16,
+    backgroundColor: '#f8fafc',
+    padding: 20,
+    marginBottom: 18,
     borderRadius: 12,
-    color: '#ffffff'
+    borderWidth: 1,
+    borderColor: '#e5e7eb'
   },
   projectTitle: {
-    fontSize: 13,
+    fontSize: 12,
     fontWeight: 'bold',
-    color: '#4ecdc4',
-    marginBottom: 8
+    color: '#1f2937',
+    marginBottom: 6
   },
   projectMeta: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginBottom: 10
+    marginBottom: 8
   },
   techStackContainer: {
     flexDirection: 'row',
@@ -286,206 +309,195 @@ const styles = StyleSheet.create({
     marginTop: 8
   },
   techChip: {
-    backgroundColor: '#ff6b6b',
+    backgroundColor: '#2563eb',
     paddingHorizontal: 6,
     paddingVertical: 2,
-    borderRadius: 8,
+    borderRadius: 6,
     fontSize: 7,
-    color: '#ffffff'
+    color: '#ffffff',
+    textAlign: 'center'
   },
   
-  // Achievements with Awards Style
+  // Clean Achievement Design - Blue theme
   achievementItem: {
     flexDirection: 'row',
     alignItems: 'flex-start',
-    marginBottom: 15,
-    padding: 12,
-    backgroundColor: '#fff9e6',
-    borderRadius: 10,
-    borderLeftWidth: 4,
-    borderLeftColor: '#ffa726'
+    marginBottom: 8,
+    padding: 8,
+    backgroundColor: '#dbeafe',
+    borderRadius: 8,
+    borderLeftWidth: 3,
+    borderLeftColor: '#2563eb'
   },
   achievementIcon: {
-    width: 20,
-    height: 20,
-    backgroundColor: '#ffa726',
-    borderRadius: 10,
-    marginRight: 12,
+    width: 12,
+    height: 12,
+    backgroundColor: '#2563eb',
+    borderRadius: 6,
+    marginRight: 8,
     marginTop: 2
   },
   achievementContent: {
     flex: 1
   },
   achievementTitle: {
-    fontSize: 11,
-    fontWeight: 'bold',
-    color: '#1a1a3a',
-    marginBottom: 4
-  },
-  achievementDesc: {
     fontSize: 9,
-    color: '#4a4a6a',
-    lineHeight: 1.5
+    fontWeight: 'bold',
+    color: '#1f2937',
+    marginBottom: 2
   },
   
-  // Sidebar Styling
+  // Sidebar Styling - Reduced spacing
   sidebarSection: {
-    marginBottom: 25
+    marginBottom: 15
   },
   sidebarTitle: {
-    fontSize: 13,
+    fontSize: 12,
     fontWeight: 'bold',
-    color: '#1a1a3a',
-    marginBottom: 12,
+    color: '#1f2937',
+    marginBottom: 8,
     textTransform: 'uppercase',
-    letterSpacing: 1
+    letterSpacing: 0.5
   },
   
-  // Education with Academic Style
+  // Modern Education Cards - Reduced spacing
   educationCard: {
-    backgroundColor: '#f0f8ff',
-    padding: 14,
-    marginBottom: 12,
-    borderRadius: 10,
-    borderWidth: 1,
-    borderColor: '#4ecdc4'
-  },
-  degreeTitle: {
-    fontSize: 11,
-    fontWeight: 'bold',
-    color: '#1a1a3a',
-    marginBottom: 3
-  },
-  institutionName: {
-    fontSize: 10,
-    color: '#4ecdc4',
-    fontWeight: 500,
-    marginBottom: 4
-  },
-  dateInfo: {
-    fontSize: 8,
-    color: '#6a6a8a'
-  },
-  
-  // Languages with Flag-like Design
-  languageItem: {
-    backgroundColor: '#ffffff',
+    backgroundColor: '#f8fafc',
     padding: 10,
     marginBottom: 8,
     borderRadius: 8,
     borderWidth: 1,
-    borderColor: '#e1e8ff',
+    borderColor: '#e5e7eb'
+  },
+  degreeTitle: {
+    fontSize: 10,
+    fontWeight: 'bold',
+    color: '#1f2937',
+    marginBottom: 2
+  },
+  institutionName: {
+    fontSize: 9,
+    color: '#2563eb',
+    fontWeight: 500,
+    marginBottom: 3
+  },
+  dateInfo: {
+    fontSize: 8,
+    color: '#2563eb',
+    fontWeight: 500
+  },
+  
+  // Language Proficiency - Reduced spacing
+  languageItem: {
+    backgroundColor: '#ffffff',
+    padding: 6,
+    marginBottom: 4,
+    borderRadius: 6,
+    borderWidth: 1,
+    borderColor: '#e5e7eb',
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center'
   },
   languageName: {
-    fontSize: 10,
+    fontSize: 9,
     fontWeight: 'bold',
-    color: '#1a1a3a'
+    color: '#1f2937',
+    textAlign: 'center'
   },
   proficiencyBadge: {
-    backgroundColor: '#4ecdc4',
-    paddingHorizontal: 8,
-    paddingVertical: 3,
-    borderRadius: 10
+    backgroundColor: '#2563eb',
+    paddingHorizontal: 6,
+    paddingVertical: 2,
+    borderRadius: 8,
+    alignItems: 'center',
+    justifyContent: 'center'
   },
   proficiencyText: {
     fontSize: 7,
-    color: '#ffffff',
-    fontWeight: 'bold'
-  },
-  
-  // Certifications as Badges
-  certBadge: {
-    backgroundColor: '#ff6b6b',
-    padding: 8,
-    marginBottom: 8,
-    borderRadius: 8,
-    alignItems: 'center'
-  },
-  certText: {
-    fontSize: 8,
     color: '#ffffff',
     fontWeight: 'bold',
     textAlign: 'center'
   },
   
-  // Hobbies with Creative Icons
+  // Certification Badges - Restored colors with centered text
+  certBadge: {
+    backgroundColor: '#dbeafe',
+    borderWidth: 1,
+    borderColor: '#93c5fd',
+    padding: 5,
+    marginBottom: 4,
+    borderRadius: 6,
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+  certText: {
+    fontSize: 8,
+    color: '#2563eb',
+    fontWeight: 'bold',
+    textAlign: 'center'
+  },
+  
+  // Interest Tags - Reduced spacing
   hobbiesContainer: {
     flexDirection: 'row',
     flexWrap: 'wrap',
-    gap: 6
+    gap: 3
   },
   hobbyTag: {
-    backgroundColor: '#f8f9ff',
+    
+    backgroundColor: '#dbeafe',
     borderWidth: 1,
-    borderColor: '#4ecdc4',
-    paddingHorizontal: 8,
-    paddingVertical: 4,
-    borderRadius: 12,
-    fontSize: 8,
-    color: '#2a2a4a'
+    borderColor: '#d1d5db',
+    paddingHorizontal: 5,
+    paddingVertical: 2,
+    borderRadius: 6,
+    fontSize: 7,
+    color: '#374151',
+    textAlign: 'center'
   }
 });
 
 export default function CreativeTemplatePDF({ data }: CreativeTemplateProps) {
-  const formatDate = (date?: string) => {
-    if (!date) return '';
-    const [year, month] = date.split('-');
-    const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-    return `${months[parseInt(month)-1]} ${year}`;
-  };
-
+  // Helper function to check if array has meaningful content
   const hasContent = (arr: any[]) =>
-    arr && arr.length > 0 && arr.some(item =>
-      Object.values(item).some(val => val && val !== '' && (typeof val !== 'object' || Object.keys(val).length > 0))
-    );
-
-  const getSkillWidth = (level: string) => {
-    const levels = { 'Beginner': 25, 'Intermediate': 50, 'Advanced': 75, 'Expert': 90 };
-    return levels[level as keyof typeof levels] || 50;
-  };
+    arr && arr.length > 0;
 
   return (
     <Document>
       <Page size="A4" style={styles.page}>
         
-        {/* Creative Header */}
+        {/* Modern Creative Header */}
         <View style={styles.headerContainer}>
           <View style={styles.decorativeElement} />
+          <View style={styles.decorativeElement2} />
           <Text style={styles.name}>{data.personalInfo.fullName}</Text>
-          {data.personalInfo.summary && (
-            <View style={styles.titleContainer}>
-              <Text style={styles.title}>
-                {data.personalInfo.summary.split('\n')[0].substring(0, 60)}
-              </Text>
-            </View>
-          )}
+          
+          {/* Contact details below the name */}
           <View style={styles.contactGrid}>
             {data.personalInfo.email && (
               <View style={styles.contactChip}>
-                <Text style={styles.contactText}>✉ {data.personalInfo.email}</Text>
+                <Text style={styles.contactText}>{data.personalInfo.email}</Text>
               </View>
             )}
             {data.personalInfo.phone && (
               <View style={styles.contactChip}>
-                <Text style={styles.contactText}>📱 {data.personalInfo.phone}</Text>
+                <Text style={styles.contactText}>{data.personalInfo.phone}</Text>
               </View>
             )}
             {data.personalInfo.location && (
               <View style={styles.contactChip}>
-                <Text style={styles.contactText}>📍 {data.personalInfo.location}</Text>
+                <Text style={styles.contactText}>{data.personalInfo.location}</Text>
               </View>
             )}
             {data.personalInfo.linkedin && (
               <View style={styles.contactChip}>
-                <Text style={styles.contactText}>💼 LinkedIn</Text>
+                <Text style={styles.contactText}>LinkedIn</Text>
               </View>
             )}
             {data.personalInfo.website && (
               <View style={styles.contactChip}>
-                <Text style={styles.contactText}>🌐 Portfolio</Text>
+                <Text style={styles.contactText}>Portfolio</Text>
               </View>
             )}
           </View>
@@ -511,55 +523,48 @@ export default function CreativeTemplatePDF({ data }: CreativeTemplateProps) {
                 <View style={styles.section}>
                   <View style={styles.sectionHeader}>
                     <View style={styles.sectionIcon} />
-                    <Text style={styles.sectionTitle}>Experience</Text>
+                    <Text style={styles.sectionTitle}>Professional Experience</Text>
                   </View>
                   {(data.experience || []).map(exp => (
                     <View key={exp.id} style={styles.experienceCard}>
                       <View style={styles.experienceAccent} />
                       <View style={styles.jobTitleRow}>
-                        <Text style={styles.jobTitle}>{exp.position}</Text>
-                        <View style={styles.dateChip}>
+                        <Text style={styles.jobTitle}>{exp.position}, {exp.company}</Text>
+                        <View>
                           <Text style={styles.dateText}>
-                            {formatDate(exp.startDate)} - {exp.current ? 'Now' : formatDate(exp.endDate)}
+                            {exp.startDate} - {exp.endDate || 'Present'}
                           </Text>
                         </View>
                       </View>
-                      <View style={styles.companyInfo}>
-                        <Text style={styles.companyName}>{exp.company}</Text>
-                        {exp.location && (
-                          <View style={styles.locationBadge}>
-                            <Text style={styles.locationText}>{exp.location}</Text>
-                          </View>
-                        )}
-                      </View>
-                      {exp.description && exp.description.split('\n').map((line, idx) => (
-                        <Text key={idx} style={styles.descriptionText}>• {line}</Text>
-                      ))}
+                      {exp.location && (
+                        <View style={styles.locationBadge}>
+                          <Text style={styles.locationText}>{exp.location}</Text>
+                        </View>
+                      )}
+                      {renderBulletPoints(exp.description, {})}
                     </View>
                   ))}
                 </View>
               )}
 
-              {/* Projects */}
+              {/* Key Projects */}
               {hasContent(data.projects || []) && (
                 <View style={styles.section}>
                   <View style={styles.sectionHeader}>
                     <View style={styles.sectionIcon} />
-                    <Text style={styles.sectionTitle}>Featured Projects</Text>
+                    <Text style={styles.sectionTitle}>Key Projects</Text>
                   </View>
                   {(data.projects || []).map(project => (
                     <View key={project.id} style={styles.projectCard}>
-                      <Text style={styles.projectTitle}>{project.name}</Text>
-                      <View style={styles.projectMeta}>
-                        <Text style={[styles.dateText, { color: '#ffffff' }]}>
-                          {formatDate(project.startDate)} - {project.endDate ? formatDate(project.endDate) : 'Ongoing'}
-                        </Text>
+                      <View style={styles.jobTitleRow}>
+                        <Text style={styles.projectTitle}>{project.name}</Text>
+                        <View>
+                          <Text style={styles.dateText}>
+                            {project.startDate} - {project.endDate || 'Present'}
+                          </Text>
+                        </View>
                       </View>
-                      {project.description && project.description.split('\n').map((line, idx) => (
-                        <Text key={idx} style={[styles.descriptionText, { color: '#e1e8ff', marginBottom: 3 }]}>
-                          • {line}
-                        </Text>
-                      ))}
+                      {renderBulletPoints(project.description, {})}
                       {project.technologies && (
                         <View style={styles.techStackContainer}>
                           {(typeof project.technologies === 'string' 
@@ -571,34 +576,34 @@ export default function CreativeTemplatePDF({ data }: CreativeTemplateProps) {
                         </View>
                       )}
                       {project.link && (
-                        <Text style={[styles.contactText, { marginTop: 8 }]}>🔗 {project.link}</Text>
+                        <Text style={[styles.contactText, { marginTop: 8, fontSize: 8, color: '#2563eb' }]}>
+                          {project.link}
+                        </Text>
                       )}
                     </View>
                   ))}
                 </View>
               )}
 
-              {/* Achievements */}
-              {hasContent(data.achievements || []) && (
+              {/* Volunteer Experience */}
+              {hasContent(data.volunteerWork || []) && (
                 <View style={styles.section}>
                   <View style={styles.sectionHeader}>
                     <View style={styles.sectionIcon} />
-                    <Text style={styles.sectionTitle}>Achievements</Text>
+                    <Text style={styles.sectionTitle}>Volunteer Experience</Text>
                   </View>
-                  {(data.achievements || []).map(ach => (
-                    <View key={ach.id} style={styles.achievementItem}>
-                      <View style={styles.achievementIcon} />
-                      <View style={styles.achievementContent}>
-                        <Text style={styles.achievementTitle}>{ach.title}</Text>
-                        {ach.date && (
-                          <Text style={[styles.dateInfo, { marginBottom: 4 }]}>
-                            {formatDate(ach.date)}
+                  {(data.volunteerWork || []).map(vol => (
+                    <View key={vol.id} style={styles.experienceCard}>
+                      <View style={styles.experienceAccent} />
+                      <View style={styles.jobTitleRow}>
+                        <Text style={styles.jobTitle}>{vol.role}, {vol.organization}</Text>
+                        <View>
+                          <Text style={styles.dateText}>
+                            {vol.startDate} - {vol.endDate || 'Present'}
                           </Text>
-                        )}
-                        {ach.description && ach.description.split('\n').map((line, idx) => (
-                          <Text key={idx} style={styles.achievementDesc}>• {line}</Text>
-                        ))}
+                        </View>
                       </View>
+                      {renderBulletPoints(vol.description, {})}
                     </View>
                   ))}
                 </View>
@@ -608,23 +613,36 @@ export default function CreativeTemplatePDF({ data }: CreativeTemplateProps) {
             {/* Accent Column */}
             <View style={styles.accentColumn}>
               
-              {/* Skills */}
+              {/* Skills & Expertise */}
               {hasContent(data.skills || []) && (
                 <View style={styles.sidebarSection}>
-                  <Text style={styles.sidebarTitle}>Skills</Text>
-                  <View style={styles.skillsGrid}>
-                    {(data.skills || []).map(skill => (
-                      <View key={skill.id} style={styles.skillItem}>
-                        <View style={styles.skillHeader}>
-                          <Text style={styles.skillName}>{skill.name}</Text>
-                          <Text style={styles.skillLevel}>{skill.level}</Text>
-                        </View>
-                        <View style={styles.skillBarContainer}>
-                          <View style={[styles.skillBar, { width: `${getSkillWidth(skill.level)}%` }]} />
-                        </View>
-                      </View>
-                    ))}
-                  </View>
+                  <Text style={styles.sidebarTitle}>Skills & Expertise</Text>
+                  
+                  {/* Technical Skills */}
+                  {(data.skills || []).filter(skill => skill.type === 'technical').length > 0 && (
+                    <View style={{ marginBottom: 6 }}>
+                      <Text style={[styles.skillCategoryTitle, { marginBottom: 4 }]}>Technical</Text>
+                      <Text style={styles.skillListText}>
+                        {(data.skills || [])
+                          .filter(skill => skill.type === 'technical')
+                          .map(skill => skill.name)
+                          .join(', ')}
+                      </Text>
+                    </View>
+                  )}
+                  
+                  {/* Soft Skills */}
+                  {(data.skills || []).filter(skill => skill.type === 'soft').length > 0 && (
+                    <View>
+                      <Text style={[styles.skillCategoryTitle, { marginBottom: 4 }]}>Soft Skills</Text>
+                      <Text style={styles.skillListText}>
+                        {(data.skills || [])
+                          .filter(skill => skill.type === 'soft')
+                          .map(skill => skill.name)
+                          .join(', ')}
+                      </Text>
+                    </View>
+                  )}
                 </View>
               )}
 
@@ -637,13 +655,9 @@ export default function CreativeTemplatePDF({ data }: CreativeTemplateProps) {
                       <Text style={styles.degreeTitle}>{edu.degree}</Text>
                       <Text style={styles.institutionName}>{edu.institution}</Text>
                       <Text style={styles.dateInfo}>
-                        {formatDate(edu.startDate)} - {edu.current ? 'Present' : formatDate(edu.endDate)}
+                        {edu.startDate} - {edu.endDate || 'Present'}
                       </Text>
-                      {edu.description && (
-                        <Text style={[styles.achievementDesc, { marginTop: 4 }]}>
-                          {edu.description}
-                        </Text>
-                      )}
+                      {renderBulletPoints(edu.description, { fontSize: 8, color: '#4b5563', lineHeight: 1.4, marginLeft: 0, marginTop: 4 })}
                     </View>
                   ))}
                 </View>
@@ -676,23 +690,28 @@ export default function CreativeTemplatePDF({ data }: CreativeTemplateProps) {
                 </View>
               )}
 
-              {/* Volunteer Work */}
-              {hasContent(data.volunteerWork || []) && (
+              {/* Achievements & Awards */}
+              {hasContent(data.achievements || []) && (
                 <View style={styles.sidebarSection}>
-                  <Text style={styles.sidebarTitle}>Volunteer Work</Text>
-                  {(data.volunteerWork || []).map(vol => (
-                    <View key={vol.id} style={[styles.educationCard, { backgroundColor: '#fff9e6', borderColor: '#ffa726' }]}>
-                      <Text style={styles.degreeTitle}>{vol.role}</Text>
-                      <Text style={styles.institutionName}>{vol.organization}</Text>
-                      <Text style={styles.dateInfo}>
-                        {formatDate(vol.startDate)} - {vol.current ? 'Present' : formatDate(vol.endDate)}
-                      </Text>
+                  <Text style={styles.sidebarTitle}>Achievements & Awards</Text>
+                  {(data.achievements || []).map(ach => (
+                    <View key={ach.id} style={styles.achievementItem}>
+                      <View style={styles.achievementIcon} />
+                      <View style={styles.achievementContent}>
+                        <Text style={styles.achievementTitle}>{ach.title}</Text>
+                        {ach.date && (
+                          <Text style={[styles.dateInfo, { marginBottom: 3 }]}>
+                            {ach.date}
+                          </Text>
+                        )}
+                        {renderBulletPoints(ach.description, { fontSize: 8, color: '#4b5563', lineHeight: 1.4, marginLeft: 0 })}
+                      </View>
                     </View>
                   ))}
                 </View>
               )}
 
-              {/* Hobbies & Interests */}
+              {/* Interests */}
               {hasContent(data.hobbies || []) && (
                 <View style={styles.sidebarSection}>
                   <Text style={styles.sidebarTitle}>Interests</Text>
@@ -716,8 +735,8 @@ export default function CreativeTemplatePDF({ data }: CreativeTemplateProps) {
                         <Text style={styles.dateInfo}>{ref.company}</Text>
                       )}
                       {ref.email && (
-                        <Text style={[styles.contactText, { fontSize: 7, color: '#2a2a4a', marginTop: 2 }]}>
-                          ✉ {ref.email}
+                        <Text style={[styles.contactText, { fontSize: 8, color: '#6b7280', marginTop: 2 }]}>
+                          {ref.email}
                         </Text>
                       )}
                     </View>

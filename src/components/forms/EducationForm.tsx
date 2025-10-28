@@ -1,5 +1,6 @@
 import { Plus, Trash2 } from 'lucide-react';
 import { Education } from '../../types/cv';
+import BulletPointTextarea from '../common/BulletPointTextarea';
 
 interface EducationFormProps {
   data: Education[];
@@ -140,18 +141,16 @@ export default function EducationForm({ data, onChange }: EducationFormProps) {
               </label>
             </div>
 
-            <div>
-              <label className="block text-sm font-medium text-slate-700 mb-1">
-                Description
-              </label>
-              <textarea
-                value={edu.description}
-                onChange={(e) => updateEducation(edu.id, 'description', e.target.value)}
-                className="w-full px-3 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-slate-500 focus:border-transparent"
-                rows={3}
-                placeholder="Relevant coursework, achievements, honors..."
-              />
-            </div>
+            <BulletPointTextarea
+              label="Description"
+              value={edu.description || ''}
+              onChange={(value) => updateEducation(edu.id, 'description', value)}
+              placeholder="• Relevant coursework, achievements, honors...
+• Dean's List for 4 semesters
+• Graduated Magna Cum Laude
+• Relevant projects and research"
+              rows={3}
+            />
           </div>
         </div>
       ))}

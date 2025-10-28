@@ -9,87 +9,94 @@ interface MinimalistTemplateProps {
 const styles = StyleSheet.create({
   page: {
     fontFamily: 'Helvetica',
-    padding: 80,
-    backgroundColor: '#ffffff',
-    color: '#2d2d2d',
+    padding: 48,
+    backgroundColor: '#fff',
+    color: '#222',
     fontSize: 11,
-    lineHeight: 1.8,
+    lineHeight: 1.7,
+    letterSpacing: 0.1,
+    minHeight: '100%',
   },
-  
-  // Ultra-Minimal Header
+  contactLabel: {
+    fontSize: 8,
+    color: '#bbb',
+    marginBottom: 2,
+    textTransform: 'uppercase',
+    letterSpacing: 0.5,
+  },
   header: {
-    marginBottom: 60,
+    marginBottom: 32,
     alignItems: 'center',
-    paddingBottom: 40,
+    paddingBottom: 16,
+    borderBottomWidth: 1,
+    borderColor: '#f0f0f0',
   },
   name: {
-    fontSize: 32,
-    fontWeight: 'normal',
-    color: '#1a1a1a',
-    marginBottom: 25,
-    letterSpacing: 4,
+    fontSize: 28,
+    fontWeight: 'bold',
+    color: '#222',
+    marginBottom: 4,
     textAlign: 'center',
-    textTransform: 'uppercase',
   },
   nameUnderline: {
-    width: 120,
-    height: 1,
-    backgroundColor: '#1a1a1a',
-    marginBottom: 30,
+    width: 40,
+    height: 2,
+    backgroundColor: '#e0e0e0',
+    marginTop: 4,
+    marginBottom: 8,
     alignSelf: 'center',
+    opacity: 0.5,
   },
   subtitle: {
-    fontSize: 14,
-    color: '#666666',
-    marginBottom: 30,
+    fontSize: 13,
+    color: '#666',
+    marginBottom: 8,
     textAlign: 'center',
-    letterSpacing: 1,
-    fontWeight: 'normal',
+    fontStyle: 'italic',
   },
   contactGrid: {
     flexDirection: 'row',
     justifyContent: 'center',
-    marginTop: 20,
-    gap: 40,
+    gap: 24,
+    marginTop: 8,
+    marginBottom: 4,
   },
   contactItem: {
     alignItems: 'center',
-  },
-  contactLabel: {
-    fontSize: 8,
-    color: '#999999',
-    marginBottom: 4,
-    textTransform: 'uppercase',
-    letterSpacing: 1,
+    marginHorizontal: 8,
   },
   contactValue: {
     fontSize: 11,
-    color: '#2d2d2d',
+    color: '#222',
     fontWeight: 'normal',
+    textAlign: 'center',
+    wordBreak: 'break-all',
   },
 
   // Pure Section Styling
   section: {
-    marginBottom: 50,
+    marginBottom: 14,
+    paddingBottom: 0,
   },
   sectionTitle: {
-    fontSize: 14,
-    fontWeight: 'normal',
-    color: '#1a1a1a',
-    marginBottom: 30,
+    fontSize: 13,
+    fontWeight: 'bold',
+    color: '#222',
+    marginBottom: 10,
     textTransform: 'uppercase',
-    letterSpacing: 3,
+    letterSpacing: 1.5,
     textAlign: 'center',
     position: 'relative',
   },
   sectionTitleLine: {
     position: 'absolute',
-    bottom: -10,
+    bottom: -4,
     left: '50%',
     transform: 'translateX(-50%)',
-    width: 40,
+    width: 24,
     height: 1,
-    backgroundColor: '#cccccc',
+    backgroundColor: '#e0e0e0',
+    opacity: 0.5,
   },
   
   // Content with Generous White Space
@@ -124,11 +131,12 @@ const styles = StyleSheet.create({
   },
   experienceDescription: {
     fontSize: 11,
-    color: '#4a4a4a',
-    lineHeight: 1.8,
-    textAlign: 'justify',
-    maxWidth: 400,
+    color: '#333',
+    lineHeight: 1.6,
+    textAlign: 'left',
+    maxWidth: 420,
     alignSelf: 'center',
+    marginTop: 2,
   },
   
   // Skills - Elegant Typography
@@ -190,10 +198,10 @@ const styles = StyleSheet.create({
   },
   educationDescription: {
     fontSize: 10,
-    color: '#666666',
-    marginTop: 10,
-    lineHeight: 1.6,
-    textAlign: 'center',
+    color: '#555',
+    marginTop: 6,
+    lineHeight: 1.5,
+    textAlign: 'left',
   },
   
   // Projects - Clean Card Layout
@@ -226,10 +234,10 @@ const styles = StyleSheet.create({
   },
   projectDescription: {
     fontSize: 11,
-    color: '#4a4a4a',
-    lineHeight: 1.7,
-    marginBottom: 12,
-    textAlign: 'justify',
+    color: '#333',
+    lineHeight: 1.5,
+    marginBottom: 8,
+    textAlign: 'left',
   },
   projectTechnologies: {
     fontSize: 10,
@@ -265,8 +273,9 @@ const styles = StyleSheet.create({
   },
   achievementDescription: {
     fontSize: 10,
-    color: '#666666',
-    lineHeight: 1.6,
+    color: '#444',
+    lineHeight: 1.4,
+    textAlign: 'left',
   },
   
   // Languages - Elegant Spacing
@@ -358,9 +367,9 @@ const styles = StyleSheet.create({
   },
   volunteerDescription: {
     fontSize: 10,
-    color: '#666666',
-    lineHeight: 1.6,
-    textAlign: 'justify',
+    color: '#555',
+    lineHeight: 1.4,
+    textAlign: 'left',
   },
   
   // References - Clean Grid
@@ -409,15 +418,36 @@ const styles = StyleSheet.create({
   },
   hobbiesText: {
     fontSize: 11,
-    color: '#666666',
+    color: '#555',
     textAlign: 'center',
-    lineHeight: 1.8,
+    lineHeight: 1.5,
     maxWidth: 400,
-    marginTop: 15,
+    marginTop: 8,
   },
 });
 
 export default function MinimalistTemplate({ data }: MinimalistTemplateProps) {
+  // Clean text utility to remove unwanted symbols and format bullet points
+  const cleanText = (text: string) => {
+    if (!text) return '';
+    // Remove common unwanted symbols (¶, ¬, etc.)
+    let cleaned = text.replace(/[¶¬•‣▪◦·]/g, '').replace(/\s+/g, ' ');
+    // Split into bullet points if lines or bullets
+    const bullets = cleaned.split(/\n|•|‣|▪|◦|·/).map(b => b.trim()).filter(b => b);
+    if (bullets.length > 1) {
+      return (
+        <View>
+          {bullets.map((b, i) => (
+            <View key={i} style={{flexDirection:'row',alignItems:'flex-start',marginBottom:2}}>
+              <Text style={{color:'#222',marginRight:6}}>•</Text>
+              <Text style={{color:'#222',flex:1}}>{b}</Text>
+            </View>
+          ))}
+        </View>
+      );
+    }
+    return cleaned;
+  };
   const formatDate = (date?: string) => {
     if (!date) return '';
     const [year, month] = date.split('-');
@@ -503,11 +533,9 @@ export default function MinimalistTemplate({ data }: MinimalistTemplateProps) {
                   <Text style={styles.dateRange}>
                     {formatDate(exp.startDate)} — {exp.current ? 'Present' : formatDate(exp.endDate)}
                   </Text>
-                  {exp.description && (
-                    <Text style={styles.experienceDescription}>
-                      {exp.description.replace(/\n/g, ' ')}
-                    </Text>
-                  )}
+                  <View style={styles.experienceDescription}>
+                    {exp.description ? cleanText(exp.description) : <Text style={{color:'#bbb',fontStyle:'italic'}}>No description provided.</Text>}
+                  </View>
                 </View>
               ))}
             </View>
@@ -548,7 +576,7 @@ export default function MinimalistTemplate({ data }: MinimalistTemplateProps) {
                     {edu.current ? 'In Progress' : formatDate(edu.endDate)}
                   </Text>
                   {edu.description && (
-                    <Text style={styles.educationDescription}>{edu.description}</Text>
+                    <View style={styles.educationDescription}>{cleanText(edu.description)}</View>
                   )}
                 </View>
               ))}
@@ -570,11 +598,9 @@ export default function MinimalistTemplate({ data }: MinimalistTemplateProps) {
                       {formatDate(proj.startDate)} — {proj.endDate ? formatDate(proj.endDate) : 'Ongoing'}
                     </Text>
                   )}
-                  {proj.description && (
-                    <Text style={styles.projectDescription}>
-                      {proj.description.replace(/\n/g, ' ')}
-                    </Text>
-                  )}
+                  <View style={styles.projectDescription}>
+                    {proj.description ? cleanText(proj.description) : <Text style={{color:'#bbb',fontStyle:'italic'}}>No description provided.</Text>}
+                  </View>
                   {proj.technologies && (
                     <Text style={styles.projectTechnologies}>
                       Technologies: {typeof proj.technologies === 'string' 
@@ -602,7 +628,7 @@ export default function MinimalistTemplate({ data }: MinimalistTemplateProps) {
                     <Text style={styles.achievementDate}>{formatDate(ach.date)}</Text>
                   )}
                   {ach.description && (
-                    <Text style={styles.achievementDescription}>{ach.description}</Text>
+                    <View style={styles.achievementDescription}>{cleanText(ach.description)}</View>
                   )}
                 </View>
               ))}
@@ -664,9 +690,9 @@ export default function MinimalistTemplate({ data }: MinimalistTemplateProps) {
                   <Text style={styles.volunteerDate}>
                     {formatDate(vol.startDate)} — {vol.current ? 'Present' : formatDate(vol.endDate)}
                   </Text>
-                  {vol.description && (
-                    <Text style={styles.volunteerDescription}>{vol.description}</Text>
-                  )}
+                  <View style={styles.volunteerDescription}>
+                    {vol.description ? cleanText(vol.description) : <Text style={{color:'#bbb',fontStyle:'italic'}}>No description provided.</Text>}
+                  </View>
                 </View>
               ))}
             </View>

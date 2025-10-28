@@ -1,5 +1,6 @@
 import { Plus, Trash2 } from 'lucide-react';
 import { Project } from '../../types/cv';
+import BulletPointTextarea from '../common/BulletPointTextarea';
 
 interface ProjectsFormProps {
   data: Project[];
@@ -70,18 +71,16 @@ export default function ProjectsForm({ data, onChange }: ProjectsFormProps) {
               />
             </div>
 
-            <div>
-              <label className="block text-sm font-medium text-slate-700 mb-1">
-                Description
-              </label>
-              <textarea
-                value={proj.description}
-                onChange={(e) => updateProject(proj.id, 'description', e.target.value)}
-                className="w-full px-3 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-slate-500 focus:border-transparent"
-                rows={3}
-                placeholder="Brief description of the project and your role..."
-              />
-            </div>
+            <BulletPointTextarea
+              label="Description"
+              value={proj.description}
+              onChange={(value) => updateProject(proj.id, 'description', value)}
+              placeholder="• Brief description of the project and your role...
+• Developed full-stack web application
+• Implemented responsive design
+• Collaborated with team of 4 developers"
+              rows={3}
+            />
 
             <div>
               <label className="block text-sm font-medium text-slate-700 mb-1">

@@ -1,6 +1,6 @@
 // Executive Elite Template - Sophisticated Design for Senior Leadership Positions
 import { CVData } from '../../types/cv';
-import { Document, Page, View, Text, StyleSheet } from '@react-pdf/renderer';
+import { Document, Page, View, Text, StyleSheet, Image } from '@react-pdf/renderer';
 
 interface ExecutiveTemplateProps {
   data: CVData;
@@ -16,11 +16,11 @@ const styles = StyleSheet.create({
     lineHeight: 1.6,
   },
   
-  // Luxury Header with Gradient Effect
+  // Header with Profile Image Support
   headerContainer: {
     backgroundColor: '#1a202c',
-    paddingVertical: 40,
-    paddingHorizontal: 50,
+    paddingVertical: 35,
+    paddingHorizontal: 40,
     marginBottom: 0,
     position: 'relative',
   },
@@ -32,34 +32,61 @@ const styles = StyleSheet.create({
     height: 4,
     backgroundColor: '#d4af37',
   },
+  headerContent: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginBottom: 20,
+    flexWrap: 'wrap',
+    gap: 15,
+  },
+  profileImageContainer: {
+    marginRight: 25,
+  },
+  profileImage: {
+    width: 90,
+    height: 90,
+    borderRadius: 45,
+    borderWidth: 3,
+    borderColor: '#d4af37',
+  },
+  nameSection: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    minWidth: 200,
+    maxWidth: '100%',
+    marginTop: 0,
+    marginBottom: 0,
+  },
   name: {
-    fontSize: 36,
+    fontSize: 30,
     fontWeight: 'bold',
     color: '#ffffff',
-    marginBottom: 12,
-    letterSpacing: 2,
-    textAlign: 'center',
-  },
-  executiveTitle: {
-    fontSize: 18,
-    color: '#d4af37',
-    marginBottom: 20,
-    textAlign: 'center',
-    textTransform: 'uppercase',
+    marginBottom: 4,
     letterSpacing: 1.5,
-    fontWeight: 'bold',
+    textAlign: 'center',
+    flexWrap: 'wrap',
+    maxWidth: 400,
+    lineHeight: 1.2,
+    alignSelf: 'center',
+    paddingHorizontal: 8,
   },
   contactGrid: {
     flexDirection: 'row',
+    flexWrap: 'wrap',
     justifyContent: 'space-around',
-    marginTop: 20,
+    marginTop: 16,
     paddingTop: 20,
     borderTopWidth: 1,
     borderTopColor: '#2d3748',
+    gap: 8,
   },
   contactItem: {
     alignItems: 'center',
     flex: 1,
+    minWidth: 120,
+    maxWidth: 180,
   },
   contactLabel: {
     fontSize: 9,
@@ -69,9 +96,13 @@ const styles = StyleSheet.create({
     letterSpacing: 0.5,
   },
   contactValue: {
-    fontSize: 11,
+    fontSize: 10,
     color: '#ffffff',
     fontWeight: 'bold',
+    textAlign: 'center',
+    flexWrap: 'wrap',
+    maxWidth: '100%',
+    lineHeight: 1.3,
   },
 
   // Main Content Area
@@ -110,13 +141,14 @@ const styles = StyleSheet.create({
   
   // Section Styling - Executive Level
   section: {
-    marginBottom: 32,
+    marginBottom: 10,
+    paddingBottom: 0,
   },
   sectionTitle: {
     fontSize: 18,
     fontWeight: 'bold',
     color: '#1a202c',
-    marginBottom: 20,
+    marginBottom: 15,
     textTransform: 'uppercase',
     letterSpacing: 1.2,
     paddingBottom: 8,
@@ -135,8 +167,8 @@ const styles = StyleSheet.create({
   
   // Experience - Executive Focused
   experienceItem: {
-    marginBottom: 25,
-    paddingBottom: 20,
+    marginBottom: 18,
+    paddingBottom: 15,
     borderBottomWidth: 1,
     borderBottomColor: '#e2e8f0',
     position: 'relative',
@@ -197,17 +229,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   
-  // Skills - Executive Grid
-  skillsGrid: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    marginTop: 15,
-  },
-  skillCategory: {
-    width: '50%',
-    marginBottom: 20,
-    paddingRight: 20,
-  },
+  // Skills - Clean Comma-Separated Format
   skillCategoryTitle: {
     fontSize: 13,
     fontWeight: 'bold',
@@ -219,30 +241,24 @@ const styles = StyleSheet.create({
     borderBottomWidth: 2,
     borderBottomColor: '#d4af37',
   },
-  skillItem: {
+  skillListText: {
     fontSize: 11,
     color: '#2d3748',
-    marginBottom: 4,
-    paddingLeft: 15,
-    borderLeftWidth: 2,
-    borderLeftColor: '#e2e8f0',
-    paddingVertical: 2,
-  },
-  skillItemExpert: {
-    borderLeftColor: '#d4af37',
-    fontWeight: 'bold',
+    lineHeight: 1.6,
+    textAlign: 'justify',
+    marginBottom: 8,
   },
   
   // Education - Premium Layout
   educationItem: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginBottom: 18,
-    paddingBottom: 15,
+    marginBottom: 12,
+    paddingBottom: 12,
     borderBottomWidth: 1,
     borderBottomColor: '#e2e8f0',
     backgroundColor: '#f8f9fa',
-    padding: 15,
+    padding: 12,
     borderRadius: 8,
     borderLeftWidth: 4,
     borderLeftColor: '#d4af37',
@@ -278,7 +294,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
     paddingVertical: 4,
     borderRadius: 4,
-    textAlign: 'center',
+    textAlign: 'right',
   },
   
   // Achievements - Executive Showcase
@@ -301,8 +317,12 @@ const styles = StyleSheet.create({
     fontSize: 10,
     color: '#d4af37',
     fontWeight: 'bold',
-    marginBottom: 8,
     textTransform: 'uppercase',
+    textAlign: 'right',
+    backgroundColor: '#ffffff',
+    paddingHorizontal: 8,
+    paddingVertical: 4,
+    borderRadius: 4,
   },
   achievementDesc: {
     fontSize: 11,
@@ -345,7 +365,12 @@ const styles = StyleSheet.create({
     fontSize: 10,
     color: '#4a5568',
     fontStyle: 'italic',
-    marginBottom: 8,
+    textAlign: 'right',
+    backgroundColor: '#ffffff',
+    paddingHorizontal: 8,
+    paddingVertical: 4,
+    borderRadius: 4,
+    fontWeight: 'bold',
   },
   projectDescription: {
     fontSize: 10,
@@ -382,6 +407,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#f8f9fa',
     borderRadius: 4,
     fontWeight: 'bold',
+    textAlign: 'center',
   },
   
   // Languages - Premium Display
@@ -401,6 +427,7 @@ const styles = StyleSheet.create({
     fontSize: 12,
     color: '#1a202c',
     fontWeight: 'bold',
+    textAlign: 'center',
   },
   languageLevel: {
     fontSize: 10,
@@ -411,6 +438,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 8,
     paddingVertical: 3,
     borderRadius: 3,
+    textAlign: 'center',
   },
   
   // References - Executive Style
@@ -456,6 +484,20 @@ const styles = StyleSheet.create({
 });
 
 export default function ExecutiveTemplate({ data }: ExecutiveTemplateProps) {
+  // Comprehensive text cleaning function to remove all paragraph symbols and unwanted characters
+  const cleanText = (text: string) => {
+    if (!text) return '';
+    return text
+      .replace(/¶/g, '') // Regular paragraph symbol
+      .replace(/\u00B6/g, '') // Unicode paragraph symbol
+      .replace(/\u2029/g, '') // Unicode paragraph separator
+      .replace(/\u2028/g, '') // Unicode line separator
+      .replace(/\u000C/g, '') // Form feed
+      .replace(/\u0085/g, '') // Next line
+      .replace(/[\r\n]+/g, '\n') // Normalize line breaks
+      .trim();
+  };
+
   const formatDate = (date?: string) => {
     if (!date) return '';
     const [year, month] = date.split('-');
@@ -468,17 +510,6 @@ export default function ExecutiveTemplate({ data }: ExecutiveTemplateProps) {
       Object.values(item).some(val => val && val !== '' && (typeof val !== 'object' || Object.keys(val).length > 0))
     );
 
-  // Group skills by proficiency level for executive display
-  const groupSkillsByLevel = (skills: any[]) => {
-    const grouped = {
-      expert: skills.filter(s => s.level === 'expert'),
-      advanced: skills.filter(s => s.level === 'advanced'),
-      intermediate: skills.filter(s => s.level === 'intermediate'),
-      beginner: skills.filter(s => s.level === 'beginner'),
-    };
-    return grouped;
-  };
-
   return (
     <Document>
       <Page size="A4" style={styles.page}>
@@ -486,12 +517,25 @@ export default function ExecutiveTemplate({ data }: ExecutiveTemplateProps) {
         {/* Luxury Executive Header */}
         <View style={styles.headerContainer}>
           <View style={styles.headerAccent} />
-          <Text style={styles.name}>{data.personalInfo.fullName}</Text>
-          {data.personalInfo.summary && (
-            <Text style={styles.executiveTitle}>
-              {data.personalInfo.summary.split('\n')[0].substring(0, 80)}
-            </Text>
-          )}
+          
+          <View style={styles.headerContent}>
+            {data.personalInfo.photo && (
+              <View style={styles.profileImageContainer}>
+                <Image style={styles.profileImage} src={data.personalInfo.photo} />
+              </View>
+            )}
+            
+            <View style={styles.nameSection}>
+              <Text style={styles.name}>
+                {data.personalInfo.fullName?.split(' ').map((word, index, arr) => {
+                  if (index === 2 && arr.length > 2) {
+                    return `\n${word}`;
+                  }
+                  return index === 0 ? word : ` ${word}`;
+                }).join('')}
+              </Text>
+            </View>
+          </View>
           
           <View style={styles.contactGrid}>
             {data.personalInfo.email && (
@@ -515,7 +559,13 @@ export default function ExecutiveTemplate({ data }: ExecutiveTemplateProps) {
             {data.personalInfo.linkedin && (
               <View style={styles.contactItem}>
                 <Text style={styles.contactLabel}>LinkedIn</Text>
-                <Text style={styles.contactValue}>Available</Text>
+                <Text style={styles.contactValue}>{data.personalInfo.linkedin}</Text>
+              </View>
+            )}
+            {data.personalInfo.website && (
+              <View style={styles.contactItem}>
+                <Text style={styles.contactLabel}>Website</Text>
+                <Text style={styles.contactValue}>{data.personalInfo.website}</Text>
               </View>
             )}
           </View>
@@ -524,10 +574,10 @@ export default function ExecutiveTemplate({ data }: ExecutiveTemplateProps) {
         {/* Main Content Area */}
         <View style={styles.contentArea}>
           
-          {/* Executive Summary */}
+          {/* Professional Profile */}
           {data.personalInfo.summary && (
             <View style={styles.executiveSummary}>
-              <Text style={styles.summaryTitle}>Executive Summary</Text>
+              <Text style={styles.summaryTitle}>Professional Profile</Text>
               <Text style={styles.summaryText}>{data.personalInfo.summary}</Text>
             </View>
           )}
@@ -553,12 +603,22 @@ export default function ExecutiveTemplate({ data }: ExecutiveTemplateProps) {
                       </Text>
                     </View>
                   </View>
-                  {exp.description && exp.description.split('\n').map((line, idx) => (
-                    <View key={idx} style={styles.achievementBullet}>
-                      <Text style={styles.bulletIcon}>▶</Text>
-                      <Text style={{ marginLeft: 15 }}>{line}</Text>
-                    </View>
-                  ))}
+                  {exp.description && cleanText(exp.description).split('\n')
+                    .map(line => line.trim())
+                    .filter(line => line.length > 0)
+                    .map((line, idx) => {
+                    // Add bullet if line doesn't already start with one
+                    const bulletLine = line.startsWith('•') || line.startsWith('-') || line.startsWith('*')
+                      ? line
+                      : `• ${line}`;
+                    
+                    return (
+                      <View key={idx} style={styles.achievementBullet}>
+                        <Text style={styles.bulletIcon}>▶</Text>
+                        <Text style={{ marginLeft: 15 }}>{bulletLine}</Text>
+                      </View>
+                    );
+                  })}
                 </View>
               ))}
             </View>
@@ -569,55 +629,32 @@ export default function ExecutiveTemplate({ data }: ExecutiveTemplateProps) {
             <View style={styles.section}>
               <Text style={styles.sectionTitle}>Core Competencies</Text>
               <View style={styles.sectionTitleAccent} />
-              <View style={styles.skillsGrid}>
-                {(() => {
-                  const grouped = groupSkillsByLevel(data.skills || []);
-                  return (
-                    <>
-                      {grouped.expert.length > 0 && (
-                        <View style={styles.skillCategory}>
-                          <Text style={styles.skillCategoryTitle}>Expert Level</Text>
-                          {grouped.expert.map(skill => (
-                            <Text key={skill.id} style={[styles.skillItem, styles.skillItemExpert]}>
-                              {skill.name}
-                            </Text>
-                          ))}
-                        </View>
-                      )}
-                      {grouped.advanced.length > 0 && (
-                        <View style={styles.skillCategory}>
-                          <Text style={styles.skillCategoryTitle}>Advanced</Text>
-                          {grouped.advanced.map(skill => (
-                            <Text key={skill.id} style={styles.skillItem}>
-                              {skill.name}
-                            </Text>
-                          ))}
-                        </View>
-                      )}
-                      {grouped.intermediate.length > 0 && (
-                        <View style={styles.skillCategory}>
-                          <Text style={styles.skillCategoryTitle}>Proficient</Text>
-                          {grouped.intermediate.map(skill => (
-                            <Text key={skill.id} style={styles.skillItem}>
-                              {skill.name}
-                            </Text>
-                          ))}
-                        </View>
-                      )}
-                      {grouped.beginner.length > 0 && (
-                        <View style={styles.skillCategory}>
-                          <Text style={styles.skillCategoryTitle}>Emerging</Text>
-                          {grouped.beginner.map(skill => (
-                            <Text key={skill.id} style={styles.skillItem}>
-                              {skill.name}
-                            </Text>
-                          ))}
-                        </View>
-                      )}
-                    </>
-                  );
-                })()}
-              </View>
+              
+              {/* Technical Skills */}
+              {(data.skills || []).filter(skill => skill.type === 'technical').length > 0 && (
+                <View style={{ marginBottom: 15 }}>
+                  <Text style={styles.skillCategoryTitle}>Technical</Text>
+                  <Text style={styles.skillListText}>
+                    {(data.skills || [])
+                      .filter(skill => skill.type === 'technical')
+                      .map(skill => skill.name)
+                      .join(', ')}
+                  </Text>
+                </View>
+              )}
+              
+              {/* Soft Skills */}
+              {(data.skills || []).filter(skill => skill.type === 'soft').length > 0 && (
+                <View>
+                  <Text style={styles.skillCategoryTitle}>Leadership & Management</Text>
+                  <Text style={styles.skillListText}>
+                    {(data.skills || [])
+                      .filter(skill => skill.type === 'soft')
+                      .map(skill => skill.name)
+                      .join(', ')}
+                  </Text>
+                </View>
+              )}
             </View>
           )}
 
@@ -631,9 +668,18 @@ export default function ExecutiveTemplate({ data }: ExecutiveTemplateProps) {
                   <View style={styles.achievementAccent}>
                     <Text style={styles.achievementIcon}>{(index + 1).toString()}</Text>
                   </View>
-                  <Text style={styles.achievementTitle}>{ach.title}</Text>
-                  {ach.date && <Text style={styles.achievementDate}>{formatDate(ach.date)}</Text>}
-                  {ach.description && <Text style={styles.achievementDesc}>{ach.description}</Text>}
+                  <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 8 }}>
+                    <Text style={styles.achievementTitle}>{ach.title}</Text>
+                    {ach.date && <Text style={styles.achievementDate}>{formatDate(ach.date)}</Text>}
+                  </View>
+                  {ach.description && (
+                    <Text style={styles.achievementDesc}>
+                      {cleanText(ach.description).split('\n')
+                        .map(line => line.trim())
+                        .filter(line => line.length > 0)
+                        .join(' ')}
+                    </Text>
+                  )}
                 </View>
               ))}
             </View>
@@ -650,7 +696,12 @@ export default function ExecutiveTemplate({ data }: ExecutiveTemplateProps) {
                     <Text style={styles.degree}>{edu.degree} in {edu.field}</Text>
                     <Text style={styles.institution}>{edu.institution}</Text>
                     {edu.description && (
-                      <Text style={styles.educationDetails}>{edu.description}</Text>
+                      <Text style={styles.educationDetails}>
+                        {cleanText(edu.description).split('\n')
+                          .map(line => line.trim())
+                          .filter(line => line.length > 0)
+                          .join(' ')}
+                      </Text>
                     )}
                   </View>
                   <View style={styles.educationRight}>
@@ -670,15 +721,27 @@ export default function ExecutiveTemplate({ data }: ExecutiveTemplateProps) {
               <View style={styles.sectionTitleAccent} />
               {(data.projects || []).map(proj => (
                 <View key={proj.id} style={styles.projectCard}>
-                  <Text style={styles.projectTitle}>{proj.name}</Text>
-                  {proj.startDate && (
-                    <Text style={styles.projectDate}>
-                      {formatDate(proj.startDate)} - {proj.endDate ? formatDate(proj.endDate) : 'Ongoing'}
-                    </Text>
-                  )}
-                  {proj.description && proj.description.split('\n').map((line, idx) => (
-                    <Text key={idx} style={styles.projectDescription}>• {line}</Text>
-                  ))}
+                  <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 8 }}>
+                    <Text style={styles.projectTitle}>{proj.name}</Text>
+                    {proj.startDate && (
+                      <Text style={styles.projectDate}>
+                        {formatDate(proj.startDate)} - {proj.endDate ? formatDate(proj.endDate) : 'Ongoing'}
+                      </Text>
+                    )}
+                  </View>
+                  {proj.description && cleanText(proj.description).split('\n')
+                    .map(line => line.trim())
+                    .filter(line => line.length > 0)
+                    .map((line, idx) => {
+                    // Add bullet if line doesn't already start with one
+                    const bulletLine = line.startsWith('•') || line.startsWith('-') || line.startsWith('*')
+                      ? line
+                      : `• ${line}`;
+                    
+                    return (
+                      <Text key={idx} style={styles.projectDescription}>{bulletLine}</Text>
+                    );
+                  })}
                   {proj.technologies && (
                     <Text style={styles.projectTech}>
                       Technologies: {typeof proj.technologies === 'string' 
@@ -739,12 +802,22 @@ export default function ExecutiveTemplate({ data }: ExecutiveTemplateProps) {
                       </Text>
                     </View>
                   </View>
-                  {vol.description && vol.description.split('\n').map((line, idx) => (
-                    <View key={idx} style={styles.achievementBullet}>
-                      <Text style={styles.bulletIcon}>▶</Text>
-                      <Text style={{ marginLeft: 15 }}>{line}</Text>
-                    </View>
-                  ))}
+                  {vol.description && cleanText(vol.description).split('\n')
+                    .map(line => line.trim())
+                    .filter(line => line.length > 0)
+                    .map((line, idx) => {
+                    // Add bullet if line doesn't already start with one
+                    const bulletLine = line.startsWith('•') || line.startsWith('-') || line.startsWith('*')
+                      ? line
+                      : `• ${line}`;
+                    
+                    return (
+                      <View key={idx} style={styles.achievementBullet}>
+                        <Text style={styles.bulletIcon}>▶</Text>
+                        <Text style={{ marginLeft: 15 }}>{bulletLine}</Text>
+                      </View>
+                    );
+                  })}
                 </View>
               ))}
             </View>

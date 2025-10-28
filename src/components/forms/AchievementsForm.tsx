@@ -1,5 +1,6 @@
 import { Plus, Trash2 } from 'lucide-react';
 import { Achievement } from '../../types/cv';
+import BulletPointTextarea from '../common/BulletPointTextarea';
 
 interface AchievementsFormProps {
   data: Achievement[];
@@ -62,18 +63,16 @@ export default function AchievementsForm({ data, onChange }: AchievementsFormPro
               />
             </div>
 
-            <div>
-              <label className="block text-sm font-medium text-slate-700 mb-1">
-                Description
-              </label>
-              <textarea
-                value={ach.description}
-                onChange={(e) => updateAchievement(ach.id, 'description', e.target.value)}
-                className="w-full px-3 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-slate-500 focus:border-transparent"
-                rows={3}
-                placeholder="Details about this achievement..."
-              />
-            </div>
+            <BulletPointTextarea
+              label="Description"
+              value={ach.description}
+              onChange={(value) => updateAchievement(ach.id, 'description', value)}
+              placeholder="• Details about this achievement...
+• Quantify the impact if possible
+• Include specific metrics or results
+• Mention recognition received"
+              rows={3}
+            />
 
             <div>
               <label className="block text-sm font-medium text-slate-700 mb-1">Date</label>

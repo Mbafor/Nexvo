@@ -33,7 +33,6 @@ import CertificationsForm from "./forms/CertificationsForm";
 // Enhanced Components
 import ProgressEnhancement from "./ProgressEnhancement";
 import ContextualTips from "./ContextualTips";
-import CompletionCelebration from "./CompletionCelebration";
 import NavigationHelper from "./NavigationHelper";
 import SubtleToast from "./SubtleToast";
 import OnboardingTour from "./OnboardingTour";
@@ -94,8 +93,6 @@ export default function CVBuilder({ cvData, onUpdateCVData, onPreview, onSignIn,
   const [validationResults, setValidationResults] = useState<SectionValidation>({});
 
   // New state for celebration and navigation flow
-  const [showCelebration, setShowCelebration] = useState(false);
-  const [celebrationMilestone, setCelebrationMilestone] = useState<100>(100);
   const [showNavigationHelper, setShowNavigationHelper] = useState(false);
   const [lastKnownProgress, setLastKnownProgress] = useState(0);
   
@@ -617,8 +614,6 @@ export default function CVBuilder({ cvData, onUpdateCVData, onPreview, onSignIn,
     
     // At 100% - Show completion with next steps (only real celebration)
     else if (progressPercentage === 100 && lastKnownProgress < 100) {
-      setCelebrationMilestone(100);
-      setShowCelebration(true);
       setLastKnownProgress(100);
     }
   }, [progressPercentage, lastKnownProgress]);
@@ -630,7 +625,6 @@ export default function CVBuilder({ cvData, onUpdateCVData, onPreview, onSignIn,
     localStorage.setItem('cvProgress', progressPercentage.toString());
     
     // Close any open modals
-    setShowCelebration(false);
     setShowNavigationHelper(false);
     
     // Navigate to dashboard
@@ -1356,18 +1350,6 @@ export default function CVBuilder({ cvData, onUpdateCVData, onPreview, onSignIn,
           </motion.div>
         )}
       </AnimatePresence>
-
-      {/* Completion Celebration Modal */}
-      <CompletionCelebration
-        isOpen={showCelebration}
-        onClose={() => setShowCelebration(false)}
-        completionPercentage={progressPercentage}
-        completedSections={completedSections}
-        totalSections={steps.length}
-        onPreview={onPreview}
-        onDashboard={handleDashboardNavigation}
-        milestone={celebrationMilestone}
-      />
 
       {/* Navigation Helper */}
       <NavigationHelper

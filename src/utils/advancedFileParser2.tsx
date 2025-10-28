@@ -1048,12 +1048,19 @@ export class AdvancedFileParser {
     const skillText = text.replace(/[,;|•]/g, ',');
     const skillItems = skillText.split(',').map(s => s.trim()).filter(s => s);
     
+    // Common technical skills patterns
+    const technicalKeywords = /(?:javascript|python|react|java|css|html|sql|node|angular|vue|typescript|c\+\+|php|ruby|swift|kotlin|git|docker|aws|azure|mongodb|postgresql|mysql|api|rest|graphql|machine learning|ai|data science|devops|ci\/cd|kubernetes|linux|windows|macos|adobe|photoshop|illustrator|figma|sketch|autocad|unity|blender)/i;
+    
     for (const skill of skillItems) {
       if (skill.length > 1 && skill.length < 50) {
+        // Determine if it's likely a technical or soft skill
+        const isLikelyTechnical = technicalKeywords.test(skill);
+        
         skills.push({
           id: Date.now().toString() + Math.random().toString(36).substr(2, 9),
           name: skill,
-          level: 'intermediate' as const
+          level: 'intermediate' as const,
+          type: isLikelyTechnical ? 'technical' as const : 'soft' as const
         });
       }
     }
