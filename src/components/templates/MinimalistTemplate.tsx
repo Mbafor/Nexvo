@@ -1,4 +1,4 @@
-// Minimalist Elite Template - Pure Typography & White Space Excellence
+// Elite Professional Template - Google-Level Standards & Modern Design
 import { CVData } from '../../types/cv';
 import { Document, Page, View, Text, StyleSheet } from '@react-pdf/renderer';
 
@@ -9,445 +9,470 @@ interface MinimalistTemplateProps {
 const styles = StyleSheet.create({
   page: {
     fontFamily: 'Helvetica',
-    padding: 48,
+    padding: 0,
     backgroundColor: '#fff',
-    color: '#222',
-    fontSize: 11,
-    lineHeight: 1.7,
-    letterSpacing: 0.1,
+    color: '#1a1a1a',
+    fontSize: 10,
+    lineHeight: 1.6,
     minHeight: '100%',
   },
-  contactLabel: {
-    fontSize: 8,
-    color: '#bbb',
-    marginBottom: 2,
-    textTransform: 'uppercase',
-    letterSpacing: 0.5,
+  
+  // Modern Hero Header
+  heroSection: {
+    backgroundColor: '#1976d2',
+    padding: 40,
+    color: '#fff',
+    position: 'relative',
+    overflow: 'hidden',
   },
-  header: {
-    marginBottom: 32,
-    alignItems: 'center',
-    paddingBottom: 16,
-    borderBottomWidth: 1,
-    borderColor: '#f0f0f0',
+  
+  heroAccent: {
+    position: 'absolute',
+    top: -50,
+    right: -50,
+    width: 200,
+    height: 200,
+    backgroundColor: '#fff',
+    opacity: 0.05,
+    borderRadius: 100,
   },
-  name: {
-    fontSize: 28,
+  
+  heroName: {
+    fontSize: 36,
     fontWeight: 'bold',
-    color: '#222',
-    marginBottom: 4,
-    textAlign: 'center',
-  },
-  nameUnderline: {
-    width: 40,
-    height: 2,
-    backgroundColor: '#e0e0e0',
-    marginTop: 4,
     marginBottom: 8,
-    alignSelf: 'center',
-    opacity: 0.5,
+    letterSpacing: 1,
+    textAlign: 'left',
   },
-  subtitle: {
-    fontSize: 13,
-    color: '#666',
-    marginBottom: 8,
-    textAlign: 'center',
-    fontStyle: 'italic',
-  },
-  contactGrid: {
-    flexDirection: 'row',
-    justifyContent: 'center',
-    gap: 24,
-    marginTop: 8,
-    marginBottom: 4,
-  },
-  contactItem: {
-    alignItems: 'center',
-    marginHorizontal: 8,
-  },
-  contactValue: {
-    fontSize: 11,
-    color: '#222',
+  
+  heroTitle: {
+    fontSize: 16,
+    marginBottom: 20,
+    opacity: 0.9,
+    textTransform: 'uppercase',
+    letterSpacing: 2,
     fontWeight: 'normal',
-    textAlign: 'center',
-    wordBreak: 'break-all',
   },
-
-  // Pure Section Styling
+  
+  heroSummary: {
+    fontSize: 12,
+    lineHeight: 1.7,
+    opacity: 0.95,
+    maxWidth: 500,
+    marginTop: 16,
+    marginBottom: 25,
+  },
+  
+  contactRow: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    gap: 25,
+    marginTop: 5,
+  },
+  
+  contactItem: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 8,
+  },
+  
+  contactIcon: {
+    width: 12,
+    height: 12,
+    backgroundColor: '#fff',
+    borderRadius: 6,
+    marginRight: 8,
+    opacity: 0.9,
+  },
+  
+  contactText: {
+    fontSize: 11,
+    opacity: 0.95,
+    fontWeight: 'normal',
+  },
+  
+  // Content Container - Optimized Spacing
+  contentContainer: {
+    padding: '28 32',
+    backgroundColor: '#fff',
+  },
+  
+  // Modern Section Styling - Improved Spacing
   section: {
-    marginBottom: 14,
-    paddingBottom: 0,
-  },
-  sectionTitle: {
-    fontSize: 13,
-    fontWeight: 'bold',
-    color: '#222',
-    marginBottom: 10,
-    textTransform: 'uppercase',
-    letterSpacing: 1.5,
-    textAlign: 'center',
+    marginBottom: 24,
     position: 'relative',
   },
-  sectionTitleLine: {
-    position: 'absolute',
-    bottom: -4,
-    left: '50%',
-    transform: 'translateX(-50%)',
-    width: 24,
-    height: 1,
-    backgroundColor: '#e0e0e0',
-    opacity: 0.5,
+  
+  sectionHeader: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 16,
+    paddingBottom: 6,
+    borderBottomWidth: 1,
+    borderBottomColor: '#e8e8e8',
   },
   
-  // Content with Generous White Space
-  contentContainer: {
-    paddingHorizontal: 40,
+  sectionIcon: {
+    width: 20,
+    height: 20,
+    backgroundColor: '#1976d2',
+    borderRadius: 10,
+    marginRight: 12,
+    opacity: 0.9,
   },
   
-  // Experience - Zen-like Simplicity
-  experienceItem: {
-    marginBottom: 40,
-    textAlign: 'center',
+  sectionTitle: {
+    fontSize: 16,
+    fontWeight: 'bold',
+    color: '#1976d2',
+    textTransform: 'uppercase',
+    letterSpacing: 1.2,
   },
+  
+  // Professional Experience Cards - Improved Layout
+  experienceCard: {
+    marginBottom: 20,
+    padding: 18,
+    backgroundColor: '#fafafa',
+    borderRadius: 8,
+    borderLeftWidth: 4,
+    borderLeftColor: '#1976d2',
+    position: 'relative',
+  },
+  
+  experienceHeader: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'flex-start',
+    marginBottom: 10,
+    flexWrap: 'wrap',
+  },
+  
+  experienceLeft: {
+    flex: 2,
+    marginRight: 8,
+  },
+  
+  experienceRight: {
+    alignItems: 'flex-end',
+    flex: 1,
+    minWidth: 80,
+  },
+  
   positionTitle: {
-    fontSize: 13,
+    fontSize: 14,
     fontWeight: 'bold',
     color: '#1a1a1a',
-    marginBottom: 8,
-    letterSpacing: 1,
-  },
-  companyName: {
-    fontSize: 12,
-    color: '#666666',
-    marginBottom: 6,
-    fontStyle: 'italic',
-  },
-  dateRange: {
-    fontSize: 10,
-    color: '#999999',
-    marginBottom: 20,
-    textTransform: 'uppercase',
-    letterSpacing: 1,
-  },
-  experienceDescription: {
-    fontSize: 11,
-    color: '#333',
-    lineHeight: 1.6,
-    textAlign: 'left',
-    maxWidth: 420,
-    alignSelf: 'center',
-    marginTop: 2,
+    marginBottom: 4,
+    letterSpacing: 0.3,
   },
   
-  // Skills - Elegant Typography
-  skillsContainer: {
-    alignItems: 'center',
-    marginTop: 20,
+  companyName: {
+    fontSize: 12,
+    color: '#1976d2',
+    fontWeight: 'bold',
+    marginBottom: 2,
   },
+  
+  locationText: {
+    fontSize: 10,
+    color: '#666',
+    fontStyle: 'italic',
+  },
+  
+  dateRangeBox: {
+    backgroundColor: '#1976d2',
+    color: '#fff',
+    paddingHorizontal: 10,
+    paddingVertical: 5,
+    borderRadius: 12,
+    fontSize: 8,
+    fontWeight: 'bold',
+    textAlign: 'center',
+    minWidth: 70,
+    maxWidth: 120,
+  },
+  
+  experienceDescription: {
+    marginTop: 12,
+    fontSize: 10,
+    color: '#000000',  // Changed from #333 to pure black for better visibility
+    lineHeight: 1.6,
+  },
+  
+  bulletPoint: {
+    flexDirection: 'row',
+    alignItems: 'flex-start',
+    marginBottom: 3,
+  },
+  
+  bulletDot: {
+    width: 4,
+    height: 4,
+    backgroundColor: '#1976d2',
+    borderRadius: 2,
+    marginTop: 5,
+    marginRight: 6,
+    flexShrink: 0,
+  },
+  
+  bulletText: {
+    flex: 1,
+    fontSize: 10,
+    color: '#000000',  // Changed from #333 to pure black for better visibility
+    lineHeight: 1.4,
+  },
+  
+  // Skills Grid
   skillsGrid: {
     flexDirection: 'row',
     flexWrap: 'wrap',
-    justifyContent: 'center',
-    maxWidth: 500,
-    gap: 20,
-  },
-  skillItem: {
-    fontSize: 11,
-    color: '#666666',
-    textAlign: 'center',
-    paddingVertical: 8,
-    paddingHorizontal: 16,
-    borderWidth: 1,
-    borderColor: '#eeeeee',
-    borderRadius: 20,
-    backgroundColor: '#fafafa',
-  },
-  skillItemExpert: {
-    color: '#1a1a1a',
-    borderColor: '#1a1a1a',
-    backgroundColor: '#ffffff',
-    fontWeight: 'bold',
+    gap: 12,
+    marginTop: 8,
   },
   
-  // Education - Centered Elegance
-  educationContainer: {
-    alignItems: 'center',
-  },
-  educationItem: {
-    marginBottom: 30,
-    textAlign: 'center',
-    maxWidth: 400,
-  },
-  degree: {
-    fontSize: 13,
-    color: '#1a1a1a',
-    marginBottom: 6,
+  skillChip: {
+    backgroundColor: '#1976d2',
+    color: '#fff',
+    paddingHorizontal: 12,
+    paddingVertical: 6,
+    borderRadius: 15,
+    fontSize: 10,
     fontWeight: 'bold',
-  },
-  institution: {
-    fontSize: 12,
-    color: '#666666',
-    marginBottom: 4,
-    fontStyle: 'italic',
-  },
-  educationYear: {
-    fontSize: 10,
-    color: '#999999',
-    textTransform: 'uppercase',
-    letterSpacing: 1,
-  },
-  educationDescription: {
-    fontSize: 10,
-    color: '#555',
-    marginTop: 6,
-    lineHeight: 1.5,
-    textAlign: 'left',
+    textAlign: 'center',
   },
   
-  // Projects - Clean Card Layout
-  projectsContainer: {
-    alignItems: 'center',
+  skillChipExpert: {
+    backgroundColor: '#ff6b35',
   },
-  projectItem: {
-    marginBottom: 35,
-    textAlign: 'center',
-    maxWidth: 450,
-    padding: 25,
-    borderWidth: 1,
-    borderColor: '#f0f0f0',
+  
+  // Education Cards - Improved Layout
+  educationCard: {
+    marginBottom: 16,
+    padding: 14,
+    backgroundColor: '#f8f9fa',
     borderRadius: 8,
-    backgroundColor: '#fafafa',
-  },
-  projectName: {
-    fontSize: 13,
-    fontWeight: 'bold',
-    color: '#1a1a1a',
-    marginBottom: 8,
-    letterSpacing: 0.5,
-  },
-  projectDate: {
-    fontSize: 10,
-    color: '#999999',
-    marginBottom: 15,
-    textTransform: 'uppercase',
-    letterSpacing: 1,
-  },
-  projectDescription: {
-    fontSize: 11,
-    color: '#333',
-    lineHeight: 1.5,
-    marginBottom: 8,
-    textAlign: 'left',
-  },
-  projectTechnologies: {
-    fontSize: 10,
-    color: '#666666',
-    fontStyle: 'italic',
+    borderTopWidth: 3,
+    borderTopColor: '#1976d2',
   },
   
-  // Achievements - Minimal Showcase
-  achievementsContainer: {
-    alignItems: 'center',
+  degreeTitle: {
+    fontSize: 11,
+    fontWeight: 'bold',
+    color: '#1a1a1a',
+    marginBottom: 4,
+    lineHeight: 1.3,
   },
-  achievementItem: {
-    marginBottom: 25,
-    textAlign: 'center',
-    maxWidth: 400,
-    paddingVertical: 20,
-    borderTopWidth: 1,
-    borderBottomWidth: 1,
-    borderColor: '#f0f0f0',
+  
+  institutionName: {
+    fontSize: 11,
+    color: '#1976d2',
+    fontWeight: 'bold',
+    marginBottom: 8,
   },
-  achievementTitle: {
+  
+  graduationYear: {
+    fontSize: 10,
+    color: '#666',
+    backgroundColor: '#e8e8e8',
+    paddingHorizontal: 8,
+    paddingVertical: 4,
+    borderRadius: 8,
+    alignSelf: 'flex-start',
+    marginBottom: 8,
+  },
+  
+  // Project Showcase - Improved Layout
+  projectCard: {
+    marginBottom: 20,
+    padding: 18,
+    backgroundColor: '#fff',
+    borderRadius: 12,
+    borderWidth: 1,
+    borderColor: '#e8e8e8',
+    position: 'relative',
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.05,
+    shadowRadius: 8,
+  },
+  
+  projectHeader: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'flex-start',
+    marginBottom: 10,
+    flexWrap: 'wrap',
+  },
+  
+  projectName: {
     fontSize: 12,
+    fontWeight: 'bold',
+    color: '#1976d2',
+    letterSpacing: 0.3,
+    flex: 2,
+    marginRight: 8,
+  },
+  
+  projectStatus: {
+    backgroundColor: '#4caf50',
+    color: '#fff',
+    paddingHorizontal: 8,
+    paddingVertical: 4,
+    borderRadius: 8,
+    fontSize: 8,
+    fontWeight: 'bold',
+    textTransform: 'uppercase',
+    minWidth: 70,
+    textAlign: 'center',
+  },
+  
+  projectDescription: {
+    fontSize: 10,
+    color: '#000000',  // Changed from #333 to pure black for better visibility
+    lineHeight: 1.6,
+    marginBottom: 12,
+    marginTop: 8,      // Added margin top for spacing
+  },
+  
+  techStack: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    gap: 6,
+    marginTop: 8,
+    paddingTop: 12,
+    borderTopWidth: 1,
+    borderTopColor: '#f0f0f0',
+  },
+  
+  techTag: {
+    backgroundColor: '#f0f0f0',
+    color: '#1976d2',
+    paddingHorizontal: 8,
+    paddingVertical: 4,
+    borderRadius: 10,
+    fontSize: 8,
+    fontWeight: 'bold',
+  },
+  
+  // Achievement Highlights - Improved Layout
+  achievementCard: {
+    marginBottom: 14,
+    padding: 14,
+    backgroundColor: '#fff7e6',
+    borderRadius: 8,
+    borderLeftWidth: 4,
+    borderLeftColor: '#ff9800',
+    position: 'relative',
+  },
+  
+  achievementIcon: {
+    position: 'absolute',
+    top: 14,
+    right: 14,
+    width: 20,
+    height: 20,
+    backgroundColor: '#ff9800',
+    borderRadius: 10,
+  },
+  
+  achievementTitle: {
+    fontSize: 11,
     fontWeight: 'bold',
     color: '#1a1a1a',
     marginBottom: 6,
+    marginRight: 28,
+    lineHeight: 1.3,
   },
+  
   achievementDate: {
     fontSize: 9,
-    color: '#999999',
-    marginBottom: 10,
-    textTransform: 'uppercase',
-    letterSpacing: 1,
-  },
-  achievementDescription: {
-    fontSize: 10,
-    color: '#444',
-    lineHeight: 1.4,
-    textAlign: 'left',
-  },
-  
-  // Languages - Elegant Spacing
-  languageContainer: {
-    alignItems: 'center',
-  },
-  languageGrid: {
-    flexDirection: 'row',
-    justifyContent: 'center',
-    flexWrap: 'wrap',
-    gap: 30,
-    marginTop: 20,
-  },
-  languageItem: {
-    alignItems: 'center',
-    minWidth: 80,
-  },
-  languageName: {
-    fontSize: 12,
-    color: '#1a1a1a',
-    marginBottom: 4,
-    fontWeight: 'bold',
-  },
-  languageLevel: {
-    fontSize: 9,
-    color: '#999999',
-    textTransform: 'uppercase',
-    letterSpacing: 1,
-  },
-  languageProficiency: {
-    width: 60,
-    height: 2,
-    backgroundColor: '#f0f0f0',
-    marginTop: 6,
-    borderRadius: 1,
-  },
-  languageProficiencyFill: {
-    height: 2,
-    backgroundColor: '#1a1a1a',
-    borderRadius: 1,
-  },
-  
-  // Certifications - Clean List
-  certificationsContainer: {
-    alignItems: 'center',
-  },
-  certificationItem: {
-    marginBottom: 12,
-    textAlign: 'center',
-  },
-  certificationText: {
-    fontSize: 11,
-    color: '#4a4a4a',
-    paddingVertical: 8,
-    paddingHorizontal: 20,
-    borderWidth: 1,
-    borderColor: '#f0f0f0',
-    backgroundColor: '#fafafa',
-    borderRadius: 15,
-  },
-  
-  // Volunteer Work - Minimal Cards
-  volunteerContainer: {
-    alignItems: 'center',
-  },
-  volunteerItem: {
-    marginBottom: 30,
-    textAlign: 'center',
-    maxWidth: 400,
-  },
-  volunteerRole: {
-    fontSize: 12,
-    fontWeight: 'bold',
-    color: '#1a1a1a',
-    marginBottom: 4,
-  },
-  volunteerOrganization: {
-    fontSize: 11,
-    color: '#666666',
-    marginBottom: 4,
-    fontStyle: 'italic',
-  },
-  volunteerDate: {
-    fontSize: 10,
-    color: '#999999',
-    marginBottom: 12,
-    textTransform: 'uppercase',
-    letterSpacing: 1,
-  },
-  volunteerDescription: {
-    fontSize: 10,
-    color: '#555',
-    lineHeight: 1.4,
-    textAlign: 'left',
-  },
-  
-  // References - Clean Grid
-  referencesContainer: {
-    alignItems: 'center',
-  },
-  referenceGrid: {
-    flexDirection: 'row',
-    justifyContent: 'center',
-    flexWrap: 'wrap',
-    gap: 30,
-    marginTop: 20,
-  },
-  referenceCard: {
-    width: 180,
-    padding: 20,
-    borderWidth: 1,
-    borderColor: '#f0f0f0',
-    borderRadius: 8,
-    backgroundColor: '#fafafa',
-    alignItems: 'center',
-  },
-  referenceName: {
-    fontSize: 11,
-    fontWeight: 'bold',
-    color: '#1a1a1a',
-    marginBottom: 4,
-    textAlign: 'center',
-  },
-  referenceTitle: {
-    fontSize: 10,
-    color: '#666666',
+    color: '#666',
     marginBottom: 8,
-    textAlign: 'center',
-    fontStyle: 'italic',
-  },
-  referenceContact: {
-    fontSize: 9,
-    color: '#999999',
-    textAlign: 'center',
+    textTransform: 'uppercase',
+    letterSpacing: 0.5,
   },
   
-  // Hobbies - Simple Typography
-  hobbiesContainer: {
-    alignItems: 'center',
-  },
-  hobbiesText: {
-    fontSize: 11,
-    color: '#555',
-    textAlign: 'center',
-    lineHeight: 1.5,
-    maxWidth: 400,
+  // Clean Lists
+  listContainer: {
     marginTop: 8,
+  },
+  
+  listItem: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 8,
+    paddingVertical: 4,
+  },
+  
+  listDot: {
+    width: 6,
+    height: 6,
+    backgroundColor: '#1976d2',
+    borderRadius: 3,
+    marginRight: 10,
+  },
+  
+  listText: {
+    fontSize: 10,
+    color: '#333',
+    flex: 1,
+  },
+  
+  // Two Column Layout - Improved Spacing
+  twoColumnRow: {
+    flexDirection: 'row',
+    gap: 16,
+    marginBottom: 16,
+  },
+  
+  leftColumn: {
+    flex: 1,
+    paddingRight: 8,
+  },
+  
+  rightColumn: {
+    flex: 1,
+    paddingLeft: 8,
   },
 });
 
 export default function MinimalistTemplate({ data }: MinimalistTemplateProps) {
-  // Clean text utility to remove unwanted symbols and format bullet points
-  const cleanText = (text: string) => {
-    if (!text) return '';
-    // Remove common unwanted symbols (¶, ¬, etc.)
-    let cleaned = text.replace(/[¶¬•‣▪◦·]/g, '').replace(/\s+/g, ' ');
-    // Split into bullet points if lines or bullets
-    const bullets = cleaned.split(/\n|•|‣|▪|◦|·/).map(b => b.trim()).filter(b => b);
-    if (bullets.length > 1) {
-      return (
-        <View>
-          {bullets.map((b, i) => (
-            <View key={i} style={{flexDirection:'row',alignItems:'flex-start',marginBottom:2}}>
-              <Text style={{color:'#222',marginRight:6}}>•</Text>
-              <Text style={{color:'#222',flex:1}}>{b}</Text>
-            </View>
-          ))}
-        </View>
-      );
+  // Enhanced text utility for modern bullet points - ALWAYS show as bullets
+  const renderDescription = (text: string, customStyle?: any) => {
+    if (!text || !text.trim()) return null;
+    
+    // Clean and split into bullet points
+    const cleaned = text.replace(/[¶¬•‣▪◦·]/g, '').replace(/\s+/g, ' ').trim();
+    
+    if (!cleaned) return null; // Return null if empty after cleaning
+    
+    // Split by newlines or existing bullet points and filter empty items
+    let bullets = cleaned.split(/\n|•|‣|▪|◦|·/).map(b => b.trim()).filter(b => b.length > 0);
+    
+    // If only one item and it's long, try to split by sentence or period
+    if (bullets.length === 1 && bullets[0].length > 100) {
+      const sentences = bullets[0].split(/[.!?]+/).map(s => s.trim()).filter(s => s.length > 10);
+      if (sentences.length > 1) {
+        bullets = sentences;
+      }
     }
-    return cleaned;
+    
+    const containerStyle = customStyle || styles.experienceDescription;
+    
+    // ALWAYS render as bullet points for consistency
+    return (
+      <View style={containerStyle}>
+        {bullets.map((bullet, idx) => (
+          <View key={idx} style={styles.bulletPoint}>
+            <View style={styles.bulletDot} />
+            <Text style={styles.bulletText}>{bullet}</Text>
+          </View>
+        ))}
+      </View>
+    );
   };
+
   const formatDate = (date?: string) => {
     if (!date) return '';
     const [year, month] = date.split('-');
@@ -460,283 +485,299 @@ export default function MinimalistTemplate({ data }: MinimalistTemplateProps) {
       Object.values(item).some(val => val && val !== '' && (typeof val !== 'object' || Object.keys(val).length > 0))
     );
 
-  // Get proficiency level percentage for language bars
-  const getProficiencyWidth = (level: string) => {
-    switch(level.toLowerCase()) {
-      case 'native': return '100%';
-      case 'fluent': return '90%';
-      case 'advanced': return '75%';
-      case 'intermediate': return '60%';
-      case 'beginner': return '30%';
-      default: return '50%';
-    }
-  };
-
   return (
     <Document>
       <Page size="A4" style={styles.page}>
         
-        {/* Ultra-Minimal Header */}
-        <View style={styles.header}>
-          <Text style={styles.name}>{data.personalInfo.fullName}</Text>
-          <View style={styles.nameUnderline} />
+        {/* Modern Hero Header */}
+        <View style={styles.heroSection}>
+          <View style={styles.heroAccent} />
+          
+          <Text style={styles.heroName}>{data.personalInfo.fullName}</Text>
           
           {data.personalInfo.summary && (
-            <Text style={styles.subtitle}>
-              {data.personalInfo.summary.split('\n')[0].substring(0, 60)}
+            <Text style={styles.heroSummary}>
+              {data.personalInfo.summary.length > 200 
+                ? data.personalInfo.summary.substring(0, 200) + '...'
+                : data.personalInfo.summary
+              }
             </Text>
           )}
           
-          <View style={styles.contactGrid}>
+          <View style={styles.contactRow}>
             {data.personalInfo.email && (
               <View style={styles.contactItem}>
-                <Text style={styles.contactLabel}>Email</Text>
-                <Text style={styles.contactValue}>{data.personalInfo.email}</Text>
+                <View style={styles.contactIcon} />
+                <Text style={styles.contactText}>{data.personalInfo.email}</Text>
               </View>
             )}
             {data.personalInfo.phone && (
               <View style={styles.contactItem}>
-                <Text style={styles.contactLabel}>Phone</Text>
-                <Text style={styles.contactValue}>{data.personalInfo.phone}</Text>
+                <View style={styles.contactIcon} />
+                <Text style={styles.contactText}>{data.personalInfo.phone}</Text>
               </View>
             )}
             {data.personalInfo.location && (
               <View style={styles.contactItem}>
-                <Text style={styles.contactLabel}>Location</Text>
-                <Text style={styles.contactValue}>{data.personalInfo.location}</Text>
+                <View style={styles.contactIcon} />
+                <Text style={styles.contactText}>{data.personalInfo.location}</Text>
+              </View>
+            )}
+            {data.personalInfo.linkedin && (
+              <View style={styles.contactItem}>
+                <View style={styles.contactIcon} />
+                <Text style={styles.contactText}>LinkedIn</Text>
+              </View>
+            )}
+            {data.personalInfo.website && (
+              <View style={styles.contactItem}>
+                <View style={styles.contactIcon} />
+                <Text style={styles.contactText}>Website</Text>
               </View>
             )}
           </View>
         </View>
 
-        {/* Summary */}
-        {data.personalInfo.summary && (
-          <View style={styles.section}>
-            <Text style={styles.sectionTitle}>About</Text>
-            <View style={styles.sectionTitleLine} />
-            <View style={styles.contentContainer}>
-              <Text style={styles.experienceDescription}>{data.personalInfo.summary}</Text>
-            </View>
-          </View>
-        )}
-
-        {/* Experience */}
-        {hasContent(data.experience || []) && (
-          <View style={styles.section}>
-            <Text style={styles.sectionTitle}>Experience</Text>
-            <View style={styles.sectionTitleLine} />
-            <View style={styles.contentContainer}>
+        {/* Main Content */}
+        <View style={styles.contentContainer}>
+          
+          {/* Professional Experience */}
+          {hasContent(data.experience || []) && (
+            <View style={styles.section}>
+              <View style={styles.sectionHeader}>
+                <View style={styles.sectionIcon} />
+                <Text style={styles.sectionTitle}>Professional Experience</Text>
+              </View>
+              
               {(data.experience || []).map(exp => (
-                <View key={exp.id} style={styles.experienceItem}>
-                  <Text style={styles.positionTitle}>{exp.position}</Text>
-                  <Text style={styles.companyName}>{exp.company}</Text>
-                  <Text style={styles.dateRange}>
-                    {formatDate(exp.startDate)} — {exp.current ? 'Present' : formatDate(exp.endDate)}
-                  </Text>
-                  <View style={styles.experienceDescription}>
-                    {exp.description ? cleanText(exp.description) : <Text style={{color:'#bbb',fontStyle:'italic'}}>No description provided.</Text>}
+                <View key={exp.id} style={styles.experienceCard}>
+                  <View style={styles.experienceHeader}>
+                    <View style={styles.experienceLeft}>
+                      <Text style={styles.positionTitle}>{exp.position}</Text>
+                      <Text style={styles.companyName}>{exp.company}</Text>
+                      {exp.location && (
+                        <Text style={styles.locationText}>{exp.location}</Text>
+                      )}
+                    </View>
+                    <View style={styles.experienceRight}>
+                      <View style={styles.dateRangeBox}>
+                        <Text>
+                          {formatDate(exp.startDate)} - {exp.current ? 'Present' : formatDate(exp.endDate)}
+                        </Text>
+                      </View>
+                    </View>
                   </View>
+                  {exp.description && renderDescription(exp.description)}
                 </View>
               ))}
             </View>
-          </View>
-        )}
+          )}
 
-        {/* Skills */}
-        {hasContent(data.skills || []) && (
-          <View style={styles.section}>
-            <Text style={styles.sectionTitle}>Skills</Text>
-            <View style={styles.sectionTitleLine} />
-            <View style={styles.skillsContainer}>
+          {/* Projects */}
+          {hasContent(data.projects || []) && (
+            <View style={styles.section}>
+              <View style={styles.sectionHeader}>
+                <View style={styles.sectionIcon} />
+                <Text style={styles.sectionTitle}>Key Projects</Text>
+              </View>
+              
+              {(data.projects || []).map(proj => (
+                <View key={proj.id} style={styles.projectCard}>
+                  <View style={styles.projectHeader}>
+                    <Text style={styles.projectName}>{proj.name}</Text>
+                    <View style={styles.projectStatus}>
+                      <Text>{proj.endDate ? 'Completed' : 'In Progress'}</Text>
+                    </View>
+                  </View>
+                  
+                  {proj.description && renderDescription(proj.description, styles.projectDescription)}
+                  
+                  {proj.technologies && (
+                    <View style={styles.techStack}>
+                      {(typeof proj.technologies === 'string' 
+                        ? proj.technologies.split(',') 
+                        : proj.technologies
+                      ).map((tech: string, idx: number) => (
+                        <Text key={idx} style={styles.techTag}>{tech.trim()}</Text>
+                      ))}
+                    </View>
+                  )}
+                </View>
+              ))}
+            </View>
+          )}
+
+             {/* Skills & Technologies */}
+          {hasContent(data.skills || []) && (
+            <View style={styles.section}>
+              <View style={styles.sectionHeader}>
+                <View style={styles.sectionIcon} />
+                <Text style={styles.sectionTitle}>Skills & Technologies</Text>
+              </View>
+              
               <View style={styles.skillsGrid}>
                 {(data.skills || []).map(skill => (
                   <Text 
                     key={skill.id} 
-                    style={skill.level === 'expert' ? [styles.skillItem, styles.skillItemExpert] : styles.skillItem}
+                    style={skill.level === 'expert' ? [styles.skillChip, styles.skillChipExpert] : styles.skillChip}
                   >
                     {skill.name}
                   </Text>
                 ))}
               </View>
             </View>
-          </View>
-        )}
+          )}
 
-        {/* Education */}
-        {hasContent(data.education || []) && (
-          <View style={styles.section}>
-            <Text style={styles.sectionTitle}>Education</Text>
-            <View style={styles.sectionTitleLine} />
-            <View style={styles.educationContainer}>
-              {(data.education || []).map(edu => (
-                <View key={edu.id} style={styles.educationItem}>
-                  <Text style={styles.degree}>{edu.degree} in {edu.field}</Text>
-                  <Text style={styles.institution}>{edu.institution}</Text>
-                  <Text style={styles.educationYear}>
-                    {edu.current ? 'In Progress' : formatDate(edu.endDate)}
-                  </Text>
-                  {edu.description && (
-                    <View style={styles.educationDescription}>{cleanText(edu.description)}</View>
-                  )}
-                </View>
-              ))}
-            </View>
-          </View>
-        )}
-
-        {/* Projects */}
-        {hasContent(data.projects || []) && (
-          <View style={styles.section}>
-            <Text style={styles.sectionTitle}>Projects</Text>
-            <View style={styles.sectionTitleLine} />
-            <View style={styles.projectsContainer}>
-              {(data.projects || []).map(proj => (
-                <View key={proj.id} style={styles.projectItem}>
-                  <Text style={styles.projectName}>{proj.name}</Text>
-                  {proj.startDate && (
-                    <Text style={styles.projectDate}>
-                      {formatDate(proj.startDate)} — {proj.endDate ? formatDate(proj.endDate) : 'Ongoing'}
-                    </Text>
-                  )}
-                  <View style={styles.projectDescription}>
-                    {proj.description ? cleanText(proj.description) : <Text style={{color:'#bbb',fontStyle:'italic'}}>No description provided.</Text>}
+          {/* Education & Achievements in Two Columns */}
+          <View style={styles.twoColumnRow}>
+            
+            {/* Education */}
+            {hasContent(data.education || []) && (
+              <View style={styles.leftColumn}>
+                <View style={styles.section}>
+                  <View style={styles.sectionHeader}>
+                    <View style={styles.sectionIcon} />
+                    <Text style={styles.sectionTitle}>Education</Text>
                   </View>
-                  {proj.technologies && (
-                    <Text style={styles.projectTechnologies}>
-                      Technologies: {typeof proj.technologies === 'string' 
-                        ? proj.technologies 
-                        : proj.technologies.join(', ')
-                      }
-                    </Text>
-                  )}
+                  
+                  {(data.education || []).map(edu => (
+                    <View key={edu.id} style={styles.educationCard}>
+                      <Text style={styles.degreeTitle}>
+                        {edu.degree} in {edu.field}
+                      </Text>
+                      <Text style={styles.institutionName}>{edu.institution}</Text>
+                      <View style={styles.graduationYear}>
+                        <Text>
+                          {edu.current ? 'In Progress' : formatDate(edu.endDate)}
+                        </Text>
+                      </View>
+                      {edu.description && renderDescription(edu.description)}
+                    </View>
+                  ))}
                 </View>
-              ))}
-            </View>
-          </View>
-        )}
+              </View>
+            )}
 
-        {/* Achievements */}
-        {hasContent(data.achievements || []) && (
-          <View style={styles.section}>
-            <Text style={styles.sectionTitle}>Achievements</Text>
-            <View style={styles.sectionTitleLine} />
-            <View style={styles.achievementsContainer}>
-              {(data.achievements || []).map(ach => (
-                <View key={ach.id} style={styles.achievementItem}>
-                  <Text style={styles.achievementTitle}>{ach.title}</Text>
-                  {ach.date && (
-                    <Text style={styles.achievementDate}>{formatDate(ach.date)}</Text>
-                  )}
-                  {ach.description && (
-                    <View style={styles.achievementDescription}>{cleanText(ach.description)}</View>
-                  )}
+            {/* Achievements */}
+            {hasContent(data.achievements || []) && (
+              <View style={styles.rightColumn}>
+                <View style={styles.section}>
+                  <View style={styles.sectionHeader}>
+                    <View style={styles.sectionIcon} />
+                    <Text style={styles.sectionTitle}>Key Achievements</Text>
+                  </View>
+                  
+                  {(data.achievements || []).map(ach => (
+                    <View key={ach.id} style={styles.achievementCard}>
+                      <View style={styles.achievementIcon} />
+                      <Text style={styles.achievementTitle}>{ach.title}</Text>
+                      {ach.date && (
+                        <Text style={styles.achievementDate}>
+                          {formatDate(ach.date)}
+                        </Text>
+                      )}
+                      {ach.description && renderDescription(ach.description)}
+                    </View>
+                  ))}
                 </View>
-              ))}
-            </View>
+              </View>
+            )}
           </View>
-        )}
 
-        {/* Languages */}
-        {hasContent(data.languages || []) && (
-          <View style={styles.section}>
-            <Text style={styles.sectionTitle}>Languages</Text>
-            <View style={styles.sectionTitleLine} />
-            <View style={styles.languageContainer}>
-              <View style={styles.languageGrid}>
-                {(data.languages || []).map(lang => (
-                  <View key={lang.id} style={styles.languageItem}>
-                    <Text style={styles.languageName}>{lang.name}</Text>
-                    <Text style={styles.languageLevel}>{lang.level}</Text>
-                    <View style={styles.languageProficiency}>
-                      <View 
-                        style={[
-                          styles.languageProficiencyFill,
-                          { width: getProficiencyWidth(lang.level) }
-                        ]} 
-                      />
+          {/* Additional Sections */}
+          <View style={styles.twoColumnRow}>
+            
+            {/* Languages */}
+            {hasContent(data.languages || []) && (
+              <View style={styles.leftColumn}>
+                <View style={styles.section}>
+                  <View style={styles.sectionHeader}>
+                    <View style={styles.sectionIcon} />
+                    <Text style={styles.sectionTitle}>Languages</Text>
+                  </View>
+                  
+                  <View style={styles.listContainer}>
+                    {(data.languages || []).map(lang => (
+                      <View key={lang.id} style={styles.listItem}>
+                        <View style={styles.listDot} />
+                        <Text style={styles.listText}>
+                          {lang.name} - {lang.level}
+                        </Text>
+                      </View>
+                    ))}
+                  </View>
+                </View>
+              </View>
+            )}
+
+            {/* Certifications */}
+            {hasContent(data.certifications || []) && (
+              <View style={styles.rightColumn}>
+                <View style={styles.section}>
+                  <View style={styles.sectionHeader}>
+                    <View style={styles.sectionIcon} />
+                    <Text style={styles.sectionTitle}>Certifications</Text>
+                  </View>
+                  
+                  <View style={styles.listContainer}>
+                    {(data.certifications || []).map((cert, index) => (
+                      <View key={index} style={styles.listItem}>
+                        <View style={styles.listDot} />
+                        <Text style={styles.listText}>{cert}</Text>
+                      </View>
+                    ))}
+                  </View>
+                </View>
+              </View>
+            )}
+          </View>
+
+          {/* Volunteer Work */}
+          {hasContent(data.volunteerWork || []) && (
+            <View style={styles.section}>
+              <View style={styles.sectionHeader}>
+                <View style={styles.sectionIcon} />
+                <Text style={styles.sectionTitle}>Volunteer Experience</Text>
+              </View>
+              
+              {(data.volunteerWork || []).map(vol => (
+                <View key={vol.id} style={styles.experienceCard}>
+                  <View style={styles.experienceHeader}>
+                    <View style={styles.experienceLeft}>
+                      <Text style={styles.positionTitle}>{vol.role}</Text>
+                      <Text style={styles.companyName}>{vol.organization}</Text>
+                    </View>
+                    <View style={styles.experienceRight}>
+                      <View style={styles.dateRangeBox}>
+                        <Text>
+                          {formatDate(vol.startDate)} - {vol.current ? 'Present' : formatDate(vol.endDate)}
+                        </Text>
+                      </View>
                     </View>
                   </View>
-                ))}
-              </View>
-            </View>
-          </View>
-        )}
-
-        {/* Certifications */}
-        {hasContent(data.certifications || []) && (
-          <View style={styles.section}>
-            <Text style={styles.sectionTitle}>Certifications</Text>
-            <View style={styles.sectionTitleLine} />
-            <View style={styles.certificationsContainer}>
-              {(data.certifications || []).map((cert, index) => (
-                <View key={index} style={styles.certificationItem}>
-                  <Text style={styles.certificationText}>{cert}</Text>
+                  {vol.description && renderDescription(vol.description)}
                 </View>
               ))}
             </View>
-          </View>
-        )}
+          )}
 
-        {/* Volunteer Work */}
-        {hasContent(data.volunteerWork || []) && (
-          <View style={styles.section}>
-            <Text style={styles.sectionTitle}>Volunteer</Text>
-            <View style={styles.sectionTitleLine} />
-            <View style={styles.volunteerContainer}>
-              {(data.volunteerWork || []).map(vol => (
-                <View key={vol.id} style={styles.volunteerItem}>
-                  <Text style={styles.volunteerRole}>{vol.role}</Text>
-                  <Text style={styles.volunteerOrganization}>{vol.organization}</Text>
-                  <Text style={styles.volunteerDate}>
-                    {formatDate(vol.startDate)} — {vol.current ? 'Present' : formatDate(vol.endDate)}
-                  </Text>
-                  <View style={styles.volunteerDescription}>
-                    {vol.description ? cleanText(vol.description) : <Text style={{color:'#bbb',fontStyle:'italic'}}>No description provided.</Text>}
-                  </View>
-                </View>
-              ))}
-            </View>
-          </View>
-        )}
-
-        {/* References */}
-        {hasContent(data.references || []) && (
-          <View style={styles.section}>
-            <Text style={styles.sectionTitle}>References</Text>
-            <View style={styles.sectionTitleLine} />
-            <View style={styles.referencesContainer}>
-              <View style={styles.referenceGrid}>
-                {(data.references || []).map(ref => (
-                  <View key={ref.id} style={styles.referenceCard}>
-                    <Text style={styles.referenceName}>{ref.name}</Text>
-                    <Text style={styles.referenceTitle}>{ref.position}</Text>
-                    <Text style={styles.referenceTitle}>{ref.company}</Text>
-                    {ref.email && (
-                      <Text style={styles.referenceContact}>{ref.email}</Text>
-                    )}
-                    {ref.phone && (
-                      <Text style={styles.referenceContact}>{ref.phone}</Text>
-                    )}
-                  </View>
+          {/* Interests */}
+          {hasContent(data.hobbies || []) && (
+            <View style={styles.section}>
+              <View style={styles.sectionHeader}>
+                <View style={styles.sectionIcon} />
+                <Text style={styles.sectionTitle}>Interests</Text>
+              </View>
+              
+              <View style={styles.skillsGrid}>
+                {(data.hobbies || []).map((hobby, index) => (
+                  <Text key={index} style={styles.skillChip}>{hobby}</Text>
                 ))}
               </View>
             </View>
-          </View>
-        )}
-
-        {/* Interests */}
-        {hasContent(data.hobbies || []) && (
-          <View style={styles.section}>
-            <Text style={styles.sectionTitle}>Interests</Text>
-            <View style={styles.sectionTitleLine} />
-            <View style={styles.hobbiesContainer}>
-              <Text style={styles.hobbiesText}>
-                {(data.hobbies || []).join(' • ')}
-              </Text>
-            </View>
-          </View>
-        )}
-        
+          )}
+          
+        </View>
       </Page>
     </Document>
   );

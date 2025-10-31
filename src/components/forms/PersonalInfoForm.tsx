@@ -34,13 +34,23 @@ export default function PersonalInfoForm({ data, onChange }: PersonalInfoFormPro
         {/* Profile Photo */}
         <div className="flex flex-col items-center">
           <label className="block text-sm font-medium text-slate-700 mb-1">Profile Photo</label>
-          <div className="w-24 h-24 mb-1">
+          <div className="w-24 h-24 mb-1 relative">
             {data.photo ? (
-              <img
-                src={data.photo}
-                alt="Profile"
-                className="w-24 h-24 object-cover rounded-full border border-slate-300"
-              />
+              <>
+                <img
+                  src={data.photo}
+                  alt="Profile"
+                  className="w-24 h-24 object-cover rounded-full border border-slate-300"
+                />
+                <button
+                  type="button"
+                  onClick={() => onChange({ ...data, photo: '' })}
+                  className="absolute -top-1 -right-1 w-6 h-6 bg-red-500 hover:bg-red-600 text-white rounded-full flex items-center justify-center text-xs font-bold transition-colors"
+                  title="Remove photo"
+                >
+                  ×
+                </button>
+              </>
             ) : (
               <div className="w-24 h-24 bg-slate-200 rounded-full border border-slate-300 flex items-center justify-center text-slate-500 text-xs">
                 No Photo

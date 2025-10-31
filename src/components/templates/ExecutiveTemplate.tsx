@@ -41,12 +41,12 @@ const styles = StyleSheet.create({
     gap: 15,
   },
   profileImageContainer: {
-    marginRight: 25,
+    marginRight: 20,
   },
   profileImage: {
-    width: 90,
-    height: 90,
-    borderRadius: 45,
+    width: 70,
+    height: 70,
+    borderRadius: 35,
     borderWidth: 3,
     borderColor: '#d4af37',
   },
@@ -60,15 +60,14 @@ const styles = StyleSheet.create({
     marginBottom: 0,
   },
   name: {
-    fontSize: 30,
+    fontSize: 24,
     fontWeight: 'bold',
     color: '#ffffff',
     marginBottom: 4,
-    letterSpacing: 1.5,
+    letterSpacing: 1,
     textAlign: 'center',
-    flexWrap: 'wrap',
-    maxWidth: 400,
-    lineHeight: 1.2,
+    maxWidth: 350,
+    lineHeight: 1.1,
     alignSelf: 'center',
     paddingHorizontal: 8,
   },
@@ -494,7 +493,12 @@ export default function ExecutiveTemplate({ data }: ExecutiveTemplateProps) {
       .replace(/\u2028/g, '') // Unicode line separator
       .replace(/\u000C/g, '') // Form feed
       .replace(/\u0085/g, '') // Next line
+      .replace(/[\u00A7\u00B6\u00A9\u00AE\u2122]/g, '') // Section, paragraph, copyright, registered, trademark symbols
+      .replace(/[¬•‣▪◦·]/g, '') // Additional unwanted symbols
+      .replace(/\u00B0/g, '') // Degree symbol (sometimes appears)
+      .replace(/[\u2030-\u2070]/g, '') // Various Unicode symbols that might appear
       .replace(/[\r\n]+/g, '\n') // Normalize line breaks
+      .replace(/[ \t]+/g, ' ') // Normalize spaces and tabs but preserve newlines
       .trim();
   };
 
@@ -527,12 +531,7 @@ export default function ExecutiveTemplate({ data }: ExecutiveTemplateProps) {
             
             <View style={styles.nameSection}>
               <Text style={styles.name}>
-                {data.personalInfo.fullName?.split(' ').map((word, index, arr) => {
-                  if (index === 2 && arr.length > 2) {
-                    return `\n${word}`;
-                  }
-                  return index === 0 ? word : ` ${word}`;
-                }).join('')}
+                {data.personalInfo.fullName}
               </Text>
             </View>
           </View>
@@ -578,7 +577,7 @@ export default function ExecutiveTemplate({ data }: ExecutiveTemplateProps) {
           {data.personalInfo.summary && (
             <View style={styles.executiveSummary}>
               <Text style={styles.summaryTitle}>Professional Profile</Text>
-              <Text style={styles.summaryText}>{data.personalInfo.summary}</Text>
+              <Text style={styles.summaryText}>{cleanText(data.personalInfo.summary)}</Text>
             </View>
           )}
 
@@ -672,14 +671,19 @@ export default function ExecutiveTemplate({ data }: ExecutiveTemplateProps) {
                     <Text style={styles.achievementTitle}>{ach.title}</Text>
                     {ach.date && <Text style={styles.achievementDate}>{formatDate(ach.date)}</Text>}
                   </View>
-                  {ach.description && (
-                    <Text style={styles.achievementDesc}>
-                      {cleanText(ach.description).split('\n')
-                        .map(line => line.trim())
-                        .filter(line => line.length > 0)
-                        .join(' ')}
-                    </Text>
-                  )}
+                  {ach.description && cleanText(ach.description).split('\n')
+                    .map(line => line.trim())
+                    .filter(line => line.length > 0)
+                    .map((line, idx) => {
+                    // Add bullet if line doesn't already start with one
+                    const bulletLine = line.startsWith('•') || line.startsWith('-') || line.startsWith('*')
+                      ? line
+                      : `• ${line}`;
+                    
+                    return (
+                      <Text key={idx} style={styles.achievementDesc}>{bulletLine}</Text>
+                    );
+                  })}
                 </View>
               ))}
             </View>
@@ -695,14 +699,19 @@ export default function ExecutiveTemplate({ data }: ExecutiveTemplateProps) {
                   <View style={styles.educationLeft}>
                     <Text style={styles.degree}>{edu.degree} in {edu.field}</Text>
                     <Text style={styles.institution}>{edu.institution}</Text>
-                    {edu.description && (
-                      <Text style={styles.educationDetails}>
-                        {cleanText(edu.description).split('\n')
-                          .map(line => line.trim())
-                          .filter(line => line.length > 0)
-                          .join(' ')}
-                      </Text>
-                    )}
+                    {edu.description && cleanText(edu.description).split('\n')
+                      .map(line => line.trim())
+                      .filter(line => line.length > 0)
+                      .map((line, idx) => {
+                      // Add bullet if line doesn't already start with one
+                      const bulletLine = line.startsWith('•') || line.startsWith('-') || line.startsWith('*')
+                        ? line
+                        : `• ${line}`;
+                      
+                      return (
+                        <Text key={idx} style={styles.educationDetails}>{bulletLine}</Text>
+                      );
+                    })}
                   </View>
                   <View style={styles.educationRight}>
                     <Text style={styles.graduationYear}>

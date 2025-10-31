@@ -1,6 +1,6 @@
 // Tech Elite Template - Modern Developer & Tech Professional Design
 import { CVData } from '../../types/cv';
-import { Document, Page, View, Text, StyleSheet } from '@react-pdf/renderer';
+import { Document, Page, View, Text, StyleSheet, Image } from '@react-pdf/renderer';
 
 interface TechTemplateProps {
   data: CVData;
@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
     minHeight: '100vh',
   },
   
-  // Enhanced Left Sidebar - Terminal-inspired
+  // Enhanced Left Sidebar - Clean white design
   sidebar: {
     width: '38%',
     backgroundColor: '#fff', // pure white
@@ -30,15 +30,6 @@ const styles = StyleSheet.create({
     borderRightWidth: 3,
     borderRightColor: '#1976d2', // blue accent
     position: 'relative',
-  },
-  sidebarGlow: {
-    position: 'absolute',
-    top: 0,
-    right: -3,
-    width: 3,
-    height: '100%',
-    backgroundColor: '#00f5ff',
-    boxShadow: '0 0 20px #00f5ff',
   },
   
   // Main Content Area - Code Editor Style
@@ -58,6 +49,21 @@ const styles = StyleSheet.create({
     borderLeftWidth: 4,
     borderLeftColor: '#1976d2', // blue accent
     position: 'relative',
+    flexDirection: 'row',
+    alignItems: 'flex-start',
+  },
+  profileImageContainer: {
+    marginRight: 15,
+  },
+  profileImage: {
+    width: 50,
+    height: 50,
+    borderRadius: 25,
+    objectFit: 'cover',
+    border: '2px solid #1976d2'
+  },
+  profileContent: {
+    flex: 1,
   },
   profileAccent: {
     position: 'absolute',
@@ -65,7 +71,7 @@ const styles = StyleSheet.create({
     right: 0,
     width: 80,
     height: 80,
-    backgroundColor: '#00f5ff',
+    backgroundColor: '#1976d2',
     opacity: 0.1,
     borderRadius: 40,
   },
@@ -81,7 +87,7 @@ const styles = StyleSheet.create({
   },
   roleTitle: {
     fontSize: 16,
-    color: '#00f5ff',
+    color: '#1976d2',
     marginBottom: 15,
     textTransform: 'uppercase',
     letterSpacing: 2,
@@ -89,19 +95,19 @@ const styles = StyleSheet.create({
   },
   profileSummary: {
     fontSize: 11,
-    color: '#a0aec0',
+    color: '#666',
     lineHeight: 1.8,
     marginTop: 10,
   },
   
-  // Sidebar Terminal-Style Headers
+  // Sidebar Clean Style Headers
   sidebarSection: {
     marginBottom: 30,
-    backgroundColor: '#1a202c',
+    backgroundColor: '#fff',
     padding: 20,
     borderRadius: 8,
     borderWidth: 1,
-    borderColor: '#2d3748',
+    borderColor: '#e3e3e3',
   },
   terminalHeader: {
     flexDirection: 'row',
@@ -109,18 +115,18 @@ const styles = StyleSheet.create({
     marginBottom: 15,
     paddingBottom: 10,
     borderBottomWidth: 1,
-    borderBottomColor: '#2d3748',
+    borderBottomColor: '#e3e3e3',
   },
   terminalPrompt: {
     fontSize: 10,
-    color: '#00f5ff',
+    color: '#1976d2',
     fontFamily: 'Courier',
     marginRight: 8,
   },
   sidebarTitle: {
     fontSize: 12,
     fontWeight: 'bold',
-    color: '#ffffff',
+    color: '#1976d2',
     textTransform: 'uppercase',
     letterSpacing: 1,
   },
@@ -136,23 +142,25 @@ const styles = StyleSheet.create({
     width: 16,
     height: 16,
     marginRight: 12,
-    color: '#00f5ff',
+    color: '#1976d2',
     fontWeight: 'bold',
   },
   contactText: {
     fontSize: 10,
-    color: '#e2e8f0',
+    color: '#222',
     fontFamily: 'Courier',
   },
   
-  // Advanced Skills with Progress Bars
+  // Clean Skills with Progress Bars
   skillItem: {
     marginBottom: 15,
     padding: 12,
-    backgroundColor: '#2d3748',
+    backgroundColor: '#fff',
     borderRadius: 6,
     borderLeftWidth: 3,
-    borderLeftColor: '#00f5ff',
+    borderLeftColor: '#1976d2',
+    borderWidth: 1,
+    borderColor: '#e3e3e3',
   },
   skillHeader: {
     flexDirection: 'row',
@@ -162,46 +170,36 @@ const styles = StyleSheet.create({
   },
   skillName: {
     fontSize: 11,
-    color: '#ffffff',
+    color: '#222',
     fontWeight: 'bold',
   },
   skillPercentage: {
     fontSize: 9,
-    color: '#00f5ff',
+    color: '#1976d2',
     fontFamily: 'Courier',
     fontWeight: 'bold',
   },
   skillBarContainer: {
     height: 6,
-    backgroundColor: '#1a202c',
+    backgroundColor: '#f5f5f5',
     borderRadius: 3,
     overflow: 'hidden',
     position: 'relative',
   },
   skillBar: {
     height: 6,
-    backgroundColor: '#00f5ff',
+    backgroundColor: '#1976d2',
     borderRadius: 3,
     position: 'relative',
   },
-  skillBarGlow: {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-    backgroundColor: '#00f5ff',
-    opacity: 0.3,
-    boxShadow: '0 0 10px #00f5ff',
-  },
   skillCategory: {
     fontSize: 8,
-    color: '#718096',
+    color: '#666',
     marginTop: 4,
     textTransform: 'uppercase',
   },
   
-  // Enhanced Languages Section
+  // Clean Languages Section
   languageItem: {
     flexDirection: 'row',
     justifyContent: 'space-between',
@@ -209,64 +207,68 @@ const styles = StyleSheet.create({
     marginBottom: 8,
     paddingVertical: 6,
     paddingHorizontal: 10,
-    backgroundColor: '#2d3748',
+    backgroundColor: '#fff',
     borderRadius: 4,
+    borderWidth: 1,
+    borderColor: '#e3e3e3',
   },
   languageName: {
     fontSize: 10,
-    color: '#ffffff',
+    color: '#222',
     fontWeight: 'bold',
   },
   languageLevel: {
     fontSize: 9,
-    color: '#00f5ff',
+    color: '#1976d2',
     fontWeight: 'bold',
-    backgroundColor: '#1a202c',
+    backgroundColor: '#f5f5f5',
     paddingHorizontal: 6,
     paddingVertical: 2,
     borderRadius: 3,
   },
   
-  // Tech-Style Certifications
+  // Clean Certifications
   certItem: {
     marginBottom: 10,
     padding: 10,
-    backgroundColor: '#2d3748',
+    backgroundColor: '#fff',
     borderRadius: 6,
     borderTopWidth: 2,
-    borderTopColor: '#00f5ff',
+    borderTopColor: '#1976d2',
+    borderWidth: 1,
+    borderColor: '#e3e3e3',
   },
   certText: {
     fontSize: 9,
-    color: '#e2e8f0',
+    color: '#222',
     lineHeight: 1.5,
     fontFamily: 'Courier',
   },
   certIcon: {
     fontSize: 8,
-    color: '#00f5ff',
+    color: '#1976d2',
     marginRight: 6,
   },
   
-  // Modern Interest Tags
+  // Clean Interest Tags
   interestContainer: {
     flexDirection: 'row',
     flexWrap: 'wrap',
     marginTop: 10,
   },
   interestTag: {
-    backgroundColor: '#2d3748',
+    backgroundColor: '#fff',
     paddingHorizontal: 10,
     paddingVertical: 5,
     marginRight: 8,
     marginBottom: 6,
     borderRadius: 15,
     borderWidth: 1,
-    borderColor: '#00f5ff',
+    borderColor: '#1976d2',
   },
   interestText: {
     fontSize: 9,
-    color: '#00f5ff',
+    color: '#1976d2',
     fontWeight: 'bold',
   },
   
@@ -292,10 +294,10 @@ const styles = StyleSheet.create({
     left: 0,
     width: 40,
     height: 2,
-    backgroundColor: '#00f5ff',
+    backgroundColor: '#1976d2',
   },
   
-  // Experience Cards - Modern Developer Style
+  // Experience Cards - Clean White Style
   experienceItem: {
     marginBottom: 12,
     padding: 12,
@@ -304,17 +306,8 @@ const styles = StyleSheet.create({
     borderLeftWidth: 4,
     borderLeftColor: '#1976d2', // blue accent
     position: 'relative',
-  },
-  experienceGlow: {
-    position: 'absolute',
-    top: -2,
-    right: -2,
-    bottom: -2,
-    left: -2,
-    backgroundColor: '#00f5ff',
-    opacity: 0.1,
-    borderRadius: 12,
-    zIndex: -1,
+    borderWidth: 1,
+    borderColor: '#e3e3e3',
   },
   experienceHeader: {
     flexDirection: 'row',
@@ -332,7 +325,7 @@ const styles = StyleSheet.create({
   positionTitle: {
     fontSize: 14,
     fontWeight: 'bold',
-    color: '#ffffff',
+    color: '#222',
     marginBottom: 4,
     letterSpacing: 0.5,
   },
@@ -344,14 +337,14 @@ const styles = StyleSheet.create({
   },
   locationInfo: {
     fontSize: 10,
-    color: '#718096',
+    color: '#666',
     fontStyle: 'italic',
   },
   dateRange: {
     fontSize: 10,
-    color: '#a0aec0',
+    color: '#666',
     fontFamily: 'Courier',
-    backgroundColor: '#2d3748',
+    backgroundColor: '#f5f5f5',
     paddingHorizontal: 10,
     paddingVertical: 4,
     borderRadius: 4,
@@ -359,13 +352,13 @@ const styles = StyleSheet.create({
   },
   achievementBullet: {
     fontSize: 10,
-    color: '#e2e8f0',
+    color: '#222',
     marginLeft: 20,
     marginBottom: 4,
     lineHeight: 1.6,
   },
   bulletIcon: {
-    color: '#00f5ff',
+    color: '#1976d2',
     marginRight: 8,
     fontWeight: 'bold',
   },
@@ -394,8 +387,8 @@ const styles = StyleSheet.create({
   },
   projectStatus: {
     fontSize: 8,
-    color: '#68d391',
-    backgroundColor: '#1a365d',
+    color: '#1976d2',
+    backgroundColor: '#f5f5f5',
     paddingHorizontal: 8,
     paddingVertical: 3,
     borderRadius: 10,
@@ -404,13 +397,13 @@ const styles = StyleSheet.create({
   },
   projectDate: {
     fontSize: 9,
-    color: '#718096',
+    color: '#666',
     fontFamily: 'Courier',
     marginBottom: 8,
   },
   projectDescription: {
     fontSize: 10,
-    color: '#e2e8f0',
+    color: '#222',
     lineHeight: 1.6,
     marginBottom: 12,
   },
@@ -420,11 +413,11 @@ const styles = StyleSheet.create({
     marginTop: 10,
     paddingTop: 10,
     borderTopWidth: 1,
-    borderTopColor: '#2d3748',
+    borderTopColor: '#e3e3e3',
   },
   techTag: {
-    backgroundColor: '#0a0e1a',
-    color: '#00f5ff',
+    backgroundColor: '#fff',
+    color: '#1976d2',
     fontSize: 8,
     paddingHorizontal: 8,
     paddingVertical: 4,
@@ -432,18 +425,20 @@ const styles = StyleSheet.create({
     marginBottom: 4,
     borderRadius: 12,
     borderWidth: 1,
-    borderColor: '#00f5ff',
+    borderColor: '#1976d2',
     fontWeight: 'bold',
   },
   
-  // Education - Clean Academic Style
+  // Education - Clean White Style
   educationItem: {
     marginBottom: 18,
     padding: 16,
-    backgroundColor: '#151b2c',
+    backgroundColor: '#fff',
     borderRadius: 8,
     borderTopWidth: 3,
-    borderTopColor: '#00f5ff',
+    borderTopColor: '#1976d2',
+    borderWidth: 1,
+    borderColor: '#e3e3e3',
   },
   degreeInfo: {
     flexDirection: 'row',
@@ -454,13 +449,13 @@ const styles = StyleSheet.create({
   degree: {
     fontSize: 13,
     fontWeight: 'bold',
-    color: '#ffffff',
+    color: '#222',
   },
   graduationYear: {
     fontSize: 10,
-    color: '#a0aec0',
+    color: '#666',
     fontFamily: 'Courier',
-    backgroundColor: '#2d3748',
+    backgroundColor: '#f5f5f5',
     paddingHorizontal: 8,
     paddingVertical: 2,
     borderRadius: 4,
@@ -473,7 +468,7 @@ const styles = StyleSheet.create({
   },
   educationDescription: {
     fontSize: 9,
-    color: '#718096',
+    color: '#666',
     lineHeight: 1.5,
   },
   
@@ -492,7 +487,7 @@ const styles = StyleSheet.create({
     top: 15,
     right: 15,
     fontSize: 20,
-    color: '#ffd700',
+    color: '#1976d2',
   },
   achievementTitle: {
     fontSize: 13,
@@ -503,19 +498,19 @@ const styles = StyleSheet.create({
   },
   achievementDate: {
     fontSize: 9,
-    color: '#a0aec0',
+    color: '#666',
     marginBottom: 8,
     fontFamily: 'Courier',
     textTransform: 'uppercase',
   },
   achievementDescription: {
     fontSize: 10,
-    color: '#e2e8f0',
+    color: '#222',
     lineHeight: 1.6,
     marginRight: 30,
   },
   
-  // Volunteer Work - Community Focus
+  // Volunteer Work - Clean White Focus
   volunteerItem: {
     marginBottom: 16,
     padding: 15,
@@ -523,11 +518,13 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     borderLeftWidth: 3,
     borderLeftColor: '#1976d2', // blue accent
+    borderWidth: 1,
+    borderColor: '#e3e3e3',
   },
   volunteerRole: {
     fontSize: 12,
     fontWeight: 'bold',
-    color: '#ffffff',
+    color: '#222',
     marginBottom: 3,
   },
   volunteerOrganization: {
@@ -538,17 +535,17 @@ const styles = StyleSheet.create({
   },
   volunteerDate: {
     fontSize: 9,
-    color: '#a0aec0',
+    color: '#666',
     fontFamily: 'Courier',
     marginBottom: 8,
   },
   volunteerDescription: {
     fontSize: 10,
-    color: '#e2e8f0',
+    color: '#222',
     lineHeight: 1.5,
   },
   
-  // References - Professional Network
+  // References - Clean White Network
   referenceGrid: {
     flexDirection: 'row',
     flexWrap: 'wrap',
@@ -557,33 +554,33 @@ const styles = StyleSheet.create({
   referenceCard: {
     width: '48%',
     padding: 15,
-    backgroundColor: '#1a202c',
+    backgroundColor: '#fff',
     borderRadius: 8,
     borderWidth: 1,
-    borderColor: '#2d3748',
+    borderColor: '#e3e3e3',
   },
   referenceName: {
     fontSize: 11,
     fontWeight: 'bold',
-    color: '#ffffff',
+    color: '#222',
     marginBottom: 4,
   },
   referenceTitle: {
     fontSize: 10,
-    color: '#00f5ff',
+    color: '#1976d2',
     marginBottom: 6,
     fontStyle: 'italic',
   },
   referenceContact: {
     fontSize: 9,
-    color: '#a0aec0',
+    color: '#666',
     fontFamily: 'Courier',
   },
 
-  // Additional missing styles for compatibility
+  // Additional styles for compatibility
   skillLevel: {
     fontSize: 8,
-    color: '#a0aec0',
+    color: '#666',
     marginTop: 2,
     textAlign: 'right',
   },
@@ -591,11 +588,11 @@ const styles = StyleSheet.create({
     marginBottom: 30,
     paddingBottom: 20,
     borderBottomWidth: 2,
-    borderBottomColor: '#00f5ff',
+    borderBottomColor: '#1976d2',
   },
   title: {
     fontSize: 14,
-    color: '#a0aec0',
+    color: '#666',
     marginBottom: 15,
     fontFamily: 'Courier',
     textTransform: 'uppercase',
@@ -603,36 +600,36 @@ const styles = StyleSheet.create({
   },
   description: {
     fontSize: 10,
-    color: '#e2e8f0',
+    color: '#222',
     lineHeight: 1.5,
   },
   dateLocation: {
     fontSize: 9,
-    color: '#a0aec0',
+    color: '#666',
     marginBottom: 8,
     fontFamily: 'Courier',
   },
   bullet: {
     fontSize: 10,
-    color: '#a0aec0',
+    color: '#666',
     marginLeft: 10,
     marginBottom: 2,
     paddingLeft: 4,
   },
   projectDesc: {
     fontSize: 10,
-    color: '#e2e8f0',
+    color: '#222',
     lineHeight: 1.4,
     marginBottom: 8,
   },
   graduationDate: {
     fontSize: 9,
-    color: '#a0aec0',
+    color: '#666',
     fontFamily: 'Courier',
   },
   achievementDesc: {
     fontSize: 10,
-    color: '#e2e8f0',
+    color: '#222',
     lineHeight: 1.4,
   },
 });
@@ -660,12 +657,50 @@ export default function TechTemplate({ data }: TechTemplateProps) {
     }
   };
 
+  // Enhanced text utility for consistent bullet points
+  const renderDescription = (text: string) => {
+    if (!text || !text.trim()) return null;
+    
+    // Clean and split into bullet points
+    const cleaned = text.replace(/[¶¬•‣▪◦·]/g, '').replace(/\s+/g, ' ').trim();
+    
+    if (!cleaned) return null;
+    
+    // Split by newlines or existing bullet points and filter empty items
+    let bullets = cleaned.split(/\n|•|‣|▪|◦|·/).map(b => b.trim()).filter(b => b.length > 0);
+    
+    // If only one item and it's long, try to split by sentence or period
+    if (bullets.length === 1 && bullets[0].length > 100) {
+      const sentences = bullets[0].split(/[.!?]+/).map(s => s.trim()).filter(s => s.length > 10);
+      if (sentences.length > 1) {
+        bullets = sentences;
+      }
+    }
+    
+    return (
+      <View>
+        {bullets.map((bullet, idx) => (
+          <Text key={idx} style={styles.bullet}>▸ {bullet}</Text>
+        ))}
+      </View>
+    );
+  };
+
   return (
     <Document>
       <Page size="A4" style={styles.page}>
         <View style={styles.container}>
           {/* Sidebar */}
           <View style={styles.sidebar}>
+            {/* Profile Image - Top Left */}
+            {data.personalInfo.photo && (
+              <View style={styles.profileHeader}>
+                <View style={styles.profileImageContainer}>
+                  <Image src={data.personalInfo.photo} style={styles.profileImage} />
+                </View>
+              </View>
+            )}
+            
             {/* Contact */}
             <View style={styles.sidebarSection}>
               <Text style={styles.sidebarTitle}>Contact</Text>
@@ -779,9 +814,7 @@ export default function TechTemplate({ data }: TechTemplateProps) {
                       {formatDate(exp.startDate)} - {exp.current ? 'Present' : formatDate(exp.endDate)}
                       {exp.location && ` | ${exp.location}`}
                     </Text>
-                    {exp.description && exp.description.split('\n').map((line, idx) => (
-                      <Text key={idx} style={styles.bullet}>▸ {line}</Text>
-                    ))}
+                    {exp.description && renderDescription(exp.description)}
                   </View>
                 ))}
               </View>
@@ -799,9 +832,7 @@ export default function TechTemplate({ data }: TechTemplateProps) {
                         {proj.endDate ? 'Completed' : 'In Progress'}
                       </Text>
                     </View>
-                    {proj.description && (
-                      <Text style={styles.projectDesc}>{proj.description.replace(/\n/g, ' ')}</Text>
-                    )}
+                    {proj.description && renderDescription(proj.description)}
                     {proj.technologies && (
                       <View style={styles.techStack}>
                         {(typeof proj.technologies === 'string' 
@@ -841,7 +872,7 @@ export default function TechTemplate({ data }: TechTemplateProps) {
                   <View key={ach.id} style={styles.achievementCard}>
                     <Text style={styles.achievementTitle}>{ach.title}</Text>
                     {ach.date && <Text style={styles.achievementDate}>{formatDate(ach.date)}</Text>}
-                    {ach.description && <Text style={styles.achievementDesc}>{ach.description}</Text>}
+                    {ach.description && renderDescription(ach.description)}
                   </View>
                 ))}
               </View>
@@ -858,7 +889,7 @@ export default function TechTemplate({ data }: TechTemplateProps) {
                     <Text style={styles.volunteerDate}>
                       {formatDate(vol.startDate)} - {vol.current ? 'Present' : formatDate(vol.endDate)}
                     </Text>
-                    {vol.description && <Text style={styles.volunteerDescription}>{vol.description}</Text>}
+                    {vol.description && renderDescription(vol.description)}
                   </View>
                 ))}
               </View>

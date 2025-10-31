@@ -1,6 +1,6 @@
 // Modern Elite Template - Professional design with visual hierarchy
 import { CVData } from '../../types/cv';
-import { Document, Page, View, Text, StyleSheet } from '@react-pdf/renderer';
+import { Document, Page, View, Text, StyleSheet, Image } from '@react-pdf/renderer';
 
 interface ModernTemplateProps {
   data: CVData;
@@ -92,6 +92,15 @@ const styles = StyleSheet.create({
     fontSize: 10,
     color: '#64748b',
     fontWeight: 400
+  },
+  
+  // Profile Photo
+  profilePhoto: {
+    width: 60,
+    height: 60,
+    borderRadius: 30,
+    objectFit: 'cover',
+    border: '2px solid #e2e8f0'
   },
   
   // Content Area
@@ -388,6 +397,9 @@ export default function ModernTemplate({ data }: ModernTemplateProps) {
                 )}
               </View>
             </View>
+            {data.personalInfo.photo && (
+              <Image src={data.personalInfo.photo} style={styles.profilePhoto} />
+            )}
           </View>
         </View>
 

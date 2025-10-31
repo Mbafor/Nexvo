@@ -1,6 +1,6 @@
 // Creative Masterpiece Template - Bold, artistic design for creative professionals
 import { CVData } from '../../types/cv';
-import { Document, Page, View, Text, StyleSheet } from '@react-pdf/renderer';
+import { Document, Page, View, Text, StyleSheet, Image } from '@react-pdf/renderer';
 
 interface CreativeTemplateProps {
   data: CVData;
@@ -49,6 +49,14 @@ const styles = StyleSheet.create({
     position: 'relative',
     overflow: 'hidden'
   },
+  headerContent: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'flex-start'
+  },
+  headerInfo: {
+    flex: 1
+  },
   decorativeElement: {
     position: 'absolute',
     top: -50,
@@ -68,6 +76,12 @@ const styles = StyleSheet.create({
     backgroundColor: '#3b82f6',
     opacity: 0.15,
     borderRadius: 50
+  },
+  profilePhoto: {
+    width: 60,
+    height: 60,
+    borderRadius: 30,
+    objectFit: 'cover',
   },
   name: { 
     fontSize: 32, 
@@ -471,34 +485,41 @@ export default function CreativeTemplatePDF({ data }: CreativeTemplateProps) {
         <View style={styles.headerContainer}>
           <View style={styles.decorativeElement} />
           <View style={styles.decorativeElement2} />
-          <Text style={styles.name}>{data.personalInfo.fullName}</Text>
-          
-          {/* Contact details below the name */}
-          <View style={styles.contactGrid}>
-            {data.personalInfo.email && (
-              <View style={styles.contactChip}>
-                <Text style={styles.contactText}>{data.personalInfo.email}</Text>
+          <View style={styles.headerContent}>
+            <View style={styles.headerInfo}>
+              <Text style={styles.name}>{data.personalInfo.fullName}</Text>
+              
+              {/* Contact details below the name */}
+              <View style={styles.contactGrid}>
+                {data.personalInfo.email && (
+                  <View style={styles.contactChip}>
+                    <Text style={styles.contactText}>{data.personalInfo.email}</Text>
+                  </View>
+                )}
+                {data.personalInfo.phone && (
+                  <View style={styles.contactChip}>
+                    <Text style={styles.contactText}>{data.personalInfo.phone}</Text>
+                  </View>
+                )}
+                {data.personalInfo.location && (
+                  <View style={styles.contactChip}>
+                    <Text style={styles.contactText}>{data.personalInfo.location}</Text>
+                  </View>
+                )}
+                {data.personalInfo.linkedin && (
+                  <View style={styles.contactChip}>
+                    <Text style={styles.contactText}>LinkedIn</Text>
+                  </View>
+                )}
+                {data.personalInfo.website && (
+                  <View style={styles.contactChip}>
+                    <Text style={styles.contactText}>Portfolio</Text>
+                  </View>
+                )}
               </View>
-            )}
-            {data.personalInfo.phone && (
-              <View style={styles.contactChip}>
-                <Text style={styles.contactText}>{data.personalInfo.phone}</Text>
-              </View>
-            )}
-            {data.personalInfo.location && (
-              <View style={styles.contactChip}>
-                <Text style={styles.contactText}>{data.personalInfo.location}</Text>
-              </View>
-            )}
-            {data.personalInfo.linkedin && (
-              <View style={styles.contactChip}>
-                <Text style={styles.contactText}>LinkedIn</Text>
-              </View>
-            )}
-            {data.personalInfo.website && (
-              <View style={styles.contactChip}>
-                <Text style={styles.contactText}>Portfolio</Text>
-              </View>
+            </View>
+            {data.personalInfo.photo && (
+              <Image src={data.personalInfo.photo} style={styles.profilePhoto} />
             )}
           </View>
         </View>
