@@ -1,7 +1,7 @@
 
 // src/components/LandingPage.tsx
 import { useState, useEffect } from "react";
-import { Zap, Sparkles, Shield, Users, Award, Play, Mail, Phone, MapPin, Clock, Send, MessageCircle, Linkedin, Twitter, Briefcase, BarChart3, Palette, Headphones, FileText, TrendingUp, Globe, ArrowRight } from "lucide-react";
+import { Zap, Sparkles, Shield, Award, Play, Mail, Phone, MapPin, Clock, Send, MessageCircle, Linkedin, Twitter, Briefcase, BarChart3, Palette, Headphones, FileText, TrendingUp, Globe, ArrowRight } from "lucide-react";
 import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
 import LatestPosts from "../components/LatestPosts";
 import { sendContactMessage } from "../utils/contactService";

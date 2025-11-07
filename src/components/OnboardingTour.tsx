@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, ChevronRight, ChevronLeft, Sparkles, FileText, Eye, Settings, Upload } from 'lucide-react';
+import { X, ChevronRight, ChevronLeft, Sparkles, FileText, Eye } from 'lucide-react';
 
 interface TourStep {
   id: string;
@@ -30,43 +30,27 @@ export default function OnboardingTour({ isOpen, onClose, onComplete }: Onboardi
       icon: Sparkles
     },
     {
-      id: 'upload',
-      title: '🚀 Quick Start: Upload Your CV',
-      content: 'Save time! Upload your existing CV (PDF or Word) and our enterprise-grade AI will automatically fill all sections for you with high accuracy.',
-      target: 'cv-upload',
-      position: 'right',
-      icon: Upload
+      id: 'navigation',
+      title: '🧭 Easy Navigation',
+      content: 'This section shows your current progress and allows you to navigate between CV sections. Use the Previous/Next buttons to move through your CV creation process.',
+      target: 'section-navigation',
+      position: 'bottom',
+      icon: ChevronRight
     },
     {
       id: 'sections',
       title: '📊 Track Your Progress',
-      content: 'See your completion status for each section. Green checkmarks show completed sections, and you can click any section to jump to it instantly.',
+      content: 'Here you can see all available CV sections. Green checkmarks show completed sections, and you can click any section to jump to it instantly.',
       target: 'progress-sections',
-      position: 'right',
+      position: 'left',
       icon: FileText
     },
     {
-      id: 'navigation',
-      title: '🧭 Easy Navigation',
-      content: 'Use these buttons to move between sections seamlessly. You can also see your overall progress and access the live preview anytime.',
-      target: 'section-navigation',
-      position: 'top',
-      icon: ChevronRight
-    },
-    {
-      id: 'customize',
-      title: '⚙️ Customize Your CV',
-      content: 'Add or remove sections to match your needs. You can customize which sections appear in your final CV for maximum impact.',
-      target: 'customize-button',
-      position: 'top',
-      icon: Settings
-    },
-    {
       id: 'preview',
-      title: 'Preview & Download',
-      content: 'Preview your CV anytime to see how it looks. When ready, download as PDF or save to your dashboard.',
+      title: '👁️ Preview & Download',
+      content: 'Preview your CV anytime to see how it looks. When ready, you can download it as PDF or Word document.',
       target: 'preview-button',
-      position: 'bottom',
+      position: 'left',
       icon: Eye
     }
   ];
@@ -125,68 +109,96 @@ export default function OnboardingTour({ isOpen, onClose, onComplete }: Onboardi
     const isMobile = window.innerWidth < 768;
     const isSmallMobile = window.innerWidth < 480;
     
-    // Responsive tooltip sizing
-    const tooltipWidth = isSmallMobile ? Math.min(320, window.innerWidth - 24) : 
-                       isMobile ? Math.min(360, window.innerWidth - 32) : 
-                       Math.min(420, window.innerWidth - 40);
-    const tooltipHeight = isSmallMobile ? 320 : isMobile ? 360 : 280;
-    const padding = isMobile ? 12 : 20;
+    // Responsive tooltip sizing - more compact
+    const tooltipWidth = isSmallMobile ? Math.min(300, window.innerWidth - 32) : 
+                       isMobile ? Math.min(340, window.innerWidth - 48) : 
+                       Math.min(380, window.innerWidth - 80);
+    const tooltipHeight = isSmallMobile ? 280 : isMobile ? 300 : 260;
+    const padding = isMobile ? 16 : 24;
 
     let top = 0;
     let left = 0;
 
-    // Always try to keep tooltip in visible area
     const viewportHeight = window.innerHeight;
     const viewportWidth = window.innerWidth;
 
     if (isMobile) {
-      // On mobile, position strategically for better visibility
-      if (rect.top < viewportHeight / 2) {
-        // Element is in top half, place tooltip below or at bottom
-        top = Math.min(viewportHeight - tooltipHeight - 20, Math.max(rect.bottom + padding, 80));
+      // Mobile: Always position for optimal visibility
+      // Check if element is in sidebar (for CVBuilder layout)
+      const isInSidebar = rect.left < viewportWidth * 0.3;
+      
+      if (isInSidebar) {
+        // Element is in sidebar, place tooltip to the right if space allows
+        if (rect.right + tooltipWidth + padding < viewportWidth) {
+          left = rect.right + padding;
+          top = Math.max(padding, Math.min(
+            viewportHeight - tooltipHeight - padding,
+            rect.top + (rect.height / 2) - (tooltipHeight / 2)
+          ));
+        } else {
+          // Not enough space to the right, center horizontally
+          left = Math.max(padding, (viewportWidth - tooltipWidth) / 2);
+          top = rect.bottom + padding > viewportHeight / 2 
+            ? Math.max(padding, rect.top - tooltipHeight - padding)
+            : Math.min(viewportHeight - tooltipHeight - padding, rect.bottom + padding);
+        }
       } else {
-        // Element is in bottom half, place tooltip above or at top
-        top = Math.max(20, Math.min(rect.top - tooltipHeight - padding, viewportHeight - tooltipHeight - 20));
+        // Element is in main content, position based on vertical space
+        left = Math.max(padding, (viewportWidth - tooltipWidth) / 2);
+        if (rect.top > viewportHeight / 2) {
+          // Element in bottom half, place tooltip above
+          top = Math.max(padding, rect.top - tooltipHeight - padding);
+        } else {
+          // Element in top half, place tooltip below
+          top = Math.min(viewportHeight - tooltipHeight - padding, rect.bottom + padding);
+        }
       }
-      left = Math.max(padding, (viewportWidth - tooltipWidth) / 2);
     } else {
-      // Desktop positioning with better visibility
+      // Desktop positioning - more precise
       switch (currentTourStep.position) {
         case 'top':
-          top = Math.max(60, rect.top - tooltipHeight - padding);
+          top = Math.max(80, rect.top - tooltipHeight - padding);
           left = Math.max(padding, Math.min(
             viewportWidth - tooltipWidth - padding,
             rect.left + (rect.width / 2) - (tooltipWidth / 2)
           ));
           break;
         case 'bottom':
-          top = Math.min(viewportHeight - tooltipHeight - 60, rect.bottom + padding);
+          top = Math.min(viewportHeight - tooltipHeight - 80, rect.bottom + padding);
           left = Math.max(padding, Math.min(
             viewportWidth - tooltipWidth - padding,
             rect.left + (rect.width / 2) - (tooltipWidth / 2)
           ));
           break;
         case 'left':
-          top = Math.max(60, Math.min(
-            viewportHeight - tooltipHeight - 60,
+          top = Math.max(80, Math.min(
+            viewportHeight - tooltipHeight - 80,
             rect.top + (rect.height / 2) - (tooltipHeight / 2)
           ));
           left = Math.max(padding, rect.left - tooltipWidth - padding);
+          // If not enough space on left, try right
+          if (left < padding) {
+            left = Math.min(viewportWidth - tooltipWidth - padding, rect.right + padding);
+          }
           break;
         case 'right':
-          top = Math.max(60, Math.min(
-            viewportHeight - tooltipHeight - 60,
+          top = Math.max(80, Math.min(
+            viewportHeight - tooltipHeight - 80,
             rect.top + (rect.height / 2) - (tooltipHeight / 2)
           ));
           left = Math.min(viewportWidth - tooltipWidth - padding, rect.right + padding);
+          // If not enough space on right, try left
+          if (left + tooltipWidth > viewportWidth - padding) {
+            left = Math.max(padding, rect.left - tooltipWidth - padding);
+          }
           break;
       }
     }
 
-    // Final safety checks to ensure tooltip is always visible
-    if (top < 20) top = 20;
-    if (top + tooltipHeight > viewportHeight - 20) {
-      top = viewportHeight - tooltipHeight - 20;
+    // Final safety checks
+    if (top < padding) top = padding;
+    if (top + tooltipHeight > viewportHeight - padding) {
+      top = viewportHeight - tooltipHeight - padding;
     }
     if (left < padding) left = padding;
     if (left + tooltipWidth > viewportWidth - padding) {
@@ -208,45 +220,42 @@ export default function OnboardingTour({ isOpen, onClose, onComplete }: Onboardi
     <AnimatePresence>
       {isOpen && (
         <>
-          {/* Overlay with spotlight effect */}
+          {/* Overlay - simple dark background */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50"
-            style={{ 
-              background: targetElement && currentTourStep.position !== 'center'
-                ? `radial-gradient(circle at ${targetElement.getBoundingClientRect().left + targetElement.getBoundingClientRect().width/2}px ${targetElement.getBoundingClientRect().top + targetElement.getBoundingClientRect().height/2}px, transparent 120px, rgba(15,23,42,0.8) 200px)`
-                : 'rgba(15,23,42,0.8)'
-            }}
+            className="fixed inset-0 z-50 bg-black/50 backdrop-blur-sm"
             onClick={handleSkip}
           />
 
-          {/* Highlight target element */}
+          {/* Highlight target element - subtle glow */}
           {targetElement && currentTourStep.position !== 'center' && (
             <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              className="fixed z-50 pointer-events-none border-2 border-blue-400 rounded-lg"
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.95 }}
+              className="fixed z-50 pointer-events-none border-2 border-blue-500/60 rounded-lg bg-blue-50/20"
               style={{
-                top: targetElement.getBoundingClientRect().top - 4,
-                left: targetElement.getBoundingClientRect().left - 4,
-                width: targetElement.getBoundingClientRect().width + 8,
-                height: targetElement.getBoundingClientRect().height + 8,
-                boxShadow: '0 0 0 4px rgba(59, 130, 246, 0.3)'
+                top: targetElement.getBoundingClientRect().top - 6,
+                left: targetElement.getBoundingClientRect().left - 6,
+                width: targetElement.getBoundingClientRect().width + 12,
+                height: targetElement.getBoundingClientRect().height + 12,
+                boxShadow: '0 0 0 2px rgba(59, 130, 246, 0.2), 0 0 20px rgba(59, 130, 246, 0.15)'
               }}
+              transition={{ duration: 0.3 }}
             />
           )}
 
           {/* Tour Tooltip */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.8, y: 20 }}
+            initial={{ opacity: 0, scale: 0.9, y: 10 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.8, y: 20 }}
-            className="fixed z-[100] bg-white/95 backdrop-blur-sm rounded-xl shadow-2xl border border-slate-200/60 overflow-hidden"
+            exit={{ opacity: 0, scale: 0.9, y: 10 }}
+            className="fixed z-[100] bg-white backdrop-blur-sm rounded-2xl shadow-xl border border-gray-200 overflow-hidden"
             style={getTooltipPosition()}
             onClick={(e) => e.stopPropagation()}
+            transition={{ type: "spring", duration: 0.4 }}
           >
             {/* Header */}
             <div className="p-4 sm:p-6 pb-3 sm:pb-4">
@@ -329,10 +338,10 @@ export default function OnboardingTour({ isOpen, onClose, onComplete }: Onboardi
               </div>
             </div>
 
-            {/* Arrow pointer for non-center positions */}
-            {targetElement && currentTourStep.position !== 'center' && (
+            {/* Arrow pointer for non-center positions - only on desktop for clarity */}
+            {targetElement && currentTourStep.position !== 'center' && window.innerWidth >= 768 && (
               <div
-                className={`absolute w-3 h-3 bg-white border transform rotate-45 ${
+                className={`absolute w-3 h-3 bg-white border-gray-200 transform rotate-45 ${
                   currentTourStep.position === 'top' ? 'bottom-[-6px] left-1/2 -translate-x-1/2 border-r border-b' :
                   currentTourStep.position === 'bottom' ? 'top-[-6px] left-1/2 -translate-x-1/2 border-l border-t' :
                   currentTourStep.position === 'left' ? 'right-[-6px] top-1/2 -translate-y-1/2 border-t border-r' :

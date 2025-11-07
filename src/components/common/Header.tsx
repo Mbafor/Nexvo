@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { FileText, Menu, X, ArrowRight } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Link } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 
 interface HeaderProps {
   onGetStarted?: () => void;
@@ -10,23 +10,39 @@ interface HeaderProps {
 
 export default function Header({ onGetStarted, onSignIn }: HeaderProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const navigate = useNavigate();
+  const location = useLocation();
 
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, sectionId: string) => {
     e.preventDefault();
     setMobileMenuOpen(false);
     
     // Check if we're on the home page
-    const isHomePage = window.location.pathname === '/' || window.location.pathname === '/index.html';
+    const isHomePage = location.pathname === '/' || location.pathname === '/index.html' || location.pathname === '';
+    
+    const scrollToSection = () => {
+      // Add delay to ensure the page has loaded/rendered
+      setTimeout(() => {
+        const element = document.getElementById(sectionId);
+        if (element) {
+          const headerHeight = 80; // Approximate header height
+          const elementPosition = element.offsetTop - headerHeight;
+          window.scrollTo({
+            top: elementPosition,
+            behavior: 'smooth'
+          });
+        }
+      }, 100);
+    };
     
     if (isHomePage) {
-      // If on home page, scroll to section
-      const element = document.getElementById(sectionId);
-      if (element) {
-        element.scrollIntoView({ behavior: "smooth" });
-      }
+      // If on home page, scroll to section immediately
+      scrollToSection();
     } else {
-      // If not on home page, navigate to home page with hash
-      window.location.href = `/#${sectionId}`;
+      // If not on home page, navigate to home page first, then scroll
+      navigate('/', { replace: true });
+      // Wait for navigation to complete before scrolling
+      scrollToSection();
     }
   };
 
@@ -55,7 +71,7 @@ export default function Header({ onGetStarted, onSignIn }: HeaderProps) {
             <a href="/#templates" onClick={(e) => handleNavClick(e, "templates")} className="text-black hover:text-blue-600 font-medium transition-all duration-300 hover:scale-105">
               Templates
             </a>
-            <a href="/#features" onClick={(e) => handleNavClick(e, "features")} className="text-black hover:text-blue-600 font-medium transition-all duration-300 hover:scale-105">
+            <a href="/#why-choose-us" onClick={(e) => handleNavClick(e, "why-choose-us")} className="text-black hover:text-blue-600 font-medium transition-all duration-300 hover:scale-105">
               Features
             </a>
             <Link to="/blogs" className="text-black hover:text-blue-600 font-medium transition-all duration-300 hover:scale-105">
@@ -114,7 +130,7 @@ export default function Header({ onGetStarted, onSignIn }: HeaderProps) {
                   className="text-black hover:text-blue-600 font-medium transition-colors">
                   Templates
                 </a>
-                <a href="/#features" onClick={(e) => handleNavClick(e, "features")} 
+                <a href="/#why-choose-us" onClick={(e) => handleNavClick(e, "why-choose-us")} 
                   className="text-black hover:text-blue-600 font-medium transition-colors">
                   Features
                 </a>
