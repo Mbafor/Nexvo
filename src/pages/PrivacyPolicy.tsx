@@ -1,7 +1,7 @@
-import { useNavigate } from "react-router-dom";
+
 import { useEffect } from "react";
 import {
-  ArrowLeft,
+  
   Shield,
   Calendar,
   Mail,
@@ -13,7 +13,7 @@ import Header from '../components/common/Header';
 import Footer from '../components/common/Footer';
 
 export default function PrivacyPolicy() {
-  const navigate = useNavigate();
+
   const lastUpdated = "January 15, 2025";
   const effectiveDate = "January 15, 2025";
 
@@ -21,13 +21,7 @@ export default function PrivacyPolicy() {
     window.scrollTo(0, 0);
   }, []);
 
-  const handleBack = () => {
-    if (window.history.length > 1) {
-      navigate(-1);
-    } else {
-      navigate("/");
-    }
-  };
+ 
 
   return (
     <div className="min-h-screen bg-white text-gray-800">
