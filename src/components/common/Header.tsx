@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { FileText, Menu, X, ArrowRight } from "lucide-react";
+import { Menu, X, ArrowRight } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 
@@ -58,9 +58,8 @@ export default function Header({ onGetStarted, onSignIn }: HeaderProps) {
           >
             <Link to="/" className="flex items-center space-x-3">
               <div className="w-10 h-10 bg-gradient-to-br from-blue-600 to-blue-800 rounded-xl flex items-center justify-center">
-                <FileText className="h-6 w-6 text-white" />
               </div>
-              <h2 className="text-3xl font-bold text-blue-600">
+              <h2 className="text-2xl font-bold text-blue-600">
                 QuickCV
               </h2>
             </Link>

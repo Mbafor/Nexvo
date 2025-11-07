@@ -201,7 +201,7 @@ export default function PreviewPage({ cvData, onBack, onDownload, onShowAuth }: 
           <div className="mb-8 relative overflow-hidden bg-gradient-to-r from-blue-50 via-indigo-50 to-purple-50 border border-blue-200/50 rounded-2xl p-6 shadow-lg shadow-blue-100/50">
             <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-blue-400/20 to-purple-400/20 rounded-full -translate-y-16 translate-x-16"></div>
             <div className="relative flex items-start space-x-4">
-              <div className="flex-shrink-0 w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-600 rounded-xl flex items-center justify-center shadow-lg">
+              <div className="flex-shrink-0 w-12 h-12 bg-gradient-to-br text-blue-500 rounded-xl flex items-center justify-center shadow-lg">
                 <Shield className="h-6 w-6 text-white" />
               </div>
               <div className="flex-1">
@@ -212,7 +212,7 @@ export default function PreviewPage({ cvData, onBack, onDownload, onShowAuth }: 
                 </p>
                 <button
                   onClick={handleDownload}
-                  className="inline-flex items-center space-x-2 px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-xl hover:from-blue-700 hover:to-purple-700 transition-all duration-300 font-medium shadow-lg hover:shadow-xl"
+                  className="inline-flex items-center space-x-2 px-6 py-3 bg-gradient-to-r text-blue-600 rounded-xl hover:from-blue-700 hover:to-purple-700 transition-all duration-300 font-medium shadow-lg hover:shadow-xl"
                 >
                   <Sparkles className="h-5 w-5" />
                   <span>Start Creating for Free</span>

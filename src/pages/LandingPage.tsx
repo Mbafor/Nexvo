@@ -1,7 +1,7 @@
 
 // src/components/LandingPage.tsx
 import { useState, useEffect } from "react";
-import { Zap, Sparkles, Shield, Award, Play, Mail, Phone, MapPin, Clock, Send, MessageCircle, Linkedin, Twitter, Briefcase, BarChart3, Palette, Headphones, FileText, TrendingUp, Globe, ArrowRight } from "lucide-react";
+import { Zap, Sparkles, Shield, Award, Mail, Phone, MapPin, Clock, Send, MessageCircle, Linkedin, Twitter, Briefcase, BarChart3, Palette, Headphones, FileText, TrendingUp, Globe, ArrowRight } from "lucide-react";
 import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
 import LatestPosts from "../components/LatestPosts";
 import { sendContactMessage } from "../utils/contactService";
@@ -283,10 +283,6 @@ export default function LandingPage({ onGetStarted, onSignIn }: LandingPageProps
           className="group px-8 py-4 border-2 border-blue-200 hover:border-blue-300 rounded-2xl text-blue-700 font-semibold backdrop-blur-sm hover:bg-blue-50 transition-all duration-300"
           whileHover={{ scale: 1.05 }}
         >
-          <span className="flex items-center space-x-3">
-            <Play className="h-5 w-5 text-blue-600" />
-            <span>Watch Demo</span>
-          </span>
         </motion.button>
       </motion.div>
 

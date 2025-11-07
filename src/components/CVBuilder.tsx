@@ -8,7 +8,6 @@ import {
   Clock,
   FileText,
   Sparkles,
-  User,
   X,
   Plus,
   Minus,
@@ -439,7 +438,7 @@ export default function CVBuilder({ cvData, onUpdateCVData, onPreview, onSignIn,
               whileTap={{ scale: 0.95 }}
             >
               <ChevronLeft className="h-5 w-5" />
-              <span className="font-semibold text-lg">QuickCV</span>
+              <span className="font-semibold text-lg">Home</span>
             </motion.button>
 
             {/* Progress indicator - Desktop only */}
@@ -481,7 +480,7 @@ export default function CVBuilder({ cvData, onUpdateCVData, onPreview, onSignIn,
                 whileTap={{ scale: 0.95 }}
                 title="Customize sections"
               >
-                <Settings className="h-4 w-4" />
+                
                 <span className="text-sm">Sections</span>
               </motion.button>
 
@@ -493,7 +492,7 @@ export default function CVBuilder({ cvData, onUpdateCVData, onPreview, onSignIn,
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >
-                  <User className="h-4 w-4" />
+    
                   <span>Sign In</span>
                 </motion.button>
               )}
@@ -505,7 +504,6 @@ export default function CVBuilder({ cvData, onUpdateCVData, onPreview, onSignIn,
                 whileHover={{ scale: 1.05, y: -1 }}
                 whileTap={{ scale: 0.95 }}
               >
-                <Eye className="h-4 w-4" />
                 <span className="text-sm sm:text-base">Preview</span>
               </motion.button>
             </div>
