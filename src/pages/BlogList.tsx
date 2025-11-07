@@ -53,9 +53,8 @@ const BlogList: React.FC = () => {
         <section className="bg-gradient-to-br from-blue-50 via-white to-purple-50 py-16">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-12">
-              <h1 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6">
-                Master Your 
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600"> Career Journey</span>
+              <h1 className="text-4xl md:text-6xl font-bold text-blue-700 mb-6">
+                Master Your Career Journey
               </h1>
               <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
                 Expert insights, proven strategies, and actionable advice to help you build standout CVs, 
@@ -206,7 +205,7 @@ const BlogList: React.FC = () => {
           )}
 
           {/* Newsletter Signup */}
-          <div className="bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl p-8 text-center text-white mt-16">
+          <div className=" bg-blue-700 rounded-2xl p-8 text-center text-white mt-16">
             <h3 className="text-2xl font-bold mb-4">Stay Updated with Career Insights</h3>
             <p className="text-blue-100 mb-6 max-w-2xl mx-auto">
               Get the latest CV tips, career advice, and industry insights delivered to your inbox weekly.

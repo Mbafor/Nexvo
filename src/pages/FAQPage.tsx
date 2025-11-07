@@ -6,14 +6,6 @@ import {
   HelpCircle,
   ChevronDown,
   Search,
-  FileText,
-  Shield,
-  CreditCard,
-  Users,
-  Zap,
-  MessageCircle,
-  Mail,
-  Phone
 } from 'lucide-react';
 import Header from '../components/common/Header';
 import Footer from '../components/common/Footer';
@@ -183,12 +175,12 @@ const faqs: FAQ[] = [
 ];
 
 const categories = [
-  { name: "General", icon: HelpCircle, color: "bg-blue-500" },
-  { name: "Templates", icon: FileText, color: "bg-purple-500" },
-  { name: "Features", icon: Zap, color: "bg-green-500" },
-  { name: "Privacy", icon: Shield, color: "bg-red-500" },
-  { name: "Billing", icon: CreditCard, color: "bg-yellow-500" },
-  { name: "Support", icon: Users, color: "bg-indigo-500" }
+  { name: "General", color: "bg-blue-500" },
+  { name: "Templates", color: "bg-purple-500" },
+  { name: "Features", color: "bg-green-500" },
+  { name: "Privacy", color: "bg-red-500" },
+  { name: "Billing", color: "bg-yellow-500" },
+  { name: "Support", color: "bg-indigo-500" }
 ];
 
 export default function FAQPage() {
@@ -226,10 +218,7 @@ export default function FAQPage() {
       <main className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         {/* Hero */}
         <div className="text-center mb-8">
-          <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-r from-blue-600 to-blue-800 rounded-full mb-4 shadow-lg">
-            <HelpCircle className="h-8 w-8 text-white" />
-          </div>
-          <h1 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
+          <h1 className="text-4xl lg:text-5xl font-bold text-blue-700 mb-4">
             Frequently Asked Questions
           </h1>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
@@ -284,7 +273,7 @@ export default function FAQPage() {
               All
             </button>
             {categories.map(category => {
-              const Icon = category.icon;
+          
               return (
                 <button
                   key={category.name}
@@ -295,7 +284,7 @@ export default function FAQPage() {
                       : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                   }`}
                 >
-                  <Icon className="h-4 w-4" />
+            
                   <span>{category.name}</span>
                 </button>
               );
@@ -393,8 +382,7 @@ export default function FAQPage() {
         </div>
 
         {/* Still Need Help Section */}
-        <div className="mt-16 bg-gradient-to-r from-blue-600 to-purple-600 rounded-xl p-8 text-white text-center">
-          <MessageCircle className="h-12 w-12 mx-auto mb-4 text-blue-200" />
+        <div className="mt-16 bg-blue-700 rounded-xl p-8 text-white text-center">
           <h3 className="text-2xl font-bold mb-4">Still need help?</h3>
           <p className="text-blue-100 mb-6 max-w-2xl mx-auto">
             Can't find the answer you're looking for? Our friendly support team is here to help you succeed.
@@ -404,61 +392,14 @@ export default function FAQPage() {
               onClick={() => navigate('/contact')}
               className="inline-flex items-center space-x-2 px-6 py-3 bg-white text-blue-600 rounded-lg hover:bg-blue-50 transition-colors font-medium"
             >
-              <Mail className="h-5 w-5" />
               <span>Contact Support</span>
             </button>
             <a
               href="tel:+237683094941"
               className="inline-flex items-center space-x-2 px-6 py-3 border-2 border-white text-white rounded-lg hover:bg-white hover:text-blue-600 transition-colors font-medium"
             >
-              <Phone className="h-5 w-5" />
               <span>Call Us</span>
             </a>
-          </div>
-        </div>
-
-        {/* Quick Links */}
-        <div className="mt-12 grid md:grid-cols-3 gap-6">
-          <div className="bg-white rounded-xl p-6 text-center hover:shadow-lg transition-shadow">
-            <FileText className="h-8 w-8 text-blue-600 mx-auto mb-3" />
-            <h4 className="font-semibold text-gray-900 mb-2">Getting Started Guide</h4>
-            <p className="text-gray-600 text-sm mb-4">
-              Learn the basics of creating your first professional CV with QuickCV.
-            </p>
-            <button
-              onClick={() => navigate('/guide')}
-              className="text-blue-600 hover:text-blue-700 font-medium text-sm"
-            >
-              Read Guide →
-            </button>
-          </div>
-
-          <div className="bg-white rounded-xl p-6 text-center hover:shadow-lg transition-shadow">
-            <Users className="h-8 w-8 text-green-600 mx-auto mb-3" />
-            <h4 className="font-semibold text-gray-900 mb-2">Community Forum</h4>
-            <p className="text-gray-600 text-sm mb-4">
-              Connect with other users and share tips for job search success.
-            </p>
-            <a
-              href="#"
-              className="text-green-600 hover:text-green-700 font-medium text-sm"
-            >
-              Join Community →
-            </a>
-          </div>
-
-          <div className="bg-white rounded-xl p-6 text-center hover:shadow-lg transition-shadow">
-            <Zap className="h-8 w-8 text-purple-600 mx-auto mb-3" />
-            <h4 className="font-semibold text-gray-900 mb-2">Feature Requests</h4>
-            <p className="text-gray-600 text-sm mb-4">
-              Suggest new features or improvements to make QuickCV even better.
-            </p>
-            <button
-              onClick={() => navigate('/contact')}
-              className="text-purple-600 hover:text-purple-700 font-medium text-sm"
-            >
-              Submit Idea →
-            </button>
           </div>
         </div>
       </main>

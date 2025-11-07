@@ -255,7 +255,7 @@ export default function LandingPage({ onGetStarted, onSignIn }: LandingPageProps
       {/* Description */}
       <motion.p
         variants={itemVariants}
-        className="text-xl lg:text-2xl text-black-700 leading-relaxed max-w-2xl"
+        className="text-xl text-black leading-relaxed max-w-2xl"
       >
         Create ATS-optimized, professional CVs that land interviews at top
         companies.
@@ -567,7 +567,7 @@ export default function LandingPage({ onGetStarted, onSignIn }: LandingPageProps
       <h2 className="text-4xl lg:text-5xl font-bold mb-6 text-blue-600">
         Expert Career Insights
       </h2>
-      <p className="text-xl text-blue-700 max-w-3xl mx-auto">
+      <p className="text-xl text-black  max-w-3xl mx-auto">
         Stay ahead with the latest tips and strategies from career experts
       </p>
     </motion.div>
@@ -590,7 +590,7 @@ export default function LandingPage({ onGetStarted, onSignIn }: LandingPageProps
       <h2 className="text-4xl lg:text-5xl font-bold mb-6 text-blue-600">
         Frequently Asked Questions
       </h2>
-      <p className="text-xl text-blue-600/80">
+      <p className="text-xl text-black ">
         Everything you need to know about creating your perfect CV
       </p>
     </motion.div>
@@ -609,7 +609,7 @@ export default function LandingPage({ onGetStarted, onSignIn }: LandingPageProps
             onClick={() => toggleFAQ(idx)}
             className="w-full p-6 text-left flex justify-between items-center group"
           >
-            <h3 className="font-semibold text-blue-900 group-hover:text-blue-600 transition-colors">
+            <h3 className="text-black group-hover:text-blue-600 transition-colors">
               {faq.question}
             </h3>
             <motion.div
@@ -631,7 +631,7 @@ export default function LandingPage({ onGetStarted, onSignIn }: LandingPageProps
                 className="overflow-hidden"
               >
                 <div className="px-6 pb-6">
-                  <p className="text-blue-700 leading-relaxed">
+                  <p className="text-black  leading-relaxed">
                     {faq.answer}
                   </p>
                 </div>
@@ -654,10 +654,10 @@ export default function LandingPage({ onGetStarted, onSignIn }: LandingPageProps
       viewport={{ once: true }}
       className="space-y-8"
     >
-      <h2 className="text-4xl lg:text-6xl font-bold text-blue-900">
+      <h2 className="text-4xl lg:text-6xl font-bold text-blue-700">
         Ready to Land Your Dream Job?
       </h2>
-      <p className="text-xl lg:text-2xl text-blue-700 max-w-2xl mx-auto">
+      <p className="text-xl lg:text-2xl text-black  max-w-2xl mx-auto">
         Join 50,000+ professionals who've successfully created their perfect CV with QuickCV
       </p>
       <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -696,7 +696,7 @@ export default function LandingPage({ onGetStarted, onSignIn }: LandingPageProps
       viewport={{ once: true }}
     >
       <h2 className="text-4xl lg:text-5xl font-bold mb-6 text-blue-600">
-        Get in <span className="text-black">Touch</span>
+        Get in Touch
       </h2>
       <p className="text-xl text-black max-w-3xl mx-auto">
         Have questions? Need help? Want to partner with us? We'd love to hear from you.

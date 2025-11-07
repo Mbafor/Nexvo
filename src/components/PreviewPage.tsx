@@ -1,6 +1,6 @@
 // Stunning CV Preview Page - Professional Template Gallery
 import { useState, useEffect } from 'react';
-import { ChevronLeft, Download, Lock, Shield, Eye, Sparkles, Zap, Crown, Minimize2, Code, FileText } from 'lucide-react';
+import { ChevronLeft, Download, Lock, Eye, Sparkles, Zap, Crown, Minimize2, Code, FileText } from 'lucide-react';
 import { CVData, TemplateType } from '../types/cv';
 import { PDFViewer } from '@react-pdf/renderer';
 import { generatePDFBlob, getTemplate } from '../lib/pdfGenerator';
@@ -152,11 +152,14 @@ export default function PreviewPage({ cvData, onBack, onDownload, onShowAuth }: 
                 className="group flex items-center space-x-2 px-4 py-2 text-gray-600 hover:text-white hover:bg-gradient-to- rounded-xl transition-all duration-300 border border-gray-200 hover:border-transparent shadow-sm hover:shadow-md"
               >
                 <ChevronLeft className="h-5 w-5 transition-transform group-hover:-translate-x-1" />
-                <span className="font-medium">Back to Editor</span>
+              <span className="font-medium text-black hover:text-blue-700 transition-colors duration-200 cursor-pointer">
+  Back to Editor
+</span>
+
               </button>
               
               <div className="hidden sm:block">
-                <h1 className="text-2xl font-bold bg-gradient-to-r from-gray-900 via-blue-900 to-purple-900 bg-clip-text text-transparent">
+                <h1 className="text-2xl font-bold text-blue-700">
                   Template Gallery
                 </h1>
                 <p className="text-sm text-gray-500 mt-1">Choose your perfect CV design</p>
@@ -196,31 +199,7 @@ export default function PreviewPage({ cvData, onBack, onDownload, onShowAuth }: 
 
       {/* Main Content */}
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        {/* Auth Notice with Enhanced Design */}
-        {!user && (
-          <div className="mb-8 relative overflow-hidden bg-gradient-to-r from-blue-50 via-indigo-50 to-purple-50 border border-blue-200/50 rounded-2xl p-6 shadow-lg shadow-blue-100/50">
-            <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-blue-400/20 to-purple-400/20 rounded-full -translate-y-16 translate-x-16"></div>
-            <div className="relative flex items-start space-x-4">
-              <div className="flex-shrink-0 w-12 h-12 bg-gradient-to-br text-blue-500 rounded-xl flex items-center justify-center shadow-lg">
-                <Shield className="h-6 w-6 text-white" />
-              </div>
-              <div className="flex-1">
-                <h3 className="text-xl font-bold text-gray-900 mb-2">Create Your Professional CV Today</h3>
-                <p className="text-gray-700 mb-4 leading-relaxed">
-                  Join thousands of professionals who have crafted stunning CVs with our platform. 
-                  Create a free account to download your CV and access your personal dashboard.
-                </p>
-                <button
-                  onClick={handleDownload}
-                  className="inline-flex items-center space-x-2 px-6 py-3 bg-gradient-to-r text-blue-600 rounded-xl hover:from-blue-700 transition-all duration-300 font-medium shadow-lg hover:shadow-xl"
-                >
-                  <Sparkles className="h-5 w-5" />
-                  <span>Start Creating for Free</span>
-                </button>
-              </div>
-            </div>
-          </div>
-        )}
+
 
         <div className={`grid ${isPreviewMode ? 'lg:grid-cols-2' : 'grid-cols-1'} gap-8`}>
           {/* Template Gallery */}

@@ -65,13 +65,13 @@ export default function Header({ onGetStarted, onSignIn }: HeaderProps) {
 
           {/* Desktop Menu */}
           <div className="hidden md:flex items-center space-x-8">
-            <a href="/#templates" onClick={(e) => handleNavClick(e, "templates")} className="text-black hover:text-blue-600 font-medium transition-all duration-300 hover:scale-105">
+            <a href="/#templates" onClick={(e) => handleNavClick(e, "templates")} className="text-black hover:text-blue-600 transition-all duration-300 hover:scale-105">
               Templates
             </a>
-            <a href="/#why-choose-us" onClick={(e) => handleNavClick(e, "why-choose-us")} className="text-black hover:text-blue-600 font-medium transition-all duration-300 hover:scale-105">
+            <a href="/#why-choose-us" onClick={(e) => handleNavClick(e, "why-choose-us")} className="text-black hover:text-blue-600 transition-all duration-300 hover:scale-105">
               Features
             </a>
-            <Link to="/blogs" className="text-black hover:text-blue-600 font-medium transition-all duration-300 hover:scale-105">
+            <Link to="/blogs" className="text-black hover:text-blue-600 transition-all duration-300 hover:scale-105">
               Blog
             </Link>
             
@@ -79,7 +79,7 @@ export default function Header({ onGetStarted, onSignIn }: HeaderProps) {
             {onSignIn && (
               <motion.button 
                 onClick={onSignIn}
-                className="px-4 py-2 text-blue-600 hover:text-blue-700 border border-blue-200 hover:border-blue-300 hover:bg-blue-50 rounded-lg font-medium transition-all duration-300"
+                className="px-4 py-2 text-blue-600 hover:text-blue-700 border border-blue-200 hover:border-blue-300 hover:bg-blue-50 rounded-lg transition-all duration-300"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
@@ -90,7 +90,7 @@ export default function Header({ onGetStarted, onSignIn }: HeaderProps) {
             {onGetStarted && (
               <motion.button 
                 onClick={onGetStarted}
-                className="px-6 py-3 bg-blue-600 hover:bg-blue-700 rounded-xl text-white font-semibold shadow-lg hover:shadow-blue-500/25 transition-all duration-300 group"
+                className="px-6 py-3 bg-blue-600 hover:bg-blue-700 rounded-xl text-white shadow-lg hover:shadow-blue-500/25 transition-all duration-300 group"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
@@ -140,7 +140,7 @@ export default function Header({ onGetStarted, onSignIn }: HeaderProps) {
                 {onSignIn && (
                   <button 
                     onClick={() => { onSignIn(); setMobileMenuOpen(false); }} 
-                    className="px-4 py-2 text-blue-600 hover:text-blue-700 border border-blue-200 hover:border-blue-300 hover:bg-blue-50 rounded-lg font-medium transition-all text-left"
+                    className="px-4 py-2 text-blue-600 hover:text-blue-700 border border-blue-200 hover:border-blue-300 hover:bg-blue-50 rounded-lg transition-all text-left"
                   >
                     Sign In
                   </button>
@@ -148,7 +148,7 @@ export default function Header({ onGetStarted, onSignIn }: HeaderProps) {
                 
                 {onGetStarted && (
                   <button onClick={() => { onGetStarted(); setMobileMenuOpen(false); }} 
-                    className="px-6 py-3 bg-blue-600 hover:bg-blue-700 rounded-xl text-white font-semibold mt-2">
+                    className="px-6 py-3 bg-blue-600 hover:bg-blue-700 rounded-xl text-white mt-2">
                     Create CV
                   </button>
                 )}

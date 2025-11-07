@@ -1,4 +1,4 @@
-import { Users, Award, Globe, Heart, Mail } from 'lucide-react';
+import { Users, Award, Globe, Heart } from 'lucide-react';
 import { useEffect } from 'react';
 import Header from '../components/common/Header';
 import Footer from '../components/common/Footer';
@@ -20,9 +20,9 @@ export default function AboutPage() {
       <div className="max-w-6xl mx-auto px-6 py-12">
         {/* Mission */}
         <div className="bg-white rounded-xl shadow-lg p-8 mb-12">
-          <div className="bg-blue-50 border-l-4 border-blue-600 p-6 rounded-r-lg mb-8">
-            <h3 className="text-xl font-bold text-blue-900 mb-2">Our Mission</h3>
-            <p className="text-blue-800 font-medium mb-0">
+          <div className="bg-white-50 border-l-4 border-blue-600 p-6 rounded-r-lg mb-8">
+            <h3 className="text-xl font-bold text-blue-700 mb-2">Our Mission</h3>
+            <p className="text-black-800 mb-0">
               QuickCV was founded to empower professionals worldwide by providing modern, 
               ATS-optimized CV templates and tools that help candidates showcase their skills 
               and land interviews at top companies. We aim to democratize access to career 
@@ -33,8 +33,8 @@ export default function AboutPage() {
           {/* Stats Cards */}
           <div className="grid md:grid-cols-4 gap-6 mb-8">
             <div className="bg-blue-50 p-6 rounded-lg text-center shadow-sm hover:shadow-md transition">
-              <Users className="h-8 w-8 text-blue-600 mx-auto mb-2" />
-              <div className="text-2xl font-bold text-blue-900">50,000+</div>
+              <Users className="h-8 w-8 text-blue-700 mx-auto mb-2" />
+              <div className="text-2xl font-bold text-blue-700">50,000+</div>
               <div className="text-sm text-blue-700">CVs Created</div>
             </div>
             <div className="bg-gray-50 p-6 rounded-lg text-center shadow-sm hover:shadow-md transition">
@@ -44,7 +44,7 @@ export default function AboutPage() {
             </div>
             <div className="bg-blue-50 p-6 rounded-lg text-center shadow-sm hover:shadow-md transition">
               <Award className="h-8 w-8 text-blue-600 mx-auto mb-2" />
-              <div className="text-2xl font-bold text-blue-900">95%</div>
+              <div className="text-2xl font-bold text-blue-700">95%</div>
               <div className="text-sm text-blue-700">Success Rate</div>
             </div>
             <div className="bg-gray-50 p-6 rounded-lg text-center shadow-sm hover:shadow-md transition">
@@ -55,7 +55,7 @@ export default function AboutPage() {
           </div>
 
           {/* What We Do */}
-          <h2 className="text-2xl font-bold text-gray-900 border-b-2 border-gray-200 pb-2 mb-6">What We Do</h2>
+          <h2 className="text-2xl font-bold text-blue-700 border-b-2 border-gray-200 pb-2 mb-6">What We Do</h2>
           <p className="mb-4">
             QuickCV combines beautiful design with ATS optimization to ensure your CV passes 
             modern recruitment software and catches the eye of hiring managers. We provide an 
@@ -87,11 +87,11 @@ export default function AboutPage() {
           </div>
 
           {/* Values */}
-          <h2 className="text-2xl font-bold text-gray-900 border-b-2 border-gray-200 pb-2 mb-6">Our Values</h2>
+          <h2 className="text-2xl font-bold text-blue-700 border-b-2 border-gray-200 pb-2 mb-6">Our Values</h2>
           <div className="grid md:grid-cols-2 gap-6 mb-12">
             <div className="bg-blue-50 p-6 rounded-lg">
-              <h3 className="font-bold text-blue-900 mb-2">Professional Excellence</h3>
-              <p className="text-blue-800 text-sm">
+              <h3 className="font-bold text-blue-700 mb-2">Professional Excellence</h3>
+              <p className="text-blue-700 text-sm">
                 Every professional deserves a CV that showcases their best self. Our templates highlight skills and achievements effectively.
               </p>
             </div>
@@ -116,7 +116,7 @@ export default function AboutPage() {
           </div>
 
           {/* Impact */}
-          <h2 className="text-2xl font-bold text-gray-900 border-b-2 border-gray-200 pb-2 mb-6">Our Impact</h2>
+          <h2 className="text-2xl font-bold text-blue-700 border-b-2 border-gray-200 pb-2 mb-6">Our Impact</h2>
           <p className="mb-4">
             Since launching, QuickCV has helped thousands of professionals worldwide craft compelling CVs that increase their interview rates and accelerate career growth.
           </p>
@@ -140,17 +140,17 @@ export default function AboutPage() {
           </ul>
 
           {/* Meet the Team */}
-          <h2 className="text-2xl font-bold text-gray-900 border-b-2 border-gray-200 pb-2 mb-8 text-center">Meet the Team</h2>
+          <h2 className="text-2xl font-bold text-blue-700 border-b-2 border-gray-200 pb-2 mb-8 text-center">Meet the Team</h2>
           <div className="grid md:grid-cols-3 gap-8 mb-12">
             {/* Member 1 */}
             <div className="bg-white rounded-xl shadow-lg p-6 text-center hover:shadow-xl transition">
               <div className="w-24 h-24 mx-auto mb-4 rounded-full overflow-hidden border-2 border-purple-600">
                 <img src="https://via.placeholder.com/150" alt="Jane Doe" className="w-full h-full object-cover" />
               </div>
-              <h3 className="font-bold text-gray-900 text-lg mb-1">Mbafor Joshua</h3>
-              <p className="text-sm text-gray-600 mb-2">Co-Founder & CEO</p>
+              <h3 className="font-bold text-blue-700 text-lg mb-1">Mbafor Joshua</h3>
+              <p className="text-sm text-blue-700 mb-2">Co-Founder & CEO</p>
               <p className="text-gray-700 text-sm">
-                Joshua leads QuickCV with a vision to empower professionals worldwide. She has over 10 years in HR and recruitment.
+                Joshua leads QuickCV with a vision to empower professionals worldwide.
               </p>
             </div>
             {/* Member 2 */}
@@ -158,10 +158,10 @@ export default function AboutPage() {
               <div className="w-24 h-24 mx-auto mb-4 rounded-full overflow-hidden border-2 border-purple-600">
                 <img src="https://via.placeholder.com/150" alt="John Smith" className="w-full h-full object-cover" />
               </div>
-              <h3 className="font-bold text-gray-900 text-lg mb-1">John Smith</h3>
-              <p className="text-sm text-gray-600 mb-2">CTO</p>
+              <h3 className="font-bold text-gray-900 text-lg mb-1">Yohnjie Alain</h3>
+              <p className="text-sm text-gray-600 mb-2">COO</p>
               <p className="text-gray-700 text-sm">
-                John oversees technology and product development, ensuring QuickCV remains modern and user-friendly.
+                Yohnjie oversees technology and product development, ensuring QuickCV remains modern and user-friendly.
               </p>
             </div>
             {/* Member 3 */}
@@ -176,26 +176,6 @@ export default function AboutPage() {
               </p>
             </div>
           </div>
-        </div>
-
-        {/* Contact CTA */}
-        <div className="bg-gradient-to-r from-purple-600 to-blue-600 rounded-xl p-8 text-white text-center mb-12 shadow-lg">
-          <h3 className="text-2xl font-bold mb-2">Get in Touch</h3>
-          <p className="mb-4 text-purple-100">
-            Have questions or want to share your story? We'd love to hear from you.
-          </p>
-          <a
-            href="mailto:mbaforfoghang@gmail.com"
-            className="inline-flex items-center space-x-2 px-5 py-2 bg-white text-purple-600 rounded-lg hover:bg-purple-50 transition-colors font-medium text-sm"
-          >
-            <Mail className="h-4 w-4" />
-            <span>Contact Us</span>
-          </a>
-        </div>
-
-        {/* Footer */}
-        <div className="text-center text-sm text-gray-500 mb-8">
-          <p>© 2025 QuickCV. All rights reserved.</p>
         </div>
       </div>
       

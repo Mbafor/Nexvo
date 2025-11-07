@@ -41,7 +41,7 @@ export const categories: Category[] = [
     slug: "cv-tips",
     description: "Expert advice on creating standout CVs that get noticed by recruiters",
     color: "#3B82F6",
-    icon: "📝"
+  
   },
   {
     id: "career-advice",
@@ -49,7 +49,7 @@ export const categories: Category[] = [
     slug: "career-advice", 
     description: "Professional guidance for advancing your career and landing your dream job",
     color: "#10B981",
-    icon: "🚀"
+
   },
   {
     id: "industry-insights",
@@ -57,7 +57,7 @@ export const categories: Category[] = [
     slug: "industry-insights",
     description: "Latest trends and insights from the recruitment and hiring industry",
     color: "#8B5CF6",
-    icon: "📊"
+   
   },
   {
     id: "templates",
@@ -65,7 +65,7 @@ export const categories: Category[] = [
     slug: "templates",
     description: "Modern CV templates and design inspiration for different industries",
     color: "#F59E0B",
-    icon: "🎨"
+
   }
 ];
 

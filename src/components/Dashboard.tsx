@@ -37,7 +37,6 @@ import {
   MessageCircle,
   Headphones,
   Send,
-  AlertCircle
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useAuth } from '../context';
@@ -503,7 +502,7 @@ export default function Dashboard({ onCreateNew, onEditCV }: DashboardProps) {
               <p className="text-2xl font-bold text-gray-900">94%</p>
             </div>
             <div className="bg-purple-100 p-3 rounded-full">
-              <Target className="h-6 w-6 text-purple-600" />
+              <Target className="h-6 w-6 text-blue-700" />
             </div>
           </div>
         </motion.div>
@@ -884,7 +883,7 @@ export default function Dashboard({ onCreateNew, onEditCV }: DashboardProps) {
                       <p className="text-xl lg:text-3xl font-bold text-gray-900">{stats.templatesUsed}</p>
                     </div>
                     <div className="bg-purple-100 p-2 lg:p-3 rounded-full">
-                      <Palette className="h-4 w-4 lg:h-6 lg:w-6 text-purple-600" />
+                      <Palette className="h-4 w-4 lg:h-6 lg:w-6 text-blue-700" />
                     </div>
                   </div>
                 </motion.div>
@@ -1180,7 +1179,7 @@ export default function Dashboard({ onCreateNew, onEditCV }: DashboardProps) {
           {activeTab === 'templates' && (
             <div className="space-y-6">
               {/* Header Section */}
-              <div className="bg-gradient-to-r from-blue-600 to-purple-600 rounded-xl p-6 text-white">
+              <div className="bg-blue-600 rounded-xl p-6 text-white">
                 <h3 className="text-xl font-bold mb-2">Professional CV Templates Gallery</h3>
                 <p className="text-blue-100">Choose from our collection of stunning, professionally designed templates</p>
               </div>
@@ -1295,7 +1294,7 @@ export default function Dashboard({ onCreateNew, onEditCV }: DashboardProps) {
                 {/* Template Tips Section */}
                 <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div className="p-6 bg-blue-50 rounded-xl">
-                    <h5 className="font-bold text-blue-900 mb-3 flex items-center">
+                    <h5 className="font-bold text-blue-700 mb-3 flex items-center">
                       <Award className="h-5 w-5 mr-2" />
                       Template Selection Tips
                     </h5>
@@ -1344,7 +1343,7 @@ export default function Dashboard({ onCreateNew, onEditCV }: DashboardProps) {
           {activeTab === 'resources' && (
             <div className="space-y-6">
               {/* Featured Resources Header */}
-              <div className="bg-gradient-to-r from-blue-600 to-purple-600 rounded-xl p-6 text-white">
+              <div className="bg-blue-700 rounded-xl p-6 text-white">
                 <h3 className="text-xl font-bold mb-2">Career Resources & Insights</h3>
                 <p className="text-blue-100">Expert tips, guides, and industry insights to boost your career success</p>
               </div>
@@ -1411,25 +1410,6 @@ export default function Dashboard({ onCreateNew, onEditCV }: DashboardProps) {
                   ))}
                 </div>
               </div>
-
-              {/* Quick Resources */}
-              <div className="bg-white rounded-xl shadow-sm p-6">
-                <h4 className="text-lg font-semibold text-gray-900 mb-4">Quick Resources</h4>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-                  {[
-                    { title: 'CV Writing Guide', desc: 'Step-by-step CV creation', icon: '📝', color: 'bg-blue-50 text-blue-700' },
-                    { title: 'Interview Tips', desc: 'Ace your next interview', icon: '💼', color: 'bg-green-50 text-green-700' },
-                    { title: 'Salary Negotiation', desc: 'Get paid what you deserve', icon: '💰', color: 'bg-yellow-50 text-yellow-700' },
-                    { title: 'Career Development', desc: 'Advance your career path', icon: '🚀', color: 'bg-purple-50 text-purple-700' }
-                  ].map((resource, index) => (
-                    <div key={index} className={`p-4 rounded-lg ${resource.color} cursor-pointer hover:shadow-md transition-all`}>
-                      <div className="text-2xl mb-2">{resource.icon}</div>
-                      <h5 className="font-medium mb-1">{resource.title}</h5>
-                      <p className="text-sm opacity-80">{resource.desc}</p>
-                    </div>
-                  ))}
-                </div>
-              </div>
             </div>
           )}
 
@@ -1437,6 +1417,8 @@ export default function Dashboard({ onCreateNew, onEditCV }: DashboardProps) {
           
           {activeTab === 'help' && (
             <div className="space-y-6">
+
+
               {/* Contact Support Section */}
               <div className="bg-white rounded-xl shadow-sm p-6">
                 <h3 className="text-xl font-semibold text-gray-900 mb-6 flex items-center">
@@ -1453,8 +1435,8 @@ export default function Dashboard({ onCreateNew, onEditCV }: DashboardProps) {
                         <h4 className="font-medium text-blue-900">Email Support</h4>
                       </div>
                       <p className="text-blue-700 text-sm mb-2">Get help via email within 2 hours</p>
-                      <a href="mailto:hello@quickcv.com" className="text-blue-600 hover:text-blue-800 font-medium">
-                        hello@quickcv.com
+                      <a href="mailto:mbaforfoghang@gmail.com" className="text-blue-600 hover:text-blue-800 font-medium">
+                        mbaforfoghang@gmail.com
                       </a>
                     </div>
                     
@@ -1471,11 +1453,11 @@ export default function Dashboard({ onCreateNew, onEditCV }: DashboardProps) {
                     
                     <div className="p-4 bg-purple-50 rounded-lg">
                       <div className="flex items-center space-x-3 mb-2">
-                        <HelpCircle className="h-5 w-5 text-purple-600" />
-                        <h4 className="font-medium text-purple-900">Knowledge Base</h4>
+                        <HelpCircle className="h-5 w-5 text-blue-700" />
+                        <h4 className="font-medium text-blue-700">Knowledge Base</h4>
                       </div>
-                      <p className="text-purple-700 text-sm mb-2">Browse our help articles</p>
-                      <button className="text-purple-600 hover:text-purple-800 font-medium">
+                      <p className="text-blue-700 text-sm mb-2">Browse our help articles</p>
+                      <button className="text-blue-600 hover:text-blue-800 font-medium">
                         Browse Articles
                       </button>
                     </div>
@@ -1515,89 +1497,6 @@ export default function Dashboard({ onCreateNew, onEditCV }: DashboardProps) {
                 </div>
               </div>
 
-              {/* Help Categories */}
-              <div className="bg-white rounded-xl shadow-sm p-6">
-                <h3 className="text-lg font-semibold text-gray-900 mb-4">Help Categories</h3>
-                <div className="grid md:grid-cols-3 gap-4">
-                  <div className="p-4 bg-blue-50 rounded-lg hover:bg-blue-100 transition-colors cursor-pointer">
-                    <div className="flex items-center space-x-3 mb-2">
-                      <FileText className="h-5 w-5 text-blue-600" />
-                      <h4 className="font-medium text-blue-900">CV Creation</h4>
-                    </div>
-                    <p className="text-blue-700 text-sm">Learn how to create and customize your CV</p>
-                  </div>
-                  
-                  <div className="p-4 bg-green-50 rounded-lg hover:bg-green-100 transition-colors cursor-pointer">
-                    <div className="flex items-center space-x-3 mb-2">
-                      <Download className="h-5 w-5 text-green-600" />
-                      <h4 className="font-medium text-green-900">Downloads</h4>
-                    </div>
-                    <p className="text-green-700 text-sm">Issues with downloading your CV files</p>
-                  </div>
-                  
-                  <div className="p-4 bg-purple-50 rounded-lg hover:bg-purple-100 transition-colors cursor-pointer">
-                    <div className="flex items-center space-x-3 mb-2">
-                      <User className="h-5 w-5 text-purple-600" />
-                      <h4 className="font-medium text-purple-900">Account</h4>
-                    </div>
-                    <p className="text-purple-700 text-sm">Account settings and profile management</p>
-                  </div>
-                  
-                  <div className="p-4 bg-yellow-50 rounded-lg hover:bg-yellow-100 transition-colors cursor-pointer">
-                    <div className="flex items-center space-x-3 mb-2">
-                      <Palette className="h-5 w-5 text-yellow-600" />
-                      <h4 className="font-medium text-yellow-900">Templates</h4>
-                    </div>
-                    <p className="text-yellow-700 text-sm">Template customization and selection</p>
-                  </div>
-                  
-                  <div className="p-4 bg-red-50 rounded-lg hover:bg-red-100 transition-colors cursor-pointer">
-                    <div className="flex items-center space-x-3 mb-2">
-                      <AlertCircle className="h-5 w-5 text-red-600" />
-                      <h4 className="font-medium text-red-900">Troubleshooting</h4>
-                    </div>
-                    <p className="text-red-700 text-sm">Common issues and solutions</p>
-                  </div>
-                  
-                  <div className="p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors cursor-pointer">
-                    <div className="flex items-center space-x-3 mb-2">
-                      <MoreVertical className="h-5 w-5 text-gray-600" />
-                      <h4 className="font-medium text-gray-900">Other</h4>
-                    </div>
-                    <p className="text-gray-700 text-sm">General questions and feedback</p>
-                  </div>
-                </div>
-              </div>
-
-              {/* FAQ Section */}
-              <div className="bg-white rounded-xl shadow-sm p-6">
-                <h3 className="text-lg font-semibold text-gray-900 mb-4">Frequently Asked Questions</h3>
-                <div className="space-y-4">
-                  {[
-                    {
-                      question: "How do I download my CV?",
-                      answer: "Click the download button next to your CV in the dashboard. Your CV will be downloaded as a PDF file."
-                    },
-                    {
-                      question: "Can I edit my CV after creating it?",
-                      answer: "Yes! Click the edit button next to any CV in your dashboard to make changes and download an updated version."
-                    },
-                    {
-                      question: "How many CVs can I create?",
-                      answer: "You can create unlimited CVs with your account. Each CV is saved in your dashboard for easy access."
-                    },
-                    {
-                      question: "Are the templates ATS-friendly?",
-                      answer: "Yes! All our templates are designed to pass through Applicant Tracking Systems while looking professional."
-                    }
-                  ].map((faq, index) => (
-                    <div key={index} className="p-4 border border-gray-200 rounded-lg">
-                      <h4 className="font-medium text-gray-900 mb-2">{faq.question}</h4>
-                      <p className="text-gray-600 text-sm">{faq.answer}</p>
-                    </div>
-                  ))}
-                </div>
-              </div>
             </div>
           )}
         </div>

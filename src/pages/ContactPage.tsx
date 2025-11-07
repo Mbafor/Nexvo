@@ -157,8 +157,8 @@ export default function ContactPage() {
           animate={{ opacity: 1, y: 0 }}
           className="text-center mb-12"
         >
-          <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
-            Get in <span className="text-blue-600">Touch</span>
+          <h2 className="text-4xl lg:text-5xl font-bold text-blue-700 mb-6">
+            Get in Touch with Us
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
             Have questions about QuickCV? Need help with your CV? Want to partner with us? 
@@ -240,7 +240,7 @@ export default function ContactPage() {
                 </a>
                 <a
                   href="mailto:mbaforfoghang@gmail.com"
-                  className="p-3 bg-gray-100 text-gray-600 rounded-lg hover:bg-gray-200 transition-colors"
+                  className="p-3 bg-sky-100 text-sky-600 rounded-lg hover:bg-sky-200 transition-colors"
                 >
                   <Mail className="h-5 w-5" />
                 </a>
@@ -248,7 +248,7 @@ export default function ContactPage() {
             </div>
 
             {/* Quick Stats */}
-            <div className="bg-gradient-to-r from-blue-600 to-purple-600 rounded-xl p-6 text-white">
+            <div className=" bg-blue-600 rounded-xl p-6 text-white">
               <h3 className="text-lg font-bold mb-4">Response Time</h3>
               <div className="space-y-3">
                 <div className="flex items-center justify-between">
@@ -419,7 +419,7 @@ export default function ContactPage() {
                 <button
                   type="submit"
                   disabled={isSubmitting || submitStatus === 'success'}
-                  className="w-full flex items-center justify-center space-x-2 px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-lg hover:from-blue-700 hover:to-purple-700 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed shadow-lg"
+                  className="w-full flex items-center justify-center space-x-2 px-6 py-3 bg-blue-700 text-white hover:bg-blue-800 rounded-lg transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed shadow-lg"
                 >
                   {isSubmitting ? (
                     <>
@@ -442,46 +442,6 @@ export default function ContactPage() {
             </div>
           </motion.div>
         </div>
-
-        {/* FAQ Section */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.6 }}
-          className="mt-16"
-        >
-          <div className="bg-white rounded-xl shadow-sm p-8">
-            <h3 className="text-2xl font-bold text-gray-900 mb-6 text-center">
-              Frequently Asked Questions
-            </h3>
-            
-            <div className="grid md:grid-cols-2 gap-8">
-              {[
-                {
-                  question: "How quickly will I receive a response?",
-                  answer: "We typically respond to general inquiries within 2 hours and technical support requests within 30 minutes during business hours."
-                },
-                {
-                  question: "Can I schedule a call?",
-                  answer: "Yes! For business partnerships or complex inquiries, we offer scheduled calls. Mention your preferred time in your message."
-                },
-                {
-                  question: "Do you offer technical support?",
-                  answer: "Absolutely! Our technical support team is available to help with any issues you encounter while using QuickCV."
-                },
-                {
-                  question: "How can I report a bug?",
-                  answer: "Select 'Bug Report' as your inquiry type and provide detailed steps to reproduce the issue. Screenshots are very helpful!"
-                }
-              ].map((faq, index) => (
-                <div key={index} className="p-6 border border-gray-200 rounded-lg">
-                  <h4 className="font-semibold text-gray-900 mb-2">{faq.question}</h4>
-                  <p className="text-gray-600">{faq.answer}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </motion.div>
       </div>
       
       <Footer />
