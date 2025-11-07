@@ -149,7 +149,7 @@ export default function PreviewPage({ cvData, onBack, onDownload, onShowAuth }: 
                   localStorage.setItem('cvData', JSON.stringify(cvData));
                   onBack();
                 }}
-                className="group flex items-center space-x-2 px-4 py-2 text-gray-600 hover:text-white hover:bg-gradient-to-r hover:from-blue-600 hover:to-purple-600 rounded-xl transition-all duration-300 border border-gray-200 hover:border-transparent shadow-sm hover:shadow-md"
+                className="group flex items-center space-x-2 px-4 py-2 text-gray-600 hover:text-white hover:bg-gradient-to- rounded-xl transition-all duration-300 border border-gray-200 hover:border-transparent shadow-sm hover:shadow-md"
               >
                 <ChevronLeft className="h-5 w-5 transition-transform group-hover:-translate-x-1" />
                 <span className="font-medium">Back to Editor</span>
@@ -182,9 +182,9 @@ export default function PreviewPage({ cvData, onBack, onDownload, onShowAuth }: 
 
               <button
                 onClick={handleDownload}
-                className="group relative flex items-center space-x-2 px-6 py-2 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-xl hover:from-blue-700 hover:to-purple-700 transition-all duration-300 shadow-lg hover:shadow-xl font-medium overflow-hidden"
+                className="group relative flex items-center space-x-2 px-6 py-2 bg-gradient-to-r text-blue-600 rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl font-medium overflow-hidden"
               >
-                <div className="absolute inset-0 bg-gradient-to-r from-blue-400 to-purple-400 opacity-0 group-hover:opacity-20 transition-opacity duration-300"></div>
+                <div className="absolute inset-0 bg-gradient-to-r text-blue-400 opacity-0 group-hover:opacity-20 transition-opacity duration-300"></div>
                 {!user && <Lock className="h-4 w-4 relative z-10" />}
                 <Download className="h-4 w-4 relative z-10" />
                 <span className="relative z-10">{user ? 'Download PDF' : 'Get Started'}</span>
@@ -212,7 +212,7 @@ export default function PreviewPage({ cvData, onBack, onDownload, onShowAuth }: 
                 </p>
                 <button
                   onClick={handleDownload}
-                  className="inline-flex items-center space-x-2 px-6 py-3 bg-gradient-to-r text-blue-600 rounded-xl hover:from-blue-700 hover:to-purple-700 transition-all duration-300 font-medium shadow-lg hover:shadow-xl"
+                  className="inline-flex items-center space-x-2 px-6 py-3 bg-gradient-to-r text-blue-600 rounded-xl hover:from-blue-700 transition-all duration-300 font-medium shadow-lg hover:shadow-xl"
                 >
                   <Sparkles className="h-5 w-5" />
                   <span>Start Creating for Free</span>

@@ -278,12 +278,6 @@ export default function LandingPage({ onGetStarted, onSignIn }: LandingPageProps
             <ArrowRight className="h-5 w-5 group-hover:translate-x-1 transition-transform" />
           </span>
         </motion.button>
-
-        <motion.button
-          className="group px-8 py-4 border-2 border-blue-200 hover:border-blue-300 rounded-2xl text-blue-700 font-semibold backdrop-blur-sm hover:bg-blue-50 transition-all duration-300"
-          whileHover={{ scale: 1.05 }}
-        >
-        </motion.button>
       </motion.div>
 
       {/* Stats Section */}
