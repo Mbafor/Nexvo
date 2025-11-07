@@ -480,8 +480,8 @@ export default function CVBuilder({ cvData, onUpdateCVData, onPreview, onSignIn,
                 whileTap={{ scale: 0.95 }}
                 title="Customize sections"
               >
-                
-                <span className="text-sm">Sections</span>
+
+                <span className="text-sm text-blue-600">Sections</span>
               </motion.button>
 
               {/* Sign In Button */}
