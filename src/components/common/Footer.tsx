@@ -22,7 +22,7 @@ export default function Footer({ onGetStarted }: FooterProps) {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-6">
           {/* Company Info - Full width on mobile, spans 2 cols on sm+ */}
           <div className="sm:col-span-2 lg:col-span-1 space-y-4">
-            <h3 className="text-xl lg:text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+            <h3 className="text-xl lg:text-2xl font-bold text-blue-600">
               QuickCV
             </h3>
             <p className="text-gray-600 leading-relaxed text-sm lg:text-base max-w-sm">

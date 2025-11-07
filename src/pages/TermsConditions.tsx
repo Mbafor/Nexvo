@@ -1,10 +1,10 @@
-import { ArrowLeft, Scale, Calendar, Mail } from 'lucide-react';
-import { useNavigate } from 'react-router-dom';
+import { Scale, Calendar, Mail } from 'lucide-react';
 import { useEffect } from 'react';
+import Header from '../components/common/Header';
 import Footer from '../components/common/Footer';
 
 export default function TermsConditions() {
-  const navigate = useNavigate();
+  
   const lastUpdated = "January 15, 2025";
   const effectiveDate = "January 15, 2025";
 
@@ -12,32 +12,13 @@ export default function TermsConditions() {
     window.scrollTo(0, 0);
   }, []);
 
-  const handleBack = () => {
-    if (window.history.length > 1) {
-      navigate(-1);
-    } else {
-      navigate('/');
-    }
-  };
+
 
   return (
     <div className="min-h-screen bg-white text-gray-800">
-      {/* Header */}
-      <header className="border-b border-gray-200 bg-white sticky top-0 z-10">
-        <div className="max-w-5xl mx-auto px-5 py-4 flex items-center justify-between">
-          <button
-            onClick={handleBack}
-            className="flex items-center text-gray-600 hover:text-blue-600 transition-colors"
-          >
-            <ArrowLeft className="h-5 w-5 mr-2" />
-            <span className="text-sm font-medium">Back</span>
-          </button>
-          <div className="flex items-center space-x-2">
-            <Scale className="h-5 w-5 text-blue-600" />
-            <h1 className="text-lg md:text-xl font-semibold text-gray-900">Terms of Service</h1>
-          </div>
-        </div>
-      </header>
+      <Header />
+      
+     
 
       {/* Meta Info */}
       <section className="bg-gray-50 border-y border-gray-200 py-4">

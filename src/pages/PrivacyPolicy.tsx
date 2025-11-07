@@ -9,6 +9,7 @@ import {
   Eye,
   Database,
 } from "lucide-react";
+import Header from '../components/common/Header';
 import Footer from '../components/common/Footer';
 
 export default function PrivacyPolicy() {
@@ -30,24 +31,8 @@ export default function PrivacyPolicy() {
 
   return (
     <div className="min-h-screen bg-white text-gray-800">
-      {/* Header */}
-      <header className="border-b border-gray-200 bg-white sticky top-0 z-10">
-        <div className="max-w-5xl mx-auto px-5 py-4 flex items-center justify-between">
-          <button
-            onClick={handleBack}
-            className="flex items-center text-gray-600 hover:text-blue-600 transition-colors"
-          >
-            <ArrowLeft className="h-5 w-5 mr-2" />
-            <span className="text-sm font-medium">Back</span>
-          </button>
-          <div className="flex items-center space-x-2">
-            <Shield className="h-5 w-5 text-blue-600" />
-            <h1 className="text-lg md:text-xl font-semibold text-gray-900">
-              Privacy Policy
-            </h1>
-          </div>
-        </div>
-      </header>
+      <Header />
+
 
       {/* Meta Info */}
       <section className="bg-gray-50 border-y border-gray-200 py-4">

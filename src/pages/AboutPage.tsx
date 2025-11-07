@@ -1,53 +1,28 @@
-import { ArrowLeft, Users, Award, Globe, Heart, Mail } from 'lucide-react';
-import { useNavigate } from 'react-router-dom';
+import { Users, Award, Globe, Heart, Mail } from 'lucide-react';
 import { useEffect } from 'react';
+import Header from '../components/common/Header';
 import Footer from '../components/common/Footer';
 
 export default function AboutPage() {
-  const navigate = useNavigate();
 
   // Scroll to top when component mounts
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
-  const handleBack = () => {
-    if (window.history.length > 1) {
-      navigate(-1);
-    } else {
-      navigate('/');
-    }
-  };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-purple-50">
-      {/* Header */}
-      <div className="bg-white shadow-lg border-b border-gray-200">
-        <div className="max-w-6xl mx-auto px-6 py-8">
-          <button
-            onClick={handleBack}
-            className="flex items-center space-x-2 text-gray-600 hover:text-purple-600 mb-6 transition-colors"
-          >
-            <ArrowLeft className="h-5 w-5" />
-            <span>Back</span>
-          </button>
-          <div className="text-center">
-            <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-r from-purple-600 to-blue-600 rounded-full mb-4 shadow-lg">
-              <Users className="h-8 w-8 text-white" />
-            </div>
-            <h1 className="text-4xl font-bold text-gray-900 mb-2">About QuickCV</h1>
-            <p className="text-gray-600 text-lg">Building careers, one CV at a time</p>
-          </div>
-        </div>
-      </div>
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50">
+      <Header />
+      
 
       {/* Main Content */}
       <div className="max-w-6xl mx-auto px-6 py-12">
         {/* Mission */}
         <div className="bg-white rounded-xl shadow-lg p-8 mb-12">
-          <div className="bg-purple-50 border-l-4 border-purple-600 p-6 rounded-r-lg mb-8">
-            <h3 className="text-xl font-bold text-purple-900 mb-2">Our Mission</h3>
-            <p className="text-purple-800 font-medium mb-0">
+          <div className="bg-blue-50 border-l-4 border-blue-600 p-6 rounded-r-lg mb-8">
+            <h3 className="text-xl font-bold text-blue-900 mb-2">Our Mission</h3>
+            <p className="text-blue-800 font-medium mb-0">
               QuickCV was founded to empower professionals worldwide by providing modern, 
               ATS-optimized CV templates and tools that help candidates showcase their skills 
               and land interviews at top companies. We aim to democratize access to career 
@@ -62,20 +37,20 @@ export default function AboutPage() {
               <div className="text-2xl font-bold text-blue-900">50,000+</div>
               <div className="text-sm text-blue-700">CVs Created</div>
             </div>
-            <div className="bg-green-50 p-6 rounded-lg text-center shadow-sm hover:shadow-md transition">
-              <Globe className="h-8 w-8 text-green-600 mx-auto mb-2" />
-              <div className="text-2xl font-bold text-green-900">150+</div>
-              <div className="text-sm text-green-700">Countries</div>
+            <div className="bg-gray-50 p-6 rounded-lg text-center shadow-sm hover:shadow-md transition">
+              <Globe className="h-8 w-8 text-black mx-auto mb-2" />
+              <div className="text-2xl font-bold text-black">150+</div>
+              <div className="text-sm text-gray-700">Countries</div>
             </div>
-            <div className="bg-yellow-50 p-6 rounded-lg text-center shadow-sm hover:shadow-md transition">
-              <Award className="h-8 w-8 text-yellow-600 mx-auto mb-2" />
-              <div className="text-2xl font-bold text-yellow-900">95%</div>
-              <div className="text-sm text-yellow-700">Success Rate</div>
+            <div className="bg-blue-50 p-6 rounded-lg text-center shadow-sm hover:shadow-md transition">
+              <Award className="h-8 w-8 text-blue-600 mx-auto mb-2" />
+              <div className="text-2xl font-bold text-blue-900">95%</div>
+              <div className="text-sm text-blue-700">Success Rate</div>
             </div>
-            <div className="bg-red-50 p-6 rounded-lg text-center shadow-sm hover:shadow-md transition">
-              <Heart className="h-8 w-8 text-red-600 mx-auto mb-2" />
-              <div className="text-2xl font-bold text-red-900">24/7</div>
-              <div className="text-sm text-red-700">Support</div>
+            <div className="bg-gray-50 p-6 rounded-lg text-center shadow-sm hover:shadow-md transition">
+              <Heart className="h-8 w-8 text-black mx-auto mb-2" />
+              <div className="text-2xl font-bold text-black">24/7</div>
+              <div className="text-sm text-gray-700">Support</div>
             </div>
           </div>
 

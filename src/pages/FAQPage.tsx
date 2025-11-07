@@ -1,20 +1,21 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
-import { 
-  ArrowLeft, 
-  HelpCircle, 
-  ChevronDown, 
-  Search, 
-  FileText, 
-  Shield, 
-  CreditCard, 
-  Users, 
+import {
+  
+  HelpCircle,
+  ChevronDown,
+  Search,
+  FileText,
+  Shield,
+  CreditCard,
+  Users,
   Zap,
   MessageCircle,
   Mail,
   Phone
 } from 'lucide-react';
+import Header from '../components/common/Header';
 import Footer from '../components/common/Footer';
 
 interface FAQ {
@@ -201,19 +202,13 @@ export default function FAQPage() {
     window.scrollTo(0, 0);
   }, []);
 
-  const handleBack = () => {
-    if (window.history.length > 1) {
-      navigate(-1);
-    } else {
-      navigate('/');
-    }
-  };
 
   // Filter FAQs based on search and category
   const filteredFAQs = faqs.filter(faq => {
-    const matchesSearch = faq.question.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                         faq.answer.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                         faq.tags.some(tag => tag.toLowerCase().includes(searchQuery.toLowerCase()));
+    const q = searchQuery.trim().toLowerCase();
+    const matchesSearch = !q || faq.question.toLowerCase().includes(q) ||
+                         faq.answer.toLowerCase().includes(q) ||
+                         faq.tags.some(tag => tag.toLowerCase().includes(q));
     
     const matchesCategory = selectedCategory === 'All' || faq.category === selectedCategory;
     
@@ -226,42 +221,22 @@ export default function FAQPage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50">
-      {/* Header */}
-      <div className="bg-white shadow-sm border-b border-gray-200">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-          <div className="flex items-center justify-between mb-6">
-            <button
-              onClick={handleBack}
-              className="flex items-center space-x-2 text-gray-600 hover:text-blue-600 transition-colors"
-            >
-              <ArrowLeft className="h-5 w-5" />
-              <span>Back</span>
-            </button>
-            <div className="hidden lg:flex">
-              <button
-                onClick={() => navigate('/builder')}
-                className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg font-medium transition-colors shadow-sm"
-              >
-                Create CV
-              </button>
-            </div>
-          </div>
-          
-          <div className="text-center">
-            <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full mb-4 shadow-lg">
-              <HelpCircle className="h-8 w-8 text-white" />
-            </div>
-            <h1 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
-              Frequently Asked Questions
-            </h1>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Find answers to common questions about QuickCV, our features, and how to create the perfect CV.
-            </p>
-          </div>
-        </div>
-      </div>
+      <Header />
 
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <main className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        {/* Hero */}
+        <div className="text-center mb-8">
+          <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-r from-blue-600 to-blue-800 rounded-full mb-4 shadow-lg">
+            <HelpCircle className="h-8 w-8 text-white" />
+          </div>
+          <h1 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
+            Frequently Asked Questions
+          </h1>
+          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            Find answers to common questions about QuickCV, our features, and how to create the perfect CV.
+          </p>
+        </div>
+
         {/* Search and Filter Section */}
         <div className="bg-white rounded-xl shadow-sm p-6 mb-8">
           <div className="flex flex-col lg:flex-row gap-6">
@@ -308,20 +283,23 @@ export default function FAQPage() {
             >
               All
             </button>
-            {categories.map(category => (
-              <button
-                key={category.name}
-                onClick={() => setSelectedCategory(category.name)}
-                className={`px-4 py-2 rounded-lg font-medium transition-colors flex items-center space-x-2 ${
-                  selectedCategory === category.name
-                    ? 'bg-blue-600 text-white'
-                    : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-                }`}
-              >
-                <category.icon className="h-4 w-4" />
-                <span>{category.name}</span>
-              </button>
-            ))}
+            {categories.map(category => {
+              const Icon = category.icon;
+              return (
+                <button
+                  key={category.name}
+                  onClick={() => setSelectedCategory(category.name)}
+                  className={`px-4 py-2 rounded-lg font-medium transition-colors flex items-center space-x-2 ${
+                    selectedCategory === category.name
+                      ? 'bg-blue-600 text-white'
+                      : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                  }`}
+                >
+                  <Icon className="h-4 w-4" />
+                  <span>{category.name}</span>
+                </button>
+              );
+            })}
           </div>
         </div>
 
@@ -483,7 +461,7 @@ export default function FAQPage() {
             </button>
           </div>
         </div>
-      </div>
+      </main>
 
       <Footer />
     </div>

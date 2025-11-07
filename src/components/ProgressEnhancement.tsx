@@ -74,7 +74,7 @@ export default function ProgressEnhancement({
               )}
               <div className="text-left">
                 <p className={`font-medium ${
-                  index === currentStep ? 'text-blue-700' : 'text-gray-900'
+                  index === currentStep ? 'text-black-600' : 'text-gray-900'
                 }`}>
                   {section.label}
                   {section.required && (
@@ -93,11 +93,6 @@ export default function ProgressEnhancement({
               {section.completed && (
                 <span className="text-xs bg-green-100 text-green-700 px-2 py-1 rounded">
                   Complete
-                </span>
-              )}
-              {index === currentStep && (
-                <span className="text-xs bg-blue-100 text-blue-700 px-2 py-1 rounded">
-                  Current
                 </span>
               )}
             </div>

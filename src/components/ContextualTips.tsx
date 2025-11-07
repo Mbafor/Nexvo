@@ -33,14 +33,12 @@ export default function ContextualTips({
   validationResult, 
   staticTips = [] 
 }: ContextualTipsProps) {
-  const [isExpanded, setIsExpanded] = useState(false); // Changed from true to false - tips closed initially
+  const [isExpanded, setIsExpanded] = useState(false);
   const [dismissedTips, setDismissedTips] = useState<Set<string>>(new Set());
 
-  // Smart tips based on section and validation
   const getSmartTips = (): string[] => {
     const tips: string[] = [];
 
-    // Section-specific smart tips
     switch (sectionId) {
       case 'personal':
         if (validationResult?.completionScore && validationResult.completionScore < 50) {
@@ -91,15 +89,15 @@ export default function ContextualTips({
       type: 'warning' as const,
       icon: Info,
       items: validationResult?.warnings || [],
-      color: 'text-amber-700',
-      bgColor: 'bg-amber-50 border-amber-200',
+      color: 'text-blue-700',
+      bgColor: 'bg-blue-50 border-blue-200',
       title: 'Recommendations'
     },
     {
       type: 'suggestion' as const,
       icon: Lightbulb,
       items: validationResult?.suggestions || [],
-      color: 'text-blue-700',
+      color: 'text-black',
       bgColor: 'bg-blue-50 border-blue-200',
       title: 'Pro Tips'
     },
@@ -108,7 +106,7 @@ export default function ContextualTips({
       icon: Sparkles,
       items: [...getSmartTips(), ...staticTips],
       color: 'text-black',
-      bgColor: 'bg-purple-50 border-purple-200',
+      bgColor: 'bg-blue-50 border-blue-200',
       title: 'Smart Suggestions'
     }
   ].filter(category => category.items.length > 0);
@@ -122,15 +120,15 @@ export default function ContextualTips({
       <motion.div
         initial={{ opacity: 0, y: -10 }}
         animate={{ opacity: 1, y: 0 }}
-        className="bg-green-50 border border-green-200 rounded-xl p-4 mb-6"
+        className="bg-blue-50 border border-blue-200 rounded-xl p-4 mb-6"
       >
         <div className="flex items-center space-x-2">
-          <CheckCircle2 className="h-5 w-5 text-green-600" />
-          <span className="font-medium text-green-800">
+          <CheckCircle2 className="h-5 w-5 text-blue-600" />
+          <span className="font-medium text-blue-800">
             Great work on your {sectionLabel} section!
           </span>
         </div>
-        <p className="text-green-700 text-sm mt-1">
+        <p className="text-blue-700 text-sm mt-1">
           Your section looks complete. You can move on to the next section or preview your CV.
         </p>
       </motion.div>
@@ -141,22 +139,22 @@ export default function ContextualTips({
     <motion.div
       initial={{ opacity: 0, y: -10 }}
       animate={{ opacity: 1, y: 0 }}
-      className="bg-white rounded-xl shadow-sm border border-slate-200 mb-6 overflow-hidden"
+      className="bg-white rounded-xl shadow-sm border border-gray-200 mb-6 overflow-hidden"
     >
       {/* Header */}
       <div 
-        className="flex items-center justify-between p-4 cursor-pointer hover:bg-slate-50 transition-colors"
+        className="flex items-center justify-between p-4 cursor-pointer hover:bg-gray-50 transition-colors"
         onClick={() => setIsExpanded(!isExpanded)}
       >
         <div className="flex items-center space-x-3">
-          <div className="bg-gradient-to-br from-slate-600 to-gray-700 rounded-lg p-2">
+          <div className="bg-gradient-to-br from-blue-600 to-blue-800 rounded-lg p-2">
             <Sparkles className="h-4 w-4 text-white" />
           </div>
           <div>
-            <h3 className="font-semibold text-slate-900">
+            <h3 className="font-semibold text-gray-900">
               Tips for {sectionLabel}
             </h3>
-            <p className="text-sm text-slate-600">
+            <p className="text-sm text-gray-600">
               {categories.reduce((sum, cat) => sum + cat.items.length, 0)} suggestions available
             </p>
           </div>
@@ -165,7 +163,7 @@ export default function ContextualTips({
           animate={{ rotate: isExpanded ? 180 : 0 }}
           transition={{ duration: 0.2 }}
         >
-          <ChevronDown className="h-5 w-5 text-slate-400" />
+          <ChevronDown className="h-5 w-5 text-gray-400" />
         </motion.div>
       </div>
 
@@ -177,7 +175,7 @@ export default function ContextualTips({
             animate={{ height: 'auto', opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
             transition={{ duration: 0.3 }}
-            className="border-t border-slate-200"
+            className="border-t border-gray-200"
           >
             <div className="p-4 space-y-4">
               {categories.map((category) => (
@@ -209,9 +207,9 @@ export default function ContextualTips({
                         <div className="flex items-start space-x-2 flex-1">
                           <div className={`w-1.5 h-1.5 rounded-full mt-2 flex-shrink-0 ${
                             category.type === 'error' ? 'bg-red-500' :
-                            category.type === 'warning' ? 'bg-amber-500' :
-                            category.type === 'suggestion' ? 'bg-blue-500' :
-                            'bg-purple-500'
+                            category.type === 'warning' ? 'bg-blue-500' :
+                            category.type === 'suggestion' ? 'bg-black' :
+                            'bg-blue-600'
                           }`} />
                           <span className={`text-sm leading-relaxed ${category.color}`}>
                             {item}
@@ -224,7 +222,7 @@ export default function ContextualTips({
                             className="opacity-0 group-hover:opacity-100 transition-opacity p-1 hover:bg-white rounded"
                             title="Dismiss tip"
                           >
-                            <X className="h-3 w-3 text-slate-400 hover:text-slate-600" />
+                            <X className="h-3 w-3 text-gray-400 hover:text-gray-600" />
                           </button>
                         )}
                       </motion.li>

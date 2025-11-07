@@ -1,11 +1,12 @@
 
 // src/components/LandingPage.tsx
 import { useState, useEffect } from "react";
-import { FileText, Zap, Sparkles, Menu, X, ArrowRight, Shield, Users, Award, Play, Globe, TrendingUp, Mail, Phone, MapPin, Clock, Send, MessageCircle, Linkedin, Twitter, Briefcase, BarChart3, Palette, Headphones } from "lucide-react";
-import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion";
-import { Link } from "react-router-dom";
+import { Zap, Sparkles, Shield, Users, Award, Play, Mail, Phone, MapPin, Clock, Send, MessageCircle, Linkedin, Twitter, Briefcase, BarChart3, Palette, Headphones, FileText, TrendingUp, Globe, ArrowRight } from "lucide-react";
+import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
 import LatestPosts from "../components/LatestPosts";
 import { sendContactMessage } from "../utils/contactService";
+import Header from "../components/common/Header";
+import Footer from "../components/common/Footer";
 
 
 
@@ -40,32 +41,7 @@ const stats = [
   { number: "150+", label: "Countries", icon: Globe },
 ];
 
-const features = [
-  {
-    icon: Zap,
-    title: "Lightning Fast",
-    description: "Create professional CVs in under 10 minutes with our streamlined process",
-    gradient: "from-blue-400 to-blue-600"
-  },
-  {
-    icon: Shield,
-    title: "ATS Guaranteed",
-    description: "100% compatibility with all major Applicant Tracking Systems",
-    gradient: "from-blue-500 to-blue-700"
-  },
-  {
-    icon: Users,
-    title: "Expert Approved",
-    description: "Templates designed by HR professionals and industry experts",
-    gradient: "from-blue-300 to-blue-500"
-  },
-  {
-    icon: Award,
-    title: "Industry Leading",
-    description: "Trusted by professionals at top companies worldwide",
-    gradient: "from-blue-600 to-blue-800"
-  },
-];
+
 
 const testimonials = [
   { 
@@ -109,7 +85,6 @@ interface LandingPageProps {
 
 export default function LandingPage({ onGetStarted, onSignIn }: LandingPageProps) {
   const [openFAQ, setOpenFAQ] = useState<number | null>(null);
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [contactForm, setContactForm] = useState({ name: '', email: '', message: '' });
   const [contactStatus, setContactStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle');
   
@@ -141,13 +116,7 @@ export default function LandingPage({ onGetStarted, onSignIn }: LandingPageProps
 
   const toggleFAQ = (idx: number) => setOpenFAQ(openFAQ === idx ? null : idx);
 
-  const handleMobileNavClick = (e: React.SyntheticEvent, id: string) => {
-    e.preventDefault();
-    e.stopPropagation();
-    const el = document.getElementById(id);
-    if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
-    setMobileMenuOpen(false);
-  };
+
 
   const handleContactSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -219,7 +188,7 @@ export default function LandingPage({ onGetStarted, onSignIn }: LandingPageProps
       {/* Animated background elements */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none">
         <motion.div 
-          className="absolute -top-40 -right-40 w-80 h-80 bg-purple-500/8 rounded-full blur-3xl"
+          className="absolute -top-40 -right-40 w-80 h-80 bg-blue-500/8 rounded-full blur-3xl"
           animate={{ 
             scale: [1, 1.2, 1],
             opacity: [0.3, 0.5, 0.3]
@@ -235,7 +204,7 @@ export default function LandingPage({ onGetStarted, onSignIn }: LandingPageProps
           transition={{ duration: 10, repeat: Infinity }}
         />
         <motion.div 
-          className="absolute top-1/2 left-1/2 w-64 h-64 bg-purple-300/4 rounded-full blur-2xl"
+          className="absolute top-1/2 left-1/2 w-64 h-64 bg-blue-300/4 rounded-full blur-2xl"
           animate={{ 
             x: [0, 100, 0],
             y: [0, -50, 0]
@@ -244,272 +213,169 @@ export default function LandingPage({ onGetStarted, onSignIn }: LandingPageProps
         />
       </div>
 
-      {/* Enhanced Navbar */}
-      <nav className="sticky top-0 z-50 backdrop-blur-xl bg-white/95 border-b border-purple-100 shadow-sm">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-          <div className="flex items-center justify-between">
-            <motion.div 
-              className="flex items-center space-x-3"
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6 }}
-            >
-              <div className="w-10 h-10 bg-gradient-to-br from-blue-600 to-purple-600 rounded-xl flex items-center justify-center">
-                <FileText className="h-6 w-6 text-white" />
-              </div>
-              <h2 className="text-3xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-                QuickCV
-              </h2>
-            </motion.div>
-
-            {/* Desktop Menu */}
-            <div className="hidden md:flex items-center space-x-8">
-              <button onClick={() => document.getElementById("templates")?.scrollIntoView({ behavior: "smooth" })} 
-                className="text-gray-700 hover:text-blue-600 font-medium transition-all duration-300 hover:scale-105">
-                Templates
-              </button>
-              <button onClick={() => document.getElementById("features")?.scrollIntoView({ behavior: "smooth" })} 
-                className="text-gray-700 hover:text-blue-600 font-medium transition-all duration-300 hover:scale-105">
-                Features
-              </button>
-              <a href="/blogs" className="text-gray-700 hover:text-blue-600 font-medium transition-all duration-300 hover:scale-105">
-                Blog
-              </a>
-              
-              {/* Sign In Button */}
-              {onSignIn && (
-                <motion.button 
-                  onClick={onSignIn}
-                  className="px-4 py-2 text-blue-600 hover:text-blue-700 border border-blue-200 hover:border-blue-300 hover:bg-blue-50 rounded-lg font-medium transition-all duration-300"
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  Sign In
-                </motion.button>
-              )}
-              
-              <motion.button 
-                onClick={onGetStarted}
-                className="px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 rounded-xl text-white font-semibold shadow-lg hover:shadow-purple-500/25 transition-all duration-300 group"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                <span className="flex items-center space-x-2">
-                  <span>Create CV</span>
-                  <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
-                </span>
-              </motion.button>
-            </div>
-
-            {/* Mobile Menu Button */}
-            <div className="md:hidden">
-              <button
-                onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                className="p-2 rounded-xl bg-blue-50 hover:bg-blue-100 text-blue-600 transition-colors"
-              >
-                {mobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-              </button>
-            </div>
-          </div>
-
-          {/* Enhanced Mobile Menu */}
-          <AnimatePresence>
-            {mobileMenuOpen && (
-              <motion.div
-                initial={{ opacity: 0, height: 0 }}
-                animate={{ opacity: 1, height: "auto" }}
-                exit={{ opacity: 0, height: 0 }}
-                className="md:hidden mt-4 py-4 border-t border-purple-100 bg-white/95"
-              >
-                <div className="flex flex-col space-y-4">
-                  <a href="#templates" onClick={(e) => handleMobileNavClick(e, "templates")} 
-                    className="text-gray-700 hover:text-blue-600 font-medium transition-colors">
-                    Templates
-                  </a>
-                  <a href="#features" onClick={(e) => handleMobileNavClick(e, "features")} 
-                    className="text-gray-700 hover:text-blue-600 font-medium transition-colors">
-                    Features
-                  </a>
-                  <a href="/blogs" className="text-gray-700 hover:text-blue-600 font-medium transition-colors">
-                    Blog
-                  </a>
-                  
-                  {/* Mobile Sign In */}
-                  {onSignIn && (
-                    <button 
-                      onClick={() => { onSignIn(); setMobileMenuOpen(false); }} 
-                      className="px-4 py-2 text-blue-600 hover:text-blue-700 border border-blue-200 hover:border-blue-300 hover:bg-blue-50 rounded-lg font-medium transition-all text-left"
-                    >
-                      Sign In
-                    </button>
-                  )}
-                  
-                  <button onClick={() => { onGetStarted(); setMobileMenuOpen(false); }} 
-                    className="px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 rounded-xl text-white font-semibold mt-2">
-                    Create CV
-                  </button>
-                </div>
-              </motion.div>
-            )}
-          </AnimatePresence>
-        </div>
-      </nav>
+      <Header onGetStarted={onGetStarted} onSignIn={onSignIn} />
 
       <main>
-        {/* Hero Section - Enhanced with animations and modern design */}
+        {/* Hero Section - Blue, Black, White Theme */}
         <section className="relative min-h-screen flex items-center overflow-hidden">
           <motion.div style={{ y, opacity }} className="absolute inset-0 z-0">
-            <div className="absolute inset-0 bg-gradient-to-br from-blue-50/80 via-white to-purple-50/40" />
+            <div className="absolute inset-0 bg-gradient-to-br from-blue-50/80 via-white to-gray-50/40" />
           </motion.div>
           
           <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
-            <div className="grid lg:grid-cols-2 gap-12 items-center">
-              <motion.div
-                variants={containerVariants}
-                initial="hidden"
-                animate="visible"
-                className="space-y-8"
-              >
-                <motion.div variants={itemVariants}>
-                  <div className="inline-flex items-center space-x-2 bg-purple-100 backdrop-blur-sm px-4 py-2 rounded-full border border-purple-200">
-                    <Sparkles className="h-4 w-4 text-blue-600" />
-                    <span className="text-sm font-medium text-blue-800">Trusted by 50,000+ professionals</span>
-                  </div>
-                </motion.div>
+  <div className="grid lg:grid-cols-2 gap-12 items-center">
+    {/* Left Section - Text Content */}
+    <motion.div
+      variants={containerVariants}
+      initial="hidden"
+      animate="visible"
+      className="space-y-8"
+    >
+      {/* Trusted Tag */}
+      <motion.div variants={itemVariants}>
+        <div className="inline-flex items-center space-x-2 bg-blue-100 backdrop-blur-sm px-4 py-2 rounded-full border border-blue-200">
+          <Sparkles className="h-4 w-4 text-blue-600" />
+          <span className="text-sm font-medium text-blue-800">
+            Trusted by 50,000+ professionals
+          </span>
+        </div>
+      </motion.div>
 
-                <motion.h1 
-                  variants={itemVariants}
-                  className="text-5xl lg:text-7xl font-bold leading-tight"
-                >
-                  <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-blue-700 bg-clip-text text-transparent">
-                    Build Your Perfect CV
-                  </span>
-                  <br />
-                  <span className="text-blue-600">in Minutes</span>
-                </motion.h1>
+      {/* Hero Title */}
+      <motion.h1
+        variants={itemVariants}
+        className="text-5xl lg:text-7xl font-bold leading-tight"
+      >
+        <span className="text-blue-600 bg-clip-text">
+          Build Your Perfect CV in Minutes
+        </span>
+        <br />
+      </motion.h1>
 
-                <motion.p 
-                  variants={itemVariants}
-                  className="text-xl lg:text-2xl text-gray-700 leading-relaxed max-w-2xl"
-                >
-                  Create ATS-optimized, professional CVs that land interviews at top companies. 
-                  <span className="text-blue-600"> No signup required.</span>
-                </motion.p>
+      {/* Description */}
+      <motion.p
+        variants={itemVariants}
+        className="text-xl lg:text-2xl text-black-700 leading-relaxed max-w-2xl"
+      >
+        Create ATS-optimized, professional CVs that land interviews at top
+        companies.
+        <span className="text-blue-600"> No signup required.</span>
+      </motion.p>
 
-                <motion.div 
-                  variants={itemVariants}
-                  className="flex flex-col sm:flex-row gap-4"
-                >
-                  <motion.button
-                    onClick={onGetStarted}
-                    className="group px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 rounded-2xl text-white text-lg font-semibold shadow-2xl shadow-purple-500/30 hover:shadow-purple-500/50 transition-all duration-300"
-                    whileHover={{ scale: 1.05, y: -2 }}
-                    whileTap={{ scale: 0.95 }}
-                  >
-                    <span className="flex items-center space-x-3">
-                      <span>Create Your CV Free</span>
-                      <ArrowRight className="h-5 w-5 group-hover:translate-x-1 transition-transform" />
-                    </span>
-                  </motion.button>
-                  
-                  <motion.button
-                    className="group px-8 py-4 border-2 border-gray-300 hover:border-gray-400 rounded-2xl text-gray-700 font-semibold backdrop-blur-sm hover:bg-gray-50 transition-all duration-300"
-                    whileHover={{ scale: 1.05 }}
-                  >
-                    <span className="flex items-center space-x-3">
-                      <Play className="h-5 w-5" />
-                      <span>Watch Demo</span>
-                    </span>
-                  </motion.button>
-                </motion.div>
+      {/* CTA Buttons */}
+      <motion.div
+        variants={itemVariants}
+        className="flex flex-col sm:flex-row gap-4"
+      >
+        <motion.button
+          onClick={onGetStarted}
+          className="group px-8 py-4 bg-blue-600 hover:bg-blue-700 rounded-2xl text-white text-lg font-semibold shadow-2xl shadow-blue-500/30 hover:shadow-blue-500/50 transition-all duration-300"
+          whileHover={{ scale: 1.05, y: -2 }}
+          whileTap={{ scale: 0.95 }}
+        >
+          <span className="flex items-center space-x-3">
+            <span>Create Your CV Free</span>
+            <ArrowRight className="h-5 w-5 group-hover:translate-x-1 transition-transform" />
+          </span>
+        </motion.button>
 
-                {/* Stats */}
-                <motion.div 
-                  variants={itemVariants}
-                  className="grid grid-cols-4 gap-6 pt-8"
-                >
-                  {stats.map((stat, idx) => (
-                    <motion.div
-                      key={idx}
-                      className="text-center"
-                      whileHover={{ scale: 1.1 }}
-                    >
-                      <div className="text-2xl lg:text-3xl font-bold text-white mb-1">
-                        {stat.number}
-                      </div>
-                      <div className="text-sm text-white/60">
-                        {stat.label}
-                      </div>
-                    </motion.div>
-                  ))}
-                </motion.div>
-              </motion.div>
+        <motion.button
+          className="group px-8 py-4 border-2 border-blue-200 hover:border-blue-300 rounded-2xl text-blue-700 font-semibold backdrop-blur-sm hover:bg-blue-50 transition-all duration-300"
+          whileHover={{ scale: 1.05 }}
+        >
+          <span className="flex items-center space-x-3">
+            <Play className="h-5 w-5 text-blue-600" />
+            <span>Watch Demo</span>
+          </span>
+        </motion.button>
+      </motion.div>
 
-              {/* Hero Image with floating elements */}
-              <motion.div 
-                className="relative lg:block hidden"
-                initial={{ opacity: 0, x: 50 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.8, delay: 0.4 }}
-              >
-                <div className="relative">
-                  {/* Main CV mockup */}
-                  <motion.div
-                    className="relative z-10 bg-white rounded-3xl shadow-2xl p-8 max-w-md mx-auto"
-                    animate={{
-                      y: [-10, 10, -10]
-                    }}
-                    transition={{
-                      duration: 3,
-                      repeat: Infinity,
-                      ease: "easeInOut"
-                    }}
-                  >
-                    <img 
-                      src="/Images/hero.jpg" 
-                      alt="Professional CV preview" 
-                      className="w-full h-auto rounded-2xl shadow-lg"
-                    />
-                  </motion.div>
-
-                  {/* Floating elements */}
-                  <motion.div
-                    className="absolute -top-6 -left-6 w-20 h-20 bg-gradient-to-br from-blue-400 to-blue-600 rounded-2xl flex items-center justify-center shadow-xl"
-                    animate={{
-                      y: [0, -20, 0],
-                      rotate: [0, 5, 0]
-                    }}
-                    transition={{ duration: 4, repeat: Infinity }}
-                  >
-                    <Zap className="h-8 w-8 text-white" />
-                  </motion.div>
-
-                  <motion.div
-                    className="absolute -bottom-6 -right-6 w-24 h-24 bg-gradient-to-br from-blue-500 to-blue-700 rounded-2xl flex items-center justify-center shadow-xl"
-                    animate={{
-                      y: [0, 15, 0],
-                      rotate: [0, -5, 0]
-                    }}
-                    transition={{ duration: 5, repeat: Infinity, delay: 1 }}
-                  >
-                    <Shield className="h-10 w-10 text-white" />
-                  </motion.div>
-
-                  <motion.div
-                    className="absolute top-1/2 -right-12 w-16 h-16 bg-gradient-to-br from-blue-300 to-blue-500 rounded-full flex items-center justify-center shadow-xl"
-                    animate={{
-                      x: [0, 10, 0],
-                      y: [0, -10, 0]
-                    }}
-                    transition={{ duration: 3, repeat: Infinity, delay: 2 }}
-                  >
-                    <Award className="h-6 w-6 text-white" />
-                  </motion.div>
-                </div>
-              </motion.div>
+      {/* Stats Section */}
+      <motion.div
+        variants={itemVariants}
+        className="grid grid-cols-4 gap-6 pt-8"
+      >
+        {stats.map((stat, idx) => (
+          <motion.div
+            key={idx}
+            className="text-center"
+            whileHover={{ scale: 1.1 }}
+          >
+            <div className="text-2xl lg:text-3xl font-bold text-blue-800 mb-1">
+              {stat.number}
             </div>
-          </div>
+            <div className="text-sm text-blue-600/80">{stat.label}</div>
+          </motion.div>
+        ))}
+      </motion.div>
+    </motion.div>
+
+    {/* Right Section - Floating Hero Image */}
+    <motion.div
+      className="relative lg:block hidden"
+      initial={{ opacity: 0, x: 50 }}
+      animate={{ opacity: 1, x: 0 }}
+      transition={{ duration: 0.8, delay: 0.4 }}
+    >
+      <div className="relative">
+        {/* Main CV Mockup */}
+        <motion.div
+          className="relative z-10 bg-white rounded-3xl shadow-2xl p-8 max-w-md mx-auto"
+          animate={{
+            y: [-10, 10, -10],
+          }}
+          transition={{
+            duration: 3,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+        >
+          <img
+            src="/Images/hero.jpg"
+            alt="Professional CV preview"
+            className="w-full h-auto rounded-2xl shadow-lg"
+          />
+        </motion.div>
+
+        {/* Floating Elements */}
+        <motion.div
+          className="absolute -top-6 -left-6 w-20 h-20 bg-gradient-to-br from-blue-400 to-blue-600 rounded-2xl flex items-center justify-center shadow-xl"
+          animate={{
+            y: [0, -20, 0],
+            rotate: [0, 5, 0],
+          }}
+          transition={{ duration: 4, repeat: Infinity }}
+        >
+          <Zap className="h-8 w-8 text-white" />
+        </motion.div>
+
+        <motion.div
+          className="absolute -bottom-6 -right-6 w-24 h-24 bg-gradient-to-br from-blue-500 to-blue-700 rounded-2xl flex items-center justify-center shadow-xl"
+          animate={{
+            y: [0, 15, 0],
+            rotate: [0, -5, 0],
+          }}
+          transition={{ duration: 5, repeat: Infinity, delay: 1 }}
+        >
+          <Shield className="h-10 w-10 text-white" />
+        </motion.div>
+
+        <motion.div
+          className="absolute top-1/2 -right-12 w-16 h-16 bg-gradient-to-br from-blue-300 to-blue-500 rounded-full flex items-center justify-center shadow-xl"
+          animate={{
+            x: [0, 10, 0],
+            y: [0, -10, 0],
+          }}
+          transition={{ duration: 3, repeat: Infinity, delay: 2 }}
+        >
+          <Award className="h-6 w-6 text-white" />
+        </motion.div>
+      </div>
+    </motion.div>
+  </div>
+</div>
         </section>
+
 
 
 
@@ -523,10 +389,10 @@ export default function LandingPage({ onGetStarted, onSignIn }: LandingPageProps
       transition={{ duration: 0.6 }}
       viewport={{ once: true }}
     >
-      <h2 className="text-4xl lg:text-5xl font-bold mb-6 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+      <h2 className="text-4xl lg:text-5xl font-bold mb-6 text-blue-600">
         Why Choose Us
       </h2>
-      <p className="text-lg text-gray-700 max-w-3xl mx-auto">
+      <p className="text-lg text-black max-w-3xl mx-auto">
         Our platform blends smart design, technology, and analytics to help you stand out in today’s competitive job market.
       </p>
     </motion.div>
@@ -597,10 +463,10 @@ export default function LandingPage({ onGetStarted, onSignIn }: LandingPageProps
       transition={{ duration: 0.6 }}
       viewport={{ once: true }}
     >
-      <h2 className="text-4xl lg:text-5xl font-bold mb-6 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+      <h2 className="text-4xl lg:text-5xl font-bold mb-6 text-blue-600">
         Professional Templates
       </h2>
-      <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+      <p className="text-lg text-black max-w-3xl mx-auto">
         Choose from our collection of HR-approved templates designed to pass ATS systems and impress hiring managers.
       </p>
     </motion.div>
@@ -633,7 +499,7 @@ export default function LandingPage({ onGetStarted, onSignIn }: LandingPageProps
             </p>
             <button 
               onClick={onGetStarted}
-              className="w-full py-3 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 rounded-xl text-white font-semibold transition-all duration-300 shadow-sm hover:shadow-purple-500/25"
+              className="w-full py-3 bg-blue-600 hover:bg-blue-700 rounded-xl text-white font-semibold transition-all duration-300 shadow-sm hover:shadow-blue-500/25"
             >
               Use This Template
             </button>
@@ -653,10 +519,10 @@ export default function LandingPage({ onGetStarted, onSignIn }: LandingPageProps
               transition={{ duration: 0.6 }}
               viewport={{ once: true }}
             >
-              <h2 className="text-4xl lg:text-5xl font-bold mb-6 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+              <h2 className="text-4xl lg:text-5xl font-bold mb-6 text-blue-600">
                 Success Stories
               </h2>
-              <p className="text-xl text-gray-700 max-w-3xl mx-auto">
+              <p className="text-xl text-black max-w-3xl mx-auto">
                 Join thousands of professionals who landed their dream jobs using QuickCV
               </p>
             </motion.div>
@@ -696,7 +562,7 @@ export default function LandingPage({ onGetStarted, onSignIn }: LandingPageProps
             </div>
           </div>
         </section>
-
+      </main>
         
 {/* Latest Blog Posts - Enhanced */}
 <section className="py-24 bg-white">
@@ -708,7 +574,7 @@ export default function LandingPage({ onGetStarted, onSignIn }: LandingPageProps
       transition={{ duration: 0.6 }}
       viewport={{ once: true }}
     >
-      <h2 className="text-4xl lg:text-5xl font-bold mb-6 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+      <h2 className="text-4xl lg:text-5xl font-bold mb-6 text-blue-600">
         Expert Career Insights
       </h2>
       <p className="text-xl text-blue-700 max-w-3xl mx-auto">
@@ -720,7 +586,6 @@ export default function LandingPage({ onGetStarted, onSignIn }: LandingPageProps
     </div>
   </div>
 </section>
-</main>
 
 {/* FAQ Section - Enhanced */}
 <section id="faq" className="py-24 bg-white">
@@ -732,7 +597,7 @@ export default function LandingPage({ onGetStarted, onSignIn }: LandingPageProps
       transition={{ duration: 0.6 }}
       viewport={{ once: true }}
     >
-      <h2 className="text-4xl lg:text-5xl font-bold mb-6 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+      <h2 className="text-4xl lg:text-5xl font-bold mb-6 text-blue-600">
         Frequently Asked Questions
       </h2>
       <p className="text-xl text-blue-600/80">
@@ -808,7 +673,7 @@ export default function LandingPage({ onGetStarted, onSignIn }: LandingPageProps
       <div className="flex flex-col sm:flex-row gap-4 justify-center">
         <motion.button
           onClick={onGetStarted}
-          className="px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 rounded-2xl text-white text-lg font-semibold shadow-lg hover:shadow-purple-400/50 transition-all duration-300"
+          className="px-8 py-4 bg-blue-600 hover:bg-blue-700 rounded-2xl text-white text-lg font-semibold shadow-lg hover:shadow-blue-400/50 transition-all duration-300"
           whileHover={{ scale: 1.05, y: -2 }}
           whileTap={{ scale: 0.95 }}
         >
@@ -840,10 +705,10 @@ export default function LandingPage({ onGetStarted, onSignIn }: LandingPageProps
       transition={{ duration: 0.6 }}
       viewport={{ once: true }}
     >
-      <h2 className="text-4xl lg:text-5xl font-bold mb-6 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-        Get in <span className="text-blue-600">Touch</span>
+      <h2 className="text-4xl lg:text-5xl font-bold mb-6 text-blue-600">
+        Get in <span className="text-black">Touch</span>
       </h2>
-      <p className="text-xl text-gray-700 max-w-3xl mx-auto">
+      <p className="text-xl text-black max-w-3xl mx-auto">
         Have questions? Need help? Want to partner with us? We'd love to hear from you.
       </p>
     </motion.div>
@@ -889,8 +754,8 @@ export default function LandingPage({ onGetStarted, onSignIn }: LandingPageProps
             </div>
             
             <div className="flex items-center space-x-4">
-              <div className="p-3 bg-purple-100 rounded-lg">
-                <MapPin className="h-6 w-6 text-purple-600" />
+              <div className="p-3 bg-blue-100 rounded-lg">
+                <MapPin className="h-6 w-6 text-blue-600" />
               </div>
               <div>
                 <p className="font-semibold text-gray-900">Visit Us</p>
@@ -976,7 +841,7 @@ export default function LandingPage({ onGetStarted, onSignIn }: LandingPageProps
             <button
               type="submit"
               disabled={contactStatus === 'sending' || contactStatus === 'success'}
-              className="w-full flex items-center justify-center space-x-2 px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg hover:from-blue-700 hover:to-purple-700 transition-all duration-200 shadow-lg font-semibold text-white disabled:opacity-50"
+              className="w-full flex items-center justify-center space-x-2 px-6 py-3 bg-blue-600 hover:bg-blue-700 rounded-lg transition-all duration-200 shadow-lg font-semibold text-white disabled:opacity-50"
             >
               {contactStatus === 'sending' ? (
                 <>
@@ -999,136 +864,7 @@ export default function LandingPage({ onGetStarted, onSignIn }: LandingPageProps
   </div>
 </section>
 
-{/* Footer */}
-<footer className="bg-white border-t border-blue-100 text-gray-800 py-12 md:py-16">
-  <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    {/* Main Footer Content */}
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-6">
-      {/* Company Info - Full width on mobile, spans 2 cols on sm+ */}
-      <div className="sm:col-span-2 lg:col-span-1 space-y-4">
-        <h3 className="text-xl lg:text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-          QuickCV
-        </h3>
-        <p className="text-gray-600 leading-relaxed text-sm lg:text-base max-w-sm">
-          Create professional, ATS-optimized CVs that land interviews at top companies.
-        </p>
-        <div className="flex space-x-3">
-          <div className="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center hover:bg-blue-200 transition-colors cursor-pointer">
-            <Globe className="h-5 w-5 text-blue-600" />
-          </div>
-          <div className="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center hover:bg-blue-200 transition-colors cursor-pointer">
-            <TrendingUp className="h-5 w-5 text-blue-600" />
-          </div>
-        </div>
-      </div>
-
-      {/* Product Links */}
-      <div className="space-y-4">
-        <h4 className="font-semibold text-blue-900 text-lg">Product</h4>
-        <ul className="space-y-3">
-          <li>
-            <a 
-              href="#templates" 
-              className="text-gray-600 hover:text-blue-600 transition-colors text-sm lg:text-base block py-1"
-            >
-              Templates
-            </a>
-          </li>
-          <li>
-            <a 
-              href="#features" 
-              className="text-gray-600 hover:text-blue-600 transition-colors text-sm lg:text-base block py-1"
-            >
-              Features
-            </a>
-          </li>
-          <li>
-            <button 
-              onClick={onGetStarted} 
-              className="text-gray-600 hover:text-blue-600 transition-colors text-sm lg:text-base text-left py-1"
-            >
-              CV Builder
-            </button>
-          </li>
-        </ul>
-      </div>
-
-      {/* Support Links */}
-      <div className="space-y-4">
-        <h4 className="font-semibold text-blue-900 text-lg">Support</h4>
-        <ul className="space-y-3">
-          <li>
-            <Link 
-              to="/faq" 
-              className="text-gray-600 hover:text-blue-600 transition-colors text-sm lg:text-base block py-1"
-            >
-              FAQ
-            </Link>
-          </li>
-          <li>
-            <Link 
-              to="/contact" 
-              className="text-gray-600 hover:text-blue-600 transition-colors text-sm lg:text-base block py-1"
-            >
-              Contact Us
-            </Link>
-          </li>
-          <li>
-            <Link 
-              to="/help" 
-              className="text-gray-600 hover:text-blue-600 transition-colors text-sm lg:text-base block py-1"
-            >
-              Help Center
-            </Link>
-          </li>
-        </ul>
-      </div>
-
-      {/* Company Links */}
-      <div className="space-y-4">
-        <h4 className="font-semibold text-blue-900 text-lg">Company</h4>
-        <ul className="space-y-3">
-          <li>
-            <Link 
-              to="/about" 
-              className="text-gray-600 hover:text-blue-600 transition-colors text-sm lg:text-base block py-1"
-            >
-              About
-            </Link>
-          </li>
-          <li>
-            <Link 
-              to="/privacy" 
-              className="text-gray-600 hover:text-blue-600 transition-colors text-sm lg:text-base block py-1"
-            >
-              Privacy Policy
-            </Link>
-          </li>
-          <li>
-            <Link 
-              to="/terms" 
-              className="text-gray-600 hover:text-blue-600 transition-colors text-sm lg:text-base block py-1"
-            >
-              Terms of Service
-            </Link>
-          </li>
-        </ul>
-      </div>
-    </div>
-
-    {/* Bottom Bar */}
-    <div className="border-t border-blue-100 mt-8 lg:mt-12 pt-6 lg:pt-8">
-      <div className="flex flex-col space-y-4 sm:flex-row sm:justify-between sm:items-center sm:space-y-0">
-        <p className="text-gray-500 text-sm text-center sm:text-left">
-          © 2025 QuickCV. All rights reserved.
-        </p>
-        <p className="text-gray-500 text-sm text-center sm:text-right">
-          Built with ❤️ for job seekers worldwide
-        </p>
-      </div>
-    </div>
-  </div>
-</footer>
+      <Footer onGetStarted={onGetStarted} />
 
     </div>
   );

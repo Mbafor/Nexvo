@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { useNavigate } from 'react-router-dom';
+
 import { useEffect } from 'react';
 import { 
   Mail, 
@@ -14,12 +14,12 @@ import {
   Globe,
   Linkedin,
   Twitter,
-  ArrowLeft,
   Building2,
   Users,
   Star
 } from 'lucide-react';
 import { sendContactMessage } from '../utils/contactService';
+import Header from '../components/common/Header';
 import Footer from '../components/common/Footer';
 
 interface ContactForm {
@@ -32,21 +32,11 @@ interface ContactForm {
 }
 
 export default function ContactPage() {
-  const navigate = useNavigate();
-  
   // Scroll to top when component mounts
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
   
-  const handleBack = () => {
-    // Try to go back in history, fallback to home page
-    if (window.history.length > 1) {
-      navigate(-1);
-    } else {
-      navigate('/');
-    }
-  };
 
   const [formData, setFormData] = useState<ContactForm>({
     name: '',
@@ -157,30 +147,8 @@ export default function ContactPage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50">
-      {/* Header */}
-      <div className="bg-white shadow-sm border-b border-gray-200">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-          <div className="flex items-center justify-between">
-            <button
-              onClick={handleBack}
-              className="flex items-center space-x-2 text-gray-600 hover:text-gray-900 transition-colors"
-            >
-              <ArrowLeft className="h-5 w-5" />
-              <span>Back</span>
-            </button>
-            <div className="flex items-center space-x-3">
-              <div className="h-10 w-10 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-xl flex items-center justify-center">
-                <MessageCircle className="h-6 w-6 text-white" />
-              </div>
-              <div>
-                <h1 className="text-xl font-bold text-gray-900">Contact Us</h1>
-                <p className="text-sm text-gray-600">We'd love to hear from you</p>
-              </div>
-            </div>
-            <div className="w-16"></div>
-          </div>
-        </div>
-      </div>
+      <Header />
+      
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Hero Section */}
