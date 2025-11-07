@@ -32,7 +32,7 @@ export default function OnboardingTour({ isOpen, onClose, onComplete }: Onboardi
     {
       id: 'navigation',
       title: '🧭 Easy Navigation',
-      content: 'This section shows your current progress and allows you to navigate between CV sections. Use the Previous/Next buttons to move through your CV creation process.',
+      content: 'This section shows your current progress and allows you to navigate between CV sections. Use the Previous/Next buttons to move your CV.',
       target: 'section-navigation',
       position: 'bottom',
       icon: ChevronRight
@@ -109,12 +109,12 @@ export default function OnboardingTour({ isOpen, onClose, onComplete }: Onboardi
     const isMobile = window.innerWidth < 768;
     const isSmallMobile = window.innerWidth < 480;
     
-    // Responsive tooltip sizing - more compact
-    const tooltipWidth = isSmallMobile ? Math.min(300, window.innerWidth - 32) : 
-                       isMobile ? Math.min(340, window.innerWidth - 48) : 
-                       Math.min(380, window.innerWidth - 80);
-    const tooltipHeight = isSmallMobile ? 280 : isMobile ? 300 : 260;
-    const padding = isMobile ? 16 : 24;
+    // Responsive tooltip sizing - optimized for button visibility
+    const tooltipWidth = isSmallMobile ? Math.min(360, window.innerWidth - 24) : 
+                       isMobile ? Math.min(420, window.innerWidth - 32) : 
+                       Math.min(480, window.innerWidth - 64);
+    const tooltipHeight = isSmallMobile ? 340 : isMobile ? 360 : 320;
+    const padding = isMobile ? 12 : 20;
 
     let top = 0;
     let left = 0;
@@ -217,17 +217,18 @@ export default function OnboardingTour({ isOpen, onClose, onComplete }: Onboardi
   if (!isOpen) return null;
 
   return (
-    <AnimatePresence>
-      {isOpen && (
-        <>
-          {/* Overlay - simple dark background */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 bg-black/50 backdrop-blur-sm"
-            onClick={handleSkip}
-          />
+    <div className="hidden md:block">
+      <AnimatePresence>
+        {isOpen && (
+          <>
+            {/* Overlay - simple dark background */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="fixed inset-0 z-50 bg-black/50 backdrop-blur-sm"
+              onClick={handleSkip}
+            />
 
           {/* Highlight target element - subtle glow */}
           {targetElement && currentTourStep.position !== 'center' && (
@@ -252,7 +253,7 @@ export default function OnboardingTour({ isOpen, onClose, onComplete }: Onboardi
             initial={{ opacity: 0, scale: 0.9, y: 10 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.9, y: 10 }}
-            className="fixed z-[100] bg-white backdrop-blur-sm rounded-2xl shadow-xl border border-gray-200 overflow-hidden"
+            className="fixed z-[100] bg-white backdrop-blur-sm rounded-2xl shadow-2xl border border-gray-200 overflow-hidden"
             style={getTooltipPosition()}
             onClick={(e) => e.stopPropagation()}
             transition={{ type: "spring", duration: 0.4 }}
@@ -260,32 +261,32 @@ export default function OnboardingTour({ isOpen, onClose, onComplete }: Onboardi
             {/* Header */}
             <div className="p-4 sm:p-6 pb-3 sm:pb-4">
               <div className="flex items-center justify-between mb-3 sm:mb-4">
-                <div className="flex items-center space-x-2 sm:space-x-3 flex-1 min-w-0">
-                  <div className="bg-gradient-to-br from-blue-100 to-purple-100 p-2 rounded-lg flex-shrink-0">
-                    <currentTourStep.icon className="h-4 w-4 sm:h-5 sm:w-5 text-blue-600" />
+                <div className="flex items-center space-x-3 sm:space-x-4 flex-1 min-w-0">
+                  <div className="bg-gradient-to-br from-blue-100 to-purple-100 p-3 rounded-xl flex-shrink-0">
+                    <currentTourStep.icon className="h-5 w-5 sm:h-6 sm:w-6 text-blue-600" />
                   </div>
                   <div className="flex-1 min-w-0">
-                    <h3 className="font-semibold text-gray-900 text-base sm:text-lg leading-tight">
+                    <h3 className="font-bold text-gray-900 text-lg sm:text-xl leading-tight">
                       {currentTourStep.title}
                     </h3>
-                    <p className="text-xs sm:text-sm text-gray-500 mt-1">
+                    <p className="text-sm sm:text-base text-gray-500 mt-1">
                       Step {currentStep + 1} of {tourSteps.length}
                     </p>
                   </div>
                 </div>
                 <button
                   onClick={handleSkip}
-                  className="p-2 text-slate-400 hover:text-slate-600 rounded-lg min-h-[44px] min-w-[44px] flex items-center justify-center hover:bg-slate-100 transition-colors flex-shrink-0 touch-manipulation"
+                  className="p-3 text-slate-400 hover:text-slate-600 rounded-xl min-h-[48px] min-w-[48px] flex items-center justify-center hover:bg-slate-100 transition-colors flex-shrink-0 touch-manipulation"
                   aria-label="Close tour"
                 >
-                  <X className="h-4 w-4 sm:h-5 sm:w-5" />
+                  <X className="h-5 w-5 sm:h-6 sm:w-6" />
                 </button>
               </div>
 
               {/* Progress Bar */}
-              <div className="w-full bg-slate-200 rounded-full h-2 mb-3 sm:mb-4">
+              <div className="w-full bg-slate-200 rounded-full h-3 mb-3 sm:mb-4">
                 <motion.div
-                  className="bg-gradient-to-r from-blue-500 to-purple-600 h-2 rounded-full"
+                  className="bg-gradient-to-r from-blue-500 to-purple-600 h-3 rounded-full"
                   initial={{ width: "0%" }}
                   animate={{ width: `${((currentStep + 1) / tourSteps.length) * 100}%` }}
                   transition={{ duration: 0.3 }}
@@ -294,46 +295,46 @@ export default function OnboardingTour({ isOpen, onClose, onComplete }: Onboardi
             </div>
 
             {/* Content */}
-            <div className="px-4 sm:px-6 pb-4 sm:pb-6 flex-1 overflow-y-auto">
+            <div className="px-4 sm:px-6 pb-3 sm:pb-4 flex-1 overflow-y-auto">
               <motion.p
                 key={currentStep}
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
-                className="text-gray-600 leading-relaxed mb-4 sm:mb-6 text-sm sm:text-base"
+                className="text-gray-700 leading-relaxed mb-3 sm:mb-4 text-base sm:text-lg"
               >
                 {currentTourStep.content}
               </motion.p>
 
-              {/* Navigation - Mobile optimized */}
-              <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-2 sm:gap-3">
+              {/* Navigation - Enhanced for better accessibility */}
+              <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 sm:gap-4 pt-2 border-t border-gray-100">
                 <button
                   onClick={handlePrevious}
                   disabled={currentStep === 0}
-                  className={`flex items-center justify-center space-x-2 px-4 py-3 rounded-lg transition-colors min-h-[48px] font-medium text-sm touch-manipulation ${
+                  className={`flex items-center justify-center space-x-2 px-6 py-4 rounded-xl transition-all duration-200 min-h-[56px] font-medium text-base touch-manipulation ${
                     currentStep === 0
-                      ? 'text-gray-400 cursor-not-allowed bg-gray-50'
-                      : 'text-gray-600 hover:text-gray-800 hover:bg-gray-100 active:bg-gray-200'
+                      ? 'text-gray-400 cursor-not-allowed bg-gray-50 border border-gray-200'
+                      : 'text-gray-600 hover:text-gray-800 hover:bg-gray-100 active:bg-gray-200 border border-gray-200 hover:border-gray-300'
                   }`}
                 >
-                  <ChevronLeft className="h-4 w-4" />
+                  <ChevronLeft className="h-5 w-5" />
                   <span>Back</span>
                 </button>
 
                 <button
                   onClick={handleSkip}
-                  className="px-4 py-3 text-sm text-slate-500 hover:text-slate-700 rounded-lg hover:bg-slate-100 transition-colors min-h-[48px] font-medium active:bg-slate-200 touch-manipulation order-last sm:order-none"
+                  className="px-6 py-4 text-base text-slate-500 hover:text-slate-700 rounded-xl hover:bg-slate-100 transition-all duration-200 min-h-[56px] font-medium active:bg-slate-200 touch-manipulation order-last sm:order-none border border-transparent hover:border-slate-200"
                 >
                   Skip Tour
                 </button>
 
                 <button
                   onClick={handleNext}
-                  className="flex items-center justify-center space-x-2 px-4 sm:px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-lg hover:from-blue-700 hover:to-purple-700 transition-all duration-200 min-h-[48px] font-medium shadow-sm hover:shadow-md active:scale-95 touch-manipulation"
+                  className="flex items-center justify-center space-x-2 px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-xl hover:from-blue-700 hover:to-purple-700 transition-all duration-200 min-h-[56px] font-medium shadow-lg hover:shadow-xl active:scale-95 touch-manipulation"
                 >
-                  <span className="text-sm font-medium">
-                    {currentStep === tourSteps.length - 1 ? 'Finish' : 'Next'}
+                  <span className="text-base font-medium">
+                    {currentStep === tourSteps.length - 1 ? 'Finish Tour' : 'Next'}
                   </span>
-                  {currentStep < tourSteps.length - 1 && <ChevronRight className="h-4 w-4" />}
+                  {currentStep < tourSteps.length - 1 && <ChevronRight className="h-5 w-5" />}
                 </button>
               </div>
             </div>
@@ -350,8 +351,9 @@ export default function OnboardingTour({ isOpen, onClose, onComplete }: Onboardi
               />
             )}
           </motion.div>
-        </>
-      )}
-    </AnimatePresence>
+          </>
+        )}
+      </AnimatePresence>
+    </div>
   );
 }
