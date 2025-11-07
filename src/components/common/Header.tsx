@@ -11,14 +11,21 @@ interface HeaderProps {
 export default function Header({ onGetStarted, onSignIn }: HeaderProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
-  const handleMobileNavClick = (e: React.MouseEvent<HTMLAnchorElement>, sectionId: string) => {
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, sectionId: string) => {
     e.preventDefault();
     setMobileMenuOpen(false);
-    const element = document.getElementById(sectionId);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
+    
+    // Check if we're on the home page
+    const isHomePage = window.location.pathname === '/' || window.location.pathname === '/index.html';
+    
+    if (isHomePage) {
+      // If on home page, scroll to section
+      const element = document.getElementById(sectionId);
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth" });
+      }
     } else {
-      // If we're not on the landing page, navigate to it first
+      // If not on home page, navigate to home page with hash
       window.location.href = `/#${sectionId}`;
     }
   };
@@ -45,12 +52,12 @@ export default function Header({ onGetStarted, onSignIn }: HeaderProps) {
 
           {/* Desktop Menu */}
           <div className="hidden md:flex items-center space-x-8">
-            <Link to="/#templates" className="text-black hover:text-blue-600 font-medium transition-all duration-300 hover:scale-105">
+            <a href="/#templates" onClick={(e) => handleNavClick(e, "templates")} className="text-black hover:text-blue-600 font-medium transition-all duration-300 hover:scale-105">
               Templates
-            </Link>
-            <Link to="/#features" className="text-black hover:text-blue-600 font-medium transition-all duration-300 hover:scale-105">
+            </a>
+            <a href="/#features" onClick={(e) => handleNavClick(e, "features")} className="text-black hover:text-blue-600 font-medium transition-all duration-300 hover:scale-105">
               Features
-            </Link>
+            </a>
             <Link to="/blogs" className="text-black hover:text-blue-600 font-medium transition-all duration-300 hover:scale-105">
               Blog
             </Link>
@@ -103,11 +110,11 @@ export default function Header({ onGetStarted, onSignIn }: HeaderProps) {
               className="md:hidden mt-4 py-4 border-t border-gray-200 bg-white/95"
             >
               <div className="flex flex-col space-y-4">
-                <a href="/#templates" onClick={(e) => handleMobileNavClick(e, "templates")} 
+                <a href="/#templates" onClick={(e) => handleNavClick(e, "templates")} 
                   className="text-black hover:text-blue-600 font-medium transition-colors">
                   Templates
                 </a>
-                <a href="/#features" onClick={(e) => handleMobileNavClick(e, "features")} 
+                <a href="/#features" onClick={(e) => handleNavClick(e, "features")} 
                   className="text-black hover:text-blue-600 font-medium transition-colors">
                   Features
                 </a>
