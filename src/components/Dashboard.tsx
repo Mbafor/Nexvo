@@ -46,6 +46,7 @@ import { generatePDFBlob } from '../lib/pdfGenerator';
 import { saveAs } from 'file-saver';
 import { blogPosts } from '../data/blogPosts';
 import EmailVerificationBanner from './EmailVerificationBanner';
+import { sendContactMessage } from '../utils/contactService';
 
 interface DashboardProps {
   onCreateNew: () => void;
@@ -77,6 +78,14 @@ export default function Dashboard({ onCreateNew, onEditCV }: DashboardProps) {
     totalViews: 0,
     avgRating: 0
   });
+
+  // Contact form state
+  const [contactForm, setContactForm] = useState({
+    issueType: 'general',
+    message: ''
+  });
+  const [isSubmittingContact, setIsSubmittingContact] = useState(false);
+  const [contactSubmitStatus, setContactSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
 
   useEffect(() => {
     // Only load CV history when user is authenticated and loading is complete
@@ -355,6 +364,41 @@ export default function Dashboard({ onCreateNew, onEditCV }: DashboardProps) {
       }
     } catch (error) {
       console.error('❌ Bulk action failed:', error);
+    }
+  };
+
+  const handleContactSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!contactForm.message.trim()) return;
+
+    setIsSubmittingContact(true);
+    setContactSubmitStatus('idle');
+
+    try {
+      const result = await sendContactMessage({
+        name: user?.displayName || user?.email || 'Dashboard User',
+        email: user?.email || '',
+        subject: `Dashboard Support: ${contactForm.issueType}`,
+        message: contactForm.message,
+        inquiryType: contactForm.issueType as any,
+        urgency: 'medium'
+      });
+
+      if (result.success) {
+        setContactSubmitStatus('success');
+        setContactForm({ issueType: 'general', message: '' });
+        // Reset success status after 3 seconds
+        setTimeout(() => setContactSubmitStatus('idle'), 3000);
+      } else {
+        throw new Error(result.message);
+      }
+    } catch (error) {
+      console.error('❌ Contact form submission failed:', error);
+      setContactSubmitStatus('error');
+      // Reset error status after 5 seconds
+      setTimeout(() => setContactSubmitStatus('idle'), 5000);
+    } finally {
+      setIsSubmittingContact(false);
     }
   };
 
@@ -1466,31 +1510,63 @@ export default function Dashboard({ onCreateNew, onEditCV }: DashboardProps) {
                   {/* Quick Contact Form */}
                   <div className="bg-gray-50 rounded-lg p-6">
                     <h4 className="font-semibold text-gray-900 mb-4">Quick Support Request</h4>
-                    <form className="space-y-4">
+                    <form onSubmit={handleContactSubmit} className="space-y-4">
                       <div>
                         <label className="block text-sm font-medium text-gray-700 mb-1">Issue Type</label>
-                        <select className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm">
-                          <option>Technical Issue</option>
-                          <option>Account Problem</option>
-                          <option>CV Download Issue</option>
-                          <option>Template Question</option>
-                          <option>General Question</option>
+                        <select 
+                          value={contactForm.issueType}
+                          onChange={(e) => setContactForm(prev => ({ ...prev, issueType: e.target.value }))}
+                          className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm"
+                        >
+                          <option value="technical">Technical Issue</option>
+                          <option value="support">Account Problem</option>
+                          <option value="general">CV Download Issue</option>
+                          <option value="feature">Template Question</option>
+                          <option value="general">General Question</option>
                         </select>
                       </div>
                       <div>
                         <label className="block text-sm font-medium text-gray-700 mb-1">Message</label>
                         <textarea
                           rows={3}
+                          value={contactForm.message}
+                          onChange={(e) => setContactForm(prev => ({ ...prev, message: e.target.value }))}
                           className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm"
                           placeholder="Describe your issue..."
+                          required
                         />
                       </div>
+                      {contactSubmitStatus === 'success' && (
+                        <div className="p-3 bg-green-50 border border-green-200 rounded-lg">
+                          <p className="text-sm text-green-700 flex items-center">
+                            <CheckCircle2 className="h-4 w-4 mr-2" />
+                            Support request sent successfully! We'll get back to you soon.
+                          </p>
+                        </div>
+                      )}
+                      {contactSubmitStatus === 'error' && (
+                        <div className="p-3 bg-red-50 border border-red-200 rounded-lg">
+                          <p className="text-sm text-red-700">
+                            Failed to send message. Please try again or email us directly at mbaforfoghang@gmail.com
+                          </p>
+                        </div>
+                      )}
                       <button
                         type="submit"
-                        className="w-full flex items-center justify-center space-x-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors text-sm"
+                        disabled={isSubmittingContact || !contactForm.message.trim()}
+                        className="w-full flex items-center justify-center space-x-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors text-sm"
                       >
-                        <Send className="h-4 w-4" />
-                        <span>Send Support Request</span>
+                        {isSubmittingContact ? (
+                          <>
+                            <div className="h-4 w-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
+                            <span>Sending...</span>
+                          </>
+                        ) : (
+                          <>
+                            <Send className="h-4 w-4" />
+                            <span>Send Support Request</span>
+                          </>
+                        )}
                       </button>
                     </form>
                   </div>

@@ -1,8 +1,8 @@
 
 // src/components/LandingPage.tsx
 import { useState, useEffect } from "react";
-import { Zap, Sparkles, Shield, Award, Mail, Phone, MapPin, Clock, Send, MessageCircle, Linkedin, Twitter, Briefcase, BarChart3, Palette, Headphones, FileText, TrendingUp, Globe, ArrowRight } from "lucide-react";
-import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
+import { Zap, Shield, Award, Mail, Phone, Clock, Send, MessageCircle, Linkedin, Twitter, Briefcase, BarChart3, Palette, Headphones, FileText, TrendingUp, Globe, ArrowRight } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 import LatestPosts from "../components/LatestPosts";
 import { sendContactMessage } from "../utils/contactService";
 import Header from "../components/common/Header";
@@ -88,35 +88,13 @@ export default function LandingPage({ onGetStarted, onSignIn }: LandingPageProps
   const [contactForm, setContactForm] = useState({ name: '', email: '', message: '' });
   const [contactStatus, setContactStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle');
   
-  const { scrollYProgress } = useScroll();
-  const y = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
-  const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
 
   // Scroll to top when component mounts
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
-  // Testimonial carousel
-  // useEffect(() => {
-  //   const interval = setInterval(() => {
-  //     setCurrentTestimonial((prev) => (prev + 1) % testimonials.length);
-  //   }, 5000);
-  //   return () => clearInterval(interval);
-  // }, []);
-
-  // Mouse tracking for interactive elements
-  // useEffect(() => {
-  //   const handleMouseMove = (e: MouseEvent) => {
-  //     setMousePosition({ x: e.clientX, y: e.clientY });
-  //   };
-  //   window.addEventListener('mousemove', handleMouseMove);
-  //   return () => window.removeEventListener('mousemove', handleMouseMove);
-  // }, []);
-
   const toggleFAQ = (idx: number) => setOpenFAQ(openFAQ === idx ? null : idx);
-
-
 
   const handleContactSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -218,10 +196,6 @@ export default function LandingPage({ onGetStarted, onSignIn }: LandingPageProps
       <main>
         {/* Hero Section - Blue, Black, White Theme */}
         <section className="relative min-h-screen flex items-center overflow-hidden">
-          <motion.div style={{ y, opacity }} className="absolute inset-0 z-0">
-            <div className="absolute inset-0 bg-gradient-to-br from-blue-50/80 via-white to-gray-50/40" />
-          </motion.div>
-          
           <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
   <div className="grid lg:grid-cols-2 gap-12 items-center">
     {/* Left Section - Text Content */}
@@ -231,20 +205,11 @@ export default function LandingPage({ onGetStarted, onSignIn }: LandingPageProps
       animate="visible"
       className="space-y-8"
     >
-      {/* Trusted Tag */}
-      <motion.div variants={itemVariants}>
-        <div className="inline-flex items-center space-x-2 bg-blue-100 backdrop-blur-sm px-4 py-2 rounded-full border border-blue-200">
-          <Sparkles className="h-4 w-4 text-blue-600" />
-          <span className="text-sm font-medium text-blue-800">
-            Trusted by 50,000+ professionals
-          </span>
-        </div>
-      </motion.div>
 
       {/* Hero Title */}
       <motion.h1
         variants={itemVariants}
-        className="text-5xl lg:text-7xl font-bold leading-tight"
+        className="text-5xl lg:text-7xl font-bold leading-tight mt-[-40px]"
       >
         <span className="text-blue-600 bg-clip-text">
           Build Your Perfect CV in Minutes
@@ -366,11 +331,13 @@ export default function LandingPage({ onGetStarted, onSignIn }: LandingPageProps
 </div>
         </section>
 
-
-
-
 {/* Why Choose Us Section - Blue Modern Theme with Lucide Icons */}
-<section id="why-choose-us" className="py-24 bg-gradient-to-b from-blue-50 to-blue-100">
+<section
+  id="why-choose-us"
+  className="py-24 bg-cover bg-center bg-no-repeat"
+  
+>
+
   <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <motion.div
       className="text-center mb-16"
@@ -390,32 +357,32 @@ export default function LandingPage({ onGetStarted, onSignIn }: LandingPageProps
     <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
       {[
         {
-          icon: <Briefcase className="w-10 h-10 text-blue-700 group-hover:text-blue-800 transition-colors" />,
+          icon: <Briefcase className="w-10 h-10 text-blue-600 group-hover:text-blue-800 transition-colors" />,
           title: "HR-Approved Templates",
           desc: "Professionally designed templates that pass ATS scans and instantly grab recruiters’ attention."
         },
         {
-          icon: <Zap className="w-10 h-10 text-blue-700 group-hover:text-blue-800 transition-colors" />,
+          icon: <Zap className="w-10 h-10 text-blue-600 group-hover:text-blue-800 transition-colors" />,
           title: "Fast & Easy to Use",
           desc: "Build a polished resume in minutes using our intuitive editor and real-time design suggestions."
         },
         {
-          icon: <BarChart3 className="w-10 h-10 text-blue-700 group-hover:text-blue-800 transition-colors" />,
+          icon: <BarChart3 className="w-10 h-10 text-blue-600 group-hover:text-blue-800 transition-colors" />,
           title: "Data-Driven Insights",
           desc: "We analyze hiring patterns to give you resume tips that match today’s top recruiter trends."
         },
         {
-          icon: <Globe className="w-10 h-10 text-blue-700 group-hover:text-blue-800 transition-colors" />,
+          icon: <Globe className="w-10 h-10 text-blue-600 group-hover:text-blue-800 transition-colors" />,
           title: "Global Compatibility",
           desc: "Optimized for international standards — perfect for any role, anywhere in the world."
         },
         {
-          icon: <Palette className="w-10 h-10 text-blue-700 group-hover:text-blue-800 transition-colors" />,
+          icon: <Palette className="w-10 h-10 text-blue-600 group-hover:text-blue-800 transition-colors" />,
           title: "Customizable Designs",
           desc: "Change colors, fonts, and layouts effortlessly to make your resume reflect your personality."
         },
         {
-          icon: <Headphones className="w-10 h-10 text-blue-700 group-hover:text-blue-800 transition-colors" />,
+          icon: <Headphones className="w-10 h-10 text-blue-600 group-hover:text-blue-800 transition-colors" />,
           title: "Dedicated Support",
           desc: "Our friendly team is always ready to help you build your perfect resume, every step of the way."
         }
@@ -645,8 +612,15 @@ export default function LandingPage({ onGetStarted, onSignIn }: LandingPageProps
 </section>
 
 {/* Final CTA Section */}
-<section className="py-24 bg-blue-50">
-  <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+<section
+  className="relative py-24 bg-cover bg-center bg-no-repeat"
+  style={{ backgroundImage: "url('/Images/call.png')" }}
+>
+  {/* Dark overlay ONLY inside this section */}
+  <div className="absolute inset-0 bg-black/40"></div>
+
+  {/* Content above overlay */}
+  <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
     <motion.div
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
@@ -654,16 +628,18 @@ export default function LandingPage({ onGetStarted, onSignIn }: LandingPageProps
       viewport={{ once: true }}
       className="space-y-8"
     >
-      <h2 className="text-4xl lg:text-6xl font-bold text-blue-700">
+      <h2 className="text-4xl lg:text-6xl font-bold text-white">
         Ready to Land Your Dream Job?
       </h2>
-      <p className="text-xl lg:text-2xl text-black  max-w-2xl mx-auto">
+
+      <p className="text-xl lg:text-2xl text-white max-w-2xl mx-auto">
         Join 50,000+ professionals who've successfully created their perfect CV with QuickCV
       </p>
+
       <div className="flex flex-col sm:flex-row gap-4 justify-center">
         <motion.button
           onClick={onGetStarted}
-          className="px-8 py-4 bg-blue-600 hover:bg-blue-700 rounded-2xl text-white text-lg font-semibold shadow-lg hover:shadow-blue-400/50 transition-all duration-300"
+          className="px-8 py-4 bg-blue-600 rounded-2xl text-white text-lg font-semibold shadow-lg hover:shadow-blue-400/50 transition-all duration-300"
           whileHover={{ scale: 1.05, y: -2 }}
           whileTap={{ scale: 0.95 }}
         >
@@ -672,9 +648,10 @@ export default function LandingPage({ onGetStarted, onSignIn }: LandingPageProps
             <ArrowRight className="h-5 w-5" />
           </span>
         </motion.button>
+
         <motion.a
           href="#templates"
-          className="px-8 py-4 border-2 border-blue-300 hover:bg-blue-100 rounded-2xl text-blue-700 font-semibold transition-all duration-300"
+          className="px-8 py-4 border-2 rounded-2xl text-white font-semibold transition-all duration-300"
           whileHover={{ scale: 1.05 }}
         >
           Browse Templates
@@ -683,6 +660,7 @@ export default function LandingPage({ onGetStarted, onSignIn }: LandingPageProps
     </motion.div>
   </div>
 </section>
+
 
 
 {/* Contact Section */}
@@ -737,22 +715,12 @@ export default function LandingPage({ onGetStarted, onSignIn }: LandingPageProps
               </div>
               <div>
                 <p className="font-semibold text-gray-900">Call Us</p>
-                <a href="tel:+15551234567" className="text-blue-600 hover:text-blue-700 transition-colors">
-                  +1 (555) 123-4567
+                <a href="tel:+1237683094941" className="text-blue-600 hover:text-blue-700 transition-colors">
+                  +1 (237) 683094941
                 </a>
               </div>
             </div>
-            
-            <div className="flex items-center space-x-4">
-              <div className="p-3 bg-blue-100 rounded-lg">
-                <MapPin className="h-6 w-6 text-blue-600" />
-              </div>
-              <div>
-                <p className="font-semibold text-gray-900">Visit Us</p>
-                <p className="text-gray-700">123 Business Ave, Suite 100</p>
-                <p className="text-gray-700">San Francisco, CA 94107</p>
-              </div>
-            </div>
+          
             
             <div className="flex items-center space-x-4">
               <div className="p-3 bg-yellow-100 rounded-lg">
@@ -777,7 +745,7 @@ export default function LandingPage({ onGetStarted, onSignIn }: LandingPageProps
             <a href="https://twitter.com/quickcv" className="p-3 bg-sky-500 rounded-lg hover:bg-sky-600 transition-colors">
               <Twitter className="h-5 w-5 text-white" />
             </a>
-            <a href="mailto:hello@quickcv.com" className="p-3 bg-gray-600 rounded-lg hover:bg-gray-700 transition-colors">
+            <a href="mailto:mbaforfoghang@gmail.com" className="p-3 bg-gray-600 rounded-lg hover:bg-gray-700 transition-colors">
               <Mail className="h-5 w-5 text-white" />
             </a>
           </div>

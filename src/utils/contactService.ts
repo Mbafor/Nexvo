@@ -30,101 +30,53 @@ export async function sendContactMessage(formData: ContactFormData): Promise<Con
       throw new Error('Please enter a valid email address');
     }
 
-    // Generate ticket ID
-    const ticketId = `QCV-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
-    
-    // Prepare contact data
+    // Send to backend API
+    const response = await fetch('/api/contact', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(formData),
+    });
+
+    const result = await response.json();
+
+    if (!response.ok) {
+      throw new Error(result.error || 'Failed to send message');
+    }
+
+    // Store in localStorage for backup/history (optional)
     const contactData = {
       ...formData,
-      ticketId,
+      ticketId: result.ticketId,
       timestamp: new Date().toISOString(),
-      status: 'pending',
+      status: 'sent',
       source: 'contact_form'
     };
-
-    // For now, store in localStorage (in production, this would go to your backend)
+    
     const existingContacts = JSON.parse(localStorage.getItem('contactSubmissions') || '[]');
     existingContacts.push(contactData);
     localStorage.setItem('contactSubmissions', JSON.stringify(existingContacts));
 
-    // Send confirmation email to user (simulate)
-    await sendContactConfirmation(formData.email, formData.name, ticketId);
-    
-    // Send notification to admin (simulate)
-    await sendAdminNotification(contactData);
-
-    console.log('✅ Contact message submitted successfully:', contactData);
+    console.log('✅ Contact message sent successfully:', contactData);
     
     return {
       success: true,
-      message: 'Your message has been sent successfully! We\'ll get back to you soon.',
-      ticketId
+      message: result.message || 'Thank you for your message! We\'ll get back to you soon.',
+      ticketId: result.ticketId
     };
 
   } catch (error) {
     console.error('❌ Contact submission failed:', error);
-    throw error;
-  }
-}
-
-// Send confirmation email to user
-async function sendContactConfirmation(email: string, name: string, ticketId: string): Promise<void> {
-  try {
-    // In production, integrate with your email service (SendGrid, AWS SES, etc.)
-    const confirmationData = {
-      to: email,
-      subject: `Thank you for contacting QuickCV - Ticket #${ticketId}`,
-      template: 'contact_confirmation',
-      data: {
-        name,
-        ticketId,
-        supportEmail: 'hello@quickcv.com',
-        timestamp: new Date().toLocaleString()
-      }
+    return {
+      success: false,
+      message: error instanceof Error ? error.message : 'Something went wrong. Please try again.'
     };
-
-    // Store email intent for production implementation
-    const emailQueue = JSON.parse(localStorage.getItem('emailQueue') || '[]');
-    emailQueue.push({
-      ...confirmationData,
-      type: 'contact_confirmation',
-      timestamp: new Date().toISOString()
-    });
-    localStorage.setItem('emailQueue', JSON.stringify(emailQueue));
-
-    console.log('📧 Contact confirmation email queued:', confirmationData);
-  } catch (error) {
-    console.error('❌ Failed to send confirmation email:', error);
   }
 }
 
-// Send notification to admin
-async function sendAdminNotification(contactData: any): Promise<void> {
-  try {
-    const adminNotification = {
-      to: 'hello@quickcv.com',
-      subject: `New Contact Form Submission - ${contactData.inquiryType.toUpperCase()} - ${contactData.urgency.toUpperCase()} Priority`,
-      template: 'admin_contact_notification',
-      data: {
-        ...contactData,
-        timestamp: new Date().toLocaleString()
-      }
-    };
-
-    // Store admin notification for production implementation
-    const emailQueue = JSON.parse(localStorage.getItem('emailQueue') || '[]');
-    emailQueue.push({
-      ...adminNotification,
-      type: 'admin_notification',
-      timestamp: new Date().toISOString()
-    });
-    localStorage.setItem('emailQueue', JSON.stringify(emailQueue));
-
-    console.log('🔔 Admin notification email queued:', adminNotification);
-  } catch (error) {
-    console.error('❌ Failed to send admin notification:', error);
-  }
-}
+// Note: Email sending is now handled by the /api/contact endpoint
+// The API will send both confirmation emails to users and notifications to mbaforfoghang@gmail.com
 
 // Get contact submissions (for admin dashboard)
 export function getContactSubmissions(): any[] {

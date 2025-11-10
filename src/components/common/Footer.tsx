@@ -40,7 +40,7 @@ export default function Footer({ onGetStarted }: FooterProps) {
 
           {/* Product Links */}
           <div className="space-y-4">
-            <h4 className="font-semibold text-blue-900 text-lg">Product</h4>
+            <h4 className="font-semibold text-blue-700 text-lg">Product</h4>
             <ul className="space-y-3">
               <li>
                 <a 
@@ -71,7 +71,7 @@ export default function Footer({ onGetStarted }: FooterProps) {
 
           {/* Support Links */}
           <div className="space-y-4">
-            <h4 className="font-semibold text-blue-900 text-lg">Support</h4>
+            <h4 className="font-semibold text-blue-700 text-lg">Support</h4>
             <ul className="space-y-3">
               <li>
                 <Link 
@@ -102,7 +102,7 @@ export default function Footer({ onGetStarted }: FooterProps) {
 
           {/* Company Links */}
           <div className="space-y-4">
-            <h4 className="font-semibold text-blue-900 text-lg">Company</h4>
+            <h4 className="font-semibold text-blue-700 text-lg">Company</h4>
             <ul className="space-y-3">
               <li>
                 <Link 
@@ -137,9 +137,6 @@ export default function Footer({ onGetStarted }: FooterProps) {
           <div className="flex flex-col space-y-4 sm:flex-row sm:justify-between sm:items-center sm:space-y-0">
             <p className="text-gray-500 text-sm text-center sm:text-left">
               © 2025 QuickCV. All rights reserved.
-            </p>
-            <p className="text-gray-500 text-sm text-center sm:text-right">
-              Built with ❤️ for job seekers worldwide
             </p>
           </div>
         </div>
