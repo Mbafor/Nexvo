@@ -270,24 +270,32 @@ export default function LandingPage({ onGetStarted, onSignIn }: LandingPageProps
         </motion.button>
       </motion.div>
 
-      {/* Stats Section */}
+      {/* Stats Section - Enhanced Mobile Responsive */}
   <motion.div
   variants={itemVariants}
-  className="grid grid-cols-4 gap-6 pt-8"
+  className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 pt-8"
 >
   {stats.map((stat, idx) => {
-    const count = useCountUp(stat.value);
+    const count = useCountUp(stat.value, 2500); // Slightly slower animation for better mobile visibility
+    const Icon = stat.icon;
 
     return (
       <motion.div
         key={idx}
-        className="text-center"
-        whileHover={{ scale: 1.1 }}
+        className="text-center p-4 md:p-2 bg-white/50 md:bg-transparent rounded-xl md:rounded-none border md:border-0 border-blue-100 backdrop-blur-sm"
+        whileHover={{ scale: 1.05 }}
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, delay: idx * 0.15 }}
       >
-        <div className="text-2xl lg:text-3xl font-bold text-blue-700 mb-1">
+        {/* Icon for mobile */}
+        <div className="md:hidden mb-2 flex justify-center">
+          <Icon className="h-6 w-6 text-blue-600" />
+        </div>
+        <div className="text-xl md:text-2xl lg:text-3xl font-bold text-blue-700 mb-1">
           {count}{stat.suffix}
         </div>
-        <div className="text-sm text-black">{stat.label}</div>
+        <div className="text-sm md:text-sm text-gray-700 font-medium">{stat.label}</div>
       </motion.div>
     );
   })}

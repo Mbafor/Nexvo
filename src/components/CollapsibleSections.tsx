@@ -49,7 +49,7 @@ export default function CollapsibleSections({
   getCompletionStatus
 }: CollapsibleSectionsProps) {
   const [expandedSections, setExpandedSections] = useState<Set<string>>(new Set(['personal']));
-  const [expandedTips, setExpandedTips] = useState<Set<string>>(new Set());
+  const [expandedTips, setExpandedTips] = useState<Set<string>>(new Set()); // Tips closed initially
 
   const toggleSection = (sectionId: string) => {
     const newExpanded = new Set(expandedSections);
@@ -61,13 +61,7 @@ export default function CollapsibleSections({
       setExpandedTips(newExpandedTips);
     } else {
       newExpanded.add(sectionId);
-      // Auto-expand tips for sections with errors or if it's the first time opening
-      const hasErrors = validationResults[sectionId]?.errors?.length > 0;
-      if (hasErrors || !getCompletionStatus(sectionId)) {
-        const newExpandedTips = new Set(expandedTips);
-        newExpandedTips.add(sectionId);
-        setExpandedTips(newExpandedTips);
-      }
+      // Tips remain closed initially - user must manually open them
     }
     setExpandedSections(newExpanded);
   };
