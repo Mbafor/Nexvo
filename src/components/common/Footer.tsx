@@ -1,5 +1,11 @@
 import { Link } from "react-router-dom";
-import { Globe, TrendingUp } from "lucide-react";
+import {
+  Globe,
+  TrendingUp,
+  Mail,
+  Linkedin,
+  Twitter,
+} from "lucide-react";
 
 interface FooterProps {
   onGetStarted?: () => void;
@@ -11,7 +17,7 @@ export default function Footer({ onGetStarted }: FooterProps) {
       onGetStarted();
     } else {
       // Default behavior - navigate to builder
-      window.location.href = '/builder';
+      window.location.href = "/builder";
     }
   };
 
@@ -20,7 +26,7 @@ export default function Footer({ onGetStarted }: FooterProps) {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Main Footer Content */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-6">
-          {/* Company Info - Full width on mobile, spans 2 cols on sm+ */}
+          {/* Company Info */}
           <div className="sm:col-span-2 lg:col-span-1 space-y-4">
             <h3 className="text-xl lg:text-2xl font-bold text-blue-600">
               QuickCV
@@ -43,24 +49,24 @@ export default function Footer({ onGetStarted }: FooterProps) {
             <h4 className="font-semibold text-blue-700 text-lg">Product</h4>
             <ul className="space-y-3">
               <li>
-                <a 
-                  href="/#templates" 
+                <a
+                  href="/#templates"
                   className="text-gray-600 hover:text-blue-600 transition-colors text-sm lg:text-base block py-1"
                 >
                   Templates
                 </a>
               </li>
               <li>
-                <a 
-                  href="/#features" 
+                <a
+                  href="/#features"
                   className="text-gray-600 hover:text-blue-600 transition-colors text-sm lg:text-base block py-1"
                 >
                   Features
                 </a>
               </li>
               <li>
-                <button 
-                  onClick={handleGetStarted} 
+                <button
+                  onClick={handleGetStarted}
                   className="text-gray-600 hover:text-blue-600 transition-colors text-sm lg:text-base text-left py-1"
                 >
                   CV Builder
@@ -74,24 +80,24 @@ export default function Footer({ onGetStarted }: FooterProps) {
             <h4 className="font-semibold text-blue-700 text-lg">Support</h4>
             <ul className="space-y-3">
               <li>
-                <Link 
-                  to="/faq" 
+                <Link
+                  to="/faq"
                   className="text-gray-600 hover:text-blue-600 transition-colors text-sm lg:text-base block py-1"
                 >
                   FAQ
                 </Link>
               </li>
               <li>
-                <Link 
-                  to="/contact" 
+                <Link
+                  to="/contact"
                   className="text-gray-600 hover:text-blue-600 transition-colors text-sm lg:text-base block py-1"
                 >
                   Contact Us
                 </Link>
               </li>
               <li>
-                <Link 
-                  to="/help" 
+                <Link
+                  to="/help"
                   className="text-gray-600 hover:text-blue-600 transition-colors text-sm lg:text-base block py-1"
                 >
                   Help Center
@@ -105,30 +111,59 @@ export default function Footer({ onGetStarted }: FooterProps) {
             <h4 className="font-semibold text-blue-700 text-lg">Company</h4>
             <ul className="space-y-3">
               <li>
-                <Link 
-                  to="/about" 
+                <Link
+                  to="/about"
                   className="text-gray-600 hover:text-blue-600 transition-colors text-sm lg:text-base block py-1"
                 >
                   About
                 </Link>
               </li>
               <li>
-                <Link 
-                  to="/privacy" 
+                <Link
+                  to="/privacy"
                   className="text-gray-600 hover:text-blue-600 transition-colors text-sm lg:text-base block py-1"
                 >
                   Privacy Policy
                 </Link>
               </li>
               <li>
-                <Link 
-                  to="/terms" 
+                <Link
+                  to="/terms"
                   className="text-gray-600 hover:text-blue-600 transition-colors text-sm lg:text-base block py-1"
                 >
                   Terms of Service
                 </Link>
               </li>
             </ul>
+          </div>
+        </div>
+
+        {/* Social Links */}
+        <div className="mt-10 space-y-4">
+          <h4 className="font-semibold text-blue-700 text-lg">Social Links</h4>
+          <div className="flex space-x-3">
+            <a
+              href="https://linkedin.com/company/quickcv"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center hover:bg-blue-200 transition-colors"
+            >
+              <Linkedin className="h-5 w-5 text-blue-600" />
+            </a>
+            <a
+              href="https://twitter.com/quickcv"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center hover:bg-blue-200 transition-colors"
+            >
+              <Twitter className="h-5 w-5 text-blue-600" />
+            </a>
+            <a
+              href="mailto:mbaforfoghang@gmail.com"
+              className="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center hover:bg-blue-200 transition-colors"
+            >
+              <Mail className="h-5 w-5 text-blue-600" />
+            </a>
           </div>
         </div>
 

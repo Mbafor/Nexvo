@@ -1,13 +1,36 @@
 
 // src/components/LandingPage.tsx
 import { useState, useEffect } from "react";
-import { Zap, Shield, Award, Mail, Phone, Clock, Send, MessageCircle, Linkedin, Twitter, Briefcase, BarChart3, Palette, Headphones, FileText, TrendingUp, Globe, ArrowRight } from "lucide-react";
+import { Zap, Shield, Award, Send, Briefcase, BarChart3, Palette, Headphones, FileText, TrendingUp, Globe, ArrowRight } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import LatestPosts from "../components/LatestPosts";
 import { sendContactMessage } from "../utils/contactService";
 import Header from "../components/common/Header";
 import Footer from "../components/common/Footer";
 
+const useCountUp = (target: number, duration = 2000) => {
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    let start = 0;
+    const end = Number(target);
+    if (isNaN(end)) return;
+
+    const increment = end / (duration / 16.6); // ~60fps
+    const timer = setInterval(() => {
+      start += increment;
+      if (start >= end) {
+        start = end;
+        clearInterval(timer);
+      }
+      setCount(Math.floor(start));
+    }, 16.6);
+
+    return () => clearInterval(timer);
+  }, [target, duration]);
+
+  return count;
+};
 
 
 const templates = [
@@ -34,12 +57,14 @@ const templates = [
   },
 ];
 
+
 const stats = [
-  { number: "50K+", label: "CVs Created", icon: FileText },
-  { number: "95%", label: "Success Rate", icon: TrendingUp },
-  { number: "24h", label: "Average Response", icon: Zap },
-  { number: "150+", label: "Countries", icon: Globe },
+  { value: 50000, suffix: "K+", label: "CVs Created", icon: FileText },
+  { value: 95, suffix: "%", label: "Success Rate", icon: TrendingUp },
+  { value: 24, suffix: "h", label: "Average Response", icon: Zap },
+  { value: 150, suffix: "+", label: "Countries", icon: Globe },
 ];
+
 
 
 
@@ -209,7 +234,7 @@ export default function LandingPage({ onGetStarted, onSignIn }: LandingPageProps
       {/* Hero Title */}
       <motion.h1
         variants={itemVariants}
-        className="text-5xl lg:text-7xl font-bold leading-tight mt-[-40px]"
+        className="text-5xl lg:text-7xl font-bold leading-tight mt-[-50px]"
       >
         <span className="text-blue-600 bg-clip-text">
           Build Your Perfect CV in Minutes
@@ -234,7 +259,7 @@ export default function LandingPage({ onGetStarted, onSignIn }: LandingPageProps
       >
         <motion.button
           onClick={onGetStarted}
-          className="group px-8 py-4 bg-blue-600 hover:bg-blue-700 rounded-2xl text-white text-lg font-semibold shadow-2xl shadow-blue-500/30 hover:shadow-blue-500/50 transition-all duration-300"
+          className="group px-8 py-4 bg-blue-600 hover:bg-blue-700 rounded-2xl text-white text-lg font-semibold shadow-2xl transition-all duration-300"
           whileHover={{ scale: 1.05, y: -2 }}
           whileTap={{ scale: 0.95 }}
         >
@@ -246,23 +271,28 @@ export default function LandingPage({ onGetStarted, onSignIn }: LandingPageProps
       </motion.div>
 
       {/* Stats Section */}
+  <motion.div
+  variants={itemVariants}
+  className="grid grid-cols-4 gap-6 pt-8"
+>
+  {stats.map((stat, idx) => {
+    const count = useCountUp(stat.value);
+
+    return (
       <motion.div
-        variants={itemVariants}
-        className="grid grid-cols-4 gap-6 pt-8"
+        key={idx}
+        className="text-center"
+        whileHover={{ scale: 1.1 }}
       >
-        {stats.map((stat, idx) => (
-          <motion.div
-            key={idx}
-            className="text-center"
-            whileHover={{ scale: 1.1 }}
-          >
-            <div className="text-2xl lg:text-3xl font-bold text-blue-800 mb-1">
-              {stat.number}
-            </div>
-            <div className="text-sm text-blue-600/80">{stat.label}</div>
-          </motion.div>
-        ))}
+        <div className="text-2xl lg:text-3xl font-bold text-blue-700 mb-1">
+          {count}{stat.suffix}
+        </div>
+        <div className="text-sm text-black">{stat.label}</div>
       </motion.div>
+    );
+  })}
+</motion.div>
+
     </motion.div>
 
     {/* Right Section - Floating Hero Image */}
@@ -334,7 +364,7 @@ export default function LandingPage({ onGetStarted, onSignIn }: LandingPageProps
 {/* Why Choose Us Section - Blue Modern Theme with Lucide Icons */}
 <section
   id="why-choose-us"
-  className="py-24 bg-cover bg-center bg-no-repeat"
+  className="py-24 bg-cover bg-center bg-no-repeat mt-[-10px]"
   
 >
 
@@ -408,10 +438,8 @@ export default function LandingPage({ onGetStarted, onSignIn }: LandingPageProps
   </div>
 </section>
 
-
-        {/* Templates Section - Enhanced */}
       {/* Templates Section - White & Blue Theme */}
-<section id="templates" className="py-24 bg-white">
+<section id="templates" className="py-24 bg-white ">
   <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <motion.div
       className="text-center mb-16"
@@ -566,7 +594,7 @@ export default function LandingPage({ onGetStarted, onSignIn }: LandingPageProps
       {faqs.map((faq, idx) => (
         <motion.div
           key={idx}
-          className="bg-blue-50 rounded-2xl border border-blue-100 hover:border-blue-300 transition-all duration-300"
+          className="bg-white rounded-2xl border border-blue-100 hover:border-blue-300 transition-all duration-300"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: idx * 0.1 }}
@@ -690,66 +718,7 @@ export default function LandingPage({ onGetStarted, onSignIn }: LandingPageProps
         viewport={{ once: true }}
         className="space-y-8"
       >
-        <div className="bg-blue-50 backdrop-blur-sm rounded-2xl p-8 border border-blue-200">
-          <h3 className="text-2xl font-bold mb-6 flex items-center text-blue-900">
-            <MessageCircle className="h-6 w-6 mr-3 text-blue-600" />
-            Contact Information
-          </h3>
-          
-          <div className="space-y-6">
-            <div className="flex items-center space-x-4">
-              <div className="p-3 bg-blue-100 rounded-lg">
-                <Mail className="h-6 w-6 text-blue-600" />
-              </div>
-              <div>
-                <p className="font-semibold text-gray-900">Email Us</p>
-                <a href="mailto:mbaforfoghang@gmail.com" className="text-blue-600 hover:text-blue-700 transition-colors">
-                  mbaforfoghang@gmail.com
-                </a>
-              </div>
-            </div>
-            
-            <div className="flex items-center space-x-4">
-              <div className="p-3 bg-green-100 rounded-lg">
-                <Phone className="h-6 w-6 text-green-600" />
-              </div>
-              <div>
-                <p className="font-semibold text-gray-900">Call Us</p>
-                <a href="tel:+1237683094941" className="text-blue-600 hover:text-blue-700 transition-colors">
-                  +1 (237) 683094941
-                </a>
-              </div>
-            </div>
-          
-            
-            <div className="flex items-center space-x-4">
-              <div className="p-3 bg-yellow-100 rounded-lg">
-                <Clock className="h-6 w-6 text-yellow-600" />
-              </div>
-              <div>
-                <p className="font-semibold text-gray-900">Business Hours</p>
-                <p className="text-gray-700">Mon-Fri: 8am-6pm PST</p>
-                <p className="text-gray-700">Sat-Sun: 10am-4pm PST</p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Social Links */}
-        <div className="bg-blue-50 backdrop-blur-sm rounded-2xl p-8 border border-blue-200">
-          <h4 className="text-lg font-bold mb-4 text-blue-900">Follow Us</h4>
-          <div className="flex space-x-4">
-            <a href="https://linkedin.com/company/quickcv" className="p-3 bg-blue-600 rounded-lg hover:bg-blue-700 transition-colors">
-              <Linkedin className="h-5 w-5 text-white" />
-            </a>
-            <a href="https://twitter.com/quickcv" className="p-3 bg-sky-500 rounded-lg hover:bg-sky-600 transition-colors">
-              <Twitter className="h-5 w-5 text-white" />
-            </a>
-            <a href="mailto:mbaforfoghang@gmail.com" className="p-3 bg-gray-600 rounded-lg hover:bg-gray-700 transition-colors">
-              <Mail className="h-5 w-5 text-white" />
-            </a>
-          </div>
-        </div>
+        
       </motion.div>
 
       {/* Quick Contact Form */}
@@ -760,8 +729,8 @@ export default function LandingPage({ onGetStarted, onSignIn }: LandingPageProps
         viewport={{ once: true }}
       >
         <div className="bg-blue-50 backdrop-blur-sm rounded-2xl p-8 border border-blue-200">
-          <h3 className="text-2xl font-bold mb-6 flex items-center text-blue-900">
-            <Send className="h-6 w-6 mr-3 text-blue-600" />
+          <h3 className="text-2xl font-bold mb-6 flex items-center text-blue-700">
+
             Send us a Message
           </h3>
           

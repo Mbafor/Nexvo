@@ -42,35 +42,35 @@ export default function ContextualTips({
     switch (sectionId) {
       case 'personal':
         if (validationResult?.completionScore && validationResult.completionScore < 50) {
-          tips.push('💡 A complete personal section increases your chances of getting noticed by 40%');
+          tips.push('A complete personal section increases your chances of getting noticed by 40%');
         }
-        tips.push('📱 Include your phone number - 85% of recruiters prefer to call first');
-        tips.push('🌐 Adding a LinkedIn profile increases profile views by 2.5x');
+        tips.push('Include your phone number - 85% of recruiters prefer to call first');
+        tips.push('Adding a LinkedIn profile increases profile views by 2.5x');
         break;
       
       case 'experience':
         if (validationResult?.completionScore && validationResult.completionScore < 70) {
-          tips.push('🎯 Use action verbs like "achieved," "led," "improved" to start bullet points');
-          tips.push('📊 Include numbers and metrics - "increased sales by 25%" is more impactful');
+          tips.push('Use action verbs like "achieved," "led," "improved" to start bullet points');
+          tips.push('Include numbers and metrics - "increased sales by 25%" is more impactful');
         }
-        tips.push('⏰ List experience in reverse chronological order (most recent first)');
+        tips.push('List experience in reverse chronological order (most recent first)');
         break;
       
       case 'education':
-        tips.push('🎓 Include relevant coursework only if you\'re a recent graduate');
-        tips.push('📜 Add certifications here if you don\'t have a separate section');
+        tips.push('Include relevant coursework only if you\'re a recent graduate');
+        tips.push('Add certifications here if you don\'t have a separate section');
         break;
       
       case 'skills':
         if (validationResult?.completionScore && validationResult.completionScore < 60) {
-          tips.push('🔧 Include both technical and soft skills for a well-rounded profile');
-          tips.push('📝 Tailor skills to match the job description keywords');
+          tips.push('Include both technical and soft skills for a well-rounded profile');
+          tips.push('Tailor skills to match the job description keywords');
         }
-        tips.push('⭐ List skills by proficiency level to help recruiters understand your strengths');
+        tips.push('List skills by proficiency level to help recruiters understand your strengths');
         break;
       
       default:
-        tips.push('✨ Complete sections improve your CV\'s ATS compatibility score');
+        tips.push('Complete sections improve your CV\'s ATS compatibility score');
     }
 
     return tips.filter(tip => !dismissedTips.has(tip));

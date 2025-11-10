@@ -56,7 +56,7 @@ export default function ProgressEnhancement({
               index === currentStep
                 ? 'bg-blue-50 border border-blue-200'
                 : section.completed
-                ? 'bg-green-50 hover:bg-green-100'
+                ? 'bg-white hover:bg-white'
                 : section.hasErrors
                 ? 'bg-red-50 hover:bg-red-100'
                 : 'bg-gray-50 hover:bg-gray-100'

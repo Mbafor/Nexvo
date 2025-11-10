@@ -11,7 +11,6 @@ import {
   X,
   Plus,
   Minus,
-  CheckCircle2,
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { CVData } from "../types/cv";
@@ -34,6 +33,7 @@ import ProgressEnhancement from "./ProgressEnhancement";
 import ContextualTips from "./ContextualTips";
 import SubtleToast from "./SubtleToast";
 import OnboardingTour from "./OnboardingTour";
+import CollapsibleSections from "./CollapsibleSections";
 
 // Validation
 import { CVValidator, SectionValidation } from "../utils/cvValidator";
@@ -475,13 +475,12 @@ export default function CVBuilder({ cvData, onUpdateCVData, onPreview, onSignIn,
               {/* Customize Sections Button */}
               <motion.button
                 onClick={() => setShowSectionManager(true)}
-                className="flex items-center space-x-1 px-2 sm:px-3 py-2 text-black/70 hover:text-black hover:bg-black/5 rounded-lg transition-colors border border-black/20 hover:border-black/40 min-h-[44px]"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 title="Customize sections"
               >
 
-                <span className="text-sm text-blue-600">Sections</span>
+                <span  className="flex items-center space-x-1 sm:space-x-2 px-2 sm:px-4 py-2 text-blue-600 hover:text-blue-700 hover:bg-blue-50 rounded-lg transition-colors border border-blue-200 hover:border-blue-300 min-h-[44px]">Sections</span>
               </motion.button>
 
               {/* Sign In Button */}
@@ -580,8 +579,10 @@ export default function CVBuilder({ cvData, onUpdateCVData, onPreview, onSignIn,
         {/* Main Content */}
         <div className="flex-1 p-4 sm:p-6 lg:p-8 pb-20 md:pb-4">
           <div className="max-w-4xl mx-auto">
-            {/* Section Navigation - Enhanced for all screen sizes */}
-            <div id="section-navigation" className="mb-6 bg-white rounded-xl shadow-sm border border-black/20 p-4">
+            {/* Desktop Step-by-Step View - Hidden on mobile */}
+            <div className="hidden md:block">
+              {/* Section Navigation - Enhanced for desktop */}
+              <div id="section-navigation" className="mb-6 bg-white rounded-xl shadow-sm border border-black/20 p-4">
               <div className="flex items-center justify-between mb-3">
                 <h3 className="font-semibold text-black">Section {currentStep + 1} of {steps.length}</h3>
                 <div className="flex items-center space-x-3">
@@ -652,105 +653,102 @@ export default function CVBuilder({ cvData, onUpdateCVData, onPreview, onSignIn,
               )}
             </div>
 
-            {/* Contextual Tips Component */}
-            <ContextualTips 
-              sectionId={currentSection.id}
-              sectionLabel={currentSection.label}
-              validationResult={getCurrentValidationResult()}
-              staticTips={(tipsData as TipsData)[currentSection.id] || []}
-            />
+              {/* Contextual Tips Component - Desktop Only */}
+              <ContextualTips 
+                sectionId={currentSection.id}
+                sectionLabel={currentSection.label}
+                validationResult={getCurrentValidationResult()}
+                staticTips={(tipsData as TipsData)[currentSection.id] || []}
+              />
+              
+              {/* Enhanced Content with Validation - Desktop Step View */}
+              <div className="bg-white rounded-xl shadow-sm border border-black/20 p-4 sm:p-6 lg:p-8">
+                {currentSection && renderStepContent()}
+              </div>
 
-            {/* Enhanced Content with Validation */}
-            <div className="bg-white rounded-xl shadow-sm border border-black/20 p-4 sm:p-6 lg:p-8">
-              {currentSection && renderStepContent()}
-            </div>
+              {/* Desktop Action Buttons */}
+              <div className="mt-6 flex justify-between items-center space-x-4">
+                <motion.button
+                  onClick={handlePrevious}
+                  disabled={currentStep === 0}
+                  className="flex items-center space-x-2 px-4 py-3 text-black/70 hover:text-black hover:bg-black/5 rounded-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed min-h-[48px] border border-black/20 hover:border-black/40"
+                  whileHover={{ scale: currentStep === 0 ? 1 : 1.02 }}
+                  whileTap={{ scale: currentStep === 0 ? 1 : 0.98 }}
+                >
+                  <ChevronLeft className="h-4 w-4" />
+                  <span>Previous</span>
+                </motion.button>
 
-            {/* Universal Action Buttons - Visible on all screen sizes */}
-            <div className="mt-6 flex justify-between items-center space-x-4">
-              <motion.button
-                onClick={handlePrevious}
-                disabled={currentStep === 0}
-                className="flex items-center space-x-2 px-4 py-3 text-black/70 hover:text-black hover:bg-black/5 rounded-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed min-h-[48px] border border-black/20 hover:border-black/40"
-                whileHover={{ scale: currentStep === 0 ? 1 : 1.02 }}
-                whileTap={{ scale: currentStep === 0 ? 1 : 0.98 }}
-              >
-                <ChevronLeft className="h-4 w-4" />
-                <span>Previous</span>
-              </motion.button>
+                <div className="flex items-center space-x-3">
+                  <motion.button
+                    onClick={onPreview}
+                    className="flex items-center space-x-2 px-4 py-3 bg-black/10 text-black/70 rounded-lg hover:bg-black/20 transition-colors min-h-[48px] border border-black/20"
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                  >
+                    <Eye className="h-4 w-4" />
+                    <span>Preview</span>
+                  </motion.button>
 
-              {/* Center content for desktop, mobile customize for mobile */}
-              <div className="flex items-center space-x-4">
-                {/* Desktop center content */}
-                <div className="hidden lg:flex items-center space-x-4">
-                  <div className="text-center">
-                    <p className="font-medium text-black">{currentSection.label}</p>
-                    <p className="text-sm text-black/70">
-                      Step {currentStep + 1} of {steps.length}
-                    </p>
-                  </div>
+                  <motion.button
+                    onClick={handleNext}
+                    disabled={!isStepValid()}
+                    className="flex items-center space-x-2 px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-all shadow-lg disabled:opacity-50 disabled:cursor-not-allowed min-h-[48px]"
+                    whileHover={{ scale: isStepValid() ? 1.02 : 1 }}
+                    whileTap={{ scale: isStepValid() ? 0.98 : 1 }}
+                  >
+                    <span>{currentStep === steps.length - 1 ? "Preview" : "Next"}</span>
+                    <ChevronRight className="h-4 w-4" />
+                  </motion.button>
                 </div>
               </div>
-
-              <div className="flex items-center space-x-3">
-                <motion.button
-                  onClick={onPreview}
-                  className="flex items-center space-x-2 px-4 py-3 bg-black/10 text-black/70 rounded-lg hover:bg-black/20 transition-colors min-h-[48px] border border-black/20"
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                >
-                  <Eye className="h-4 w-4" />
-                  <span>Preview</span>
-                </motion.button>
-
-                <motion.button
-                  onClick={handleNext}
-                  disabled={!isStepValid()}
-                  className="flex items-center space-x-2 px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-all shadow-lg disabled:opacity-50 disabled:cursor-not-allowed min-h-[48px]"
-                  whileHover={{ scale: isStepValid() ? 1.02 : 1 }}
-                  whileTap={{ scale: isStepValid() ? 0.98 : 1 }}
-                >
-                  <span>{currentStep === steps.length - 1 ? "Preview" : "Next"}</span>
-                  <ChevronRight className="h-4 w-4" />
-                </motion.button>
-              </div>
             </div>
 
-            {/* Mobile Completion Overview - At the very bottom of everything */}
-            <div className="lg:hidden mt-8 p-4 bg-white rounded-xl shadow-sm border border-black/20">
-              <div className="flex items-center justify-between mb-3">
-                <span className="text-sm font-medium text-black">Progress Overview</span>
-                <span className="text-xs text-black/60">{Math.round(progressPercentage)}% Complete</span>
+            {/* Mobile Collapsible View - Visible only on mobile */}
+            <div className="md:hidden">
+              {/* Mobile Header */}
+              <div className="mb-6 bg-white rounded-xl shadow-sm border border-black/20 p-4">
+                <div className="flex items-center justify-between mb-3">
+                  <h3 className="font-semibold text-gray-900">Build Your CV</h3>
+                  <span className="text-sm text-gray-500">{Math.round(progressPercentage)}% Complete</span>
+                </div>
+                
+                {/* Mobile Progress Bar */}
+                <div className="w-full h-2 bg-gray-200 rounded-full overflow-hidden">
+                  <motion.div 
+                    className="h-full bg-blue-600 rounded-full"
+                    initial={{ width: "0%" }}
+                    animate={{ width: `${progressPercentage}%` }}
+                    transition={{ duration: 0.5 }}
+                  />
+                </div>
+                
+                <p className="text-sm text-gray-600 mt-2">
+                  Tap sections below to expand and fill in your information.
+                </p>
               </div>
-              <div className="grid grid-cols-2 gap-2">
-                {getEnhancedSections().map((section) => {
-                  const isCompleted = getCompletionStatus(section.id);
-                  const hasProgress = isCompleted;
-                  return (
-                    <div
-                      key={section.id}
-                      className={`flex items-center space-x-2 p-2 rounded-md text-xs ${
-                        isCompleted 
-                          ? 'bg-white text-black border border-black/20' 
-                          : hasProgress 
-                          ? 'bg-white text-black border border-black/20'
-                          : 'bg-white text-black border border-black/20'
-                      }`}
-                    >
-                      <div className={`w-2 h-2 rounded-full flex-shrink-0 ${
-                        isCompleted 
-                          ? 'bg-green-500' 
-                          : hasProgress 
-                          ? 'bg-black/50'
-                          : 'bg-black/30'
-                      }`}></div>
-                      <span className="truncate font-medium">{section.label}</span>
-                      {isCompleted && (
-                        <CheckCircle2 className="h-3 w-3 text-green-600 flex-shrink-0" />
-                      )}
-                    </div>
-                  );
-                })}
-              </div>
+
+              {/* Collapsible Sections */}
+              <CollapsibleSections
+                sections={steps}
+                cvData={cvData}
+                onUpdateCVData={onUpdateCVData}
+                validationResults={validationResults}
+                getCompletionStatus={(id: string) => getCompletionStatus(id) || false}
+              />
+            </div>
+
+            {/* Mobile Action Buttons */}
+            <div className="md:hidden mt-6 flex justify-center space-x-4">
+              <motion.button
+                onClick={onPreview}
+                className="flex items-center space-x-2 px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors shadow-lg"
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+              >
+                <Eye className="h-4 w-4" />
+                <span>Preview CV</span>
+              </motion.button>
             </div>
           </div>
         </div>
