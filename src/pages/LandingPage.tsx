@@ -1,7 +1,7 @@
 
 // src/components/LandingPage.tsx
 import { useState, useEffect } from "react";
-import { Zap, Shield, Award, Send, Briefcase, BarChart3, Palette, Headphones, FileText, TrendingUp, Globe, ArrowRight } from "lucide-react";
+import { Zap, Shield, Award, Send, Briefcase, BarChart3, Palette, Headphones, Globe, ArrowRight } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import LatestPosts from "../components/LatestPosts";
 import { sendContactMessage } from "../utils/contactService";
@@ -59,10 +59,10 @@ const templates = [
 
 
 const stats = [
-  { value: 50000, suffix: "K+", label: "CVs Created", icon: FileText },
-  { value: 95, suffix: "%", label: "Success Rate", icon: TrendingUp },
-  { value: 24, suffix: "h", label: "Average Response", icon: Zap },
-  { value: 150, suffix: "+", label: "Countries", icon: Globe },
+  { value: 50000, suffix: "K+", label: "CVs Created" },
+  { value: 95, suffix: "%", label: "Success Rate" },
+  { value: 24, suffix: "h", label: "Average Response" },
+  { value: 150, suffix: "+", label: "Countries" },
 ];
 
 
@@ -277,7 +277,7 @@ export default function LandingPage({ onGetStarted, onSignIn }: LandingPageProps
 >
   {stats.map((stat, idx) => {
     const count = useCountUp(stat.value, 2500); // Slightly slower animation for better mobile visibility
-    const Icon = stat.icon;
+  
 
     return (
       <motion.div
@@ -290,7 +290,7 @@ export default function LandingPage({ onGetStarted, onSignIn }: LandingPageProps
       >
         {/* Icon for mobile */}
         <div className="md:hidden mb-2 flex justify-center">
-          <Icon className="h-6 w-6 text-blue-600" />
+
         </div>
         <div className="text-xl md:text-2xl lg:text-3xl font-bold text-blue-700 mb-1">
           {count}{stat.suffix}
