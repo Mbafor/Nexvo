@@ -29,7 +29,7 @@ export default function ProgressEnhancement({
       <div className="mb-6">
         <div className="flex items-center justify-between mb-2">
           <h3 className="font-semibold text-gray-900">CV Completion</h3>
-          <span className="text-sm font-medium text-blue-600">
+          <span className="text-sm font-medium text-blue-700">
             {Math.round(progressPercentage)}% Complete
           </span>
         </div>
@@ -106,7 +106,7 @@ export default function ProgressEnhancement({
           <button className="flex-1 px-3 py-2 text-sm bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors">
             Save Draft
           </button>
-          <button className="flex-1 px-3 py-2 text-sm bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
+          <button className="flex-1 px-3 py-2 text-sm bg-blue-700 text-white rounded-lg hover:bg-blue-600 transition-colors">
             Preview CV
           </button>
         </div>

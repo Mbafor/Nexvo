@@ -439,7 +439,7 @@ export default function Dashboard({ onCreateNew, onEditCV }: DashboardProps) {
 
   const getTemplateColor = (template: TemplateType): string => {
     const colors: Record<TemplateType, string> = {
-      modern: 'bg-blue-100 text-blue-800',
+      modern: 'bg-blue-100 text-blue-700',
       creative: 'bg-purple-100 text-purple-800',
       ats: 'bg-green-100 text-green-800',
       executive: 'bg-amber-100 text-amber-800',
@@ -491,7 +491,7 @@ export default function Dashboard({ onCreateNew, onEditCV }: DashboardProps) {
           </div>
           <div className="flex items-center justify-between">
             <span className="text-sm font-medium text-gray-700">Email Notifications</span>
-            <button className="relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent bg-blue-600 transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
+            <button className="relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent bg-blue-700 transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
               <span className="translate-x-5 pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out"></span>
             </button>
           </div>
@@ -510,7 +510,7 @@ export default function Dashboard({ onCreateNew, onEditCV }: DashboardProps) {
               <p className="text-2xl font-bold text-gray-900">{stats.totalViews}</p>
             </div>
             <div className="bg-blue-100 p-3 rounded-full">
-              <Eye className="h-6 w-6 text-blue-600" />
+              <Eye className="h-6 w-6 text-blue-700" />
             </div>
           </div>
         </motion.div>
@@ -557,8 +557,8 @@ export default function Dashboard({ onCreateNew, onEditCV }: DashboardProps) {
         <div className="space-y-4">
           <div className="flex items-center justify-between p-4 bg-blue-50 rounded-lg">
             <div className="flex items-center space-x-3">
-              <Award className="h-5 w-5 text-blue-600" />
-              <span className="font-medium text-blue-900">Most Popular Template</span>
+              <Award className="h-5 w-5 text-blue-700" />
+              <span className="font-medium text-blue-700">Most Popular Template</span>
             </div>
             <span className="text-blue-700 font-semibold">Modern Template</span>
           </div>
@@ -647,7 +647,7 @@ export default function Dashboard({ onCreateNew, onEditCV }: DashboardProps) {
               onClick={() => setActiveTab(item.id as SidebarTab)}
               className={`w-full flex items-center justify-between px-3 py-2.5 rounded-lg transition-all duration-200 ${
                 activeTab === item.id
-                  ? 'bg-blue-600 text-white shadow-lg'
+                  ? 'bg-blue-700 text-white shadow-lg'
                   : 'text-gray-600 hover:bg-gray-100 hover:text-gray-900'
               }`}
             >
@@ -657,7 +657,7 @@ export default function Dashboard({ onCreateNew, onEditCV }: DashboardProps) {
               </div>
               {item.badge && (
                 <span className={`px-2 py-1 rounded-full text-xs font-bold flex-shrink-0 ${
-                  activeTab === item.id ? 'bg-white text-blue-600' : 'bg-blue-100 text-blue-600'
+                  activeTab === item.id ? 'bg-white text-blue-700' : 'bg-blue-100 text-blue-700'
                 }`}>
                   {item.badge}
                 </span>
@@ -736,7 +736,7 @@ export default function Dashboard({ onCreateNew, onEditCV }: DashboardProps) {
               onClick={() => handleTabChange(item.id as SidebarTab)}
               className={`w-full flex items-center justify-between px-3 py-2.5 rounded-lg transition-all duration-200 text-sm ${
                 activeTab === item.id
-                  ? 'bg-blue-600 text-white shadow-lg'
+                  ? 'bg-blue-700 text-white shadow-lg'
                   : 'text-gray-600 hover:bg-gray-100 hover:text-gray-900'
               }`}
             >
@@ -746,7 +746,7 @@ export default function Dashboard({ onCreateNew, onEditCV }: DashboardProps) {
               </div>
               {item.badge && (
                 <span className={`px-2 py-1 rounded-full text-xs font-bold flex-shrink-0 ${
-                  activeTab === item.id ? 'bg-white text-blue-600' : 'bg-blue-100 text-blue-600'
+                  activeTab === item.id ? 'bg-white text-blue-700' : 'bg-blue-100 text-blue-700'
                 }`}>
                   {item.badge}
                 </span>
@@ -910,7 +910,7 @@ export default function Dashboard({ onCreateNew, onEditCV }: DashboardProps) {
                       <p className="text-xl lg:text-3xl font-bold text-gray-900">{stats.totalDownloads}</p>
                     </div>
                     <div className="bg-blue-100 p-2 lg:p-3 rounded-full">
-                      <FileText className="h-4 w-4 lg:h-6 lg:w-6 text-blue-600" />
+                      <FileText className="h-4 w-4 lg:h-6 lg:w-6 text-blue-700" />
                     </div>
                   </div>
                 </motion.div>
@@ -979,13 +979,13 @@ export default function Dashboard({ onCreateNew, onEditCV }: DashboardProps) {
                     className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-6"
                   >
                     <div className="flex items-center justify-between">
-                      <span className="text-blue-900 font-medium">
+                      <span className="text-blue-700 font-medium">
                         {selectedCVs.length} CV(s) selected
                       </span>
                       <div className="flex items-center space-x-2">
                         <button
                           onClick={() => handleBulkAction('download')}
-                          className="px-3 py-1 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors"
+                          className="px-3 py-1 bg-blue-700 text-white rounded-md hover:bg-blue-600 transition-colors"
                         >
                           Download All
                         </button>
@@ -1034,7 +1034,7 @@ export default function Dashboard({ onCreateNew, onEditCV }: DashboardProps) {
                       {!searchQuery && (
                         <button
                           onClick={onCreateNew}
-                          className="flex items-center space-x-2 px-4 lg:px-6 py-2 lg:py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors mx-auto text-sm lg:text-base"
+                          className="flex items-center space-x-2 px-4 lg:px-6 py-2 lg:py-3 bg-blue-700 text-white rounded-lg hover:bg-blue-600 transition-colors mx-auto text-sm lg:text-base"
                         >
                           <Plus className="h-4 w-4" />
                           <span>Create Your First CV</span>
@@ -1057,7 +1057,7 @@ export default function Dashboard({ onCreateNew, onEditCV }: DashboardProps) {
                               type="checkbox"
                               checked={selectedCVs.includes(record.id)}
                               onChange={() => toggleCVSelection(record.id)}
-                              className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
+                              className="h-4 w-4 text-blue-700 focus:ring-blue-500 border-gray-300 rounded"
                             />
                           </div>
 
@@ -1066,7 +1066,7 @@ export default function Dashboard({ onCreateNew, onEditCV }: DashboardProps) {
                               <div className="pt-6 lg:pt-6">
                                 <div className="flex items-center justify-between mb-3 lg:mb-4">
                                   <div className="h-10 w-10 lg:h-12 lg:w-12 bg-blue-100 rounded-lg flex items-center justify-center">
-                                    <FileText className="h-5 w-5 lg:h-6 lg:w-6 text-blue-600" />
+                                    <FileText className="h-5 w-5 lg:h-6 lg:w-6 text-blue-700" />
                                   </div>
                                   <div className="relative">
                                     <button
@@ -1126,7 +1126,7 @@ export default function Dashboard({ onCreateNew, onEditCV }: DashboardProps) {
                             <>
                               <div className="flex items-center space-x-3 lg:space-x-4 ml-6 lg:ml-8 min-w-0 flex-1">
                                 <div className="h-8 w-8 lg:h-10 lg:w-10 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                                  <FileText className="h-4 w-4 lg:h-5 lg:w-5 text-blue-600" />
+                                  <FileText className="h-4 w-4 lg:h-5 lg:w-5 text-blue-700" />
                                 </div>
                                 <div className="min-w-0 flex-1">
                                   <h3 className="font-semibold text-gray-900 truncate text-sm lg:text-base">{record.fileName}</h3>
@@ -1223,7 +1223,7 @@ export default function Dashboard({ onCreateNew, onEditCV }: DashboardProps) {
           {activeTab === 'templates' && (
             <div className="space-y-6">
               {/* Header Section */}
-              <div className="bg-blue-600 rounded-xl p-6 text-white">
+              <div className="bg-blue-700 rounded-xl p-6 text-white">
                 <h3 className="text-xl font-bold mb-2">Professional CV Templates Gallery</h3>
                 <p className="text-blue-100">Choose from our collection of stunning, professionally designed templates</p>
               </div>
@@ -1264,7 +1264,7 @@ export default function Dashboard({ onCreateNew, onEditCV }: DashboardProps) {
                       {/* Content */}
                       <div className="p-6">
                         <div className="mb-4">
-                          <h4 className="font-bold text-gray-900 mb-2 text-lg group-hover:text-blue-600 transition-colors">
+                          <h4 className="font-bold text-gray-900 mb-2 text-lg group-hover:text-blue-700 transition-colors">
                             {template.name}
                           </h4>
                           <p className="text-sm text-gray-600 leading-relaxed">
@@ -1398,7 +1398,7 @@ export default function Dashboard({ onCreateNew, onEditCV }: DashboardProps) {
                   <h4 className="text-lg font-semibold text-gray-900">Latest Articles</h4>
                   <a 
                     href="/blogs" 
-                    className="text-blue-600 hover:text-blue-700 text-sm font-medium flex items-center"
+                    className="text-blue-700 hover:text-blue-700 text-sm font-medium flex items-center"
                   >
                     View All Articles
                     <ChevronRight className="h-4 w-4 ml-1" />
@@ -1419,7 +1419,7 @@ export default function Dashboard({ onCreateNew, onEditCV }: DashboardProps) {
                         <div className="flex items-start space-x-3 mb-3">
                           <div className="flex-shrink-0">
                             <div className="h-10 w-10 bg-blue-100 rounded-lg flex items-center justify-center">
-                              <BookOpen className="h-5 w-5 text-blue-600" />
+                              <BookOpen className="h-5 w-5 text-blue-700" />
                             </div>
                           </div>
                           <div className="flex-1 min-w-0">
@@ -1438,7 +1438,7 @@ export default function Dashboard({ onCreateNew, onEditCV }: DashboardProps) {
                           </div>
                         </div>
                         
-                        <h5 className="font-semibold text-gray-900 mb-2 group-hover:text-blue-600 transition-colors line-clamp-2">
+                        <h5 className="font-semibold text-gray-900 mb-2 group-hover:text-blue-700 transition-colors line-clamp-2">
                           {post.title}
                         </h5>
                         <p className="text-sm text-gray-600 mb-3 line-clamp-3">
@@ -1466,7 +1466,7 @@ export default function Dashboard({ onCreateNew, onEditCV }: DashboardProps) {
               {/* Contact Support Section */}
               <div className="bg-white rounded-xl shadow-sm p-6">
                 <h3 className="text-xl font-semibold text-gray-900 mb-6 flex items-center">
-                  <Headphones className="h-6 w-6 mr-2 text-blue-600" />
+                  <Headphones className="h-6 w-6 mr-2 text-blue-700" />
                   Contact Support
                 </h3>
                 
@@ -1475,11 +1475,11 @@ export default function Dashboard({ onCreateNew, onEditCV }: DashboardProps) {
                   <div className="space-y-4">
                     <div className="p-4 bg-blue-50 rounded-lg">
                       <div className="flex items-center space-x-3 mb-2">
-                        <Mail className="h-5 w-5 text-blue-600" />
-                        <h4 className="font-medium text-blue-900">Email Support</h4>
+                        <Mail className="h-5 w-5 text-blue-700" />
+                        <h4 className="font-medium text-blue-700">Email Support</h4>
                       </div>
                       <p className="text-blue-700 text-sm mb-2">Get help via email within 2 hours</p>
-                      <a href="mailto:mbaforfoghang@gmail.com" className="text-blue-600 hover:text-blue-800 font-medium">
+                      <a href="mailto:mbaforfoghang@gmail.com" className="text-blue-700 hover:text-blue-700 font-medium">
                         mbaforfoghang@gmail.com
                       </a>
                     </div>
@@ -1501,7 +1501,7 @@ export default function Dashboard({ onCreateNew, onEditCV }: DashboardProps) {
                         <h4 className="font-medium text-blue-700">Knowledge Base</h4>
                       </div>
                       <p className="text-blue-700 text-sm mb-2">Browse our help articles</p>
-                      <button className="text-blue-600 hover:text-blue-800 font-medium">
+                      <button className="text-blue-700 hover:text-blue-700 font-medium">
                         Browse Articles
                       </button>
                     </div>
@@ -1554,7 +1554,7 @@ export default function Dashboard({ onCreateNew, onEditCV }: DashboardProps) {
                       <button
                         type="submit"
                         disabled={isSubmittingContact || !contactForm.message.trim()}
-                        className="w-full flex items-center justify-center space-x-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors text-sm"
+                        className="w-full flex items-center justify-center space-x-2 px-4 py-2 bg-blue-700 text-white rounded-lg hover:bg-blue-600 disabled:opacity-50 disabled:cursor-not-allowed transition-colors text-sm"
                       >
                         {isSubmittingContact ? (
                           <>
@@ -1636,7 +1636,7 @@ export default function Dashboard({ onCreateNew, onEditCV }: DashboardProps) {
                         <p className="text-xs lg:text-sm text-gray-600 mb-3 lg:mb-4 line-clamp-2">{template.description}</p>
                         
                         {selectedCVForTemplate?.templateType === template.type ? (
-                          <span className="inline-flex items-center px-3 py-1 rounded-full text-xs lg:text-sm font-medium bg-blue-100 text-blue-800">
+                          <span className="inline-flex items-center px-3 py-1 rounded-full text-xs lg:text-sm font-medium bg-blue-100 text-blue-700">
                             <CheckCircle2 className="h-3 w-3 lg:h-4 lg:w-4 mr-1" />
                             Current Template
                           </span>

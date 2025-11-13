@@ -1,4 +1,3 @@
-import { Scale, Calendar, Mail } from 'lucide-react';
 import { useEffect } from 'react';
 import Header from '../components/common/Header';
 import Footer from '../components/common/Footer';
@@ -23,24 +22,19 @@ export default function TermsConditions() {
       <section className="bg-gray-50 border-y border-gray-200 py-4">
         <div className="max-w-5xl mx-auto px-5 flex flex-wrap gap-4 text-sm text-gray-600 justify-center">
           <div className="flex items-center space-x-2">
-            <Calendar className="h-4 w-4 text-blue-500" />
+          
             <span>Last Updated: {lastUpdated}</span>
           </div>
           <div className="flex items-center space-x-2">
-            <Mail className="h-4 w-4 text-blue-500" />
+       
           </div>
         </div>
       </section>
 
       {/* Content */}
-      <main className="max-w-5xl mx-auto px-5 py-16 leading-relaxed space-y-12">
+      <main className="max-w-5xl mx-auto px-5 py-2 leading-relaxed space-y-10">
         <div className="bg-white border border-gray-100 rounded-2xl shadow-sm p-10 space-y-10">
-          {/* Intro */}
-          <div className="bg-blue-50 border border-blue-100 rounded-xl p-6 mb-10">
-            <p className="text-gray-800 text-base leading-relaxed">
-              These Terms of Service (“Terms”) govern your access and use of the QuickCV website, platform, and related services (collectively, the “Service”). By accessing or using the Service, you agree to comply with these Terms and all applicable laws. These Terms outline the rights, responsibilities, and obligations of both you and QuickCV. If you do not agree to these Terms, you may not use the Service. It is your responsibility to review these Terms regularly, as we may update them from time to time.
-            </p>
-          </div>
+      
 
           {/* Content Sections */}
           <div className="prose prose-gray max-w-none space-y-8">
@@ -87,7 +81,7 @@ export default function TermsConditions() {
 
             <h2 className="mt-8 text-2xl font-semibold text-black-700 ">6. Privacy and Data Protection</h2>
             <p>
-              QuickCV is committed to protecting your privacy. We collect personal information necessary to provide and improve the Service, including registration details, usage data, and technical information. Please review our <a href="/privacy" className="text-blue-600 hover:underline">Privacy Policy</a> for detailed information on how your data is collected, used, stored, and shared.
+              QuickCV is committed to protecting your privacy. We collect personal information necessary to provide and improve the Service, including registration details, usage data, and technical information. Please review our <a href="/privacy" className="text-blue-700 hover:underline">Privacy Policy</a> for detailed information on how your data is collected, used, stored, and shared.
             </p>
             <p>
               We implement strong technical, administrative, and physical safeguards to protect your personal data against unauthorized access, disclosure, alteration, or destruction. You may request access to, correction of, or deletion of your personal data in accordance with applicable law. QuickCV may also use anonymized or aggregated data for research and analysis to enhance our Service.
@@ -125,48 +119,10 @@ export default function TermsConditions() {
             </p>
 
             <h2 className="mt-8 text-2xl font-semibold text-black-700 ">12. Contact Information</h2>
-            <p>If you have questions, concerns, or complaints regarding these Terms, please contact us:</p>
-            <div className="bg-gray-50 border border-gray-200 p-6 rounded-xl mt-4">
-              <ul className="space-y-2 mb-0 text-gray-700">
-                <li className="flex items-center space-x-2">
-                  <Mail className="h-4 w-4 text-blue-600" />
-                  <span>Email: mbaforfoghang@gmail.com</span>
-                </li>
-                <li>Address: 123 Business Ave, Suite 100, San Francisco, CA 94107</li>
-                <li>Phone: +237 683094941</li>
-              </ul>
-            </div>
+            <p>If you have questions, concerns, or complaints regarding these Terms, please contact us <a href="/contact" className="text-blue-700 hover:underline">here</a></p>
           </div>
         </div>
 
-        {/* Footer Card */}
-        <div className="mt-12 bg-gray-50 border border-gray-200 rounded-2xl text-center p-10 space-y-6">
-          <Scale className="h-10 w-10 text-blue-600 mx-auto mb-3" />
-          <h3 className="text-xl font-semibold mb-1 text-gray-900">Need Clarification?</h3>
-          <p className="text-sm text-gray-600 max-w-2xl mx-auto">
-            Our legal and support teams are here to help you understand these Terms and how they apply to your use of QuickCV.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a
-              href="mailto:mbaforfoghang@gmail.com"
-              className="px-6 py-3 text-sm font-medium rounded-lg bg-blue-600 text-white hover:bg-blue-700 transition"
-            >
-              Contact Legal Team
-            </a>
-            <a
-              href="/privacy"
-              className="px-6 py-3 text-sm font-medium rounded-lg border border-gray-300 text-gray-700 hover:bg-gray-100 transition"
-            >
-              View Privacy Policy
-            </a>
-          </div>
-        </div>
-
-        {/* Footer Note */}
-        <footer className="mt-10 text-center text-sm text-gray-500 space-y-1">
-          <p>This document was last updated on {lastUpdated}</p>
-          <p>© 2025 QuickCV. All rights reserved.</p>
-        </footer>
       </main>
       
       <Footer />

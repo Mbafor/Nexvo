@@ -1,12 +1,14 @@
 
 // src/components/LandingPage.tsx
 import { useState, useEffect } from "react";
-import { Zap, Shield, Award, Send, Briefcase, BarChart3, Palette, Headphones, Globe, ArrowRight } from "lucide-react";
+import { Zap, Shield, Award, ArrowRight,  ChevronLeft, ChevronRight } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import LatestPosts from "../components/LatestPosts";
 import { sendContactMessage } from "../utils/contactService";
 import Header from "../components/common/Header";
 import Footer from "../components/common/Footer";
+import { useNavigate } from "react-router-dom";
+
 
 const useCountUp = (target: number, duration = 2000) => {
   const [count, setCount] = useState(0);
@@ -66,6 +68,81 @@ const stats = [
 ];
 
 
+function CarouselTestimonials() {
+  const [index, setIndex] = useState(0);
+
+  const next = () => setIndex((index + 1) % testimonials.length);
+  const prev = () =>
+    setIndex((index - 1 + testimonials.length) % testimonials.length);
+
+  const testimonial = testimonials[index];
+
+  return (
+    <div className="relative w-full max-w-3xl mx-auto">
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={index}
+          initial={{ opacity: 0, x: 100 }}
+          animate={{ opacity: 1, x: 0 }}
+          exit={{ opacity: 0, x: -100 }}
+          transition={{ duration: 0.6 }}
+          className="bg-white rounded-3xl shadow-lg p-10 border border-blue-100"
+        >
+          <div className="flex flex-col items-center">
+            <div className="w-16 h-16 bg-gradient-to-br from-blue-400 to-blue-600 rounded-full flex items-center justify-center text-white font-bold text-xl mb-4">
+              {testimonial.avatar}
+            </div>
+            <p className="text-lg italic text-gray-700 mb-6 leading-relaxed">
+              “{testimonial.review}”
+            </p>
+            <h4 className="font-semibold text-blue-700 text-xl">
+              {testimonial.name}
+            </h4>
+            <p className="text-gray-500 text-sm">{testimonial.role}</p>
+            <div className="flex mt-3">
+              {[...Array(testimonial.rating)].map((_, i) => (
+                <svg
+                  key={i}
+                  className="w-5 h-5 text-yellow-400 fill-current"
+                  viewBox="0 0 20 20"
+                >
+                  <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
+                </svg>
+              ))}
+            </div>
+          </div>
+        </motion.div>
+      </AnimatePresence>
+
+      {/* Navigation buttons */}
+      <button
+        onClick={prev}
+        className="absolute top-1/2 left-0 transform -translate-y-1/2 bg-blue-100 text-blue-700 rounded-full p-3 hover:bg-blue-600 transition"
+      >
+        <ChevronLeft className="w-6 h-6" />
+      </button>
+      <button
+        onClick={next}
+        className="absolute top-1/2 right-0 transform -translate-y-1/2 bg-blue-100 text-blue-700 rounded-full p-3 hover:bg-blue-600 transition"
+      >
+        <ChevronRight className="w-6 h-6" />
+      </button>
+
+      {/* Dots */}
+      <div className="flex justify-center mt-8 space-x-3">
+        {testimonials.map((_, i) => (
+          <button
+            key={i}
+            onClick={() => setIndex(i)}
+            className={`w-3 h-3 rounded-full transition-all ${
+              i === index ? "bg-blue-700 scale-125" : "bg-blue-300"
+            }`}
+          ></button>
+        ))}
+      </div>
+    </div>
+  );
+}
 
 
 const testimonials = [
@@ -109,6 +186,7 @@ interface LandingPageProps {
 }
 
 export default function LandingPage({ onGetStarted, onSignIn }: LandingPageProps) {
+   const navigate = useNavigate();
   const [openFAQ, setOpenFAQ] = useState<number | null>(null);
   const [contactForm, setContactForm] = useState({ name: '', email: '', message: '' });
   const [contactStatus, setContactStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle');
@@ -234,10 +312,10 @@ export default function LandingPage({ onGetStarted, onSignIn }: LandingPageProps
       {/* Hero Title */}
       <motion.h1
         variants={itemVariants}
-        className="text-5xl lg:text-7xl font-bold leading-tight mt-[-50px]"
+        className="text-5xl lg:text-6xl leading-tight mt-[-50px]"
       >
-        <span className="text-blue-600 bg-clip-text">
-          Build Your Perfect CV in Minutes
+        <span className="font-medium text-gray-900">
+          Build Your <span className="text-blue-700">Perfect CV</span> in Minutes
         </span>
         <br />
       </motion.h1>
@@ -249,7 +327,7 @@ export default function LandingPage({ onGetStarted, onSignIn }: LandingPageProps
       >
         Create ATS-optimized, professional CVs that land interviews at top
         companies.
-        <span className="text-blue-600"> No signup required.</span>
+        <span className="text-blue-700"> No signup required.</span>
       </motion.p>
 
       {/* CTA Buttons */}
@@ -259,7 +337,7 @@ export default function LandingPage({ onGetStarted, onSignIn }: LandingPageProps
       >
         <motion.button
           onClick={onGetStarted}
-          className="group px-8 py-4 bg-blue-600 hover:bg-blue-700 rounded-2xl text-white text-lg font-semibold shadow-2xl transition-all duration-300"
+          className="group px-8 py-4 bg-blue-700 hover:bg-blue-600 rounded-2xl text-white text-lg font-medium shadow-2xl transition-all duration-300"
           whileHover={{ scale: 1.05, y: -2 }}
           whileTap={{ scale: 0.95 }}
         >
@@ -273,7 +351,7 @@ export default function LandingPage({ onGetStarted, onSignIn }: LandingPageProps
       {/* Stats Section - Enhanced Mobile Responsive */}
   <motion.div
   variants={itemVariants}
-  className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 pt-8"
+  className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-4 pt-400"
 >
   {stats.map((stat, idx) => {
     const count = useCountUp(stat.value, 2500); // Slightly slower animation for better mobile visibility
@@ -292,10 +370,10 @@ export default function LandingPage({ onGetStarted, onSignIn }: LandingPageProps
         <div className="md:hidden mb-2 flex justify-center">
 
         </div>
-        <div className="text-xl md:text-2xl lg:text-3xl font-bold text-blue-700 mb-1">
+        <div className="text-xl md:text-2xl lg:text-3xl font-semibold text-blue-700 mb-1">
           {count}{stat.suffix}
         </div>
-        <div className="text-sm md:text-sm text-gray-700 font-medium">{stat.label}</div>
+        <div className="text-sm md:text-sm text-black font-medium">{stat.label}</div>
       </motion.div>
     );
   })}
@@ -369,94 +447,211 @@ export default function LandingPage({ onGetStarted, onSignIn }: LandingPageProps
 </div>
         </section>
 
-{/* Why Choose Us Section - Blue Modern Theme with Lucide Icons */}
+{/* Why Choose Us - Alternating Split Layout */}
 <section
   id="why-choose-us"
-  className="py-24 bg-cover bg-center bg-no-repeat mt-[-10px]"
-  
 >
+  <div className="max-w-7xl mx-auto px-6 lg:px-12 space-y-16">
 
-  <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    {/* Section Intro */}
     <motion.div
-      className="text-center mb-16"
+      className="text-center mb-6"
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6 }}
       viewport={{ once: true }}
     >
-      <h2 className="text-4xl lg:text-5xl font-bold mb-6 text-blue-600">
+      <h2 className="text-4xl lg:text-5xl mb-4 font-medium text-gray-900">
         Why Choose Us
       </h2>
-      <p className="text-lg text-black max-w-3xl mx-auto">
-        Our platform blends smart design, technology, and analytics to help you stand out in today’s competitive job market.
+      <p className="text-lg text-gray-700 max-w-3xl mx-auto">
+        Our platform doesn’t just help you build resumes — it helps you build confidence, clarity, and credibility.
       </p>
     </motion.div>
 
-    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
-      {[
-        {
-          icon: <Briefcase className="w-10 h-10 text-blue-600 group-hover:text-blue-800 transition-colors" />,
-          title: "HR-Approved Templates",
-          desc: "Professionally designed templates that pass ATS scans and instantly grab recruiters’ attention."
-        },
-        {
-          icon: <Zap className="w-10 h-10 text-blue-600 group-hover:text-blue-800 transition-colors" />,
-          title: "Fast & Easy to Use",
-          desc: "Build a polished resume in minutes using our intuitive editor and real-time design suggestions."
-        },
-        {
-          icon: <BarChart3 className="w-10 h-10 text-blue-600 group-hover:text-blue-800 transition-colors" />,
-          title: "Data-Driven Insights",
-          desc: "We analyze hiring patterns to give you resume tips that match today’s top recruiter trends."
-        },
-        {
-          icon: <Globe className="w-10 h-10 text-blue-600 group-hover:text-blue-800 transition-colors" />,
-          title: "Global Compatibility",
-          desc: "Optimized for international standards — perfect for any role, anywhere in the world."
-        },
-        {
-          icon: <Palette className="w-10 h-10 text-blue-600 group-hover:text-blue-800 transition-colors" />,
-          title: "Customizable Designs",
-          desc: "Change colors, fonts, and layouts effortlessly to make your resume reflect your personality."
-        },
-        {
-          icon: <Headphones className="w-10 h-10 text-blue-600 group-hover:text-blue-800 transition-colors" />,
-          title: "Dedicated Support",
-          desc: "Our friendly team is always ready to help you build your perfect resume, every step of the way."
-        }
-      ].map((item, idx) => (
-        <motion.div
-          key={idx}
-          className="group bg-white rounded-3xl p-8 border border-blue-100 shadow-md hover:shadow-blue-300 transition-all duration-500 hover:-translate-y-3 hover:bg-gradient-to-b hover:from-blue-50 hover:to-blue-100"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: idx * 0.1 }}
-          viewport={{ once: true }}
-        >
-          <div className="mb-5">{item.icon}</div>
-          <h3 className="text-2xl font-semibold text-blue-800 mb-3">
-            {item.title}
-          </h3>
-          <p className="text-gray-600 group-hover:text-gray-800 transition-colors duration-300">
-            {item.desc}
-          </p>
-        </motion.div>
-      ))}
-    </div>
+    {/* 1️⃣ Section One */}
+    <motion.div
+      className="flex flex-col lg:flex-row items-center gap-16"
+      initial={{ opacity: 0, x: -50 }}
+      whileInView={{ opacity: 1, x: 0 }}
+      transition={{ duration: 0.7 }}
+      viewport={{ once: true }}
+    >
+      {/* Text */}
+      <div className="flex-1">
+        <h3 className="text-2xl font-medium text-gray-900 mb-4">
+          Professionally Crafted Templates
+        </h3>
+        <p className="text-gray-700 text-lg leading-relaxed mb-6">
+          Choose from a library of HR-approved designs that pass ATS scans
+          and instantly communicate your strengths to recruiters.
+        </p>
+        <ul className="space-y-2 text-gray-600">
+          <li>✔ Built with hiring manager input</li>
+          <li>✔ Optimized for visual balance and clarity</li>
+          <li>✔ Proven to increase response rates</li>
+        </ul>
+      <button
+  onClick={() => navigate("/about")}
+  className="flex items-center gap-2 px-6 py-3 mt-6 bg-blue-700 text-white font-semibold rounded-2xl shadow-lg hover:bg-blue-600 hover:scale-105 transition-all duration-300"
+>
+  Read More
+  <ArrowRight className="w-5 h-5" />
+</button>
+
+
+      </div>
+
+      {/* Image */}
+      <div className="flex-1 flex justify-center">
+        <img
+          src="/Images/image.png"
+          alt="Template Preview"
+          className="rounded-3xl shadow-lg w-[500px] h-[350px] object-cover"
+        />
+      </div>
+    </motion.div>
+
+    {/* 2️⃣ Section Two */}
+    <motion.div
+      className="flex flex-col lg:flex-row-reverse items-center gap-16"
+      initial={{ opacity: 0, x: 50 }}
+      whileInView={{ opacity: 1, x: 0 }}
+      transition={{ duration: 0.7 }}
+      viewport={{ once: true }}
+    >
+      <div className="flex-1">
+        <h3 className="text-2xl font-medium text-gray-900 mb-4">
+          Fast. Simple. Intuitive.
+        </h3>
+        <p className="text-gray-700 text-lg leading-relaxed mb-6">
+          Our resume builder is designed to help you finish your professional resume
+          in minutes — no design skills required.
+        </p>
+        <ul className="space-y-2 text-gray-600">
+          <li>✔ Real-time editing and formatting</li>
+          <li>✔ Auto-alignment for perfect spacing</li>
+          <li>✔ Instant download and export options</li>
+        </ul>
+
+       <button
+  onClick={() => navigate("/about")}
+  className="flex items-center gap-2 px-6 py-3 mt-6 bg-blue-700 text-white font-semibold rounded-2xl shadow-lg hover:bg-blue-600 hover:scale-105 transition-all duration-300"
+>
+  Read More
+  <ArrowRight className="w-5 h-5" />
+</button>
+
+
+      </div>
+
+      <div className="flex-1 flex justify-center">
+        <img
+          src="/Images/fast.png"
+          alt="Easy Resume Builder"
+          className="rounded-3xl shadow-lg w-[500px] h-[350px] object-cover"
+        />
+      </div>
+    </motion.div>
+
+    {/* 3️⃣ Section Three */}
+    <motion.div
+      className="flex flex-col lg:flex-row items-center gap-16"
+      initial={{ opacity: 0, x: -50 }}
+      whileInView={{ opacity: 1, x: 0 }}
+      transition={{ duration: 0.7 }}
+      viewport={{ once: true }}
+    >
+      <div className="flex-1">
+        <h3 className="text-2xl font-medium text-gray-900 mb-4">
+          Data That Works for You
+        </h3>
+        <p className="text-gray-700 text-lg leading-relaxed mb-6">
+          We use real hiring trend analysis to provide personalized recommendations
+          that keep your resume aligned with today’s top recruiter expectations.
+        </p>
+        <ul className="space-y-2 text-gray-600">
+          <li>✔ Keyword optimization insights</li>
+          <li>✔ Success metrics tracking</li>
+          <li>✔ Continuous improvement suggestions</li>
+        </ul>
+<button
+  onClick={() => navigate("/about")}
+  className="flex items-center gap-2 px-6 py-3 mt-6 bg-blue-700 hover:bg-blue-600 text-white font-semibold rounded-2xl shadow-lg hover:scale-105 transition-all duration-300"
+>
+  Read More
+  <ArrowRight className="w-5 h-5" />
+</button>
+
+
+      </div>
+
+      <div className="flex-1 flex justify-center">
+        <img
+          src="/Images/data.png"
+          alt="Data Insights"
+          className="rounded-3xl shadow-lg w-[500px] h-[350px] object-cover"
+        />
+      </div>
+    </motion.div>
+
+    {/* 4️⃣ Section Four */}
+    <motion.div
+      className="flex flex-col lg:flex-row-reverse items-center gap-16"
+      initial={{ opacity: 0, x: 50 }}
+      whileInView={{ opacity: 1, x: 0 }}
+      transition={{ duration: 0.7 }}
+      viewport={{ once: true }}
+    >
+      <div className="flex-1">
+        <h3 className="text-2xl font-medium text-gray-900 mb-4">
+          Global Reach. Human Support.
+        </h3>
+        <p className="text-gray-700 text-lg leading-relaxed mb-6">
+          Whether you’re applying locally or internationally, our platform adapts to
+          your needs — and our support team is always there to help.
+        </p>
+        <ul className="space-y-2 text-gray-600">
+          <li>✔ Templates fit global standards</li>
+          <li>✔ Multi-language compatibility</li>
+          <li>✔ 24/7 expert assistance</li>
+        </ul>
+         <br></br>
+       <button
+  onClick={() => navigate("/about")}
+  className="flex items-center gap-2 px-6 py-3 bg-blue-700 text-white font-semibold rounded-2xl shadow-lg hover:bg-blue-600 hover:scale-105 transition-all duration-300"
+>
+  Read More
+  <ArrowRight className="w-5 h-5" />
+</button>
+
+
+      </div>
+
+      <div className="flex-1 flex justify-center">
+        <img
+          src="/Images/image.png"
+          alt="Global Support"
+          className="rounded-3xl shadow-lg w-[500px] h-[350px] object-cover"
+        />
+      </div>
+    </motion.div>
   </div>
 </section>
 
+
+
       {/* Templates Section - White & Blue Theme */}
-<section id="templates" className="py-24 bg-white ">
+<section id="templates" className="py-8 bg-white ">
   <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <motion.div
-      className="text-center mb-16"
+      className="text-center mb-8"
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6 }}
       viewport={{ once: true }}
     >
-      <h2 className="text-4xl lg:text-5xl font-bold mb-6 text-blue-600">
+      <h2 className="text-4xl lg:text-5xl mb-4 font-medium text-gray-900">
         Professional Templates
       </h2>
       <p className="text-lg text-black max-w-3xl mx-auto">
@@ -492,7 +687,7 @@ export default function LandingPage({ onGetStarted, onSignIn }: LandingPageProps
             </p>
             <button 
               onClick={onGetStarted}
-              className="w-full py-3 bg-blue-600 hover:bg-blue-700 rounded-xl text-white font-semibold transition-all duration-300 shadow-sm hover:shadow-blue-500/25"
+              className="w-full py-3 bg-blue-700 hover:bg-blue-600 rounded-2xl text-white font-semibold transition-all duration-300 shadow-sm hover:shadow-blue-500/25"
             >
               Use This Template
             </button>
@@ -502,95 +697,69 @@ export default function LandingPage({ onGetStarted, onSignIn }: LandingPageProps
     </div>
   </div>
 </section>
-        {/* Testimonials Section - Enhanced */}
-        <section className="py-24 bg-blue-50/50 backdrop-blur-sm">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <motion.div
-              className="text-center mb-16"
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              viewport={{ once: true }}
-            >
-              <h2 className="text-4xl lg:text-5xl font-bold mb-6 text-blue-600">
-                Success Stories
-              </h2>
-              <p className="text-xl text-black max-w-3xl mx-auto">
-                Join thousands of professionals who landed their dream jobs using QuickCV
-              </p>
-            </motion.div>
 
-            <div className="grid md:grid-cols-3 gap-8">
-              {testimonials.map((testimonial, idx) => (
-                <motion.div
-                  key={idx}
-                  className="group bg-white backdrop-blur-sm rounded-3xl p-8 border border-blue-100 hover:border-blue-200 transition-all duration-500 shadow-lg hover:shadow-xl"
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: idx * 0.1 }}
-                  viewport={{ once: true }}
-                  whileHover={{ scale: 1.05, y: -10 }}
-                >
-                  <div className="flex items-center mb-6">
-                    <div className="w-12 h-12 bg-gradient-to-br from-blue-400 to-blue-600 rounded-full flex items-center justify-center font-bold text-white mr-4">
-                      {testimonial.avatar}
-                    </div>
-                    <div>
-                      <h4 className="font-semibold text-gray-900">{testimonial.name}</h4>
-                      <p className="text-gray-600 text-sm">{testimonial.role}</p>
-                    </div>
-                  </div>
-                  <p className="text-gray-700 italic mb-4 leading-relaxed">
-                    "{testimonial.review}"
-                  </p>
-                  <div className="flex items-center space-x-1">
-                    {[...Array(testimonial.rating)].map((_, i) => (
-                      <svg key={i} className="w-4 h-4 text-blue-400 fill-current" viewBox="0 0 20 20">
-                        <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/>
-                      </svg>
-                    ))}
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-        </section>
-      </main>
-        
-{/* Latest Blog Posts - Enhanced */}
-<section className="py-24 bg-white">
-  <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <motion.div
-      className="text-center mb-16"
+      {/* Testimonials Section – Carousel Slider Style */}
+<section className="py-20">
+  <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+    <motion.h2
+      className="text-4xl lg:text-5xl mb-6 font-medium text-gray-900"
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6 }}
       viewport={{ once: true }}
     >
-      <h2 className="text-4xl lg:text-5xl font-bold mb-6 text-blue-600">
+      What People Say
+    </motion.h2>
+    <motion.p
+      className="text-lg text-gray-700 mb-12 max-w-2xl mx-auto"
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6, delay: 0.1 }}
+      viewport={{ once: true }}
+    >
+      Real experiences from professionals who landed their dream jobs using QuickCV.
+    </motion.p>
+
+    <CarouselTestimonials />
+  </div>
+</section>
+
+      </main>
+        
+{/* Latest Blog Posts - Enhanced */}
+<section className="py-8 bg-white">
+  <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <motion.div
+      className="text-center mb-8"
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6 }}
+      viewport={{ once: true }}
+    >
+      <h2 className="text-4xl lg:text-5xl mb-4 font-medium text-gray-900">
         Expert Career Insights
       </h2>
       <p className="text-xl text-black  max-w-3xl mx-auto">
         Stay ahead with the latest tips and strategies from career experts
       </p>
     </motion.div>
-    <div className="bg-blue-50 rounded-3xl p-8 border border-blue-100">
+    <div className="bg-white rounded-3xl p-8 border">
       <LatestPosts />
     </div>
   </div>
 </section>
 
 {/* FAQ Section - Enhanced */}
-<section id="faq" className="py-24 bg-white">
+<section id="faq" className="py-8 bg-white">
   <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
     <motion.div
-      className="text-center mb-16"
+      className="text-center mb-8"
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6 }}
       viewport={{ once: true }}
     >
-      <h2 className="text-4xl lg:text-5xl font-bold mb-6 text-blue-600">
+      <h2 className="text-4xl lg:text-5xl mb-4 font-medium text-gray-900">
         Frequently Asked Questions
       </h2>
       <p className="text-xl text-black ">
@@ -612,14 +781,14 @@ export default function LandingPage({ onGetStarted, onSignIn }: LandingPageProps
             onClick={() => toggleFAQ(idx)}
             className="w-full p-6 text-left flex justify-between items-center group"
           >
-            <h3 className="text-black group-hover:text-blue-600 transition-colors">
+            <h3 className="text-black group-hover:text-blue-700 transition-colors">
               {faq.question}
             </h3>
             <motion.div
               animate={{ rotate: openFAQ === idx ? 180 : 0 }}
               transition={{ duration: 0.3 }}
             >
-              <svg className="w-5 h-5 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="w-5 h-5 text-blue-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
               </svg>
             </motion.div>
@@ -649,7 +818,7 @@ export default function LandingPage({ onGetStarted, onSignIn }: LandingPageProps
 
 {/* Final CTA Section */}
 <section
-  className="relative py-24 bg-cover bg-center bg-no-repeat"
+  className="relative py-8 bg-cover bg-center bg-no-repeat"
   style={{ backgroundImage: "url('/Images/call.png')" }}
 >
   {/* Dark overlay ONLY inside this section */}
@@ -675,7 +844,7 @@ export default function LandingPage({ onGetStarted, onSignIn }: LandingPageProps
       <div className="flex flex-col sm:flex-row gap-4 justify-center">
         <motion.button
           onClick={onGetStarted}
-          className="px-8 py-4 bg-blue-600 rounded-2xl text-white text-lg font-semibold shadow-lg hover:shadow-blue-400/50 transition-all duration-300"
+          className="px-8 py-4  bg-blue-700 hover:bg-blue-600 rounded-2xl text-white text-lg font-semibold "
           whileHover={{ scale: 1.05, y: -2 }}
           whileTap={{ scale: 0.95 }}
         >
@@ -699,102 +868,105 @@ export default function LandingPage({ onGetStarted, onSignIn }: LandingPageProps
 
 
 
+
+
 {/* Contact Section */}
-<section id="contact" className="py-24 bg-white">
+<section id="contact" className="py-8 bg-white">
   <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <motion.div
-      className="text-center mb-16"
+      className="text-center mb-8"
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6 }}
       viewport={{ once: true }}
     >
-      <h2 className="text-4xl lg:text-5xl font-bold mb-6 text-blue-600">
+      <h2 className="text-4xl lg:text-5xl mb-4 font-medium text-gray-900">
         Get in Touch
       </h2>
-      <p className="text-xl text-black max-w-3xl mx-auto">
+      <p className="text-xl text-black max-w-4xl mx-auto">
         Have questions? Need help? Want to partner with us? We'd love to hear from you.
       </p>
     </motion.div>
 
-    <div className="grid lg:grid-cols-2 gap-12">
-      {/* Contact Information */}
-      <motion.div
-        initial={{ opacity: 0, x: -20 }}
-        whileInView={{ opacity: 1, x: 0 }}
-        transition={{ duration: 0.6 }}
-        viewport={{ once: true }}
-        className="space-y-8"
-      >
-        
-      </motion.div>
+    <div>
+     <div>
+  {/* Contact Information */}
+  <motion.div
+    initial={{ opacity: 0, x: -20 }}
+    whileInView={{ opacity: 1, x: 0 }}
+    transition={{ duration: 0.6 }}
+    viewport={{ once: true }}
+    className="space-y-8"
+  >
+    {/* Your contact info here */}
+  </motion.div>
 
-      {/* Quick Contact Form */}
-      <motion.div
-        initial={{ opacity: 0, x: 20 }}
-        whileInView={{ opacity: 1, x: 0 }}
-        transition={{ duration: 0.6 }}
-        viewport={{ once: true }}
-      >
-        <div className="bg-blue-50 backdrop-blur-sm rounded-2xl p-8 border border-blue-200">
-          <h3 className="text-2xl font-bold mb-6 flex items-center text-blue-700">
-
-            Send us a Message
-          </h3>
-          
-          <form onSubmit={handleContactSubmit} className="space-y-6">
-            <div>
-              <input
-                type="text"
-                value={contactForm.name}
-                onChange={(e) => setContactForm(prev => ({ ...prev, name: e.target.value }))}
-                placeholder="Your Name"
-                className="w-full px-4 py-3 bg-white border border-blue-200 rounded-lg text-gray-900 placeholder-gray-500 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors"
-                required
-              />
-            </div>
-            <div>
-              <input
-                type="email"
-                value={contactForm.email}
-                onChange={(e) => setContactForm(prev => ({ ...prev, email: e.target.value }))}
-                placeholder="Your Email"
-                className="w-full px-4 py-3 bg-white border border-blue-200 rounded-lg text-gray-900 placeholder-gray-500 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors"
-                required
-              />
-            </div>
-            <div>
-              <textarea
-                rows={4}
-                value={contactForm.message}
-                onChange={(e) => setContactForm(prev => ({ ...prev, message: e.target.value }))}
-                placeholder="Your Message"
-                className="w-full px-4 py-3 bg-white border border-blue-200 rounded-lg text-gray-900 placeholder-gray-500 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors resize-vertical"
-                required
-              />
-            </div>
-            <button
-              type="submit"
-              disabled={contactStatus === 'sending' || contactStatus === 'success'}
-              className="w-full flex items-center justify-center space-x-2 px-6 py-3 bg-blue-600 hover:bg-blue-700 rounded-lg transition-all duration-200 shadow-lg font-semibold text-white disabled:opacity-50"
-            >
-              {contactStatus === 'sending' ? (
-                <>
-                  <div className="h-5 w-5 border-2 border-white border-t-transparent rounded-full animate-spin" />
-                  <span>Sending...</span>
-                </>
-              ) : contactStatus === 'success' ? (
-                <span>Message Sent!</span>
-              ) : (
-                <>
-                  <Send className="h-5 w-5" />
-                  <span>Send Message</span>
-                </>
-              )}
-            </button>
-          </form>
+  {/* Quick Contact Form */}
+  <motion.div
+    initial={{ opacity: 0, x: 20 }}
+    whileInView={{ opacity: 1, x: 0 }}
+    transition={{ duration: 0.6 }}
+    viewport={{ once: true }}
+    className="mx-auto w-full max-w-3xl"  // <-- CENTERING HAPPENS HERE
+  >
+    <div className="backdrop-blur-sm rounded-2xl p-8">
+      <h3 className="text-2xl mb-6 flex items-center text-black">
+        Send us a Message
+      </h3>
+      
+      <form onSubmit={handleContactSubmit} className="space-y-6">
+        <div>
+          <input
+            type="text"
+            value={contactForm.name}
+            onChange={(e) => setContactForm(prev => ({ ...prev, name: e.target.value }))}
+            placeholder="Your Name"
+            className="w-full px-4 py-3 bg-white border border-blue-200 rounded-lg text-gray-900 placeholder-gray-500 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors"
+            required
+          />
         </div>
-      </motion.div>
+        <div>
+          <input
+            type="email"
+            value={contactForm.email}
+            onChange={(e) => setContactForm(prev => ({ ...prev, email: e.target.value }))}
+            placeholder="Your Email"
+            className="w-full px-4 py-3 bg-white border border-blue-200 rounded-lg text-gray-900 placeholder-gray-500 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors"
+            required
+          />
+        </div>
+        <div>
+          <textarea
+            rows={4}
+            value={contactForm.message}
+            onChange={(e) => setContactForm(prev => ({ ...prev, message: e.target.value }))}
+            placeholder="Your Message"
+            className="w-full px-4 py-3 bg-white border border-blue-200 rounded-lg text-gray-900 placeholder-gray-500 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors resize-vertical"
+            required
+          />
+        </div>
+        <button
+          type="submit"
+          disabled={contactStatus === 'sending' || contactStatus === 'success'}
+          className="w-full flex items-center justify-center space-x-2 px-6 py-3 bg-blue-700 hover:bg-blue-600 rounded-lg transition-all duration-200 shadow-lg font-semibold text-white disabled:opacity-50"
+        >
+          {contactStatus === 'sending' ? (
+            <>
+              <div className="h-5 w-5 border-2 border-white border-t-transparent rounded-full animate-spin" />
+              <span>Sending...</span>
+            </>
+          ) : contactStatus === 'success' ? (
+            <span>Message Sent!</span>
+          ) : (
+            <>
+              <span>Send Message</span>
+            </>
+          )}
+        </button>
+      </form>
+    </div>
+  </motion.div>
+</div>
     </div>
   </div>
 </section>

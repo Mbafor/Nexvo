@@ -83,7 +83,7 @@ export default function VerificationSuccess() {
           {verificationStatus === 'already-verified' && (
             <>
               <div className="mx-auto w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mb-6">
-                <CheckCircle2 className="h-8 w-8 text-blue-600" />
+                <CheckCircle2 className="h-8 w-8 text-blue-700" />
               </div>
               
               <h1 className="text-2xl font-bold text-gray-900 mb-4">
@@ -97,7 +97,7 @@ export default function VerificationSuccess() {
               <div className="space-y-3">
                 <Link
                   to="/dashboard"
-                  className="w-full flex items-center justify-center space-x-2 px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors font-semibold"
+                  className="w-full flex items-center justify-center space-x-2 px-6 py-3 bg-blue-700 text-white rounded-lg hover:bg-blue-600 transition-colors font-semibold"
                 >
                   <User className="h-5 w-5" />
                   <span>Go to Dashboard</span>

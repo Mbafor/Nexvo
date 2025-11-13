@@ -39,9 +39,9 @@ export default function SubtleToast({
       case 'success':
         return <CheckCircle2 className="h-4 w-4 text-green-600" />;
       case 'dashboard':
-        return <FolderOpen className="h-4 w-4 text-blue-600" />;
+        return <FolderOpen className="h-4 w-4 text-blue-700" />;
       default:
-        return <Info className="h-4 w-4 text-blue-600" />;
+        return <Info className="h-4 w-4 text-blue-700" />;
     }
   };
 
@@ -50,9 +50,9 @@ export default function SubtleToast({
       case 'success':
         return 'bg-green-50 border-green-200 text-green-800';
       case 'dashboard':
-        return 'bg-blue-50 border-blue-200 text-blue-800';
+        return 'bg-blue-50 border-blue-200 text-blue-700';
       default:
-        return 'bg-blue-50 border-blue-200 text-blue-800';
+        return 'bg-blue-50 border-blue-200 text-blue-700';
     }
   };
 
@@ -76,7 +76,7 @@ export default function SubtleToast({
                 {type === 'dashboard' && onDashboard && (
                   <button
                     onClick={onDashboard}
-                    className="text-xs px-2 py-1 bg-blue-600 text-white rounded hover:bg-blue-700 transition-colors"
+                    className="text-xs px-2 py-1 bg-blue-700 text-white rounded hover:bg-blue-600 transition-colors"
                   >
                     Go
                   </button>

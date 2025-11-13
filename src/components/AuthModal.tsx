@@ -138,8 +138,8 @@ export default function AuthModal({ isOpen, onClose, onSuccess }: AuthModalProps
           {hasPendingDownload && (
             <div className="bg-blue-50 border border-blue-200 rounded-lg p-3 sm:p-4 mb-3 sm:mb-4">
               <div className="flex items-center space-x-2">
-                <Download className="h-4 w-4 sm:h-5 sm:w-5 text-blue-600 flex-shrink-0" />
-                <span className="font-medium text-blue-900 text-sm sm:text-base">CV Download Ready</span>
+                <Download className="h-4 w-4 sm:h-5 sm:w-5 text-blue-700 flex-shrink-0" />
+                <span className="font-medium text-blue-700 text-sm sm:text-base">CV Download Ready</span>
               </div>
               <p className="text-xs sm:text-sm text-blue-700 mt-1">
                 Sign in to download your CV and access your personal dashboard.
@@ -279,10 +279,10 @@ export default function AuthModal({ isOpen, onClose, onSuccess }: AuthModalProps
         {hasPendingDownload && (
           <div className="mt-4 sm:mt-6 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-lg p-3 sm:p-4">
             <div className="flex items-center space-x-2 mb-2 sm:mb-3">
-              <Shield className="h-4 w-4 sm:h-5 sm:w-5 text-blue-600 flex-shrink-0" />
-              <span className="font-semibold text-blue-900 text-sm sm:text-base">What you get:</span>
+              <Shield className="h-4 w-4 sm:h-5 sm:w-5 text-blue-700 flex-shrink-0" />
+              <span className="font-semibold text-blue-700 text-sm sm:text-base">What you get:</span>
             </div>
-            <ul className="space-y-1 text-xs sm:text-sm text-blue-800">
+            <ul className="space-y-1 text-xs sm:text-sm text-blue-700">
               <li>• Instant CV download in high quality</li>
               <li>• Personal dashboard to manage all your CVs</li>
               <li>• Download history and re-download anytime</li>

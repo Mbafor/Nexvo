@@ -9,7 +9,6 @@ import {
   Download, 
   ArrowLeft, 
   Eye, 
-  Share2, 
   FileText,
   ExternalLink,
   Copy,
@@ -22,11 +21,9 @@ import {
   Calendar,
   Building,
   GraduationCap,
-  Award,
   Code,
   Briefcase,
-  Heart,
-  Users,
+ 
   Languages,
   CheckCircle2
 } from 'lucide-react';
@@ -139,7 +136,7 @@ export default function SharedCV() {
 
   const getTemplateColor = (template: TemplateType): string => {
     const colors: Record<TemplateType, string> = {
-      modern: 'bg-blue-100 text-blue-800',
+      modern: 'bg-blue-100 text-blue-700',
       creative: 'bg-purple-100 text-purple-800',
       ats: 'bg-green-100 text-green-800',
       executive: 'bg-amber-100 text-amber-800',
@@ -172,7 +169,7 @@ export default function SharedCV() {
           <div className="space-y-3">
             <button
               onClick={() => navigate('/')}
-              className="w-full flex items-center justify-center space-x-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+              className="w-full flex items-center justify-center space-x-2 px-4 py-2 bg-blue-700 text-white rounded-lg hover:bg-blue-600 transition-colors"
             >
               <ArrowLeft className="h-4 w-4" />
               <span>Go to Home</span>
@@ -215,7 +212,7 @@ export default function SharedCV() {
               
               <div className="flex items-center space-x-2">
                 <div className="bg-blue-100 p-2 rounded-lg">
-                  <Eye className="h-5 w-5 text-blue-600" />
+                  <Eye className="h-5 w-5 text-blue-700" />
                 </div>
                 <div>
                   <h1 className="font-semibold text-gray-900">Shared CV</h1>
@@ -247,7 +244,7 @@ export default function SharedCV() {
               <button
                 onClick={handleDownload}
                 disabled={isDownloading}
-                className="flex items-center space-x-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors disabled:opacity-50"
+                className="flex items-center space-x-2 px-4 py-2 bg-blue-700 text-white rounded-lg hover:bg-blue-600 transition-colors disabled:opacity-50"
               >
                 {isDownloading ? (
                   <>
@@ -277,7 +274,7 @@ export default function SharedCV() {
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-4">
               <div className="bg-blue-100 p-3 rounded-full">
-                <FileText className="h-6 w-6 text-blue-600" />
+                <FileText className="h-6 w-6 text-blue-700" />
               </div>
               <div>
                 <h2 className="text-xl font-bold text-gray-900">{cvRecord.fileName}</h2>
@@ -438,10 +435,10 @@ export default function SharedCV() {
                 </h2>
                 <div className="flex flex-wrap gap-2">
                   {cvData.skills.map((skill, index) => (
-                    <span key={index} className="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm font-medium">
+                    <span key={index} className="px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-sm font-medium">
                       {skill.name}
                       {skill.level && skill.level !== 'Beginner' && (
-                        <span className="ml-1 text-blue-600">• {skill.level}</span>
+                        <span className="ml-1 text-blue-700">• {skill.level}</span>
                       )}
                     </span>
                   ))}
@@ -462,7 +459,7 @@ export default function SharedCV() {
                       <div className="flex items-center space-x-2 mb-2">
                         <h3 className="font-semibold text-lg text-gray-900">{project.name}</h3>
                         {project.url && (
-                          <a href={project.url} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:text-blue-700">
+                          <a href={project.url} target="_blank" rel="noopener noreferrer" className="text-blue-700 hover:text-blue-700">
                             <ExternalLink className="h-4 w-4" />
                           </a>
                         )}
@@ -505,11 +502,11 @@ export default function SharedCV() {
 
             {/* Call to Action */}
             <div className="mt-12 p-6 bg-blue-50 rounded-xl text-center">
-              <h3 className="text-lg font-semibold text-blue-900 mb-2">Impressed by this CV?</h3>
+              <h3 className="text-lg font-semibold text-blue-700 mb-2">Impressed by this CV?</h3>
               <p className="text-blue-700 mb-4">Create your own professional CV with our easy-to-use builder</p>
               <button
                 onClick={() => navigate('/builder')}
-                className="inline-flex items-center space-x-2 px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+                className="inline-flex items-center space-x-2 px-6 py-3 bg-blue-700 text-white rounded-lg hover:bg-blue-600 transition-colors"
               >
                 <FileText className="h-4 w-4" />
                 <span>Create Your CV</span>

@@ -48,7 +48,7 @@ const BlogLayout: React.FC<BlogLayoutProps> = ({
               onClick={() => navigate("/")}
             >
               <div className="flex-shrink-0">
-                <h1 className="text-2xl font-bold text-blue-600 group-hover:text-blue-700 transition-colors">
+                <h1 className="text-2xl font-bold text-blue-700 group-hover:text-blue-700 transition-colors">
                   QuickCV
                 </h1>
               </div>
@@ -58,19 +58,19 @@ const BlogLayout: React.FC<BlogLayoutProps> = ({
             <div className="hidden md:flex items-center space-x-8">
               <button
                 onClick={() => navigate("/")}
-                className="text-gray-600 hover:text-blue-600 font-medium transition-colors"
+                className="text-gray-600 hover:text-blue-700 font-medium transition-colors"
               >
                 Home
               </button>
               <button
                 onClick={() => navigate("/builder")}
-                className="text-gray-600 hover:text-blue-600 font-medium transition-colors"
+                className="text-gray-600 hover:text-blue-700 font-medium transition-colors"
               >
                 CV Builder
               </button>
               <button
                 onClick={() => navigate("/blogs")}
-                className="text-blue-600 font-medium border-b-2 border-blue-600"
+                className="text-blue-700 font-medium border-b-2 border-blue-600"
               >
                 Blog
               </button>
@@ -82,7 +82,7 @@ const BlogLayout: React.FC<BlogLayoutProps> = ({
               <button
                 type="button"
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                className="text-gray-600 hover:text-blue-600 transition-colors"
+                className="text-gray-600 hover:text-blue-700 transition-colors"
                 aria-label="Toggle menu"
               >
                 {isMobileMenuOpen ? (
@@ -101,7 +101,7 @@ const BlogLayout: React.FC<BlogLayoutProps> = ({
             <div className="hidden lg:flex">
               <button
                 onClick={() => navigate("/builder")}
-                className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg font-medium transition-colors shadow-sm"
+                className="bg-blue-700 hover:bg-blue-600 text-white px-4 py-2 rounded-lg font-medium transition-colors shadow-sm"
               >
                 Create CV
               </button>
@@ -118,7 +118,7 @@ const BlogLayout: React.FC<BlogLayoutProps> = ({
                   navigate("/");
                   setIsMobileMenuOpen(false);
                 }}
-                className="block w-full text-left px-3 py-2 text-gray-600 hover:text-blue-600 font-medium transition-colors"
+                className="block w-full text-left px-3 py-2 text-gray-600 hover:text-blue-700 font-medium transition-colors"
               >
                 Home
               </button>
@@ -127,7 +127,7 @@ const BlogLayout: React.FC<BlogLayoutProps> = ({
                   navigate("/builder");
                   setIsMobileMenuOpen(false);
                 }}
-                className="block w-full text-left px-3 py-2 text-gray-600 hover:text-blue-600 font-medium transition-colors"
+                className="block w-full text-left px-3 py-2 text-gray-600 hover:text-blue-700 font-medium transition-colors"
               >
                 CV Builder
               </button>
@@ -136,7 +136,7 @@ const BlogLayout: React.FC<BlogLayoutProps> = ({
                   navigate("/blogs");
                   setIsMobileMenuOpen(false);
                 }}
-                className="block w-full text-left px-3 py-2 text-blue-600 font-medium border-l-2 border-blue-600"
+                className="block w-full text-left px-3 py-2 text-blue-700 font-medium border-l-2 border-blue-600"
               >
                 Blog
               </button>
@@ -147,7 +147,7 @@ const BlogLayout: React.FC<BlogLayoutProps> = ({
                     navigate("/builder");
                     setIsMobileMenuOpen(false);
                   }}
-                  className="w-full bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg font-medium transition-colors shadow-sm"
+                  className="w-full bg-blue-700 hover:bg-blue-600 text-white px-4 py-2 rounded-lg font-medium transition-colors shadow-sm"
                 >
                   Create CV
                 </button>

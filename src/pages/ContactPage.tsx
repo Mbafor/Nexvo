@@ -6,7 +6,6 @@ import {
   Mail, 
   Phone, 
   Clock, 
-  Send, 
   CheckCircle2, 
   AlertCircle,
   MessageCircle,
@@ -111,7 +110,7 @@ export default function ContactPage() {
       subtitle: 'Send us a message anytime',
       value: 'mbaforfoghang@gmail.com',
       link: 'mailto:mbaforfoghang@gmail.com',
-      color: 'bg-blue-100 text-blue-600'
+      color: 'bg-blue-100 text-blue-700'
     },
     {
       icon: Phone,
@@ -157,7 +156,7 @@ export default function ContactPage() {
           animate={{ opacity: 1, y: 0 }}
           className="text-center mb-12"
         >
-          <h2 className="text-4xl lg:text-5xl font-bold text-blue-700 mb-6">
+          <h2 className="text-4xl lg:text-5xl font-medium text-gray-900 mb-6">
             Get in Touch with Us
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
@@ -175,8 +174,8 @@ export default function ContactPage() {
             className="lg:col-span-1 space-y-6"
           >
             <div className="bg-white rounded-xl shadow-sm p-6">
-              <h3 className="text-xl font-bold text-gray-900 mb-6 flex items-center">
-                <Users className="h-6 w-6 mr-2 text-blue-600" />
+              <h3 className="text-xl font-semibold text-gray-900 mb-6 flex items-center">
+                <Users className="h-6 w-6 mr-2 text-blue-700" />
                 Contact Information
               </h3>
               
@@ -200,7 +199,7 @@ export default function ContactPage() {
                           href={item.link}
                           target={item.link.startsWith('http') ? '_blank' : undefined}
                           rel={item.link.startsWith('http') ? 'noopener noreferrer' : undefined}
-                          className="text-blue-600 hover:text-blue-800 transition-colors whitespace-pre-line text-sm font-medium"
+                          className="text-blue-700 hover:text-blue-700 transition-colors whitespace-pre-line text-sm font-medium"
                         >
                           {item.value}
                         </a>
@@ -217,8 +216,8 @@ export default function ContactPage() {
 
             {/* Social Links */}
             <div className="bg-white rounded-xl shadow-sm p-6">
-              <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center">
-                <Globe className="h-5 w-5 mr-2 text-blue-600" />
+              <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center">
+                <Globe className="h-5 w-5 mr-2 text-blue-700" />
                 Follow Us
               </h3>
               <div className="flex space-x-4">
@@ -226,7 +225,7 @@ export default function ContactPage() {
                   href="https://linkedin.com"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-3 bg-blue-100 text-blue-600 rounded-lg hover:bg-blue-200 transition-colors"
+                  className="p-3 bg-blue-100 text-blue-700 rounded-lg hover:bg-blue-600 transition-colors"
                 >
                   <Linkedin className="h-5 w-5" />
                 </a>
@@ -248,19 +247,19 @@ export default function ContactPage() {
             </div>
 
             {/* Quick Stats */}
-            <div className=" bg-blue-600 rounded-xl p-6 text-white">
-              <h3 className="text-lg font-bold mb-4">Response Time</h3>
+            <div className=" bg-white p-6 text-black">
+              <h3 className="text-lg font-semibold mb-4">Response Time</h3>
               <div className="space-y-3">
                 <div className="flex items-center justify-between">
-                  <span className="text-blue-100">General Inquiries</span>
+                  <span className="text-black">General Inquiries</span>
                   <span className="font-semibold">&lt; 2 hours</span>
                 </div>
                 <div className="flex items-center justify-between">
-                  <span className="text-blue-100">Technical Support</span>
+                  <span className="text-black">Technical Support</span>
                   <span className="font-semibold">&lt; 30 minutes</span>
                 </div>
                 <div className="flex items-center justify-between">
-                  <span className="text-blue-100">Business Partnerships</span>
+                  <span className="text-black">Business Partnerships</span>
                   <span className="font-semibold">&lt; 24 hours</span>
                 </div>
               </div>
@@ -275,8 +274,7 @@ export default function ContactPage() {
             className="lg:col-span-2"
           >
             <div className="bg-white rounded-xl shadow-sm p-8">
-              <h3 className="text-2xl font-bold text-gray-900 mb-6 flex items-center">
-                <Send className="h-6 w-6 mr-2 text-blue-600" />
+              <h3 className="text-2xl font-medium text-gray-900 mb-6 flex items-center">
                 Send us a Message
               </h3>
 
@@ -419,7 +417,7 @@ export default function ContactPage() {
                 <button
                   type="submit"
                   disabled={isSubmitting || submitStatus === 'success'}
-                  className="w-full flex items-center justify-center space-x-2 px-6 py-3 bg-blue-700 text-white hover:bg-blue-800 rounded-lg transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed shadow-lg"
+                  className="w-full flex items-center justify-center space-x-2 px-6 py-3 bg-blue-700 text-white hover:bg-blue-600 rounded-lg transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed shadow-lg"
                 >
                   {isSubmitting ? (
                     <>
@@ -433,7 +431,7 @@ export default function ContactPage() {
                     </>
                   ) : (
                     <>
-                      <Send className="h-5 w-5" />
+                  
                       <span>Send Message</span>
                     </>
                   )}

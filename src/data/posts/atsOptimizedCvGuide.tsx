@@ -44,7 +44,7 @@ export const atsOptimizedCvGuide: BlogPost = {
           </CalloutBox>
 
           <StatsBox stats={[
-            { label: 'Fortune 500 using ATS', value: '98%', color: 'text-blue-600' },
+            { label: 'Fortune 500 using ATS', value: '98%', color: 'text-blue-700' },
             { label: 'CVs filtered out', value: '75%', color: 'text-red-600' },
             { label: 'Avg. recruiter review time', value: '7.4s', color: 'text-yellow-600' },
             { label: 'Keywords scanned', value: '500+', color: 'text-green-600' }
@@ -121,7 +121,7 @@ export const atsOptimizedCvGuide: BlogPost = {
                   </p>
                 </div>
                 <div className="p-6 bg-blue-50 border border-blue-200 rounded-lg">
-                  <h4 className="font-bold text-blue-800 mb-3">⚠️ DOC/DOCX</h4>
+                  <h4 className="font-bold text-blue-700 mb-3">⚠️ DOC/DOCX</h4>
                   <p className="text-sm text-blue-700">
                     Highly compatible but may have formatting issues across different systems. 
                     Good backup option.
@@ -213,31 +213,31 @@ export const atsOptimizedCvGuide: BlogPost = {
               <p className="text-gray-700 mb-4">Organize your CV with these standard sections in order:</p>
               <ol className="space-y-2 text-gray-700">
                 <li className="flex items-center">
-                  <span className="bg-blue-100 text-blue-800 rounded-full w-6 h-6 flex items-center justify-center text-sm font-semibold mr-3">1</span>
+                  <span className="bg-blue-100 text-blue-700 rounded-full w-6 h-6 flex items-center justify-center text-sm font-semibold mr-3">1</span>
                   Contact Information
                 </li>
                 <li className="flex items-center">
-                  <span className="bg-blue-100 text-blue-800 rounded-full w-6 h-6 flex items-center justify-center text-sm font-semibold mr-3">2</span>
+                  <span className="bg-blue-100 text-blue-700 rounded-full w-6 h-6 flex items-center justify-center text-sm font-semibold mr-3">2</span>
                   Professional Summary
                 </li>
                 <li className="flex items-center">
-                  <span className="bg-blue-100 text-blue-800 rounded-full w-6 h-6 flex items-center justify-center text-sm font-semibold mr-3">3</span>
+                  <span className="bg-blue-100 text-blue-700 rounded-full w-6 h-6 flex items-center justify-center text-sm font-semibold mr-3">3</span>
                   Work Experience
                 </li>
                 <li className="flex items-center">
-                  <span className="bg-blue-100 text-blue-800 rounded-full w-6 h-6 flex items-center justify-center text-sm font-semibold mr-3">4</span>
+                  <span className="bg-blue-100 text-blue-700 rounded-full w-6 h-6 flex items-center justify-center text-sm font-semibold mr-3">4</span>
                   Education
                 </li>
                 <li className="flex items-center">
-                  <span className="bg-blue-100 text-blue-800 rounded-full w-6 h-6 flex items-center justify-center text-sm font-semibold mr-3">5</span>
+                  <span className="bg-blue-100 text-blue-700 rounded-full w-6 h-6 flex items-center justify-center text-sm font-semibold mr-3">5</span>
                   Skills
                 </li>
                 <li className="flex items-center">
-                  <span className="bg-blue-100 text-blue-800 rounded-full w-6 h-6 flex items-center justify-center text-sm font-semibold mr-3">6</span>
+                  <span className="bg-blue-100 text-blue-700 rounded-full w-6 h-6 flex items-center justify-center text-sm font-semibold mr-3">6</span>
                   Certifications (if applicable)
                 </li>
                 <li className="flex items-center">
-                  <span className="bg-blue-100 text-blue-800 rounded-full w-6 h-6 flex items-center justify-center text-sm font-semibold mr-3">7</span>
+                  <span className="bg-blue-100 text-blue-700 rounded-full w-6 h-6 flex items-center justify-center text-sm font-semibold mr-3">7</span>
                   Additional Sections
                 </li>
               </ol>
@@ -253,7 +253,7 @@ export const atsOptimizedCvGuide: BlogPost = {
 
           <div className="space-y-6">
             <div className="p-6 bg-blue-50 border border-blue-200 rounded-lg">
-              <h3 className="text-xl font-semibold text-blue-800 mb-4">Simple Copy-Paste Test</h3>
+              <h3 className="text-xl font-semibold text-blue-700 mb-4">Simple Copy-Paste Test</h3>
               <ol className="space-y-2 text-blue-700">
                 <li>1. Copy your entire CV text</li>
                 <li>2. Paste it into a plain text editor (Notepad)</li>

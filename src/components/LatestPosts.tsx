@@ -40,7 +40,7 @@ const LatestPosts = () => {
             </div>
           </div>
           <div className="p-5">
-            <h3 className="text-xl font-semibold text-[#1E3A8A] mb-2 line-clamp-2">
+            <h3 className="text-xl font-semibold text-blue-700 mb-2 line-clamp-2">
               {blog.title}
             </h3>
             <p className="text-sm text-gray-500 mb-4">
@@ -50,7 +50,7 @@ const LatestPosts = () => {
               {blog.tags.slice(0, 2).map((tag: string) => (
                 <span
                   key={tag}
-                  className="bg-blue-100 text-blue-800 px-2 py-1 rounded text-xs font-medium"
+                  className="bg-blue-100 text-blue-700 px-2 py-1 rounded text-xs font-medium"
                 >
                   #{tag}
                 </span>
@@ -61,7 +61,7 @@ const LatestPosts = () => {
                 e.stopPropagation();
                 handleClick(blog.slug);
               }}
-              className="text-[#1E3A8A] font-medium hover:text-[#3B82F6] transition-colors"
+              className="text-blue-700 font-medium hover:text-blue-700 transition-colors"
             >
               Read More →
             </button>

@@ -1,20 +1,11 @@
 
 import { useEffect } from "react";
-import {
-  
-  Shield,
-  Calendar,
-  Mail,
-  Lock,
-  Eye,
-  Database,
-} from "lucide-react";
+
 import Header from '../components/common/Header';
 import Footer from '../components/common/Footer';
 
 export default function PrivacyPolicy() {
 
-  const lastUpdated = "January 15, 2025";
   const effectiveDate = "January 15, 2025";
 
   useEffect(() => {
@@ -31,51 +22,18 @@ export default function PrivacyPolicy() {
       {/* Meta Info */}
       <section className="bg-gray-50 border-y border-gray-200 py-4">
         <div className="max-w-5xl mx-auto px-5 flex flex-wrap gap-4 text-sm text-gray-600 justify-center">
+         
           <div className="flex items-center space-x-2">
-            <Calendar className="h-4 w-4 text-blue-500" />
-            <span>Last Updated: {lastUpdated}</span>
-          </div>
-          <div className="flex items-center space-x-2">
-            <Mail className="h-4 w-4 text-blue-500" />
+          
             <span>Effective: {effectiveDate}</span>
           </div>
         </div>
       </section>
 
       {/* Content */}
-      <main className="max-w-5xl mx-auto px-5 py-16 leading-relaxed space-y-12">
+      <main className="max-w-5xl mx-auto px-5 py-1 leading-relaxed space-y-10">
         <div className="bg-white border border-gray-100 rounded-2xl shadow-sm p-10 space-y-10">
-          {/* Intro */}
-          <div className="bg-blue-50 border border-blue-100 rounded-xl p-6 mb-10">
-            <p className="text-gray-800 text-base leading-relaxed">
-              This Privacy Policy explains how <span className="font-medium text-blue-600">QuickCV</span> collects, processes, stores, and protects your personal information when you access or use our CV building platform and related services. We are committed to transparency, data protection, and ensuring that your privacy rights are respected. By using our services, you consent to the practices described in this policy, so we encourage you to read it carefully.
-            </p>
-          </div>
-
-          {/* Overview Cards */}
-          <div className="grid md:grid-cols-3 gap-5 mb-12">
-            <div className="border border-gray-200 rounded-xl p-6 text-center hover:shadow-sm transition">
-              <Database className="h-8 w-8 text-blue-600 mx-auto mb-3" />
-              <h4 className="font-semibold text-gray-900">Data Collection</h4>
-              <p className="text-sm text-gray-600 mt-1">
-                We only collect data necessary to provide and enhance our services, ensuring minimal intrusion while maintaining functionality.
-              </p>
-            </div>
-            <div className="border border-gray-200 rounded-xl p-6 text-center hover:shadow-sm transition">
-              <Lock className="h-8 w-8 text-green-600 mx-auto mb-3" />
-              <h4 className="font-semibold text-gray-900">Data Security</h4>
-              <p className="text-sm text-gray-600 mt-1">
-                Your data is encrypted during transmission, securely stored, and safeguarded through robust industry-standard security measures.
-              </p>
-            </div>
-            <div className="border border-gray-200 rounded-xl p-6 text-center hover:shadow-sm transition">
-              <Eye className="h-8 w-8 text-purple-600 mx-auto mb-3" />
-              <h4 className="font-semibold text-gray-900">User Control</h4>
-              <p className="text-sm text-gray-600 mt-1">
-                You have full control over your personal information, including access, correction, and deletion, ensuring your data remains accurate and relevant.
-              </p>
-            </div>
-          </div>
+         
 
           {/* Section 1 */}
           <h2 className="text-2xl font-semibold text-gray-900 border-b border-gray-200 pb-2 mb-6 mt-10">
@@ -144,7 +102,7 @@ export default function PrivacyPolicy() {
             6. Data Retention
           </h2>
           <p>
-            We retain your personal data only for as long as necessary to provide our services, comply with legal obligations, and resolve disputes. You can request deletion of your information by contacting us at <a href="mailto:mbaforfoghang@gmail.com" className="text-blue-600 underline">mbaforfoghang@gmail.com</a>.
+            We retain your personal data only for as long as necessary to provide our services, comply with legal obligations, and resolve disputes. You can request deletion of your information by contacting us at <a href="mailto:mbaforfoghang@gmail.com" className="text-blue-700 underline">mbaforfoghang@gmail.com</a>.
           </p>
 
           {/* Sections 7-13 (spaced similarly) */}
@@ -203,44 +161,10 @@ export default function PrivacyPolicy() {
             13. Contact Us
           </h2>
           <p>
-            For questions, concerns, or privacy requests, contact our Privacy Team:
+            For questions, concerns, or privacy requests, contact our Privacy Team  <a href="/contact" className="text-blue-700 hover:underline">here</a>
           </p>
-          <ul className="mt-4 text-gray-700 space-y-1 ml-4">
-            <li>Email: mbaforfoghang@gmail.com</li>
-            <li>Data Protection Officer: mbaforfoghang@gmail.com</li>
-            <li>Address: 123 Business Ave, Suite 100, San Francisco, CA 94107</li>
-            <li>Phone: +237 683094941</li>
-          </ul>
+        
         </div>
-
-        {/* Footer Card */}
-        <div className="mt-12 bg-gray-50 border border-gray-200 rounded-2xl text-center p-10 space-y-6">
-          <Shield className="h-10 w-10 text-blue-600 mx-auto mb-3" />
-          <h3 className="text-xl font-semibold mb-1 text-gray-900">We Protect Your Privacy</h3>
-          <p className="text-sm text-gray-600 max-w-2xl mx-auto">
-            Your security and privacy are our top priorities. We continuously enhance our systems to ensure your data is safe and confidential.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a
-              href="mailto:mbaforfoghang@gmail.com"
-              className="px-6 py-3 text-sm font-medium rounded-lg bg-blue-600 text-white hover:bg-blue-700 transition"
-            >
-              Contact Privacy Team
-            </a>
-            <a
-              href="/terms"
-              className="px-6 py-3 text-sm font-medium rounded-lg border border-gray-300 text-gray-700 hover:bg-gray-100 transition"
-            >
-              View Terms of Service
-            </a>
-          </div>
-        </div>
-
-        {/* Footer Note */}
-        <footer className="mt-10 text-center text-sm text-gray-500 space-y-1">
-          <p>This Privacy Policy was last updated on {lastUpdated} and is effective as of {effectiveDate}.</p>
-          <p>© 2025 QuickCV. All rights reserved.</p>
-        </footer>
       </main>
       
       <Footer />

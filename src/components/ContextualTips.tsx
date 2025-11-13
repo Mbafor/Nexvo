@@ -123,8 +123,8 @@ export default function ContextualTips({
         className="bg-blue-50 border border-blue-200 rounded-xl p-4 mb-6"
       >
         <div className="flex items-center space-x-2">
-          <CheckCircle2 className="h-5 w-5 text-blue-600" />
-          <span className="font-medium text-blue-800">
+          <CheckCircle2 className="h-5 w-5 text-blue-700" />
+          <span className="font-medium text-blue-700">
             Great work on your {sectionLabel} section!
           </span>
         </div>
@@ -209,7 +209,7 @@ export default function ContextualTips({
                             category.type === 'error' ? 'bg-red-500' :
                             category.type === 'warning' ? 'bg-blue-500' :
                             category.type === 'suggestion' ? 'bg-black' :
-                            'bg-blue-600'
+                            'bg-blue-700'
                           }`} />
                           <span className={`text-sm leading-relaxed ${category.color}`}>
                             {item}

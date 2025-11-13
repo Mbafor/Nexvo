@@ -7,7 +7,7 @@ export const Highlight: React.FC<{ children: React.ReactNode; color?: string }> 
 }) => (
   <span className={`px-2 py-1 rounded-md font-medium ${
     color === 'yellow' ? 'bg-yellow-100 text-yellow-800' :
-    color === 'blue' ? 'bg-blue-100 text-blue-800' :
+    color === 'blue' ? 'bg-blue-100 text-blue-700' :
     color === 'green' ? 'bg-green-100 text-green-800' :
     color === 'red' ? 'bg-red-100 text-red-800' :
     'bg-gray-100 text-gray-800'
@@ -22,7 +22,7 @@ export const CalloutBox: React.FC<{
   children: React.ReactNode;
 }> = ({ type = 'info', title, children }) => {
   const styles = {
-    info: 'bg-blue-50 border-blue-200 text-blue-800',
+    info: 'bg-blue-50 border-blue-200 text-blue-700',
     warning: 'bg-yellow-50 border-yellow-200 text-yellow-800',
     success: 'bg-green-50 border-green-200 text-green-800',
     error: 'bg-red-50 border-red-200 text-red-800'
@@ -74,7 +74,7 @@ export const StatsBox: React.FC<{
   <div className="grid grid-cols-2 md:grid-cols-4 gap-4 my-8 p-6 bg-gradient-to-r from-blue-50 to-purple-50 rounded-lg">
     {stats.map((stat, index) => (
       <div key={index} className="text-center">
-        <div className={`text-2xl font-bold ${stat.color || 'text-blue-600'}`}>
+        <div className={`text-2xl font-bold ${stat.color || 'text-blue-700'}`}>
           {stat.value}
         </div>
         <div className="text-sm text-gray-600">{stat.label}</div>

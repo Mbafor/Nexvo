@@ -218,7 +218,7 @@ export default function FAQPage() {
       <main className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         {/* Hero */}
         <div className="text-center mb-8">
-          <h1 className="text-4xl lg:text-5xl font-bold text-blue-700 mb-4">
+          <h1 className="text-4xl lg:text-5xl font-medium text-gray-900 mb-4">
             Frequently Asked Questions
           </h1>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
@@ -266,7 +266,7 @@ export default function FAQPage() {
               onClick={() => setSelectedCategory('All')}
               className={`px-4 py-2 rounded-lg font-medium transition-colors ${
                 selectedCategory === 'All'
-                  ? 'bg-blue-600 text-white'
+                  ? 'bg-blue-700 text-white'
                   : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
               }`}
             >
@@ -280,7 +280,7 @@ export default function FAQPage() {
                   onClick={() => setSelectedCategory(category.name)}
                   className={`px-4 py-2 rounded-lg font-medium transition-colors flex items-center space-x-2 ${
                     selectedCategory === category.name
-                      ? 'bg-blue-600 text-white'
+                      ? 'bg-blue-700 text-white'
                       : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                   }`}
                 >
@@ -315,7 +315,7 @@ export default function FAQPage() {
                   setSearchQuery('');
                   setSelectedCategory('All');
                 }}
-                className="text-blue-600 hover:text-blue-700 font-medium"
+                className="text-blue-700 hover:text-blue-700 font-medium"
               >
                 Clear filters
               </button>
@@ -334,11 +334,11 @@ export default function FAQPage() {
                   className="w-full p-6 text-left flex justify-between items-start group"
                 >
                   <div className="flex-1 pr-4">
-                    <h3 className="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors mb-2">
+                    <h3 className="font-semibold text-gray-900 group-hover:text-blue-700 transition-colors mb-2">
                       {faq.question}
                     </h3>
                     <div className="flex items-center space-x-2">
-                      <span className="text-xs font-medium px-2 py-1 bg-blue-100 text-blue-800 rounded">
+                      <span className="text-xs font-medium px-2 py-1 bg-blue-100 text-blue-700 rounded">
                         {faq.category}
                       </span>
                       {faq.tags.slice(0, 2).map(tag => (
@@ -353,7 +353,7 @@ export default function FAQPage() {
                     transition={{ duration: 0.3 }}
                     className="flex-shrink-0"
                   >
-                    <ChevronDown className="w-5 h-5 text-gray-400 group-hover:text-blue-600" />
+                    <ChevronDown className="w-5 h-5 text-gray-400 group-hover:text-blue-700" />
                   </motion.div>
                 </button>
                 
@@ -382,21 +382,21 @@ export default function FAQPage() {
         </div>
 
         {/* Still Need Help Section */}
-        <div className="mt-16 bg-blue-700 rounded-xl p-8 text-white text-center">
-          <h3 className="text-2xl font-bold mb-4">Still need help?</h3>
-          <p className="text-blue-100 mb-6 max-w-2xl mx-auto">
+        <div className="mt-16 bg-white rounded-xl p-8 text-black text-center">
+          <h3 className="text-2xl mb-4 font-medium text-gray-900">Still need help?</h3>
+          <p className="text-black mb-6 max-w-2xl mx-auto">
             Can't find the answer you're looking for? Our friendly support team is here to help you succeed.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <button
               onClick={() => navigate('/contact')}
-              className="inline-flex items-center space-x-2 px-6 py-3 bg-white text-blue-600 rounded-lg hover:bg-blue-50 transition-colors font-medium"
+              className="inline-flex items-center space-x-2 px-6 py-3 bg-blue-700 text-white rounded-lg transition-colors font-medium"
             >
               <span>Contact Support</span>
             </button>
             <a
               href="tel:+237683094941"
-              className="inline-flex items-center space-x-2 px-6 py-3 border-2 border-white text-white rounded-lg hover:bg-white hover:text-blue-600 transition-colors font-medium"
+        className="inline-flex items-center space-x-2 px-6 py-3 bg-blue-700 text-white rounded-lg transition-colors font-medium"
             >
               <span>Call Us</span>
             </a>

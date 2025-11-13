@@ -1,7 +1,5 @@
 import { Link } from "react-router-dom";
 import {
-  Globe,
-  TrendingUp,
   Mail,
   Linkedin,
   Twitter,
@@ -27,31 +25,24 @@ export default function Footer({ onGetStarted }: FooterProps) {
         {/* Main Footer Content */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-6">
           {/* Company Info */}
-          <div className="sm:col-span-2 lg:col-span-1 space-y-4">
-            <h3 className="text-xl lg:text-2xl font-bold text-blue-600">
-              QuickCV
-            </h3>
-            <p className="text-gray-600 leading-relaxed text-sm lg:text-base max-w-sm">
-              Create professional, ATS-optimized CVs that land interviews at top companies.
-            </p>
-            <div className="flex space-x-3">
-              <div className="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center hover:bg-blue-200 transition-colors cursor-pointer">
-                <Globe className="h-5 w-5 text-blue-600" />
-              </div>
-              <div className="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center hover:bg-blue-200 transition-colors cursor-pointer">
-                <TrendingUp className="h-5 w-5 text-blue-600" />
-              </div>
-            </div>
-          </div>
+       <div className="sm:col-span-2 lg:col-span-1 space-y-4 text-center sm:text-left">
+  <h3 className="text-xl lg:text-2xl font-bold text-blue-700">
+    QuickCV
+  </h3>
+  <p className="text-gray-600 leading-relaxed text-sm lg:text-base max-w-sm mx-auto sm:mx-0">
+    Create professional, ATS-optimized CVs that land interviews at top companies.
+  </p>
+</div>
+
 
           {/* Product Links */}
-          <div className="space-y-4">
-            <h4 className="font-semibold text-blue-700 text-lg">Product</h4>
+          <div className="space-y-4 text-center sm:text-left">
+            <h4   className="font-semibold text-gray-800 text-sm lg:text-base block py-1">Product</h4>
             <ul className="space-y-3">
               <li>
                 <a
                   href="/#templates"
-                  className="text-gray-600 hover:text-blue-600 transition-colors text-sm lg:text-base block py-1"
+                  className="text-gray-600 hover:text-black transition-colors text-sm lg:text-base block py-1"
                 >
                   Templates
                 </a>
@@ -59,7 +50,7 @@ export default function Footer({ onGetStarted }: FooterProps) {
               <li>
                 <a
                   href="/#features"
-                  className="text-gray-600 hover:text-blue-600 transition-colors text-sm lg:text-base block py-1"
+                  className="text-gray-600 hover:text-black transition-colors text-sm lg:text-base block py-1"
                 >
                   Features
                 </a>
@@ -67,7 +58,7 @@ export default function Footer({ onGetStarted }: FooterProps) {
               <li>
                 <button
                   onClick={handleGetStarted}
-                  className="text-gray-600 hover:text-blue-600 transition-colors text-sm lg:text-base text-left py-1"
+                  className="text-gray-600 hover:text-black transition-colors text-sm lg:text-base text-left py-1"
                 >
                   CV Builder
                 </button>
@@ -76,13 +67,13 @@ export default function Footer({ onGetStarted }: FooterProps) {
           </div>
 
           {/* Support Links */}
-          <div className="space-y-4">
-            <h4 className="font-semibold text-blue-700 text-lg">Support</h4>
+          <div className="space-y-4 text-center sm:text-left">
+            <h4 className="font-semibold text-gray-800 text-sm lg:text-base block py-1">Support</h4>
             <ul className="space-y-3">
               <li>
                 <Link
                   to="/faq"
-                  className="text-gray-600 hover:text-blue-600 transition-colors text-sm lg:text-base block py-1"
+                  className="text-gray-600 hover:text-black transition-colors text-sm lg:text-base block py-1"
                 >
                   FAQ
                 </Link>
@@ -90,7 +81,7 @@ export default function Footer({ onGetStarted }: FooterProps) {
               <li>
                 <Link
                   to="/contact"
-                  className="text-gray-600 hover:text-blue-600 transition-colors text-sm lg:text-base block py-1"
+                  className="text-gray-600 hover:text-black transition-colors text-sm lg:text-base block py-1"
                 >
                   Contact Us
                 </Link>
@@ -98,7 +89,7 @@ export default function Footer({ onGetStarted }: FooterProps) {
               <li>
                 <Link
                   to="/help"
-                  className="text-gray-600 hover:text-blue-600 transition-colors text-sm lg:text-base block py-1"
+                  className="text-gray-600 hover:text-black transition-colors text-sm lg:text-base block py-1"
                 >
                   Help Center
                 </Link>
@@ -107,13 +98,13 @@ export default function Footer({ onGetStarted }: FooterProps) {
           </div>
 
           {/* Company Links */}
-          <div className="space-y-4">
-            <h4 className="font-semibold text-blue-700 text-lg">Company</h4>
+          <div className="space-y-4 text-center sm:text-left">
+            <h4 className="font-semibold text-gray-800 text-sm lg:text-base block py-1">Company</h4>
             <ul className="space-y-3">
               <li>
                 <Link
                   to="/about"
-                  className="text-gray-600 hover:text-blue-600 transition-colors text-sm lg:text-base block py-1"
+                  className="text-gray-600 hover:text-black transition-colors text-sm lg:text-base block py-1"
                 >
                   About
                 </Link>
@@ -121,7 +112,7 @@ export default function Footer({ onGetStarted }: FooterProps) {
               <li>
                 <Link
                   to="/privacy"
-                  className="text-gray-600 hover:text-blue-600 transition-colors text-sm lg:text-base block py-1"
+                  className="text-gray-600 hover:text-black transition-colors text-sm lg:text-base block py-1"
                 >
                   Privacy Policy
                 </Link>
@@ -129,7 +120,7 @@ export default function Footer({ onGetStarted }: FooterProps) {
               <li>
                 <Link
                   to="/terms"
-                  className="text-gray-600 hover:text-blue-600 transition-colors text-sm lg:text-base block py-1"
+                  className="text-gray-600 hover:text-black transition-colors text-sm lg:text-base block py-1"
                 >
                   Terms of Service
                 </Link>
@@ -138,34 +129,35 @@ export default function Footer({ onGetStarted }: FooterProps) {
           </div>
         </div>
 
-        {/* Social Links */}
-        <div className="mt-10 space-y-4">
-          <h4 className="font-semibold text-blue-700 text-lg">Social Links</h4>
-          <div className="flex space-x-3">
-            <a
-              href="https://linkedin.com/company/quickcv"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center hover:bg-blue-200 transition-colors"
-            >
-              <Linkedin className="h-5 w-5 text-blue-600" />
-            </a>
-            <a
-              href="https://twitter.com/quickcv"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center hover:bg-blue-200 transition-colors"
-            >
-              <Twitter className="h-5 w-5 text-blue-600" />
-            </a>
-            <a
-              href="mailto:mbaforfoghang@gmail.com"
-              className="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center hover:bg-blue-200 transition-colors"
-            >
-              <Mail className="h-5 w-5 text-blue-600" />
-            </a>
-          </div>
-        </div>
+     {/* Social Links */}
+<div className="mt-10 space-y-4 text-center sm:text-left">
+  <h4 className="font-semibold text-gray-800 text-sm lg:text-base block py-1">Follow Us</h4>
+  <div className="flex justify-center sm:justify-start space-x-3">
+    <a
+      href="https://linkedin.com/company/quickcv"
+      target="_blank"
+      rel="noopener noreferrer"
+      className="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center hover:bg-blue-600 transition-colors"
+    >
+      <Linkedin className="h-5 w-5 text-blue-700" />
+    </a>
+    <a
+      href="https://twitter.com/quickcv"
+      target="_blank"
+      rel="noopener noreferrer"
+      className="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center hover:bg-blue-600 transition-colors"
+    >
+      <Twitter className="h-5 w-5 text-blue-700" />
+    </a>
+    <a
+      href="mailto:mbaforfoghang@gmail.com"
+      className="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center hover:bg-blue-600 transition-colors"
+    >
+      <Mail className="h-5 w-5 text-blue-700" />
+    </a>
+  </div>
+</div>
+
 
         {/* Bottom Bar */}
         <div className="border-t border-blue-100 mt-8 lg:mt-12 pt-6 lg:pt-8">

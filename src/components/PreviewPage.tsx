@@ -1,6 +1,6 @@
 // Stunning CV Preview Page - Professional Template Gallery
 import { useState, useEffect } from 'react';
-import { ChevronLeft, Download, Lock, Eye, Sparkles, Zap, Crown, Minimize2, Code, FileText } from 'lucide-react';
+import { Sparkles, Zap, Crown, Minimize2, Code, FileText } from 'lucide-react';
 import { CVData, TemplateType } from '../types/cv';
 import { PDFViewer } from '@react-pdf/renderer';
 import { generatePDFBlob, getTemplate } from '../lib/pdfGenerator';
@@ -149,29 +149,23 @@ export default function PreviewPage({ cvData, onBack, onDownload, onShowAuth }: 
                   localStorage.setItem('cvData', JSON.stringify(cvData));
                   onBack();
                 }}
-                className="group flex items-center space-x-2 px-4 py-2 text-gray-600 hover:text-white hover:bg-gradient-to- rounded-xl transition-all duration-300 border border-gray-200 hover:border-transparent shadow-sm hover:shadow-md"
+                className="group flex items-center space-x-2 px-4 py-2 text-white  bg-blue-700 hover:text-blue-700 hover:bg-gradient-to- rounded-xl transition-all duration-300 border border-gray-200 hover:border-transparent shadow-sm hover:shadow-md"
               >
-                <ChevronLeft className="h-5 w-5 transition-transform group-hover:-translate-x-1" />
-              <span className="font-medium text-black hover:text-blue-700 transition-colors duration-200 cursor-pointer">
+              <span className="font-medium text-white  bg-blue-700 transition-colors duration-200 cursor-pointer">
   Back to Editor
 </span>
 
               </button>
               
-              <div className="hidden sm:block">
-                <h1 className="text-2xl font-bold text-blue-700">
-                  Template Gallery
-                </h1>
-                <p className="text-sm text-gray-500 mt-1">Choose your perfect CV design</p>
-              </div>
+          
             </div>
 
             {/* Right: Action Buttons */}
             <div className="flex items-center space-x-3">
               {!user && (
-                <div className="hidden sm:flex items-center space-x-2 text-sm text-amber-700 bg-gradient-to-r from-amber-50 to-orange-50 px-4 py-2 rounded-xl border border-amber-200 shadow-sm">
-                  <Lock className="h-4 w-4" />
-                  <span className="font-medium">Sign in to download</span>
+                <div  className= "bg-blue-700 hover:bg-blue-600 rounded-2xl text-white font-semibold transition-all duration-300 shadow-sm" >
+                 
+                  <span>Sign in to download</span>
                 </div>
               )}
               
@@ -179,17 +173,17 @@ export default function PreviewPage({ cvData, onBack, onDownload, onShowAuth }: 
                 onClick={() => setIsPreviewMode(!isPreviewMode)}
                 className="hidden lg:flex items-center space-x-2 px-4 py-2 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-xl transition-colors font-medium"
               >
-                <Eye className="h-4 w-4" />
+               
                 <span>{isPreviewMode ? 'Gallery' : 'Preview'}</span>
               </button>
 
               <button
                 onClick={handleDownload}
-                className="group relative flex items-center space-x-2 px-6 py-2 bg-gradient-to-r text-blue-600 rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl font-medium overflow-hidden"
+                className="group relative flex items-center space-x-2 px-6 py-2 bg-blue-700 hover:bg-blue-600 rounded-2xl text-white font-semibold transition-all duration-300 shadow-sm overflow-hidden"
               >
-                <div className="absolute inset-0 bg-gradient-to-r text-blue-400 opacity-0 group-hover:opacity-20 transition-opacity duration-300"></div>
-                {!user && <Lock className="h-4 w-4 relative z-10" />}
-                <Download className="h-4 w-4 relative z-10" />
+                <div className="absolute inset-0 bg-gradient-to-r text-blue-700 opacity-0 group-hover:opacity-20 transition-opacity duration-300"></div>
+                {!user}
+                
                 <span className="relative z-10">{user ? 'Download PDF' : 'Get Started'}</span>
               </button>
             </div>
@@ -205,7 +199,7 @@ export default function PreviewPage({ cvData, onBack, onDownload, onShowAuth }: 
           {/* Template Gallery */}
           <div className={`${isPreviewMode ? '' : 'max-w-4xl mx-auto'}`}>
             <div className="text-center mb-8">
-              <h2 className="text-3xl font-bold text-gray-900 mb-3">
+              <h2 className="text-3xl font-medium text-gray-900 mb-3">
                 Choose Your Perfect Template
               </h2>
               <p className="text-lg text-gray-600 max-w-2xl mx-auto">
@@ -296,12 +290,12 @@ export default function PreviewPage({ cvData, onBack, onDownload, onShowAuth }: 
             </div>
 
             {/* Mobile Preview Toggle */}
-            <div className="lg:hidden mt-8 text-center">
+            <div className="lg:hidden mt-8 text-center  bg-blue-700 rounded-2xl">
               <button
                 onClick={() => setIsPreviewMode(!isPreviewMode)}
-                className="inline-flex items-center space-x-2 px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-xl hover:from-blue-700 hover:to-purple-700 transition-all duration-300 font-medium shadow-lg"
+                className="inline-flex items-center space-x-2 px-6 py-3 text-white font-medium"
               >
-                <Eye className="h-5 w-5" />
+          
                 <span>{isPreviewMode ? 'Back to Gallery' : 'Preview Selected'}</span>
               </button>
             </div>

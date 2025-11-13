@@ -41,7 +41,7 @@ const BlogCard: React.FC<BlogCardProps> = ({ post, onClick, featured = false }) 
       {/* Featured Badge */}
       {featured && (
         <div className="absolute top-4 left-4 z-10">
-          <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-blue-600 text-white shadow-md">
+          <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-blue-700 text-white shadow-md">
             ⭐ Featured
           </span>
         </div>
@@ -94,7 +94,7 @@ const BlogCard: React.FC<BlogCardProps> = ({ post, onClick, featured = false }) 
       {/* Content */}
       <div className="p-6 flex flex-col flex-1">
         {/* Title */}
-        <h3 className="text-xl lg:text-2xl font-bold text-gray-900 mb-3 line-clamp-2 group-hover:text-blue-600 transition-colors duration-200">
+        <h3 className="text-xl lg:text-2xl font-bold text-gray-900 mb-3 line-clamp-2 group-hover:text-blue-700 transition-colors duration-200">
           {post.title}
         </h3>
 
@@ -140,7 +140,7 @@ const BlogCard: React.FC<BlogCardProps> = ({ post, onClick, featured = false }) 
                 }}
               />
               {post.author.verified && (
-                <div className="absolute -bottom-1 -right-1 w-4 h-4 bg-blue-600 rounded-full flex items-center justify-center">
+                <div className="absolute -bottom-1 -right-1 w-4 h-4 bg-blue-700 rounded-full flex items-center justify-center">
                   <svg className="w-2.5 h-2.5 text-white" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                   </svg>

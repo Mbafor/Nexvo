@@ -276,8 +276,8 @@ export default function CollapsibleSections({
                           className="w-full flex items-center justify-between p-3 bg-blue-50 hover:bg-blue-100 rounded-lg transition-colors border border-blue-200"
                         >
                           <div className="flex items-center space-x-2">
-                            <Lightbulb className="h-4 w-4 text-blue-600" />
-                            <span className="text-sm font-medium text-blue-800">
+                            <Lightbulb className="h-4 w-4 text-blue-700" />
+                            <span className="text-sm font-medium text-blue-700">
                               Tips & Best Practices
                             </span>
                             <span className="text-xs bg-blue-200 text-blue-700 px-2 py-1 rounded-full">
@@ -288,7 +288,7 @@ export default function CollapsibleSections({
                             animate={{ rotate: expandedTips.has(section.id) ? 180 : 0 }}
                             transition={{ duration: 0.2 }}
                           >
-                            <ChevronDown className="h-4 w-4 text-blue-600" />
+                            <ChevronDown className="h-4 w-4 text-blue-700" />
                           </motion.div>
                         </button>
 

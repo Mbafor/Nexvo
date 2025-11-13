@@ -119,7 +119,7 @@ export default function NavigationHelper({
                       </div>
                       <button
                         onClick={() => console.log('Load CV:', cv.id)}
-                        className="p-1 text-slate-400 hover:text-blue-600 rounded"
+                        className="p-1 text-slate-400 hover:text-blue-700 rounded"
                       >
                         <ChevronRight className="h-3 w-3" />
                       </button>
@@ -129,7 +129,7 @@ export default function NavigationHelper({
                   {savedCVs.length > 2 && (
                     <button
                       onClick={onDashboard}
-                      className="w-full text-center py-2 text-sm text-blue-600 hover:text-blue-700 font-medium"
+                      className="w-full text-center py-2 text-sm text-blue-700 hover:text-blue-700 font-medium"
                     >
                       View all {savedCVs.length} CVs
                     </button>

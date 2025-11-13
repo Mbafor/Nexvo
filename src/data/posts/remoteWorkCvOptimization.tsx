@@ -31,7 +31,7 @@ export const remoteWorkCvOptimization: BlogPost = {
           </p>
           
           <StatsBox stats={[
-            { label: 'Remote Workers Worldwide', value: '1.1B', color: 'text-blue-600' },
+            { label: 'Remote Workers Worldwide', value: '1.1B', color: 'text-blue-700' },
             { label: 'Companies Offering Remote', value: '67%', color: 'text-green-600' },
             { label: 'Job Posting Increase', value: '300%', color: 'text-purple-600' },
             { label: 'Cost Savings per Employee', value: '$11K', color: 'text-orange-600' }
@@ -49,7 +49,7 @@ export const remoteWorkCvOptimization: BlogPost = {
           
           <div className="space-y-8">
             <div className="p-6 bg-blue-50 border border-blue-200 rounded-lg">
-              <h3 className="text-xl font-semibold text-blue-800 mb-4">💬 Communication Skills</h3>
+              <h3 className="text-xl font-semibold text-blue-700 mb-4">💬 Communication Skills</h3>
               <p className="text-blue-700 mb-4">Remote work relies heavily on clear, concise communication across various channels:</p>
               
               <div className="grid md:grid-cols-3 gap-4">
@@ -214,7 +214,7 @@ export const remoteWorkCvOptimization: BlogPost = {
           
           <div className="grid md:grid-cols-3 gap-6">
             <div className="p-6 bg-blue-50 border border-blue-200 rounded-lg">
-              <h3 className="text-lg font-semibold text-blue-800 mb-4">💻 Software Development</h3>
+              <h3 className="text-lg font-semibold text-blue-700 mb-4">💻 Software Development</h3>
               <ul className="text-sm text-blue-700 space-y-2">
                 <li>• Distributed version control (Git) expertise</li>
                 <li>• Pair programming and code review experience</li>
@@ -277,12 +277,12 @@ export const remoteWorkCvOptimization: BlogPost = {
             </CalloutBox>
 
             <div className="p-6 bg-blue-50 border border-blue-200 rounded-lg">
-              <h3 className="text-xl font-semibold text-blue-800 mb-4">Address Potential Employer Concerns</h3>
+              <h3 className="text-xl font-semibold text-blue-700 mb-4">Address Potential Employer Concerns</h3>
               <p className="text-blue-700 mb-4">Proactively address common remote work concerns:</p>
               
               <div className="space-y-3">
                 <div className="flex items-start space-x-3">
-                  <span className="text-blue-600 mt-1">📈</span>
+                  <span className="text-blue-700 mt-1">📈</span>
                   <div>
                     <strong>Productivity:</strong> Show consistent career progression and achievements while working remotely
                   </div>

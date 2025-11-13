@@ -3,7 +3,6 @@ import { useState, useEffect, useRef } from "react";
 import {
   ChevronLeft,
   ChevronRight,
-  Eye,
   Settings,
   Clock,
   FileText,
@@ -294,17 +293,7 @@ export default function CVBuilder({ cvData, onUpdateCVData, onPreview, onSignIn,
       setLastKnownProgress(50);
     }
     
-    // At 75% - Offer preview (when CV becomes meaningful)
-    else if (progressPercentage >= 75 && lastKnownProgress < 75) {
-      setToastType('info');
-      setToastMessage('Your CV is looking good! Ready to preview?');
-      setLastKnownProgress(75);
-    }
-    
-    // At 100% - Show completion with next steps (only real celebration)
-    else if (progressPercentage === 100 && lastKnownProgress < 100) {
-      setLastKnownProgress(100);
-    }
+   
   }, [progressPercentage, lastKnownProgress]);
 
   // Dashboard navigation function
@@ -433,7 +422,7 @@ export default function CVBuilder({ cvData, onUpdateCVData, onPreview, onSignIn,
             {/* Logo and Home */}
             <motion.button
               onClick={goHome}
-              className="flex items-center space-x-3 text-black hover:text-blue-600 transition-colors min-h-[44px] min-w-[44px]"
+              className="flex items-center space-x-3 text-black hover:text-blue-700 transition-colors min-h-[44px] min-w-[44px]"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
@@ -446,7 +435,7 @@ export default function CVBuilder({ cvData, onUpdateCVData, onPreview, onSignIn,
               <div className="flex items-center space-x-2">
                 <div className="w-20 md:w-32 h-2 bg-black/20 rounded-full overflow-hidden">
                   <motion.div 
-                    className="h-full bg-blue-600 rounded-full"
+                    className="h-full bg-blue-700 rounded-full"
                     initial={{ width: "0%" }}
                     animate={{ width: `${progressPercentage}%` }}
                     transition={{ duration: 0.5 }}
@@ -460,7 +449,7 @@ export default function CVBuilder({ cvData, onUpdateCVData, onPreview, onSignIn,
               {/* Auto-save status */}
               <div className="flex items-center space-x-2">
                 <div className={`w-2 h-2 rounded-full ${
-                  autoSaveStatus === 'saved' ? 'bg-blue-600' : 
+                  autoSaveStatus === 'saved' ? 'bg-blue-700' : 
                   autoSaveStatus === 'saving' ? 'bg-black/50' : 'bg-black'
                 }`} />
                 <span className="text-xs text-black/60">
@@ -480,14 +469,14 @@ export default function CVBuilder({ cvData, onUpdateCVData, onPreview, onSignIn,
                 title="Customize sections"
               >
 
-                <span  className="flex items-center space-x-1 sm:space-x-2 px-2 sm:px-4 py-2 text-blue-600 hover:text-blue-700 hover:bg-blue-50 rounded-lg transition-colors border border-blue-200 hover:border-blue-300 min-h-[44px]">Sections</span>
+                <span  className="flex items-center space-x-1 sm:space-x-2 px-2 sm:px-4 py-2  text-white bg-blue-700 hover:bg-blue-600 rounded-lg transition-colors  min-h-[44px]">Sections</span>
               </motion.button>
 
               {/* Sign In Button */}
               {onSignIn && (
                 <motion.button
                   onClick={onSignIn}
-                  className="flex items-center space-x-1 sm:space-x-2 px-2 sm:px-4 py-2 text-blue-600 hover:text-blue-700 hover:bg-blue-50 rounded-lg transition-colors border border-blue-200 hover:border-blue-300 min-h-[44px]"
+                  className="flex items-center space-x-1 sm:space-x-2 px-2 sm:px-4 py-2 text-white bg-blue-700 hover:bg-blue-600 rounded-lg transition-colors min-h-[44px]"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >
@@ -496,15 +485,7 @@ export default function CVBuilder({ cvData, onUpdateCVData, onPreview, onSignIn,
                 </motion.button>
               )}
 
-              <motion.button
-                id="preview-button"
-                onClick={onPreview}
-                className="flex items-center space-x-1 sm:space-x-2 px-3 sm:px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-all shadow-lg min-h-[44px]"
-                whileHover={{ scale: 1.05, y: -1 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                <span className="text-sm sm:text-base">Preview</span>
-              </motion.button>
+          
             </div>
           </div>
         </div>
@@ -593,7 +574,7 @@ export default function CVBuilder({ cvData, onUpdateCVData, onPreview, onSignIn,
               {/* Progress Bar - Keep this one for visual feedback */}
               <div className="w-full h-2 bg-black/20 rounded-full overflow-hidden mb-3">
                 <motion.div 
-                  className="h-full bg-blue-600 rounded-full"
+                  className="h-full bg-blue-700 rounded-full"
                   initial={{ width: "0%" }}
                   animate={{ width: `${progressPercentage}%` }}
                   transition={{ duration: 0.5 }}
@@ -680,20 +661,12 @@ export default function CVBuilder({ cvData, onUpdateCVData, onPreview, onSignIn,
                 </motion.button>
 
                 <div className="flex items-center space-x-3">
-                  <motion.button
-                    onClick={onPreview}
-                    className="flex items-center space-x-2 px-4 py-3 bg-black/10 text-black/70 rounded-lg hover:bg-black/20 transition-colors min-h-[48px] border border-black/20"
-                    whileHover={{ scale: 1.02 }}
-                    whileTap={{ scale: 0.98 }}
-                  >
-                    <Eye className="h-4 w-4" />
-                    <span>Preview</span>
-                  </motion.button>
+                 
 
                   <motion.button
                     onClick={handleNext}
                     disabled={!isStepValid()}
-                    className="flex items-center space-x-2 px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-all shadow-lg disabled:opacity-50 disabled:cursor-not-allowed min-h-[48px]"
+                    className="flex items-center space-x-2 px-6 py-3 bg-blue-700 text-white rounded-lg hover:bg-blue-600 transition-all shadow-lg disabled:opacity-50 disabled:cursor-not-allowed min-h-[48px]"
                     whileHover={{ scale: isStepValid() ? 1.02 : 1 }}
                     whileTap={{ scale: isStepValid() ? 0.98 : 1 }}
                   >
@@ -716,7 +689,7 @@ export default function CVBuilder({ cvData, onUpdateCVData, onPreview, onSignIn,
                 {/* Mobile Progress Bar */}
                 <div className="w-full h-2 bg-gray-200 rounded-full overflow-hidden">
                   <motion.div 
-                    className="h-full bg-blue-600 rounded-full"
+                    className="h-full bg-blue-700 rounded-full"
                     initial={{ width: "0%" }}
                     animate={{ width: `${progressPercentage}%` }}
                     transition={{ duration: 0.5 }}
@@ -742,11 +715,10 @@ export default function CVBuilder({ cvData, onUpdateCVData, onPreview, onSignIn,
             <div className="md:hidden mt-6 flex justify-center space-x-4">
               <motion.button
                 onClick={onPreview}
-                className="flex items-center space-x-2 px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors shadow-lg"
+                className="flex items-center space-x-2 px-6 py-3 bg-blue-700 text-white rounded-lg hover:bg-blue-600 transition-colors shadow-lg"
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
               >
-                <Eye className="h-4 w-4" />
                 <span>Preview CV</span>
               </motion.button>
             </div>
@@ -804,7 +776,7 @@ export default function CVBuilder({ cvData, onUpdateCVData, onPreview, onSignIn,
                       >
                         <div className="flex items-center space-x-3">
                           <Icon className={`h-5 w-5 ${
-                            isActive ? 'text-blue-600' : 'text-black/50'
+                            isActive ? 'text-blue-700' : 'text-black/50'
                           }`} />
                           <div>
                             <p className={`font-medium ${
@@ -858,7 +830,7 @@ export default function CVBuilder({ cvData, onUpdateCVData, onPreview, onSignIn,
                   </p>
                   <button
                     onClick={() => setShowSectionManager(false)}
-                    className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+                    className="px-4 py-2 bg-blue-700 text-white rounded-lg hover:bg-blue-600 transition-colors"
                   >
                     Done
                   </button>
@@ -895,7 +867,7 @@ export default function CVBuilder({ cvData, onUpdateCVData, onPreview, onSignIn,
           <div className="flex items-center space-x-3 flex-1">
             <div className="w-full max-w-[200px] h-2 bg-black/20 rounded-full overflow-hidden">
               <motion.div 
-                className="h-full bg-blue-600 rounded-full"
+                className="h-full bg-blue-700 rounded-full"
                 initial={{ width: "0%" }}
                 animate={{ width: `${progressPercentage}%` }}
                 transition={{ duration: 0.5 }}
@@ -909,7 +881,7 @@ export default function CVBuilder({ cvData, onUpdateCVData, onPreview, onSignIn,
           {/* Auto-save status */}
           <div className="flex items-center space-x-2">
             <div className={`w-2 h-2 rounded-full ${
-              autoSaveStatus === 'saved' ? 'bg-blue-600' : 
+              autoSaveStatus === 'saved' ? 'bg-blue-700' : 
               autoSaveStatus === 'saving' ? 'bg-black/50' : 'bg-black'
             }`} />
             <span className="text-xs text-black/60">

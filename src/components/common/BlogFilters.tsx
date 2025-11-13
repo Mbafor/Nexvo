@@ -116,7 +116,7 @@ const BlogFilters: React.FC<BlogFiltersProps> = ({
             onClick={() => handleCategoryChange('')}
             className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
               !filters.category
-                ? 'bg-blue-600 text-white'
+                ? 'bg-blue-700 text-white'
                 : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
             }`}
           >
@@ -149,7 +149,7 @@ const BlogFilters: React.FC<BlogFiltersProps> = ({
             type="checkbox"
             checked={filters.featured === true}
             onChange={handleFeaturedToggle}
-            className="rounded border-gray-300 text-blue-600 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50"
+            className="rounded border-gray-300 text-blue-700 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50"
           />
           <span className="ml-2 text-sm font-medium text-gray-700">Featured only</span>
         </label>
@@ -162,7 +162,7 @@ const BlogFilters: React.FC<BlogFiltersProps> = ({
           >
             Tags
             {filters.tags && filters.tags.length > 0 && (
-              <span className="ml-2 inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
+              <span className="ml-2 inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-700">
                 {filters.tags.length}
               </span>
             )}
@@ -179,7 +179,7 @@ const BlogFilters: React.FC<BlogFiltersProps> = ({
                     type="checkbox"
                     checked={filters.tags?.includes(tag) || false}
                     onChange={() => handleTagToggle(tag)}
-                    className="rounded border-gray-300 text-blue-600 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50"
+                    className="rounded border-gray-300 text-blue-700 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50"
                   />
                   <span className="ml-2 text-sm text-gray-700">#{tag}</span>
                 </label>
@@ -196,7 +196,7 @@ const BlogFilters: React.FC<BlogFiltersProps> = ({
           >
             Authors
             {filters.author && (
-              <span className="ml-2 inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
+              <span className="ml-2 inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-700">
                 1
               </span>
             )}
@@ -212,7 +212,7 @@ const BlogFilters: React.FC<BlogFiltersProps> = ({
                   key={author.id}
                   onClick={() => handleAuthorChange(author.id)}
                   className={`w-full flex items-center px-4 py-2 text-left hover:bg-gray-100 ${
-                    filters.author === author.id ? 'bg-blue-50 text-blue-600' : 'text-gray-700'
+                    filters.author === author.id ? 'bg-blue-50 text-blue-700' : 'text-gray-700'
                   }`}
                 >
                   <img
@@ -228,7 +228,7 @@ const BlogFilters: React.FC<BlogFiltersProps> = ({
                     <div className="text-xs text-gray-500">{author.title}</div>
                   </div>
                   {author.verified && (
-                    <svg className="w-4 h-4 text-blue-500" fill="currentColor" viewBox="0 0 20 20">
+                    <svg className="w-4 h-4 text-blue-700" fill="currentColor" viewBox="0 0 20 20">
                       <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                     </svg>
                   )}
@@ -256,22 +256,22 @@ const BlogFilters: React.FC<BlogFiltersProps> = ({
       {hasActiveFilters && (
         <div className="mt-4 flex flex-wrap gap-2">
           {searchQuery && (
-            <span className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-blue-100 text-blue-800">
+            <span className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-blue-100 text-blue-700">
               Search: "{searchQuery}"
               <button
                 onClick={() => onSearchChange('')}
-                className="ml-2 text-blue-600 hover:text-blue-800"
+                className="ml-2 text-blue-700 hover:text-blue-700"
               >
                 ×
               </button>
             </span>
           )}
           {filters.category && (
-            <span className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-blue-100 text-blue-800">
+            <span className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-blue-100 text-blue-700">
               Category: {categories.find(c => c.slug === filters.category)?.name}
               <button
                 onClick={() => onFilterChange({ ...filters, category: undefined })}
-                className="ml-2 text-blue-600 hover:text-blue-800"
+                className="ml-2 text-blue-700 hover:text-blue-700"
               >
                 ×
               </button>

@@ -145,7 +145,7 @@ export default function SkillsForm({ data, onChange }: SkillsFormProps) {
           <div className="flex justify-center space-x-4">
             <button
               onClick={() => addSkill('technical')}
-              className="px-4 py-2 flex items-center space-x-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg"
+              className="px-4 py-2 flex items-center space-x-2 bg-blue-700 hover:bg-blue-600 text-white rounded-lg"
             >
               <Plus className="h-4 w-4" />
               <span>Add Technical Skill</span>

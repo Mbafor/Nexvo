@@ -31,8 +31,8 @@ export const modernCvTemplates2025: BlogPost = {
           
           <div className="grid md:grid-cols-2 gap-6 mb-8">
             <div className="bg-blue-50 p-6 rounded-lg border border-blue-200">
-              <h3 className="text-xl font-semibold text-blue-900 mb-3">🎯 ATS Compatibility</h3>
-              <p className="text-blue-800">All templates tested with major ATS systems including Workday, Greenhouse, and BambooHR</p>
+              <h3 className="text-xl font-semibold text-blue-700 mb-3">🎯 ATS Compatibility</h3>
+              <p className="text-blue-700">All templates tested with major ATS systems including Workday, Greenhouse, and BambooHR</p>
             </div>
             <div className="bg-green-50 p-6 rounded-lg border border-green-200">
               <h3 className="text-xl font-semibold text-green-900 mb-3">👥 Recruiter Feedback</h3>
@@ -49,7 +49,7 @@ export const modernCvTemplates2025: BlogPost = {
           </div>
 
           <StatsBox stats={[
-            { label: 'Templates Tested', value: '150+', color: 'text-blue-600' },
+            { label: 'Templates Tested', value: '150+', color: 'text-blue-700' },
             { label: 'Interview Rate Increase', value: '67%', color: 'text-green-600' },
             { label: 'ATS Pass Rate', value: '94%', color: 'text-purple-600' },
             { label: 'User Satisfaction', value: '4.8/5', color: 'text-orange-600' }
@@ -63,7 +63,7 @@ export const modernCvTemplates2025: BlogPost = {
             <div className="border border-gray-200 rounded-lg p-6 hover:shadow-lg transition-shadow">
               <div className="flex items-start justify-between mb-4">
                 <h3 className="text-2xl font-semibold text-gray-900">1. The Executive</h3>
-                <span className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-medium">Premium</span>
+                <span className="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-sm font-medium">Premium</span>
               </div>
               <p className="text-gray-700 mb-4">Perfect for senior-level positions and traditional industries. Features clean typography with strategic use of white space.</p>
               
@@ -116,18 +116,18 @@ export const modernCvTemplates2025: BlogPost = {
                 <div>
                   <h4 className="font-semibold text-gray-800 mb-3">🎯 Best For:</h4>
                   <div className="flex flex-wrap gap-2">
-                    <span className="bg-blue-100 text-blue-800 px-2 py-1 rounded text-xs">Technology</span>
-                    <span className="bg-blue-100 text-blue-800 px-2 py-1 rounded text-xs">Startups</span>
-                    <span className="bg-blue-100 text-blue-800 px-2 py-1 rounded text-xs">Digital Marketing</span>
-                    <span className="bg-blue-100 text-blue-800 px-2 py-1 rounded text-xs">Design</span>
+                    <span className="bg-blue-100 text-blue-700 px-2 py-1 rounded text-xs">Technology</span>
+                    <span className="bg-blue-100 text-blue-700 px-2 py-1 rounded text-xs">Startups</span>
+                    <span className="bg-blue-100 text-blue-700 px-2 py-1 rounded text-xs">Digital Marketing</span>
+                    <span className="bg-blue-100 text-blue-700 px-2 py-1 rounded text-xs">Design</span>
                   </div>
                 </div>
               </div>
 
               <div className="bg-blue-50 border border-blue-200 rounded p-4">
                 <div className="flex items-center">
-                  <span className="text-blue-600 mr-2">✓</span>
-                  <span className="text-blue-800 font-medium">96% ATS compatibility • 81% interview rate</span>
+                  <span className="text-blue-700 mr-2">✓</span>
+                  <span className="text-blue-700 font-medium">96% ATS compatibility • 81% interview rate</span>
                 </div>
               </div>
             </div>
@@ -217,8 +217,8 @@ export const modernCvTemplates2025: BlogPost = {
           
           <div className="grid md:grid-cols-2 gap-8 mb-8">
             <div className="bg-gradient-to-br from-blue-50 to-indigo-50 p-6 rounded-lg border border-blue-200">
-              <h3 className="text-2xl font-semibold text-blue-900 mb-4">🎨 Color Psychology in CVs</h3>
-              <p className="text-blue-800 mb-4">Choose colors that align with your industry and personality:</p>
+              <h3 className="text-2xl font-semibold text-blue-700 mb-4">🎨 Color Psychology in CVs</h3>
+              <p className="text-blue-700 mb-4">Choose colors that align with your industry and personality:</p>
               
               <div className="space-y-3">
                 <div className="flex items-center">
@@ -304,7 +304,7 @@ export const modernCvTemplates2025: BlogPost = {
                 <div className="text-sm text-gray-700">Visual Design</div>
               </div>
               <div className="text-center">
-                <div className="text-3xl font-bold text-blue-600 mb-2">35%</div>
+                <div className="text-3xl font-bold text-blue-700 mb-2">35%</div>
                 <div className="text-sm text-gray-700">ATS Compatibility</div>
               </div>
               <div className="text-center">

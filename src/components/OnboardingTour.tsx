@@ -263,7 +263,7 @@ export default function OnboardingTour({ isOpen, onClose, onComplete }: Onboardi
               <div className="flex items-center justify-between mb-3 sm:mb-4">
                 <div className="flex items-center space-x-3 sm:space-x-4 flex-1 min-w-0">
                   <div className="bg-gradient-to-br from-blue-100 to-purple-100 p-3 rounded-xl flex-shrink-0">
-                    <currentTourStep.icon className="h-5 w-5 sm:h-6 sm:w-6 text-blue-600" />
+                    <currentTourStep.icon className="h-5 w-5 sm:h-6 sm:w-6 text-blue-700" />
                   </div>
                   <div className="flex-1 min-w-0">
                     <h3 className="font-bold text-gray-900 text-lg sm:text-xl leading-tight">
