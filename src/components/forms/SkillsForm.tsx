@@ -1,4 +1,5 @@
 import { Plus, Trash2 } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 import { Skill } from '../../types/cv';
 
 interface SkillsFormProps {
@@ -7,6 +8,7 @@ interface SkillsFormProps {
 }
 
 export default function SkillsForm({ data, onChange }: SkillsFormProps) {
+  const { t } = useTranslation();
   const migrateSkills = (skills: Skill[]): Skill[] => {
     return skills.map(skill => ({
       ...skill,
@@ -65,14 +67,14 @@ export default function SkillsForm({ data, onChange }: SkillsFormProps) {
           className="flex items-center space-x-2 px-3 py-2 border border-slate-300 rounded-lg hover:bg-slate-100 text-slate-600 transition-colors"
         >
           <Plus className="h-4 w-4" />
-          <span>Add {type === 'technical' ? 'Technical' : 'Soft'} Skill</span>
+          <span>{type === 'technical' ? t('skills.addTechnical') : t('skills.addSoft')}</span>
         </button>
       </div>
 
       {/* Empty message */}
       {skills.length === 0 && (
         <p className="text-slate-500 text-center py-4 border border-slate-200 rounded-lg bg-slate-50">
-          No {type} skills yet. Click “Add {type === 'technical' ? 'Technical' : 'Soft'} Skill” to get started.
+          {type === 'technical' ? t('skills.noTechnical') : t('skills.noSoft')}
         </p>
       )}
 
@@ -86,7 +88,7 @@ export default function SkillsForm({ data, onChange }: SkillsFormProps) {
             {/* Card top */}
             <div className="flex justify-between items-start mb-3">
               <label className="text-sm font-medium text-slate-700">
-                {type === 'technical' ? 'Technical Skill' : 'Soft Skill'}
+                {type === 'technical' ? t('skills.technicalSkill') : t('skills.softSkill')}
               </label>
 
               <button
@@ -104,26 +106,22 @@ export default function SkillsForm({ data, onChange }: SkillsFormProps) {
                 value={skill.name}
                 onChange={e => updateSkill(skill.id, 'name', e.target.value)}
                 className="w-full px-3 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-slate-500 focus:border-transparent"
-                placeholder={
-                  type === 'technical'
-                    ? 'JavaScript, Python, SQL...'
-                    : 'Communication, Teamwork, Leadership...'
-                }
+                placeholder={type === 'technical' ? t('skills.placeholders.technical') : t('skills.placeholders.soft')}
               />
 
               <div>
                 <label className="block text-sm font-medium text-slate-700 mb-1">
-                  Proficiency Level
+                  {t('skills.level')}
                 </label>
                 <select
                   value={skill.level}
                   onChange={e => updateSkill(skill.id, 'level', e.target.value)}
                   className="w-full px-3 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-slate-500 focus:border-transparent"
                 >
-                  <option value="beginner">Beginner</option>
-                  <option value="intermediate">Intermediate</option>
-                  <option value="advanced">Advanced</option>
-                  <option value="expert">Expert</option>
+                  <option value="beginner">{t('skills.levels.beginner')}</option>
+                  <option value="intermediate">{t('skills.levels.intermediate')}</option>
+                  <option value="advanced">{t('skills.levels.advanced')}</option>
+                  <option value="expert">{t('skills.levels.expert')}</option>
                 </select>
               </div>
             </div>
@@ -139,7 +137,7 @@ export default function SkillsForm({ data, onChange }: SkillsFormProps) {
       {skillsData.length === 0 && (
         <div className="text-center py-8">
           <p className="text-slate-500 mb-4">
-            No skills added yet. Add your technical and soft skills below.
+            {t('skills.noSkills')}
           </p>
 
           <div className="flex justify-center space-x-4">
@@ -148,7 +146,7 @@ export default function SkillsForm({ data, onChange }: SkillsFormProps) {
               className="px-4 py-2 flex items-center space-x-2 bg-blue-700 hover:bg-blue-600 text-white rounded-lg"
             >
               <Plus className="h-4 w-4" />
-              <span>Add Technical Skill</span>
+              <span>{t('skills.addTechnical')}</span>
             </button>
 
             <button
@@ -156,7 +154,7 @@ export default function SkillsForm({ data, onChange }: SkillsFormProps) {
               className="px-4 py-2 flex items-center space-x-2 bg-green-600 hover:bg-green-700 text-white rounded-lg"
             >
               <Plus className="h-4 w-4" />
-              <span>Add Soft Skill</span>
+              <span>{t('skills.addSoft')}</span>
             </button>
           </div>
         </div>
@@ -165,8 +163,8 @@ export default function SkillsForm({ data, onChange }: SkillsFormProps) {
       {/* Sections */}
       {(technicalSkills.length > 0 || softSkills.length > 0) && (
         <>
-          {renderSkillSection(technicalSkills, 'technical', 'Technical Skills')}
-          {renderSkillSection(softSkills, 'soft', 'Soft Skills')}
+          {renderSkillSection(technicalSkills, 'technical', t('skills.technicalSkills'))}
+          {renderSkillSection(softSkills, 'soft', t('skills.softSkills'))}
         </>
       )}
     </div>

@@ -1,4 +1,5 @@
-import { Plus, Trash2 } from 'lucide-react';
+import { Plus, Trash2 } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 interface CertificationsFormProps {
   data: string[];
@@ -6,8 +7,10 @@ interface CertificationsFormProps {
 }
 
 export default function CertificationsForm({ data, onChange }: CertificationsFormProps) {
+  const { t } = useTranslation();
+
   const addCert = () => {
-    onChange([...data, '']);
+    onChange([...data, ""]);
   };
 
   const removeCert = (index: number) => {
@@ -15,39 +18,45 @@ export default function CertificationsForm({ data, onChange }: CertificationsFor
   };
 
   const updateCert = (index: number, value: string) => {
-    const updated = data.map((cert, i) => (i === index ? value : cert));
-    onChange(updated);
+    onChange(
+      data.map((cert, i) => (i === index ? value : cert))
+    );
   };
 
   return (
     <div className="space-y-6">
       {data.length === 0 && (
         <p className="text-slate-500 text-center py-4">
-          No certifications yet. Click "Add Certification" to get started.
+          {t("certifications.noCertifications")}
         </p>
       )}
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         {data.map((cert, idx) => (
-          <div key={idx} className="border border-slate-200 rounded-lg p-4">
-            <div className="flex justify-between items-start mb-3">
-              <label className="block text-sm font-medium text-slate-700">Certification</label>
+          <div
+            key={idx}
+            className="border border-slate-200 rounded-xl p-4 bg-white shadow-sm"
+          >
+            <div className="flex justify-between items-center mb-3">
+              <label className="block text-sm font-medium text-slate-700">
+                {t("certifications.certification")} {idx + 1}
+              </label>
+
               <button
                 onClick={() => removeCert(idx)}
-                className="text-red-500 hover:text-red-700 transition-colors"
+                aria-label={t("certifications.removeCertification")}
+                className="p-2 rounded-lg hover:bg-red-50 text-red-500 hover:text-red-700 transition"
               >
                 <Trash2 className="h-4 w-4" />
               </button>
             </div>
+
             <input
               type="text"
-              name={idx === 0 ? "certification" : undefined}
-              id={idx === 0 ? "certification" : undefined}
-              data-field={idx === 0 ? "certifications.0.name" : undefined}
               value={cert}
               onChange={(e) => updateCert(idx, e.target.value)}
-              className="w-full px-3 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-slate-500 focus:border-transparent"
-              placeholder="AWS Certified Solutions Architect, PMP, etc."
+              placeholder={t("certifications.placeholders.name")}
+              className="w-full px-3 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
             />
           </div>
         ))}
@@ -55,10 +64,10 @@ export default function CertificationsForm({ data, onChange }: CertificationsFor
 
       <button
         onClick={addCert}
-        className="w-full flex items-center justify-center space-x-2 px-4 py-3 border-2 border-dashed border-slate-300 rounded-lg hover:border-slate-400 hover:bg-slate-50 transition-colors text-slate-600 font-medium"
+        className="w-full flex items-center justify-center gap-2 px-4 py-3 border-2 border-dashed border-slate-300 rounded-lg hover:border-slate-400 hover:bg-slate-50 transition text-slate-700 font-medium"
       >
         <Plus className="h-5 w-5" />
-        <span>Add Certification</span>
+        {t("certifications.addCertification")}
       </button>
     </div>
   );

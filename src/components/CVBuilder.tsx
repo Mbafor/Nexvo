@@ -1,4 +1,3 @@
-
 import { useState, useEffect, useRef } from "react";
 import {
   ChevronLeft,
@@ -12,7 +11,9 @@ import {
   Minus,
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useTranslation } from "react-i18next";
 import { CVData } from "../types/cv";
+import { useAuth } from "../context/AuthContext";
 
 // Forms
 import PersonalInfoForm from "./forms/PersonalInfoForm";
@@ -53,22 +54,36 @@ interface CVBuilderProps {
   onDashboard?: () => void;
 }
 
-const allSections = [
-  { id: "personal", label: "Personal Info", required: true, icon: FileText, description: "Basic contact information and summary" },
-  { id: "experience", label: "Experience", required: false, icon: Clock, description: "Work experience and professional history" },
-  { id: "education", label: "Education", required: false, icon: Sparkles, description: "Academic qualifications and certifications" },
-  { id: "skills", label: "Skills", required: false, icon: Settings, description: "Technical and soft skills" },
-  { id: "projects", label: "Projects", required: false, icon: FileText, description: "Personal and professional projects" },
-  { id: "volunteer", label: "Volunteer Work", required: false, icon: Clock, description: "Community service and volunteer experience" },
-  { id: "achievements", label: "Achievements", required: false, icon: Sparkles, description: "Awards and recognitions" },
-  { id: "languages", label: "Languages", required: false, icon: Settings, description: "Language proficiency" },
-  { id: "certifications", label: "Certifications", required: false, icon: FileText, description: "Professional certifications and licenses" },
-  { id: "hobbies", label: "Hobbies", required: false, icon: Clock, description: "Personal interests and hobbies" },
-  { id: "references", label: "References", required: false, icon: Sparkles, description: "Professional references" },
-];
-
-export default function CVBuilder({ cvData, onUpdateCVData, onPreview, onSignIn, onDashboard }: CVBuilderProps) {
+export default function CVBuilder({ 
+  cvData, 
+  onUpdateCVData, 
+  onPreview, 
+  onSignIn, 
+  onDashboard
+}: CVBuilderProps) {
+  const { t } = useTranslation();
+  const { user } = useAuth();
+  
+  const allSections = [
+    { id: "personal", label: t('cv.personalInfo'), required: true, icon: FileText, description: "Basic contact information and summary" },
+    { id: "experience", label: t('cv.experience'), required: false, icon: Clock, description: "Work experience and professional history" },
+    { id: "education", label: t('cv.education'), required: false, icon: Sparkles, description: "Academic qualifications and certifications" },
+    { id: "skills", label: t('cv.skills'), required: false, icon: Settings, description: "Technical and soft skills" },
+    { id: "projects", label: t('cv.projects'), required: false, icon: FileText, description: "Personal and professional projects" },
+    { id: "volunteer", label: t('cv.volunteerWork'), required: false, icon: Clock, description: "Community service and volunteer experience" },
+    { id: "achievements", label: t('cv.achievements'), required: false, icon: Sparkles, description: "Awards and recognitions" },
+    { id: "languages", label: t('cv.languages'), required: false, icon: Settings, description: "Language proficiency" },
+    { id: "certifications", label: t('cv.certifications'), required: false, icon: FileText, description: "Professional certifications and licenses" },
+    { id: "hobbies", label: t('cv.hobbies'), required: false, icon: Clock, description: "Personal interests and hobbies" },
+    { id: "references", label: t('cv.references'), required: false, icon: Sparkles, description: "Professional references" },
+  ];
+  
   const [steps, setSteps] = useState(allSections);
+  
+  // Update sections when language changes
+  useEffect(() => {
+    setSteps(allSections);
+  }, [t]);
   const [currentStep, setCurrentStep] = useState(0);
   const [showSectionManager, setShowSectionManager] = useState(false);
   const [showOnboarding, setShowOnboarding] = useState(false);
@@ -120,7 +135,7 @@ export default function CVBuilder({ cvData, onUpdateCVData, onPreview, onSignIn,
     }
   }, []);
 
-  // Enhanced auto-save with status feedback
+  // Simple auto-save to localStorage
   useEffect(() => {
     if (saveTimeoutRef.current) clearTimeout(saveTimeoutRef.current);
 
@@ -128,7 +143,8 @@ export default function CVBuilder({ cvData, onUpdateCVData, onPreview, onSignIn,
     
     saveTimeoutRef.current = setTimeout(() => {
       try {
-        localStorage.setItem("cvData", JSON.stringify(cvData));
+        localStorage.setItem('cv_builder_data', JSON.stringify(cvData));
+        
         setAutoSaveStatus('saved');
       } catch (err) {
         console.error("Error auto-saving CV:", err);
@@ -427,7 +443,7 @@ export default function CVBuilder({ cvData, onUpdateCVData, onPreview, onSignIn,
               whileTap={{ scale: 0.95 }}
             >
               <ChevronLeft className="h-5 w-5" />
-              <span className="font-semibold text-lg">Home</span>
+              <span className="font-semibold text-lg">{t('common.home')}</span>
             </motion.button>
 
             {/* Progress indicator - Desktop only */}
@@ -453,37 +469,56 @@ export default function CVBuilder({ cvData, onUpdateCVData, onPreview, onSignIn,
                   autoSaveStatus === 'saving' ? 'bg-black/50' : 'bg-black'
                 }`} />
                 <span className="text-xs text-black/60">
-                  {autoSaveStatus === 'saved' ? 'Saved' : 
-                   autoSaveStatus === 'saving' ? 'Saving...' : 'Error'}
+                  {autoSaveStatus === 'saved' ? t('common.saved') : 
+                   autoSaveStatus === 'saving' ? t('common.saving') : t('common.error')}
                 </span>
               </div>
             </div>
 
             {/* Action buttons - Mobile responsive */}
             <div className="flex items-center space-x-1 sm:space-x-3">
-              {/* Customize Sections Button */}
+
+              {/* Preview CV Button */}
               <motion.button
-                onClick={() => setShowSectionManager(true)}
+                onClick={onPreview}
+                className="flex items-center space-x-1 sm:space-x-2 px-2 sm:px-4 py-2 text-white bg-blue-700 hover:bg-blue-600 rounded-lg transition-colors min-h-[44px]"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                title="Customize sections"
               >
-
-                <span  className="flex items-center space-x-1 sm:space-x-2 px-2 sm:px-4 py-2  text-white bg-blue-700 hover:bg-blue-600 rounded-lg transition-colors  min-h-[44px]">Sections</span>
+                <span>{t('cv.preview')}</span>
               </motion.button>
 
-              {/* Sign In Button */}
-              {onSignIn && (
+              {/* Sections Button */}
+              <motion.button
+                onClick={() => setShowSectionManager(true)}
+                className="flex items-center space-x-1 sm:space-x-2 px-2 sm:px-4 py-2 text-white bg-blue-700 hover:bg-blue-600 rounded-lg transition-colors min-h-[44px]"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+              
+                <span>{t('common.sections')}</span>
+              </motion.button>
+
+              {/* Dashboard/Sign In Button */}
+              {user && onDashboard ? (
+                <motion.button
+                  onClick={onDashboard}
+                  className="flex items-center space-x-1 sm:space-x-2 px-2 sm:px-4 py-2 text-white bg-blue-700 hover:bg-blue-600 rounded-lg transition-colors min-h-[44px]"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  <span>Go to Dashboard</span>
+                </motion.button>
+              ) : onSignIn && !user ? (
                 <motion.button
                   onClick={onSignIn}
                   className="flex items-center space-x-1 sm:space-x-2 px-2 sm:px-4 py-2 text-white bg-blue-700 hover:bg-blue-600 rounded-lg transition-colors min-h-[44px]"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >
-    
-                  <span>Sign In</span>
+                  <span>{t('common.signIn')}</span>
                 </motion.button>
-              )}
+              ) : null}
 
           
             </div>
@@ -657,7 +692,7 @@ export default function CVBuilder({ cvData, onUpdateCVData, onPreview, onSignIn,
                   whileTap={{ scale: currentStep === 0 ? 1 : 0.98 }}
                 >
                   <ChevronLeft className="h-4 w-4" />
-                  <span>Previous</span>
+                  <span>{t('common.previous')}</span>
                 </motion.button>
 
                 <div className="flex items-center space-x-3">
@@ -670,7 +705,7 @@ export default function CVBuilder({ cvData, onUpdateCVData, onPreview, onSignIn,
                     whileHover={{ scale: isStepValid() ? 1.02 : 1 }}
                     whileTap={{ scale: isStepValid() ? 0.98 : 1 }}
                   >
-                    <span>{currentStep === steps.length - 1 ? "Preview" : "Next"}</span>
+                    <span>{currentStep === steps.length - 1 ? t('cv.preview') : t('common.next')}</span>
                     <ChevronRight className="h-4 w-4" />
                   </motion.button>
                 </div>
@@ -682,8 +717,8 @@ export default function CVBuilder({ cvData, onUpdateCVData, onPreview, onSignIn,
               {/* Mobile Header */}
               <div className="mb-6 bg-white rounded-xl shadow-sm border border-black/20 p-4">
                 <div className="flex items-center justify-between mb-3">
-                  <h3 className="font-semibold text-gray-900">Build Your CV</h3>
-                  <span className="text-sm text-gray-500">{Math.round(progressPercentage)}% Complete</span>
+                  <h3 className="font-semibold text-gray-900">{t('common.buildYourCV')}</h3>
+                  <span className="text-sm text-gray-500">{Math.round(progressPercentage)}% {t('common.complete')}</span>
                 </div>
                 
                 {/* Mobile Progress Bar */}
@@ -719,7 +754,7 @@ export default function CVBuilder({ cvData, onUpdateCVData, onPreview, onSignIn,
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
               >
-                <span>Preview CV</span>
+                <span>{t('cv.preview')}</span>
               </motion.button>
             </div>
           </div>

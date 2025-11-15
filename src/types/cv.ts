@@ -87,6 +87,11 @@ export interface Language {
 }
 
 
+// Multilingual CV Data - each language has its own content
+export interface MultilingualCVData {
+  [languageCode: string]: CVData;
+}
+
 export interface CVData {
   personalInfo: PersonalInfo;
   education: Education[];

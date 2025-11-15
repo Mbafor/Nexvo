@@ -94,7 +94,7 @@ const BlogCard: React.FC<BlogCardProps> = ({ post, onClick, featured = false }) 
       {/* Content */}
       <div className="p-6 flex flex-col flex-1">
         {/* Title */}
-        <h3 className="text-xl lg:text-2xl font-bold text-gray-900 mb-3 line-clamp-2 group-hover:text-blue-700 transition-colors duration-200">
+        <h3 className="text-xl lg:text-2xl font-medium text-gray-900 mb-3 line-clamp-2 group-hover:text-blue-700 transition-colors duration-200">
           {post.title}
         </h3>
 

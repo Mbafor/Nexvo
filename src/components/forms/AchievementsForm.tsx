@@ -1,6 +1,7 @@
-import { Plus, Trash2 } from 'lucide-react';
-import { Achievement } from '../../types/cv';
-import BulletPointTextarea from '../common/BulletPointTextarea';
+import { Plus, Trash2 } from "lucide-react";
+import { useTranslation } from "react-i18next";
+import { Achievement } from "../../types/cv";
+import BulletPointTextarea from "../common/BulletPointTextarea";
 
 interface AchievementsFormProps {
   data: Achievement[];
@@ -8,12 +9,14 @@ interface AchievementsFormProps {
 }
 
 export default function AchievementsForm({ data, onChange }: AchievementsFormProps) {
+  const { t } = useTranslation();
+
   const addAchievement = () => {
     const newAchievement: Achievement = {
       id: crypto.randomUUID(),
-      title: '',
-      description: '',
-      date: '',
+      title: "",
+      description: "",
+      date: ""
     };
     onChange([...data, newAchievement]);
   };
@@ -24,7 +27,9 @@ export default function AchievementsForm({ data, onChange }: AchievementsFormPro
 
   const updateAchievement = (id: string, field: keyof Achievement, value: string) => {
     onChange(
-      data.map((ach) => (ach.id === id ? { ...ach, [field]: value } : ach))
+      data.map((ach) =>
+        ach.id === id ? { ...ach, [field]: value } : ach
+      )
     );
   };
 
@@ -32,67 +37,82 @@ export default function AchievementsForm({ data, onChange }: AchievementsFormPro
     <div className="space-y-6">
       {data.length === 0 && (
         <p className="text-slate-500 text-center py-4">
-          No achievements yet. Click "Add Achievement" to get started.
+          {t("achievements.noAchievements")}
         </p>
       )}
 
       {data.map((ach, index) => (
-        <div key={ach.id} className="border border-slate-200 rounded-lg p-6 relative">
+        <div
+          key={ach.id}
+          className="border border-slate-200 rounded-xl p-6 bg-white shadow-sm"
+        >
           <div className="flex justify-between items-start mb-4">
-            <h3 className="text-lg font-semibold text-slate-900">Achievement {index + 1}</h3>
+            <h3 className="text-lg font-semibold text-slate-900">
+              {t("achievements.title")} {index + 1}
+            </h3>
+
             <button
               onClick={() => removeAchievement(ach.id)}
-              className="text-red-500 hover:text-red-700 transition-colors"
+              aria-label={t("achievements.removeAchievement")}
+              className="p-2 rounded-lg hover:bg-red-50 text-red-500 hover:text-red-700 transition"
             >
               <Trash2 className="h-5 w-5" />
             </button>
           </div>
 
           <div className="space-y-4">
+            {/* Title */}
             <div>
-              <label className="block text-sm font-medium text-slate-700 mb-1">Title</label>
+              <label className="block text-sm font-medium text-slate-700 mb-1">
+                {t("achievements.achievementTitle")}
+              </label>
               <input
                 type="text"
-                name={index === 0 ? "achievementTitle" : undefined}
-                id={index === 0 ? "achievementTitle" : undefined}
-                data-field={index === 0 ? "achievements.0.title" : undefined}
                 value={ach.title}
-                onChange={(e) => updateAchievement(ach.id, 'title', e.target.value)}
-                className="w-full px-3 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-slate-500 focus:border-transparent"
-                placeholder="Employee of the Year, Published Research Paper, etc."
+                onChange={(e) =>
+                  updateAchievement(ach.id, "title", e.target.value)
+                }
+                placeholder={t("achievements.placeholders.title")}
+                className="w-full px-3 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
               />
             </div>
 
+            {/* Description */}
             <BulletPointTextarea
-              label="Description"
+              label={t("achievements.description")}
               value={ach.description}
-              onChange={(value) => updateAchievement(ach.id, 'description', value)}
-              placeholder="• Details about this achievement...
-• Quantify the impact if possible
-• Include specific metrics or results
-• Mention recognition received"
+              onChange={(value) =>
+                updateAchievement(ach.id, "description", value)
+              }
+              placeholder={t("achievements.placeholders.description")}
               rows={3}
             />
 
+            {/* Date */}
             <div>
-              <label className="block text-sm font-medium text-slate-700 mb-1">Date</label>
+              <label className="block text-sm font-medium text-slate-700 mb-1">
+                {t("achievements.date")}
+              </label>
               <input
                 type="month"
                 value={ach.date}
-                onChange={(e) => updateAchievement(ach.id, 'date', e.target.value)}
-                className="w-full px-3 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-slate-500 focus:border-transparent"
+                onChange={(e) =>
+                  updateAchievement(ach.id, "date", e.target.value)
+                }
+                className="w-full px-3 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
               />
             </div>
           </div>
         </div>
       ))}
 
+      {/* Add Achievement */}
       <button
         onClick={addAchievement}
-        className="w-full flex items-center justify-center space-x-2 px-4 py-3 border-2 border-dashed border-slate-300 rounded-lg hover:border-slate-400 hover:bg-slate-50 transition-colors text-slate-600 font-medium"
+        className="w-full flex items-center justify-center gap-2 px-4 py-3 border-2 border-dashed border-slate-300 rounded-lg hover:border-slate-400 hover:bg-slate-50 transition font-medium text-slate-700"
       >
         <Plus className="h-5 w-5" />
-        <span>Add Achievement</span>
+        {t("achievements.addAchievement")}
       </button>
     </div>
   );

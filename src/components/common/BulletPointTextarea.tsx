@@ -1,4 +1,5 @@
 import React, { useRef } from 'react';
+import { useTranslation } from 'react-i18next';
 
 interface BulletPointTextareaProps {
   value: string;
@@ -17,6 +18,7 @@ export default function BulletPointTextarea({
   rows = 4,
   className = "",
 }: BulletPointTextareaProps) {
+  const { t } = useTranslation();
   const textareaRef = useRef<HTMLTextAreaElement>(null);
 
   // Auto-add bullet points on new lines
@@ -141,10 +143,10 @@ export default function BulletPointTextarea({
         onBlur={handleBlur}
         rows={rows}
         className={`w-full px-3 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-slate-500 focus:border-transparent resize-vertical ${className}`}
-        placeholder={placeholder || "• Start typing and press Enter for new bullet points..."}
+        placeholder={placeholder || t("common.bulletPointPlaceholder")}
       />
       <p className="text-xs text-slate-500">
-        💡 Tip: Press Enter to create new bullet points automatically. Empty bullet points will be removed.
+        {t("common.bulletPointTip")}
       </p>
     </div>
   );

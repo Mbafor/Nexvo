@@ -1,6 +1,7 @@
 // Enhanced Progress Indicator Component
 import { CheckCircle2, Circle, AlertCircle } from 'lucide-react';
 import { motion } from 'framer-motion';
+import { useTranslation } from 'react-i18next'; // Import added
 
 interface ProgressEnhancementProps {
   sections: Array<{
@@ -19,6 +20,7 @@ export default function ProgressEnhancement({
   currentStep, 
   onStepClick 
 }: ProgressEnhancementProps) {
+  const { t } = useTranslation(); // Hook initialized
   const completedSections = sections.filter(s => s.completed).length;
   const totalSections = sections.length;
   const progressPercentage = (completedSections / totalSections) * 100;
@@ -28,9 +30,11 @@ export default function ProgressEnhancement({
       {/* Overall Progress */}
       <div className="mb-6">
         <div className="flex items-center justify-between mb-2">
-          <h3 className="font-semibold text-gray-900">CV Completion</h3>
+          <h3 className="font-semibold text-gray-900">
+            {t('progressEnhancement.header.title')}
+          </h3>
           <span className="text-sm font-medium text-blue-700">
-            {Math.round(progressPercentage)}% Complete
+            {t('progressEnhancement.header.percentComplete', { percent: Math.round(progressPercentage) })}
           </span>
         </div>
         <div className="w-full bg-gray-200 rounded-full h-2">
@@ -42,7 +46,7 @@ export default function ProgressEnhancement({
           />
         </div>
         <p className="text-xs text-gray-500 mt-1">
-          {completedSections} of {totalSections} sections completed
+          {t('progressEnhancement.header.sectionsCompleted', { completed: completedSections, total: totalSections })}
         </p>
       </div>
 
@@ -76,7 +80,8 @@ export default function ProgressEnhancement({
                 <p className={`font-medium ${
                   index === currentStep ? 'text-black-600' : 'text-gray-900'
                 }`}>
-                  {section.label}
+                  {/* Try to find a specific label translation, fallback to the prop */}
+                  {t(`progressEnhancement.sections.${section.id}`, section.label)}
                   {section.required && (
                     <span className="text-red-500 ml-1">*</span>
                   )}
@@ -87,12 +92,12 @@ export default function ProgressEnhancement({
             <div className="flex items-center space-x-2">
               {section.hasErrors && (
                 <span className="text-xs bg-red-100 text-red-700 px-2 py-1 rounded">
-                  Fix errors
+                  {t('progressEnhancement.status.fixErrors')}
                 </span>
               )}
               {section.completed && (
                 <span className="text-xs bg-green-100 text-green-700 px-2 py-1 rounded">
-                  Complete
+                  {t('progressEnhancement.status.complete')}
                 </span>
               )}
             </div>
@@ -104,10 +109,10 @@ export default function ProgressEnhancement({
       <div className="mt-6 pt-4 border-t border-gray-200">
         <div className="flex space-x-2">
           <button className="flex-1 px-3 py-2 text-sm bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors">
-            Save Draft
+            {t('progressEnhancement.actions.saveDraft')}
           </button>
           <button className="flex-1 px-3 py-2 text-sm bg-blue-700 text-white rounded-lg hover:bg-blue-600 transition-colors">
-            Preview CV
+            {t('progressEnhancement.actions.preview')}
           </button>
         </div>
       </div>

@@ -1,16 +1,9 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronRight, CheckCircle2, AlertCircle, Lightbulb, ChevronDown } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 import { CVData } from '../types/cv';
 import { ValidationResult } from '../utils/cvValidator';
-
-// Load dynamic tips
-import tipsData from '../data/tips.json';
-
-// Type for tips data
-type TipsData = {
-  [key: string]: string[];
-};
 
 // Import all form components
 import PersonalInfoForm from './forms/PersonalInfoForm';
@@ -27,7 +20,7 @@ import CertificationsForm from './forms/CertificationsForm';
 
 interface CollapsibleSection {
   id: string;
-  label: string;
+  label: string; 
   required: boolean;
   icon: React.ElementType;
   description: string;
@@ -48,20 +41,19 @@ export default function CollapsibleSections({
   validationResults,
   getCompletionStatus
 }: CollapsibleSectionsProps) {
+  const { t } = useTranslation();
   const [expandedSections, setExpandedSections] = useState<Set<string>>(new Set(['personal']));
-  const [expandedTips, setExpandedTips] = useState<Set<string>>(new Set()); // Tips closed initially
+  const [expandedTips, setExpandedTips] = useState<Set<string>>(new Set());
 
   const toggleSection = (sectionId: string) => {
     const newExpanded = new Set(expandedSections);
     if (newExpanded.has(sectionId)) {
       newExpanded.delete(sectionId);
-      // Also close tips when section is closed
       const newExpandedTips = new Set(expandedTips);
       newExpandedTips.delete(sectionId);
       setExpandedTips(newExpandedTips);
     } else {
       newExpanded.add(sectionId);
-      // Tips remain closed initially - user must manually open them
     }
     setExpandedSections(newExpanded);
   };
@@ -74,6 +66,16 @@ export default function CollapsibleSections({
       newExpandedTips.add(sectionId);
     }
     setExpandedTips(newExpandedTips);
+  };
+
+  // Helper to get tips from i18n resources
+  const getSectionTips = (sectionId: string): string[] => {
+    // Ensure returnObjects is true to get the array
+    const tips = t(`tips.${sectionId}`, { returnObjects: true }) as unknown;
+    if (Array.isArray(tips)) {
+      return tips.filter((tip): tip is string => typeof tip === 'string');
+    }
+    return [];
   };
 
   const renderSectionContent = (sectionId: string) => {
@@ -156,7 +158,11 @@ export default function CollapsibleSections({
           />
         );
       default:
-        return <div className="text-gray-500 text-center py-8">Section content not found</div>;
+        return (
+          <div className="text-gray-500 text-center py-8">
+            {t('builder.sections.notFound')}
+          </div>
+        );
     }
   };
 
@@ -169,6 +175,9 @@ export default function CollapsibleSections({
         const hasErrors = validationResult?.errors?.length > 0;
         const hasWarnings = validationResult?.warnings?.length > 0;
         const Icon = section.icon;
+        
+        // Retrieve tips via i18n
+        const tips = getSectionTips(section.id);
 
         return (
           <div
@@ -200,7 +209,8 @@ export default function CollapsibleSections({
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center space-x-2">
                     <h3 className="font-semibold text-gray-900 truncate">
-                      {section.label}
+                      {/* We translate the label here in case the prop passed isn't translated */}
+                      {t(`builder.sections.${section.id}.label`, section.label)}
                       {section.required && (
                         <span className="text-red-500 ml-1">*</span>
                       )}
@@ -221,7 +231,8 @@ export default function CollapsibleSections({
                   </div>
                   
                   <p className="text-sm text-gray-500 truncate mt-1">
-                    {section.description}
+                     {/* We translate the description here */}
+                     {t(`builder.sections.${section.id}.description`, section.description)}
                   </p>
 
                   {/* Validation summary */}
@@ -229,17 +240,17 @@ export default function CollapsibleSections({
                     <div className="flex items-center space-x-2 mt-2">
                       {hasErrors && (
                         <span className="text-xs bg-red-100 text-red-700 px-2 py-1 rounded">
-                          {validationResult.errors.length} required
+                          {t('builder.validation.requiredCount', { count: validationResult.errors.length })}
                         </span>
                       )}
                       {hasWarnings && (
                         <span className="text-xs bg-yellow-100 text-yellow-700 px-2 py-1 rounded">
-                          {validationResult.warnings.length} tips
+                          {t('builder.validation.tipsCount', { count: validationResult.warnings.length })}
                         </span>
                       )}
                       {validationResult.suggestions?.length > 0 && (
                         <span className="text-xs bg-blue-100 text-blue-700 px-2 py-1 rounded">
-                          {validationResult.suggestions.length} suggestions
+                          {t('builder.validation.suggestionsCount', { count: validationResult.suggestions.length })}
                         </span>
                       )}
                     </div>
@@ -269,7 +280,7 @@ export default function CollapsibleSections({
                 >
                   <div className="border-t border-gray-100 p-4">
                     {/* Tips Section */}
-                    {(tipsData as TipsData)[section.id] && (tipsData as TipsData)[section.id].length > 0 && (
+                    {tips.length > 0 && (
                       <div className="mb-6">
                         <button
                           onClick={() => toggleTips(section.id)}
@@ -278,10 +289,10 @@ export default function CollapsibleSections({
                           <div className="flex items-center space-x-2">
                             <Lightbulb className="h-4 w-4 text-blue-700" />
                             <span className="text-sm font-medium text-blue-700">
-                              Tips & Best Practices
+                              {t('builder.tips.title')}
                             </span>
                             <span className="text-xs bg-blue-200 text-blue-700 px-2 py-1 rounded-full">
-                              {(tipsData as TipsData)[section.id].length}
+                              {tips.length}
                             </span>
                           </div>
                           <motion.div
@@ -303,7 +314,7 @@ export default function CollapsibleSections({
                             >
                               <div className="mt-3 p-4 bg-white border border-blue-200 rounded-lg">
                                 <div className="space-y-3">
-                                  {(tipsData as TipsData)[section.id].map((tip, index) => (
+                                  {tips.map((tip, index) => (
                                     <div key={index} className="flex items-start space-x-3">
                                       <div className="w-1.5 h-1.5 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
                                       <p className="text-sm text-gray-700 leading-relaxed">{tip}</p>
@@ -320,7 +331,9 @@ export default function CollapsibleSections({
                     {/* Error messages */}
                     {hasErrors && (
                       <div className="mb-4 p-3 bg-red-50 border border-red-200 rounded-lg">
-                        <h4 className="text-sm font-medium text-red-800 mb-2">Required Fields</h4>
+                        <h4 className="text-sm font-medium text-red-800 mb-2">
+                          {t('builder.validation.requiredFieldsTitle')}
+                        </h4>
                         <ul className="text-xs text-red-700 space-y-1">
                           {validationResult.errors.map((error, index) => (
                             <li key={index}>• {error}</li>

@@ -74,7 +74,7 @@ export const StatsBox: React.FC<{
   <div className="grid grid-cols-2 md:grid-cols-4 gap-4 my-8 p-6 bg-gradient-to-r from-blue-50 to-purple-50 rounded-lg">
     {stats.map((stat, index) => (
       <div key={index} className="text-center">
-        <div className={`text-2xl font-bold ${stat.color || 'text-blue-700'}`}>
+        <div className={`text-2xl font-meiiumum ${stat.color || 'text-blue-700'}`}>
           {stat.value}
         </div>
         <div className="text-sm text-gray-600">{stat.label}</div>

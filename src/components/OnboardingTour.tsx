@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useTranslation } from 'react-i18next'; // Import added
 import { X, ChevronRight, ChevronLeft, Sparkles, FileText, Eye } from 'lucide-react';
 
 interface TourStep {
@@ -18,37 +19,39 @@ interface OnboardingTourProps {
 }
 
 export default function OnboardingTour({ isOpen, onClose, onComplete }: OnboardingTourProps) {
+  const { t } = useTranslation(); // Hook initialized
   const [currentStep, setCurrentStep] = useState(0);
   const [targetElement, setTargetElement] = useState<HTMLElement | null>(null);
 
+  // Moved inside component to use translations
   const tourSteps: TourStep[] = [
     {
       id: 'welcome',
-      title: '🎉 Welcome to QuickCV Builder!',
-      content: 'Let\'s take a quick tour to help you create your perfect CV in minutes. This guided tour will show you all the key features.',
+      title: t('onboardingTour.steps.welcome.title'),
+      content: t('onboardingTour.steps.welcome.content'),
       position: 'center',
       icon: Sparkles
     },
     {
       id: 'navigation',
-      title: '🧭 Easy Navigation',
-      content: 'This section shows your current progress and allows you to navigate between CV sections. Use the Previous/Next buttons to move your CV.',
+      title: t('onboardingTour.steps.navigation.title'),
+      content: t('onboardingTour.steps.navigation.content'),
       target: 'section-navigation',
       position: 'bottom',
       icon: ChevronRight
     },
     {
       id: 'sections',
-      title: '📊 Track Your Progress',
-      content: 'Here you can see all available CV sections. Green checkmarks show completed sections, and you can click any section to jump to it instantly.',
+      title: t('onboardingTour.steps.sections.title'),
+      content: t('onboardingTour.steps.sections.content'),
       target: 'progress-sections',
       position: 'left',
       icon: FileText
     },
     {
       id: 'preview',
-      title: '👁️ Preview & Download',
-      content: 'Preview your CV anytime to see how it looks. When ready, you can download it as PDF or Word document.',
+      title: t('onboardingTour.steps.preview.title'),
+      content: t('onboardingTour.steps.preview.content'),
       target: 'preview-button',
       position: 'left',
       icon: Eye
@@ -61,8 +64,8 @@ export default function OnboardingTour({ isOpen, onClose, onComplete }: Onboardi
   useEffect(() => {
     if (currentTourStep.target) {
       const element = document.getElementById(currentTourStep.target) || 
-                    document.querySelector(`[data-tour="${currentTourStep.target}"]`) ||
-                    document.querySelector(`.${currentTourStep.target}`);
+                      document.querySelector(`[data-tour="${currentTourStep.target}"]`) ||
+                      document.querySelector(`.${currentTourStep.target}`);
       setTargetElement(element as HTMLElement);
     } else {
       setTargetElement(null);
@@ -111,8 +114,8 @@ export default function OnboardingTour({ isOpen, onClose, onComplete }: Onboardi
     
     // Responsive tooltip sizing - optimized for button visibility
     const tooltipWidth = isSmallMobile ? Math.min(360, window.innerWidth - 24) : 
-                       isMobile ? Math.min(420, window.innerWidth - 32) : 
-                       Math.min(480, window.innerWidth - 64);
+                         isMobile ? Math.min(420, window.innerWidth - 32) : 
+                         Math.min(480, window.innerWidth - 64);
     const tooltipHeight = isSmallMobile ? 340 : isMobile ? 360 : 320;
     const padding = isMobile ? 12 : 20;
 
@@ -266,18 +269,18 @@ export default function OnboardingTour({ isOpen, onClose, onComplete }: Onboardi
                     <currentTourStep.icon className="h-5 w-5 sm:h-6 sm:w-6 text-blue-700" />
                   </div>
                   <div className="flex-1 min-w-0">
-                    <h3 className="font-bold text-gray-900 text-lg sm:text-xl leading-tight">
+                    <h3 className="font-medium text-gray-900 text-lg sm:text-xl leading-tight">
                       {currentTourStep.title}
                     </h3>
                     <p className="text-sm sm:text-base text-gray-500 mt-1">
-                      Step {currentStep + 1} of {tourSteps.length}
+                      {t('onboardingTour.progress.step', { current: currentStep + 1, total: tourSteps.length })}
                     </p>
                   </div>
                 </div>
                 <button
                   onClick={handleSkip}
                   className="p-3 text-slate-400 hover:text-slate-600 rounded-xl min-h-[48px] min-w-[48px] flex items-center justify-center hover:bg-slate-100 transition-colors flex-shrink-0 touch-manipulation"
-                  aria-label="Close tour"
+                  aria-label={t('onboardingTour.actions.close')}
                 >
                   <X className="h-5 w-5 sm:h-6 sm:w-6" />
                 </button>
@@ -317,14 +320,14 @@ export default function OnboardingTour({ isOpen, onClose, onComplete }: Onboardi
                   }`}
                 >
                   <ChevronLeft className="h-5 w-5" />
-                  <span>Back</span>
+                  <span>{t('onboardingTour.actions.back')}</span>
                 </button>
 
                 <button
                   onClick={handleSkip}
                   className="px-6 py-4 text-base text-slate-500 hover:text-slate-700 rounded-xl hover:bg-slate-100 transition-all duration-200 min-h-[56px] font-medium active:bg-slate-200 touch-manipulation order-last sm:order-none border border-transparent hover:border-slate-200"
                 >
-                  Skip Tour
+                  {t('onboardingTour.actions.skip')}
                 </button>
 
                 <button
@@ -332,7 +335,10 @@ export default function OnboardingTour({ isOpen, onClose, onComplete }: Onboardi
                   className="flex items-center justify-center space-x-2 px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-xl hover:from-blue-700 hover:to-purple-700 transition-all duration-200 min-h-[56px] font-medium shadow-lg hover:shadow-xl active:scale-95 touch-manipulation"
                 >
                   <span className="text-base font-medium">
-                    {currentStep === tourSteps.length - 1 ? 'Finish Tour' : 'Next'}
+                    {currentStep === tourSteps.length - 1 
+                      ? t('onboardingTour.actions.finish') 
+                      : t('onboardingTour.actions.next')
+                    }
                   </span>
                   {currentStep < tourSteps.length - 1 && <ChevronRight className="h-5 w-5" />}
                 </button>

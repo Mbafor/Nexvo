@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useParams, useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import BlogLayout from "../components/layout/BlogLayout";
 import BlogCard from "../components/BlogCard";
 import { 
@@ -7,12 +8,12 @@ import {
   getReadTimeText, 
   formatEngagementNumber,
   getRelatedPosts,
-  createSocialShareUrl,
-  generateMetaDescription 
+  createSocialShareUrl
 } from "../utils/blogUtils";
-import { getBlogPostBySlug, blogData } from "../data/blogPosts";
+import { blogPosts } from '../data/blogPosts'; 
 
 const BlogPost: React.FC = () => {
+  const { t } = useTranslation(); // Hook initialized
   const { slug } = useParams<{ slug: string }>();
   const navigate = useNavigate();
   const contentRef = useRef<HTMLDivElement>(null);
@@ -23,8 +24,8 @@ const BlogPost: React.FC = () => {
   const [activeSection, setActiveSection] = useState<string>('');
 
   // Get post data
-  const post = slug ? getBlogPostBySlug(slug) : null;
-  const relatedPosts = post ? getRelatedPosts(post, blogData.posts, 3) : [];
+  const post = slug ? blogPosts.find(p => p.slug === slug) : null;
+  const relatedPosts = post ? getRelatedPosts(post, blogPosts, 3) : [];
 
   // Scroll to top when blog post changes
   useEffect(() => {
@@ -55,7 +56,7 @@ const BlogPost: React.FC = () => {
     if (!post?.content.tableOfContents) return;
 
     const handleScroll = () => {
-      const sections = post.content.tableOfContents!.map(item => 
+      const sections = post.content.tableOfContents!.map((item: any) => 
         document.getElementById(item.id)
       ).filter(Boolean);
 
@@ -75,7 +76,7 @@ const BlogPost: React.FC = () => {
   // Handle missing blog gracefully
   if (!post) {
     return (
-      <BlogLayout title="Post Not Found - QuickCV Blog">
+      <BlogLayout title={t('blogPost.notFound.pageTitle')}>
         <div className="min-h-screen flex flex-col items-center justify-center bg-gray-50">
           <div className="text-center max-w-md mx-auto px-4">
             <div className="mb-8">
@@ -83,22 +84,22 @@ const BlogPost: React.FC = () => {
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.732-.833-2.464 0L4.35 16.5c-.77.833.192 2.5 1.732 2.5z" />
               </svg>
             </div>
-            <h1 className="text-2xl font-bold text-gray-900 mb-4">Article Not Found</h1>
+            <h1 className="text-2xl font-medium text-gray-900 mb-4">{t('blogPost.notFound.title')}</h1>
             <p className="text-gray-600 mb-8">
-              The article you're looking for doesn't exist or may have been moved.
+              {t('blogPost.notFound.message')}
             </p>
             <div className="space-y-3">
               <button
                 onClick={() => navigate("/blogs")}
                 className="w-full px-6 py-3 bg-blue-700 hover:bg-blue-600 text-white rounded-lg font-medium transition-colors"
               >
-                Browse All Articles
+                {t('blogPost.notFound.browseButton')}
               </button>
               <button
                 onClick={() => navigate("/")}
                 className="w-full px-6 py-3 border border-gray-300 hover:bg-gray-50 text-gray-700 rounded-lg font-medium transition-colors"
               >
-                Go to Homepage
+                {t('blogPost.notFound.homeButton')}
               </button>
             </div>
           </div>
@@ -131,10 +132,12 @@ const BlogPost: React.FC = () => {
     }
   };
 
+  // Resolve title and description using t() because data file contains keys
+  
   return (
     <BlogLayout 
-      title={`${post.metadata.seoTitle} - QuickCV Blog`}
-      description={generateMetaDescription(post)}
+      title={`${t(post.title)} - QuickCV Blog`}
+      description={t(post.subtitle || '')}
     >
       {/* Reading Progress Bar */}
       <div className="fixed top-0 left-0 w-full h-1 bg-gray-200 z-50">
@@ -165,19 +168,20 @@ const BlogPost: React.FC = () => {
                     className="inline-flex items-center px-4 py-2 rounded-full text-sm font-medium backdrop-blur-sm"
                     style={{ backgroundColor: post.category.color }}
                   >
-                    {post.category.icon} {post.category.name}
+                    {/* Translate category name */}
+                    {post.category.icon} {t(post.category.name)}
                   </span>
                 </div>
 
-                {/* Title */}
-                <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold mb-4 leading-tight">
-                  {post.title}
+                {/* Title - Translated */}
+                <h1 className="text-3xl md:text-5xl lg:text-6xl font-medium mb-4 leading-tight">
+                  {t(post.title)}
                 </h1>
 
-                {/* Subtitle */}
+                {/* Subtitle - Translated */}
                 {post.subtitle && (
                   <p className="text-xl md:text-2xl text-gray-200 mb-6 max-w-3xl">
-                    {post.subtitle}
+                    {t(post.subtitle)}
                   </p>
                 )}
 
@@ -194,7 +198,8 @@ const BlogPost: React.FC = () => {
                     />
                     <div>
                       <div className="font-semibold">{post.author.name}</div>
-                      <div className="text-gray-300">{post.author.title}</div>
+                      {/* Translate Author Title */}
+                      <div className="text-gray-300">{t(post.author.title)}</div>
                     </div>
                   </div>
                   
@@ -203,7 +208,7 @@ const BlogPost: React.FC = () => {
                     <span>•</span>
                     <span>{getReadTimeText(post.metadata.readingTime)}</span>
                     <span>•</span>
-                    <span>{formatEngagementNumber(post.engagement.views)} views</span>
+                    <span>{formatEngagementNumber(post.engagement.views)} {t('blogPost.meta.views')}</span>
                   </div>
                 </div>
               </div>
@@ -223,7 +228,7 @@ const BlogPost: React.FC = () => {
                   <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
                   </svg>
-                  All Articles
+                  {t('blogPost.actions.allArticles')}
                 </button>
               </div>
 
@@ -279,7 +284,7 @@ const BlogPost: React.FC = () => {
                         <svg className="w-4 h-4 mr-3 text-blue-700" fill="currentColor" viewBox="0 0 24 24">
                           <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
                         </svg>
-                        Share on Twitter
+                        {t('blogPost.share.twitter')}
                       </button>
                       <button
                         onClick={() => handleShare('linkedin')}
@@ -288,7 +293,7 @@ const BlogPost: React.FC = () => {
                         <svg className="w-4 h-4 mr-3 text-blue-700" fill="currentColor" viewBox="0 0 24 24">
                           <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
                         </svg>
-                        Share on LinkedIn
+                        {t('blogPost.share.linkedin')}
                       </button>
                       <button
                         onClick={() => handleShare('facebook')}
@@ -297,7 +302,7 @@ const BlogPost: React.FC = () => {
                         <svg className="w-4 h-4 mr-3 text-blue-700" fill="currentColor" viewBox="0 0 24 24">
                           <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
                         </svg>
-                        Share on Facebook
+                        {t('blogPost.share.facebook')}
                       </button>
                       <hr className="my-2" />
                       <button
@@ -307,7 +312,7 @@ const BlogPost: React.FC = () => {
                         <svg className="w-4 h-4 mr-3 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
                         </svg>
-                        Copy Link
+                        {t('blogPost.share.copyLink')}
                       </button>
                     </div>
                   )}
@@ -325,9 +330,9 @@ const BlogPost: React.FC = () => {
               <div className="lg:col-span-1 order-2 lg:order-1">
                 <div className="sticky top-32">
                   <div className="bg-gray-50 rounded-lg p-6">
-                    <h3 className="text-lg font-semibold text-gray-900 mb-4">Table of Contents</h3>
+                    <h3 className="text-lg font-semibold text-gray-900 mb-4">{t('blogPost.article.tableOfContents')}</h3>
                     <nav className="space-y-2">
-                      {post.content.tableOfContents.map((item) => (
+                      {post.content.tableOfContents.map((item: any) => (
                         <button
                           key={item.id}
                           onClick={() => scrollToSection(item.id)}
@@ -338,7 +343,8 @@ const BlogPost: React.FC = () => {
                           }`}
                           style={{ paddingLeft: `${(item.level - 2) * 12 + 12}px` }}
                         >
-                          {item.title}
+                          {/* Translate TOC Items */}
+                          {t(item.title)}
                         </button>
                       ))}
                     </nav>
@@ -350,35 +356,32 @@ const BlogPost: React.FC = () => {
             {/* Main Content */}
             <div className={`${post.content.tableOfContents ? 'lg:col-span-3' : 'lg:col-span-4'} order-1 lg:order-2`}>
               <div ref={contentRef} className="prose prose-lg max-w-none">
-                {/* Introduction */}
+                {/* Introduction - Translated */}
                 <div className="text-xl text-gray-700 leading-relaxed mb-8 p-6 bg-blue-50 rounded-lg border-l-4 border-blue-500">
-                  {post.content.intro}
+                  {t(post.content.intro)}
                 </div>
 
-                {/* Main Content */}
-                <div className="prose prose-lg max-w-none prose-headings:text-gray-900 prose-headings:font-bold prose-h2:text-2xl prose-h2:mt-12 prose-h2:mb-6 prose-h3:text-xl prose-h3:mt-8 prose-h3:mb-4 prose-p:text-gray-700 prose-p:leading-relaxed prose-a:text-blue-700 prose-a:no-underline hover:prose-a:underline prose-strong:text-gray-900 prose-ul:my-6 prose-li:my-2 prose-blockquote:border-l-blue-500 prose-blockquote:bg-blue-50 prose-blockquote:py-4 prose-blockquote:px-6 prose-blockquote:rounded prose-code:bg-gray-100 prose-code:px-1 prose-code:py-0.5 prose-code:rounded prose-code:text-sm">
-                  {typeof post.content.body === 'string' ? (
-                    <div dangerouslySetInnerHTML={{ __html: post.content.body }} />
-                  ) : (
-                    post.content.body
-                  )}
+                {/* Main Content Body */}
+                {/* We use t() to get the HTML content string from the JSON file based on the key */}
+                <div className="prose prose-lg max-w-none prose-headings:text-gray-900 prose-headings:font-medium prose-h2:text-2xl prose-h2:mt-12 prose-h2:mb-6 prose-h3:text-xl prose-h3:mt-8 prose-h3:mb-4 prose-p:text-gray-700 prose-p:leading-relaxed prose-a:text-blue-700 prose-a:no-underline hover:prose-a:underline prose-strong:text-gray-900 prose-ul:my-6 prose-li:my-2 prose-blockquote:border-l-blue-500 prose-blockquote:bg-blue-50 prose-blockquote:py-4 prose-blockquote:px-6 prose-blockquote:rounded prose-code:bg-gray-100 prose-code:px-1 prose-code:py-0.5 prose-code:rounded prose-code:text-sm">
+                   <div dangerouslySetInnerHTML={{ __html: t(post.content.body as string) }} />
                 </div>
 
-                {/* Conclusion */}
+                {/* Conclusion - Translated */}
                 {post.content.conclusion && (
                   <div className="mt-12 p-6 bg-green-50 rounded-lg border-l-4 border-green-500">
-                    <h3 className="text-lg font-semibold text-gray-900 mb-4">Key Takeaways</h3>
+                    <h3 className="text-lg font-semibold text-gray-900 mb-4">{t('blogPost.article.keyTakeaways')}</h3>
                     <div className="text-gray-700 leading-relaxed">
-                      {post.content.conclusion}
+                      {t(post.content.conclusion)}
                     </div>
                   </div>
                 )}
 
                 {/* Tags */}
                 <div className="mt-12 pt-8 border-t border-gray-200">
-                  <h4 className="text-sm font-medium text-gray-900 mb-4">Tags</h4>
-                  <div className="flex flex-wrap gap-2">
-                    {post.tags.map((tag) => (
+                  <h4 className="text-sm font-medium text-gray-900 mb-4">{t('blogPost.article.tags')}</h4>
+                  <div className="flex flex-wrap gap-2 mb-6">
+                    {post.tags.map((tag: string) => (
                       <span
                         key={tag}
                         className="inline-flex items-center px-3 py-1.5 rounded-full text-sm font-medium bg-gray-100 text-gray-700 hover:bg-gray-200 transition-colors cursor-pointer"
@@ -409,8 +412,8 @@ const BlogPost: React.FC = () => {
                           </svg>
                         )}
                       </div>
-                      <p className="text-sm text-gray-600 mb-2">{post.author.title}</p>
-                      <p className="text-gray-700 mb-4">{post.author.bio}</p>
+                      <p className="text-sm text-gray-600 mb-2">{t(post.author.title)}</p>
+                      <p className="text-gray-700 mb-4">{t(post.author.bio)}</p>
                       <div className="flex space-x-3">
                         {post.author.social.linkedin && (
                           <a
@@ -461,11 +464,11 @@ const BlogPost: React.FC = () => {
         {relatedPosts.length > 0 && (
           <section className="bg-gray-50 py-16">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-              <h2 className="text-3xl font-bold text-gray-900 text-center mb-12">
-                Related Articles
+              <h2 className="text-3xl font-medium text-gray-900 text-center mb-12">
+                {t('blogPost.related.title')}
               </h2>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                {relatedPosts.map((relatedPost) => (
+                {relatedPosts.map((relatedPost: any) => (
                   <BlogCard 
                     key={relatedPost.id} 
                     post={relatedPost} 
@@ -480,22 +483,22 @@ const BlogPost: React.FC = () => {
         {/* Newsletter CTA */}
         <section className="bg-gradient-to-r from-blue-600 to-purple-600 py-16">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white">
-            <h2 className="text-3xl font-bold mb-4">Get More Career Insights</h2>
+            <h2 className="text-3xl font-medium mb-4">{t('blogPost.newsletter.title')}</h2>
             <p className="text-xl text-blue-100 mb-8">
-              Join 10,000+ professionals receiving weekly tips on CV optimization, career growth, and job search strategies.
+              {t('blogPost.newsletter.subtitle')}
             </p>
             <div className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
               <input
                 type="email"
-                placeholder="Enter your email"
+                placeholder={t('blogPost.newsletter.placeholder')}
                 className="flex-1 px-4 py-3 rounded-lg text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-white focus:ring-opacity-50"
               />
               <button className="px-8 py-3 bg-white text-blue-700 font-semibold rounded-lg hover:bg-gray-100 transition-colors whitespace-nowrap">
-                Subscribe
+                {t('blogPost.newsletter.button')}
               </button>
             </div>
             <p className="text-sm text-blue-200 mt-4">
-              No spam. Unsubscribe anytime.
+              {t('blogPost.newsletter.disclaimer')}
             </p>
           </div>
         </section>

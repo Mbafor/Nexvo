@@ -1,8 +1,5 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
-  FolderOpen, 
-  Sparkles, 
-  Clock,
   FileText,
   X,
   ChevronRight
@@ -21,15 +18,6 @@ interface NavigationHelperProps {
   }>;
 }
 
-interface QuickAction {
-  id: string;
-  label: string;
-  description: string;
-  icon: React.ElementType;
-  action: () => void;
-  color: string;
-}
-
 export default function NavigationHelper({
   isVisible,
   onClose,
@@ -37,39 +25,6 @@ export default function NavigationHelper({
   currentProgress,
   savedCVs = []
 }: NavigationHelperProps) {
-
-  const quickActions: QuickAction[] = [
-    {
-      id: 'dashboard',
-      label: 'Go to Dashboard',
-      description: 'Manage all your CVs and track applications',
-      icon: FolderOpen,
-      action: onDashboard,
-      color: 'blue'
-    },
-    {
-      id: 'templates',
-      label: 'Try New Template',
-      description: 'Start fresh with a different CV style',
-      icon: Sparkles,
-      action: () => {
-        // Navigate to template selection
-        console.log('Navigate to templates');
-      },
-      color: 'purple'
-    },
-    {
-      id: 'recent',
-      label: 'Continue Recent',
-      description: 'Pick up where you left off',
-      icon: Clock,
-      action: () => {
-        // Load most recent CV
-        console.log('Load recent CV');
-      },
-      color: 'green'
-    }
-  ];
 
   return (
     <AnimatePresence>

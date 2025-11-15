@@ -164,7 +164,7 @@ export default function SharedCV() {
           <div className="bg-red-100 rounded-full p-4 w-16 h-16 mx-auto mb-4 flex items-center justify-center">
             <FileText className="h-8 w-8 text-red-600" />
           </div>
-          <h2 className="text-xl font-bold text-gray-900 mb-2">CV Not Found</h2>
+          <h2 className="text-xl font-medium text-gray-900 mb-2">CV Not Found</h2>
           <p className="text-gray-600 mb-6">{error}</p>
           <div className="space-y-3">
             <button
@@ -277,7 +277,7 @@ export default function SharedCV() {
                 <FileText className="h-6 w-6 text-blue-700" />
               </div>
               <div>
-                <h2 className="text-xl font-bold text-gray-900">{cvRecord.fileName}</h2>
+                <h2 className="text-xl font-medium text-gray-900">{cvRecord.fileName}</h2>
                 <div className="flex items-center space-x-3 mt-1">
                   <span className={`px-2 py-1 rounded-full text-sm font-medium ${getTemplateColor(cvRecord.templateType)}`}>
                     {getTemplateDisplayName(cvRecord.templateType)} Template
@@ -312,7 +312,7 @@ export default function SharedCV() {
           <div className="p-8">
             {/* Personal Info */}
             <div className="text-center mb-8">
-              <h1 className="text-3xl font-bold text-gray-900 mb-2">{cvData.personalInfo.fullName}</h1>
+              <h1 className="text-3xl font-medium text-gray-900 mb-2">{cvData.personalInfo.fullName}</h1>
               <div className="flex flex-wrap justify-center gap-4 text-gray-600">
                 {cvData.personalInfo.email && (
                   <div className="flex items-center space-x-1">
@@ -350,7 +350,7 @@ export default function SharedCV() {
             {/* Summary */}
             {cvData.personalInfo.summary && (
               <div className="mb-8">
-                <h2 className="text-xl font-bold text-gray-900 mb-3 flex items-center">
+                <h2 className="text-xl font-medium text-gray-900 mb-3 flex items-center">
                   <User className="h-5 w-5 mr-2" />
                   Professional Summary
                 </h2>
@@ -361,7 +361,7 @@ export default function SharedCV() {
             {/* Experience */}
             {cvData.experience && cvData.experience.length > 0 && (
               <div className="mb-8">
-                <h2 className="text-xl font-bold text-gray-900 mb-4 flex items-center">
+                <h2 className="text-xl font-medium text-gray-900 mb-4 flex items-center">
                   <Briefcase className="h-5 w-5 mr-2" />
                   Professional Experience
                 </h2>
@@ -394,7 +394,7 @@ export default function SharedCV() {
             {/* Education */}
             {cvData.education && cvData.education.length > 0 && (
               <div className="mb-8">
-                <h2 className="text-xl font-bold text-gray-900 mb-4 flex items-center">
+                <h2 className="text-xl font-medium text-gray-900 mb-4 flex items-center">
                   <GraduationCap className="h-5 w-5 mr-2" />
                   Education
                 </h2>
@@ -429,7 +429,7 @@ export default function SharedCV() {
             {/* Skills */}
             {cvData.skills && cvData.skills.length > 0 && (
               <div className="mb-8">
-                <h2 className="text-xl font-bold text-gray-900 mb-4 flex items-center">
+                <h2 className="text-xl font-medium text-gray-900 mb-4 flex items-center">
                   <Code className="h-5 w-5 mr-2" />
                   Skills
                 </h2>
@@ -449,7 +449,7 @@ export default function SharedCV() {
             {/* Projects */}
             {cvData.projects && cvData.projects.length > 0 && (
               <div className="mb-8">
-                <h2 className="text-xl font-bold text-gray-900 mb-4 flex items-center">
+                <h2 className="text-xl font-medium text-gray-900 mb-4 flex items-center">
                   <FileText className="h-5 w-5 mr-2" />
                   Projects
                 </h2>
@@ -485,7 +485,7 @@ export default function SharedCV() {
             {/* Languages */}
             {cvData.languages && cvData.languages.length > 0 && (
               <div className="mb-8">
-                <h2 className="text-xl font-bold text-gray-900 mb-4 flex items-center">
+                <h2 className="text-xl font-medium text-gray-900 mb-4 flex items-center">
                   <Languages className="h-5 w-5 mr-2" />
                   Languages
                 </h2>

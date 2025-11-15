@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import Footer from '../common/Footer';
 
 interface BlogLayoutProps {
@@ -10,30 +11,41 @@ interface BlogLayoutProps {
 
 const BlogLayout: React.FC<BlogLayoutProps> = ({ 
   children, 
-  title = "QuickCV Blog", 
-  description = "Expert insights on CV building, career development, and job search strategies" 
+  title, 
+  description 
 }) => {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  // Default values using translation keys if props are not provided
+  const pageTitle = title || t('layout.blog.default_title');
+  const pageDescription = description || t('layout.blog.default_description');
 
   // Set document title and meta description dynamically
   useEffect(() => {
     // Scroll to top when component mounts
     window.scrollTo(0, 0);
     
-    document.title = title;
+    document.title = pageTitle;
     
     // Update meta description
     const metaDescription = document.querySelector('meta[name="description"]');
     if (metaDescription) {
-      metaDescription.setAttribute('content', description);
+      metaDescription.setAttribute('content', pageDescription);
     } else {
       const meta = document.createElement('meta');
       meta.name = 'description';
-      meta.content = description;
+      meta.content = pageDescription;
       document.getElementsByTagName('head')[0].appendChild(meta);
     }
-  }, [title, description]);
+  }, [pageTitle, pageDescription]);
+
+  const navLinks = [
+    { label: t('layout.nav.home'), path: '/' },
+    { label: t('layout.nav.builder'), path: '/builder' },
+    { label: t('layout.nav.blog'), path: '/blogs', active: true }, // Explicitly marking active for Blog layout
+  ];
 
   return (
     <div className="min-h-screen flex flex-col bg-gray-50">
@@ -48,33 +60,27 @@ const BlogLayout: React.FC<BlogLayoutProps> = ({
               onClick={() => navigate("/")}
             >
               <div className="flex-shrink-0">
-                <h1 className="text-2xl font-bold text-blue-700 group-hover:text-blue-700 transition-colors">
+                <h1 className="text-2xl font-medium text-blue-700 group-hover:text-blue-700 transition-colors">
                   QuickCV
                 </h1>
               </div>
             </div>
 
-            {/* Navigation Links */}
+            {/* Navigation Links (Desktop) */}
             <div className="hidden md:flex items-center space-x-8">
-              <button
-                onClick={() => navigate("/")}
-                className="text-gray-600 hover:text-blue-700 font-medium transition-colors"
-              >
-                Home
-              </button>
-              <button
-                onClick={() => navigate("/builder")}
-                className="text-gray-600 hover:text-blue-700 font-medium transition-colors"
-              >
-                CV Builder
-              </button>
-              <button
-                onClick={() => navigate("/blogs")}
-                className="text-blue-700 font-medium border-b-2 border-blue-600"
-              >
-                Blog
-              </button>
-              
+              {navLinks.map((link) => (
+                <button
+                  key={link.path}
+                  onClick={() => navigate(link.path)}
+                  className={`${
+                    link.active 
+                      ? "text-blue-700 font-medium border-b-2 border-blue-600" 
+                      : "text-gray-600 hover:text-blue-700 font-medium transition-colors"
+                  }`}
+                >
+                  {link.label}
+                </button>
+              ))}
             </div>
 
             {/* Mobile Menu Button */}
@@ -83,7 +89,7 @@ const BlogLayout: React.FC<BlogLayoutProps> = ({
                 type="button"
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
                 className="text-gray-600 hover:text-blue-700 transition-colors"
-                aria-label="Toggle menu"
+                aria-label={t('layout.nav.toggle_menu')}
               >
                 {isMobileMenuOpen ? (
                   <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -97,13 +103,13 @@ const BlogLayout: React.FC<BlogLayoutProps> = ({
               </button>
             </div>
 
-            {/* CTA Button */}
+            {/* CTA Button (Desktop) */}
             <div className="hidden lg:flex">
               <button
                 onClick={() => navigate("/builder")}
                 className="bg-blue-700 hover:bg-blue-600 text-white px-4 py-2 rounded-lg font-medium transition-colors shadow-sm"
               >
-                Create CV
+                {t('layout.nav.create_cv')}
               </button>
             </div>
           </div>
@@ -113,33 +119,22 @@ const BlogLayout: React.FC<BlogLayoutProps> = ({
         {isMobileMenuOpen && (
           <div className="md:hidden border-t border-gray-200 bg-white">
             <div className="px-4 py-3 space-y-3">
-              <button
-                onClick={() => {
-                  navigate("/");
-                  setIsMobileMenuOpen(false);
-                }}
-                className="block w-full text-left px-3 py-2 text-gray-600 hover:text-blue-700 font-medium transition-colors"
-              >
-                Home
-              </button>
-              <button
-                onClick={() => {
-                  navigate("/builder");
-                  setIsMobileMenuOpen(false);
-                }}
-                className="block w-full text-left px-3 py-2 text-gray-600 hover:text-blue-700 font-medium transition-colors"
-              >
-                CV Builder
-              </button>
-              <button
-                onClick={() => {
-                  navigate("/blogs");
-                  setIsMobileMenuOpen(false);
-                }}
-                className="block w-full text-left px-3 py-2 text-blue-700 font-medium border-l-2 border-blue-600"
-              >
-                Blog
-              </button>
+              {navLinks.map((link) => (
+                <button
+                  key={link.path}
+                  onClick={() => {
+                    navigate(link.path);
+                    setIsMobileMenuOpen(false);
+                  }}
+                  className={`block w-full text-left px-3 py-2 font-medium transition-colors ${
+                    link.active
+                      ? "text-blue-700 border-l-2 border-blue-600"
+                      : "text-gray-600 hover:text-blue-700"
+                  }`}
+                >
+                  {link.label}
+                </button>
+              ))}
     
               <div className="pt-3">
                 <button
@@ -149,7 +144,7 @@ const BlogLayout: React.FC<BlogLayoutProps> = ({
                   }}
                   className="w-full bg-blue-700 hover:bg-blue-600 text-white px-4 py-2 rounded-lg font-medium transition-colors shadow-sm"
                 >
-                  Create CV
+                  {t('layout.nav.create_cv')}
                 </button>
               </div>
             </div>

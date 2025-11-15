@@ -1,4 +1,5 @@
 import { Plus, Trash2 } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 import { VolunteerWork } from '../../types/cv';
 import BulletPointTextarea from '../common/BulletPointTextarea';
 
@@ -8,7 +9,9 @@ interface VolunteerFormProps {
 }
 
 export default function VolunteerForm({ data, onChange }: VolunteerFormProps) {
-  const addVolunteer = () => {
+  const { t } = useTranslation();
+  
+  const addVolunteerWork = () => {
     const newVolunteer: VolunteerWork = {
       id: crypto.randomUUID(),
       organization: '',
@@ -35,14 +38,14 @@ export default function VolunteerForm({ data, onChange }: VolunteerFormProps) {
     <div className="space-y-6">
       {data.length === 0 && (
         <p className="text-slate-500 text-center py-4">
-          No volunteer work yet. Click "Add Volunteer Work" to get started.
+          {t('volunteer.noVolunteer')}
         </p>
       )}
 
       {data.map((vol, index) => (
         <div key={vol.id} className="border border-slate-200 rounded-lg p-6 relative">
           <div className="flex justify-between items-start mb-4">
-            <h3 className="text-lg font-semibold text-slate-900">Volunteer Work {index + 1}</h3>
+            <h3 className="text-lg font-semibold text-slate-900">{t('volunteer.title')} {index + 1}</h3>
             <button
               onClick={() => removeVolunteer(vol.id)}
               className="text-red-500 hover:text-red-700 transition-colors"
@@ -55,7 +58,7 @@ export default function VolunteerForm({ data, onChange }: VolunteerFormProps) {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
                 <label className="block text-sm font-medium text-slate-700 mb-1">
-                  Organization
+                  {t('volunteer.organization')}
                 </label>
                 <input
                   type="text"
@@ -65,18 +68,18 @@ export default function VolunteerForm({ data, onChange }: VolunteerFormProps) {
                   value={vol.organization}
                   onChange={(e) => updateVolunteer(vol.id, 'organization', e.target.value)}
                   className="w-full px-3 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-slate-500 focus:border-transparent"
-                  placeholder="Organization Name"
+                  placeholder={t('volunteer.placeholders.organization')}
                 />
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-slate-700 mb-1">Role</label>
+                <label className="block text-sm font-medium text-slate-700 mb-1">{t('volunteer.role')}</label>
                 <input
                   type="text"
                   value={vol.role}
                   onChange={(e) => updateVolunteer(vol.id, 'role', e.target.value)}
                   className="w-full px-3 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-slate-500 focus:border-transparent"
-                  placeholder="Volunteer Position"
+                  placeholder={t('volunteer.placeholders.role')}
                 />
               </div>
             </div>
@@ -84,7 +87,7 @@ export default function VolunteerForm({ data, onChange }: VolunteerFormProps) {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
                 <label className="block text-sm font-medium text-slate-700 mb-1">
-                  Start Date
+                  {t('volunteer.startDate')}
                 </label>
                 <input
                   type="month"
@@ -95,7 +98,7 @@ export default function VolunteerForm({ data, onChange }: VolunteerFormProps) {
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-slate-700 mb-1">End Date</label>
+                <label className="block text-sm font-medium text-slate-700 mb-1">{t('volunteer.endDate')}</label>
                 <input
                   type="month"
                   value={vol.endDate}
@@ -115,18 +118,15 @@ export default function VolunteerForm({ data, onChange }: VolunteerFormProps) {
                 className="h-4 w-4 text-slate-800 focus:ring-slate-500 border-slate-300 rounded"
               />
               <label htmlFor={`current-${vol.id}`} className="ml-2 text-sm text-slate-700">
-                I currently volunteer here
+                {t('volunteer.current')}
               </label>
             </div>
 
             <BulletPointTextarea
-              label="Description"
+              label={t('volunteer.description')}
               value={vol.description}
               onChange={(value) => updateVolunteer(vol.id, 'description', value)}
-              placeholder="• What you did and what impact you made...
-• Organized community events
-• Raised $5000 for charity
-• Trained 10 new volunteers"
+              placeholder={t('volunteer.placeholders.description')}
               rows={4}
             />
           </div>
@@ -134,11 +134,11 @@ export default function VolunteerForm({ data, onChange }: VolunteerFormProps) {
       ))}
 
       <button
-        onClick={addVolunteer}
+        onClick={addVolunteerWork}
         className="w-full flex items-center justify-center space-x-2 px-4 py-3 border-2 border-dashed border-slate-300 rounded-lg hover:border-slate-400 hover:bg-slate-50 transition-colors text-slate-600 font-medium"
       >
         <Plus className="h-5 w-5" />
-        <span>Add Volunteer Work</span>
+        <span>{t('volunteer.addVolunteer')}</span>
       </button>
     </div>
   );

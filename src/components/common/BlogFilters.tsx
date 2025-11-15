@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
+import { useTranslation } from 'react-i18next'; // Import added
 import { BlogFilter, Category } from '../../types/blog';
 import { extractAllTags, extractAllAuthors } from '../../utils/blogUtils';
 import { BlogPost } from '../../types/blog';
@@ -20,6 +21,7 @@ const BlogFilters: React.FC<BlogFiltersProps> = ({
   searchQuery,
   onSearchChange,
 }) => {
+  const { t } = useTranslation(); // Hook initialized
   const [isTagsOpen, setIsTagsOpen] = useState(false);
   const [isAuthorsOpen, setIsAuthorsOpen] = useState(false);
   const tagsRef = useRef<HTMLDivElement>(null);
@@ -104,7 +106,7 @@ const BlogFilters: React.FC<BlogFiltersProps> = ({
               type="text"
               value={searchQuery}
               onChange={(e) => onSearchChange(e.target.value)}
-              placeholder="Search articles, topics, or authors..."
+              placeholder={t('blog.filters.searchPlaceholder')}
               className="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md leading-5 bg-white placeholder-gray-500 focus:outline-none focus:placeholder-gray-400 focus:ring-1 focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
             />
           </div>
@@ -120,7 +122,7 @@ const BlogFilters: React.FC<BlogFiltersProps> = ({
                 : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
             }`}
           >
-            All Categories
+            {t('blog.filters.allCategories')}
           </button>
           {categories.map((category) => (
             <button
@@ -151,7 +153,7 @@ const BlogFilters: React.FC<BlogFiltersProps> = ({
             onChange={handleFeaturedToggle}
             className="rounded border-gray-300 text-blue-700 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50"
           />
-          <span className="ml-2 text-sm font-medium text-gray-700">Featured only</span>
+          <span className="ml-2 text-sm font-medium text-gray-700">{t('blog.filters.featuredOnly')}</span>
         </label>
 
         {/* Tags Filter */}
@@ -160,7 +162,7 @@ const BlogFilters: React.FC<BlogFiltersProps> = ({
             onClick={() => setIsTagsOpen(!isTagsOpen)}
             className="inline-flex items-center px-4 py-2 border border-gray-300 rounded-md text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
           >
-            Tags
+            {t('blog.filters.tags')}
             {filters.tags && filters.tags.length > 0 && (
               <span className="ml-2 inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-700">
                 {filters.tags.length}
@@ -194,7 +196,7 @@ const BlogFilters: React.FC<BlogFiltersProps> = ({
             onClick={() => setIsAuthorsOpen(!isAuthorsOpen)}
             className="inline-flex items-center px-4 py-2 border border-gray-300 rounded-md text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
           >
-            Authors
+            {t('blog.filters.authors')}
             {filters.author && (
               <span className="ml-2 inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-700">
                 1
@@ -247,7 +249,7 @@ const BlogFilters: React.FC<BlogFiltersProps> = ({
             <svg className="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
             </svg>
-            Clear all filters
+            {t('blog.filters.clearAll')}
           </button>
         )}
       </div>
@@ -257,7 +259,7 @@ const BlogFilters: React.FC<BlogFiltersProps> = ({
         <div className="mt-4 flex flex-wrap gap-2">
           {searchQuery && (
             <span className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-blue-100 text-blue-700">
-              Search: "{searchQuery}"
+              {t('blog.filters.active.search')}: "{searchQuery}"
               <button
                 onClick={() => onSearchChange('')}
                 className="ml-2 text-blue-700 hover:text-blue-700"
@@ -268,7 +270,7 @@ const BlogFilters: React.FC<BlogFiltersProps> = ({
           )}
           {filters.category && (
             <span className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-blue-100 text-blue-700">
-              Category: {categories.find(c => c.slug === filters.category)?.name}
+              {t('blog.filters.active.category')}: {categories.find(c => c.slug === filters.category)?.name}
               <button
                 onClick={() => onFilterChange({ ...filters, category: undefined })}
                 className="ml-2 text-blue-700 hover:text-blue-700"
@@ -290,7 +292,7 @@ const BlogFilters: React.FC<BlogFiltersProps> = ({
           ))}
           {filters.author && (
             <span className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-purple-100 text-purple-800">
-              Author: {allAuthors.find(a => a.id === filters.author)?.name}
+              {t('blog.filters.active.author')}: {allAuthors.find(a => a.id === filters.author)?.name}
               <button
                 onClick={() => onFilterChange({ ...filters, author: undefined })}
                 className="ml-2 text-purple-600 hover:text-purple-800"
@@ -301,7 +303,7 @@ const BlogFilters: React.FC<BlogFiltersProps> = ({
           )}
           {filters.featured && (
             <span className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-yellow-100 text-yellow-800">
-              Featured
+              {t('blog.filters.active.featured')}
               <button
                 onClick={() => onFilterChange({ ...filters, featured: undefined })}
                 className="ml-2 text-yellow-600 hover:text-yellow-800"

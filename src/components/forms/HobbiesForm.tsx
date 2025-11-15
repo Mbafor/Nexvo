@@ -1,4 +1,5 @@
-import { Plus, Trash2 } from 'lucide-react';
+import { Plus, Trash2 } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 interface HobbiesFormProps {
   data: string[];
@@ -6,8 +7,10 @@ interface HobbiesFormProps {
 }
 
 export default function HobbiesForm({ data, onChange }: HobbiesFormProps) {
+  const { t } = useTranslation();
+
   const addHobby = () => {
-    onChange([...data, '']);
+    onChange([...data, ""]);
   };
 
   const removeHobby = (index: number) => {
@@ -23,7 +26,7 @@ export default function HobbiesForm({ data, onChange }: HobbiesFormProps) {
     <div className="space-y-6">
       {data.length === 0 && (
         <p className="text-slate-500 text-center py-4">
-          No hobbies yet. Click "Add Hobby" to get started.
+          {t("hobbies.noHobbies")}
         </p>
       )}
 
@@ -31,7 +34,10 @@ export default function HobbiesForm({ data, onChange }: HobbiesFormProps) {
         {data.map((hobby, idx) => (
           <div key={idx} className="border border-slate-200 rounded-lg p-4">
             <div className="flex justify-between items-start mb-3">
-              <label className="block text-sm font-medium text-slate-700">Hobby</label>
+              <label className="block text-sm font-medium text-slate-700">
+                {t("hobbies.hobby")}
+              </label>
+
               <button
                 onClick={() => removeHobby(idx)}
                 className="text-red-500 hover:text-red-700 transition-colors"
@@ -39,15 +45,14 @@ export default function HobbiesForm({ data, onChange }: HobbiesFormProps) {
                 <Trash2 className="h-4 w-4" />
               </button>
             </div>
+
             <input
               type="text"
-              name={idx === 0 ? "hobby" : undefined}
-              id={idx === 0 ? "hobby" : undefined}
-              data-field={idx === 0 ? "hobbies.0" : undefined}
               value={hobby}
               onChange={(e) => updateHobby(idx, e.target.value)}
-              className="w-full px-3 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-slate-500 focus:border-transparent"
-              placeholder="Photography, Chess, Traveling..."
+              className="w-full px-3 py-2 border border-slate-300 rounded-lg 
+                         focus:ring-2 focus:ring-slate-500 focus:border-transparent"
+              placeholder={t("hobbies.placeholders.name")}
             />
           </div>
         ))}
@@ -55,10 +60,13 @@ export default function HobbiesForm({ data, onChange }: HobbiesFormProps) {
 
       <button
         onClick={addHobby}
-        className="w-full flex items-center justify-center space-x-2 px-4 py-3 border-2 border-dashed border-slate-300 rounded-lg hover:border-slate-400 hover:bg-slate-50 transition-colors text-slate-600 font-medium"
+        className="w-full flex items-center justify-center space-x-2 px-4 py-3 
+                   border-2 border-dashed border-slate-300 rounded-lg
+                   hover:border-slate-400 hover:bg-slate-50 transition-colors 
+                   text-slate-600 font-medium"
       >
         <Plus className="h-5 w-5" />
-        <span>Add Hobby</span>
+        <span>{t("hobbies.addHobby")}</span>
       </button>
     </div>
   );

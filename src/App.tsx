@@ -20,8 +20,22 @@ import { saveCVDownload } from './lib/firestore';
 import { generatePDFBlob } from './lib/pdfGenerator';
 import { downloadIntentService } from './utils/downloadIntent';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import './i18n';
 
-const CV_STORAGE_KEY = 'cv_builder_data';
+// Load CV data from localStorage
+const loadCVData = (): CVData => {
+  try {
+    const storedData = localStorage.getItem('cv_builder_data');
+    if (storedData) {
+      const parsedData = JSON.parse(storedData);
+      console.log('✅ Loaded CV data from localStorage');
+      return parsedData;
+    }
+  } catch (error) {
+    console.error('❌ Failed to load CV data from localStorage:', error);
+  }
+  return getDefaultCVData();
+};
 
 // Default CV data structure
 const getDefaultCVData = (): CVData => ({
@@ -38,25 +52,10 @@ const getDefaultCVData = (): CVData => ({
   certifications: []
 });
 
-// Load CV data from localStorage
-const loadCVDataFromStorage = (): CVData => {
-  try {
-    const stored = localStorage.getItem(CV_STORAGE_KEY);
-    if (stored) {
-      const parsed = JSON.parse(stored);
-      console.log('✅ Loaded CV data from localStorage:', parsed);
-      return parsed;
-    }
-  } catch (error) {
-    console.error('❌ Failed to load CV data from localStorage:', error);
-  }
-  return getDefaultCVData();
-};
-
 // Save CV data to localStorage
 const saveCVDataToStorage = (cvData: CVData): void => {
   try {
-    localStorage.setItem(CV_STORAGE_KEY, JSON.stringify(cvData));
+    localStorage.setItem('cv_builder_data', JSON.stringify(cvData));
     console.log('💾 Saved CV data to localStorage');
   } catch (error) {
     console.error('❌ Failed to save CV data to localStorage:', error);
@@ -65,10 +64,10 @@ const saveCVDataToStorage = (cvData: CVData): void => {
 
 function App() {
   const { user } = useAuth();
-  const [cvData, setCvData] = useState<CVData>(loadCVDataFromStorage);
+  const [cvData, setCvData] = useState<CVData>(loadCVData);
   const [showAuthModal, setShowAuthModal] = useState(false);
 
-  // Save CV data to localStorage whenever it changes
+  // Save CV data whenever it changes
   useEffect(() => {
     saveCVDataToStorage(cvData);
   }, [cvData]);

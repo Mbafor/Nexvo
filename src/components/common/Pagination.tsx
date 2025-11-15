@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next'; // Import added
 
 interface PaginationProps {
   currentPage: number;
@@ -15,6 +16,8 @@ const Pagination: React.FC<PaginationProps> = ({
   showFirstLast = true,
   maxVisiblePages = 5
 }) => {
+  const { t } = useTranslation(); // Hook initialized
+
   if (totalPages <= 1) return null;
 
   const getVisiblePages = (): number[] => {
@@ -55,7 +58,7 @@ const Pagination: React.FC<PaginationProps> = ({
         ${visiblePages.indexOf(page) === 0 ? 'rounded-l-md' : ''}
         ${visiblePages.indexOf(page) === visiblePages.length - 1 ? 'rounded-r-md' : ''}
       `}
-      aria-label={`Go to page ${page}`}
+      aria-label={t('pagination.aria.goToPage', { page })}
       aria-current={isActive ? 'page' : undefined}
     >
       {children}
@@ -63,7 +66,10 @@ const Pagination: React.FC<PaginationProps> = ({
   );
 
   return (
-    <nav className="flex items-center justify-between border-t border-gray-200 bg-white px-4 py-3 sm:px-6" aria-label="Pagination">
+    <nav 
+      className="flex items-center justify-between border-t border-gray-200 bg-white px-4 py-3 sm:px-6" 
+      aria-label={t('pagination.aria.navLabel')}
+    >
       <div className="flex flex-1 justify-between sm:hidden">
         {/* Mobile Pagination */}
         <button
@@ -71,34 +77,34 @@ const Pagination: React.FC<PaginationProps> = ({
           disabled={currentPage <= 1}
           className="relative inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 disabled:bg-gray-100 disabled:text-gray-400 disabled:cursor-not-allowed"
         >
-          Previous
+          {t('pagination.previous')}
         </button>
         <span className="relative inline-flex items-center px-4 py-2 text-sm font-medium text-gray-700">
-          Page {currentPage} of {totalPages}
+          {t('pagination.mobilePageInfo', { current: currentPage, total: totalPages })}
         </span>
         <button
           onClick={() => onPageChange(currentPage + 1)}
           disabled={currentPage >= totalPages}
           className="relative ml-3 inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 disabled:bg-gray-100 disabled:text-gray-400 disabled:cursor-not-allowed"
         >
-          Next
+          {t('pagination.next')}
         </button>
       </div>
 
       <div className="hidden sm:flex sm:flex-1 sm:items-center sm:justify-between">
         <div>
           <p className="text-sm text-gray-700">
-            Showing page <span className="font-medium">{currentPage}</span> of{' '}
+            {t('pagination.showing')} <span className="font-medium">{currentPage}</span> {t('pagination.of')}{' '}
             <span className="font-medium">{totalPages}</span>
           </p>
         </div>
         <div>
-          <nav className="isolate inline-flex -space-x-px rounded-md shadow-sm" aria-label="Pagination">
+          <nav className="isolate inline-flex -space-x-px rounded-md shadow-sm" aria-label={t('pagination.aria.navLabel')}>
             {/* First page button */}
             {showFirstLast && currentPage > 1 && (
               <>
                 <PageButton page={1}>
-                  <span className="sr-only">First page</span>
+                  <span className="sr-only">{t('pagination.aria.first')}</span>
                   <svg className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
                     <path fillRule="evenodd" d="M15.79 14.77a.75.75 0 01-1.06.02l-4.5-4.25a.75.75 0 010-1.08l4.5-4.25a.75.75 0 111.04 1.08L11.832 10l3.938 3.71a.75.75 0 01.02 1.06zm-6 0a.75.75 0 01-1.06.02l-4.5-4.25a.75.75 0 010-1.08l4.5-4.25a.75.75 0 111.04 1.08L5.832 10l3.938 3.71a.75.75 0 01.02 1.06z" clipRule="evenodd" />
                   </svg>
@@ -113,7 +119,7 @@ const Pagination: React.FC<PaginationProps> = ({
 
             {/* Previous button */}
             <PageButton page={currentPage - 1} isDisabled={currentPage <= 1}>
-              <span className="sr-only">Previous</span>
+              <span className="sr-only">{t('pagination.aria.previous')}</span>
               <svg className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
                 <path fillRule="evenodd" d="M12.79 5.23a.75.75 0 01-.02 1.06L8.832 10l3.938 3.71a.75.75 0 11-1.04 1.08l-4.5-4.25a.75.75 0 010-1.08l4.5-4.25a.75.75 0 011.06.02z" clipRule="evenodd" />
               </svg>
@@ -128,7 +134,7 @@ const Pagination: React.FC<PaginationProps> = ({
 
             {/* Next button */}
             <PageButton page={currentPage + 1} isDisabled={currentPage >= totalPages}>
-              <span className="sr-only">Next</span>
+              <span className="sr-only">{t('pagination.aria.next')}</span>
               <svg className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
                 <path fillRule="evenodd" d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z" clipRule="evenodd" />
               </svg>
@@ -143,7 +149,7 @@ const Pagination: React.FC<PaginationProps> = ({
                   </span>
                 )}
                 <PageButton page={totalPages}>
-                  <span className="sr-only">Last page</span>
+                  <span className="sr-only">{t('pagination.aria.last')}</span>
                   <svg className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
                     <path fillRule="evenodd" d="M4.21 5.23a.75.75 0 011.06-.02l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 11-1.04-1.08L8.168 10 4.23 6.29a.75.75 0 01-.02-1.06zm6 0a.75.75 0 011.06-.02l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 11-1.04-1.08L14.168 10l-3.938-3.71a.75.75 0 01-.02-1.06z" clipRule="evenodd" />
                   </svg>

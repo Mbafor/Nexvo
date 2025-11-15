@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Mail, AlertCircle, CheckCircle2, Loader2, X } from 'lucide-react';
+import { useTranslation } from 'react-i18next'; 
 import { useAuth } from '../context';
 
 interface EmailVerificationBannerProps {
@@ -7,6 +8,7 @@ interface EmailVerificationBannerProps {
 }
 
 export default function EmailVerificationBanner({ onDismiss }: EmailVerificationBannerProps) {
+  const { t } = useTranslation(); 
   const { user, sendEmailVerification } = useAuth();
   const [isLoading, setIsLoading] = useState(false);
   const [isRefreshing, setIsRefreshing] = useState(false);
@@ -28,7 +30,7 @@ export default function EmailVerificationBanner({ onDismiss }: EmailVerification
       // Reset the "just sent" state after 30 seconds
       setTimeout(() => setJustSent(false), 30000);
     } catch (err: any) {
-      setError(err.message || 'Failed to send verification email');
+      setError(err.message || t('auth.verification.errors.sendFailed'));
     } finally {
       setIsLoading(false);
     }
@@ -39,10 +41,9 @@ export default function EmailVerificationBanner({ onDismiss }: EmailVerification
     setError('');
     
     try {
-      // Simply reload the page to check verification status
       window.location.reload();
     } catch (err: any) {
-      setError('Failed to check verification status. Please try again.');
+      setError(t('auth.verification.errors.checkFailed'));
     } finally {
       setIsRefreshing(false);
     }
@@ -58,13 +59,13 @@ export default function EmailVerificationBanner({ onDismiss }: EmailVerification
         <div className="flex-1 min-w-0">
           <div className="flex items-center justify-between">
             <h3 className="text-sm font-semibold text-amber-900">
-              Email Verification Required
+              {t('auth.verification.title')}
             </h3>
             {onDismiss && (
               <button
                 onClick={onDismiss}
                 className="text-amber-600 hover:text-amber-800 transition-colors p-1"
-                aria-label="Dismiss notification"
+                aria-label={t('auth.verification.actions.dismiss')} 
               >
                 <X className="h-4 w-4" />
               </button>
@@ -72,7 +73,7 @@ export default function EmailVerificationBanner({ onDismiss }: EmailVerification
           </div>
           
           <p className="text-sm text-amber-800 mt-1">
-            Please verify your email address ({user.email}) to secure your account and access all features.
+            {t('auth.verification.description', { email: user.email })}
           </p>
 
           {error && (
@@ -86,7 +87,7 @@ export default function EmailVerificationBanner({ onDismiss }: EmailVerification
               <div className="flex items-center space-x-2">
                 <CheckCircle2 className="h-4 w-4 text-green-600" />
                 <p className="text-sm text-green-700">
-                  Verification email sent! Check your inbox and spam folder.
+                  {t('auth.verification.successSent')}
                 </p>
               </div>
             </div>
@@ -104,7 +105,12 @@ export default function EmailVerificationBanner({ onDismiss }: EmailVerification
                 <Mail className="h-4 w-4" />
               )}
               <span>
-                {isLoading ? 'Sending...' : justSent ? 'Email Sent' : 'Resend Verification'}
+                {isLoading 
+                  ? t('auth.verification.status.sending') 
+                  : justSent 
+                    ? t('auth.verification.buttons.emailSent') 
+                    : t('auth.verification.buttons.resend')
+                }
               </span>
             </button>
 
@@ -119,7 +125,10 @@ export default function EmailVerificationBanner({ onDismiss }: EmailVerification
                 <CheckCircle2 className="h-4 w-4" />
               )}
               <span>
-                {isRefreshing ? 'Checking...' : 'I\'ve Verified'}
+                {isRefreshing 
+                  ? t('auth.verification.status.checking') 
+                  : t('auth.verification.buttons.verified')
+                }
               </span>
             </button>
           </div>
@@ -127,14 +136,14 @@ export default function EmailVerificationBanner({ onDismiss }: EmailVerification
           <div className="mt-3 pt-3 border-t border-amber-200">
             <details className="group">
               <summary className="text-xs text-amber-700 cursor-pointer hover:text-amber-900 list-none flex items-center space-x-1">
-                <span>Didn't receive the email?</span>
+                <span>{t('auth.verification.troubleshoot.title')}</span>
                 <span className="ml-1 group-open:rotate-90 transition-transform">▶</span>
               </summary>
               <div className="mt-2 text-xs text-amber-600 space-y-1">
-                <p>• Check your spam/junk folder</p>
-                <p>• Make sure {user.email} is correct</p>
-                <p>• Wait a few minutes for delivery</p>
-                <p>• Try resending the verification email</p>
+                <p>• {t('auth.verification.troubleshoot.spam')}</p>
+                <p>• {t('auth.verification.troubleshoot.correctEmail', { email: user.email })}</p>
+                <p>• {t('auth.verification.troubleshoot.wait')}</p>
+                <p>• {t('auth.verification.troubleshoot.retry')}</p>
               </div>
             </details>
           </div>

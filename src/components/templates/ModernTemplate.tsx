@@ -4,6 +4,9 @@ import { Document, Page, View, Text, StyleSheet, Image } from '@react-pdf/render
 
 interface ModernTemplateProps {
   data: CVData;
+  translations?: {
+    [key: string]: string;
+  };
 }
 
 // Helper function to render bullet points
@@ -354,7 +357,7 @@ const styles = StyleSheet.create({
   }
 });
 
-export default function ModernTemplate({ data }: ModernTemplateProps) {
+export default function ModernTemplate({ data, translations }: ModernTemplateProps) {
   const getSkillLevel = (level: string) => {
     const levels = { 
       'beginner': 25, 
@@ -414,7 +417,7 @@ export default function ModernTemplate({ data }: ModernTemplateProps) {
               {data.personalInfo.summary && (
                 <View style={styles.section}>
                   <View style={styles.sectionTitleContainer}>
-                    <Text style={styles.sectionTitle}>Professional Profile</Text>
+                    <Text style={styles.sectionTitle}>{translations?.summary || 'Professional Profile'}</Text>
                   </View>
                   <Text style={styles.profileText}>{data.personalInfo.summary}</Text>
                 </View>
@@ -424,7 +427,7 @@ export default function ModernTemplate({ data }: ModernTemplateProps) {
               {data.experience?.length > 0 && (
                 <View style={styles.section}>
                   <View style={styles.sectionTitleContainer}>
-                    <Text style={styles.sectionTitle}>Professional Experience</Text>
+                    <Text style={styles.sectionTitle}>{translations?.experience || 'Professional Experience'}</Text>
                   </View>
                   {data.experience.map((exp, i) => (
                     <View key={i} style={styles.experienceItem}>
@@ -447,7 +450,7 @@ export default function ModernTemplate({ data }: ModernTemplateProps) {
               {data.projects && data.projects.length > 0 && (
                 <View style={styles.section}>
                   <View style={styles.sectionTitleContainer}>
-                    <Text style={styles.sectionTitle}>Key Projects</Text>
+                    <Text style={styles.sectionTitle}>{translations?.projects || 'Key Projects'}</Text>
                   </View>
                   {(data.projects || []).map((project, i) => (
                     <View key={i} style={styles.experienceItem}>
@@ -473,7 +476,7 @@ export default function ModernTemplate({ data }: ModernTemplateProps) {
               {data.volunteerWork?.length > 0 && (
                 <View style={styles.section}>
                   <View style={styles.sectionTitleContainer}>
-                    <Text style={styles.sectionTitle}>Volunteer Experience</Text>
+                    <Text style={styles.sectionTitle}>{translations?.volunteerWork || 'Volunteer Experience'}</Text>
                   </View>
                   {data.volunteerWork.map((vol, i) => (
                     <View key={i} style={styles.experienceItem}>
@@ -496,7 +499,7 @@ export default function ModernTemplate({ data }: ModernTemplateProps) {
               {/* Skills */}
               {data.skills?.length > 0 && (
                 <View style={styles.sidebarSection}>
-                  <Text style={styles.sidebarTitle}>Skills & Expertise</Text>
+                  <Text style={styles.sidebarTitle}>{translations?.skills || 'Skills & Expertise'}</Text>
                   {data.skills.map((skill, i) => (
                     <View key={i} style={styles.progressItem}>
                       <View style={styles.progressHeader}>
@@ -514,7 +517,7 @@ export default function ModernTemplate({ data }: ModernTemplateProps) {
               {/* Education */}
               {data.education?.length > 0 && (
                 <View style={styles.sidebarSection}>
-                  <Text style={styles.sidebarTitle}>Education</Text>
+                  <Text style={styles.sidebarTitle}>{translations?.education || 'Education'}</Text>
                   {data.education.map((edu, i) => (
                     <View key={i} style={styles.educationItem}>
                       <Text style={styles.degreeTitle}>{edu.degree}</Text>

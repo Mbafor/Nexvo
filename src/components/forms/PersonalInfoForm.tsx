@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import { PersonalInfo } from '../../types/cv';
 
 interface PersonalInfoFormProps {
@@ -6,8 +7,21 @@ interface PersonalInfoFormProps {
 }
 
 export default function PersonalInfoForm({ data, onChange }: PersonalInfoFormProps) {
+  const { t } = useTranslation();
+
   const handleChange = (field: keyof PersonalInfo, value: string) => {
     onChange({ ...data, [field]: value });
+  };
+
+  const handlePhotoUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    const reader = new FileReader();
+    reader.onload = () => {
+      onChange({ ...data, photo: reader.result as string });
+    };
+    reader.readAsDataURL(file);
   };
 
   return (
@@ -16,94 +30,78 @@ export default function PersonalInfoForm({ data, onChange }: PersonalInfoFormPro
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4 items-end">
         <div className="md:col-span-2">
           <label className="block text-sm font-medium text-slate-700 mb-1">
-            Full Name <span className="text-red-500">*</span>
+            {t("personalInfo.fullName")} <span className="text-red-500">*</span>
           </label>
           <input
             type="text"
-            name="fullName"
-            id="fullName"
-            data-field="personalInfo.fullName"
             value={data.fullName}
-            onChange={(e) => handleChange('fullName', e.target.value)}
+            onChange={(e) => handleChange("fullName", e.target.value)}
             className="w-full px-3 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-slate-500 focus:border-transparent"
-            placeholder="John Doe"
+            placeholder={t("personalInfo.placeholders.fullName")}
             required
           />
         </div>
 
         {/* Profile Photo */}
         <div className="flex flex-col items-center">
-          <label className="block text-sm font-medium text-slate-700 mb-1">Profile Photo</label>
+          <label className="block text-sm font-medium text-slate-700 mb-1">
+            {t("personalInfo.photo", "Profile Photo")}
+          </label>
+
           <div className="w-24 h-24 mb-1 relative">
             {data.photo ? (
               <>
                 <img
                   src={data.photo}
-                  alt="Profile"
+                  alt={t("personalInfo.photoAlt", "Profile Photo")}
                   className="w-24 h-24 object-cover rounded-full border border-slate-300"
                 />
                 <button
                   type="button"
                   onClick={() => onChange({ ...data, photo: '' })}
-                  className="absolute -top-1 -right-1 w-6 h-6 bg-red-500 hover:bg-red-600 text-white rounded-full flex items-center justify-center text-xs font-bold transition-colors"
-                  title="Remove photo"
+                  className="absolute -top-1 -right-1 w-6 h-6 bg-red-500 hover:bg-red-600 text-white rounded-full flex items-center justify-center text-xs font-medium transition-colors"
+                  title={t("personalInfo.removePhoto", "Remove photo")}
                 >
                   ×
                 </button>
               </>
             ) : (
               <div className="w-24 h-24 bg-slate-200 rounded-full border border-slate-300 flex items-center justify-center text-slate-500 text-xs">
-                No Photo
+                {t("personalInfo.noPhoto", "No Photo")}
               </div>
             )}
           </div>
-          <input
-            type="file"
-            accept="image/*"
-            onChange={(e) => {
-              const file = e.target.files?.[0];
-              if (!file) return;
-              const reader = new FileReader();
-              reader.onload = () => {
-                onChange({ ...data, photo: reader.result as string });
-              };
-              reader.readAsDataURL(file);
-            }}
-            className="text-xs"
-          />
+
+          <input type="file" accept="image/*" onChange={handlePhotoUpload} className="text-xs" />
         </div>
       </div>
 
-      {/* Email */}
+      {/* Email & Phone */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div>
           <label className="block text-sm font-medium text-slate-700 mb-1">
-            Email <span className="text-red-500">*</span>
+            {t("personalInfo.email")} <span className="text-red-500">*</span>
           </label>
           <input
             type="email"
-            name="email"
-            id="email"
-            data-field="personalInfo.email"
             value={data.email}
-            onChange={(e) => handleChange('email', e.target.value)}
+            onChange={(e) => handleChange("email", e.target.value)}
             className="w-full px-3 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-slate-500 focus:border-transparent"
-            placeholder="john@example.com"
+            placeholder={t("personalInfo.placeholders.email")}
             required
           />
         </div>
 
         <div>
-          <label className="block text-sm font-medium text-slate-700 mb-1">Phone</label>
+          <label className="block text-sm font-medium text-slate-700 mb-1">
+            {t("personalInfo.phone")}
+          </label>
           <input
             type="tel"
-            name="phone"
-            id="phone"
-            data-field="personalInfo.phone"
-            value={data.phone || ''}
-            onChange={(e) => handleChange('phone', e.target.value)}
+            value={data.phone || ""}
+            onChange={(e) => handleChange("phone", e.target.value)}
             className="w-full px-3 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-slate-500 focus:border-transparent"
-            placeholder="+1 (555) 123-4567"
+            placeholder={t("personalInfo.placeholders.phone")}
           />
         </div>
       </div>
@@ -111,63 +109,57 @@ export default function PersonalInfoForm({ data, onChange }: PersonalInfoFormPro
       {/* Location & LinkedIn */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div>
-          <label className="block text-sm font-medium text-slate-700 mb-1">Location</label>
+          <label className="block text-sm font-medium text-slate-700 mb-1">
+            {t("personalInfo.location")}
+          </label>
           <input
             type="text"
-            name="location"
-            id="location"
-            data-field="personalInfo.location"
-            value={data.location || ''}
-            onChange={(e) => handleChange('location', e.target.value)}
+            value={data.location || ""}
+            onChange={(e) => handleChange("location", e.target.value)}
             className="w-full px-3 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-slate-500 focus:border-transparent"
-            placeholder="City, Country"
+            placeholder={t("personalInfo.placeholders.location")}
           />
         </div>
 
         <div>
-          <label className="block text-sm font-medium text-slate-700 mb-1">LinkedIn</label>
+          <label className="block text-sm font-medium text-slate-700 mb-1">
+            {t("personalInfo.linkedin")}
+          </label>
           <input
             type="url"
-            name="linkedin"
-            id="linkedin"
-            data-field="personalInfo.linkedin"
-            value={data.linkedin || ''}
-            onChange={(e) => handleChange('linkedin', e.target.value)}
+            value={data.linkedin || ""}
+            onChange={(e) => handleChange("linkedin", e.target.value)}
             className="w-full px-3 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-slate-500 focus:border-transparent"
-            placeholder="linkedin.com/in/johndoe"
+            placeholder={t("personalInfo.placeholders.linkedin")}
           />
         </div>
       </div>
 
       {/* Website */}
       <div>
-        <label className="block text-sm font-medium text-slate-700 mb-1">Website</label>
+        <label className="block text-sm font-medium text-slate-700 mb-1">
+          {t("personalInfo.website")}
+        </label>
         <input
           type="url"
-          name="website"
-          id="website"
-          data-field="personalInfo.website"
-          value={data.website || ''}
-          onChange={(e) => handleChange('website', e.target.value)}
+          value={data.website || ""}
+          onChange={(e) => handleChange("website", e.target.value)}
           className="w-full px-3 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-slate-500 focus:border-transparent"
-          placeholder="johndoe.com"
+          placeholder={t("personalInfo.placeholders.website")}
         />
       </div>
 
-      {/* Professional Summary */}
+      {/* Summary */}
       <div>
         <label className="block text-sm font-medium text-slate-700 mb-1">
-          Professional Summary
+          {t("personalInfo.summary")}
         </label>
         <textarea
-          name="summary"
-          id="summary"
-          data-field="personalInfo.summary"
-          value={data.summary || ''}
-          onChange={(e) => handleChange('summary', e.target.value)}
+          value={data.summary || ""}
+          onChange={(e) => handleChange("summary", e.target.value)}
           className="w-full px-3 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-slate-500 focus:border-transparent"
           rows={4}
-          placeholder="Brief overview of your professional background and career goals..."
+          placeholder={t("personalInfo.placeholders.summary")}
         />
       </div>
     </div>

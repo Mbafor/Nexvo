@@ -8,37 +8,38 @@ import {
   Trash2, 
   Plus, 
   FileText, 
-  LogOut,
-  BarChart3,
-  Settings,
-  Search,
-  Grid,
-  List,
-  Share2,
-  Copy,
-  Eye,
-  MoreVertical,
-  User,
-  Palette,
-  HelpCircle,
-  Star,
-  Clock,
-  TrendingUp,
-  Folder,
-  Award,
-  Target,
-  Zap,
-  CheckCircle2,
-  BookOpen,
-  ChevronRight,
-  Menu,
-  X,
-  Mail,
-  MessageCircle,
-  Headphones,
+  LogOut, 
+  BarChart3, 
+  Settings, 
+  Search, 
+  Grid, 
+  List, 
+  Share2, 
+  Copy, 
+  Eye, 
+  MoreVertical, 
+  User, 
+  Palette, 
+  HelpCircle, 
+  Star, 
+  Clock, 
+  TrendingUp, 
+  Folder, 
+  Award, 
+  Target, 
+  Zap, 
+  CheckCircle2, 
+  BookOpen, 
+  ChevronRight, 
+  Menu, 
+  X, 
+  Mail, 
+  MessageCircle, 
+  Headphones, 
   Send,
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useTranslation } from 'react-i18next'; // Import added
 import { useAuth } from '../context';
 import { CVData, TemplateType } from '../types/cv';
 import { getUserCVDownloads, deleteCVDownload, saveCVDownload, CVDownloadRecord } from '../lib/firestore';
@@ -47,6 +48,7 @@ import { saveAs } from 'file-saver';
 import { blogPosts } from '../data/blogPosts';
 import EmailVerificationBanner from './EmailVerificationBanner';
 import { sendContactMessage } from '../utils/contactService';
+import LanguageSelector from './LanguageSelector';
 
 interface DashboardProps {
   onCreateNew: () => void;
@@ -57,6 +59,7 @@ type ViewMode = 'grid' | 'list';
 type SidebarTab = 'dashboard' | 'analytics' | 'templates' | 'resources' | 'settings' | 'help';
 
 export default function Dashboard({ onCreateNew, onEditCV }: DashboardProps) {
+  const { t } = useTranslation(); // Hook initialized
   const { user, loading: authLoading, signOut } = useAuth();
   const [cvHistory, setCVHistory] = useState<CVDownloadRecord[]>([]);
   const [loading, setLoading] = useState(true);
@@ -87,9 +90,60 @@ export default function Dashboard({ onCreateNew, onEditCV }: DashboardProps) {
   const [isSubmittingContact, setIsSubmittingContact] = useState(false);
   const [contactSubmitStatus, setContactSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
 
+  // Available templates moved inside component for translation
+  const availableTemplates: { type: TemplateType; name: string; description: string; preview: string; color: string; category: string }[] = [
+    {
+      type: 'modern',
+      name: t('dashboard.templates.modern.name'),
+      description: t('dashboard.templates.modern.description'),
+      preview: '✨',
+      color: 'from-blue-500 to-purple-600',
+      category: t('dashboard.templateCategories.professional')
+    },
+    {
+      type: 'creative',
+      name: t('dashboard.templates.creative.name'),
+      description: t('dashboard.templates.creative.description'),
+      preview: '🎨',
+      color: 'from-purple-500 to-pink-600',
+      category: t('dashboard.templateCategories.creative')
+    },
+    {
+      type: 'executive',
+      name: t('dashboard.templates.executive.name'),
+      description: t('dashboard.templates.executive.description'),
+      preview: '👑',
+      color: 'from-gray-800 to-yellow-600',
+      category: t('dashboard.templateCategories.leadership')
+    },
+    {
+      type: 'minimalist',
+      name: t('dashboard.templates.minimalist.name'),
+      description: t('dashboard.templates.minimalist.description'),
+      preview: '🖋️',
+      color: 'from-gray-400 to-gray-600',
+      category: t('dashboard.templateCategories.minimal')
+    },
+    {
+      type: 'tech',
+      name: t('dashboard.templates.tech.name'),
+      description: t('dashboard.templates.tech.description'),
+      preview: '⚡',
+      color: 'from-green-500 to-teal-600',
+      category: t('dashboard.templateCategories.technology')
+    },
+    {
+      type: 'ats',
+      name: t('dashboard.templates.ats.name'),
+      description: t('dashboard.templates.ats.description'),
+      preview: '📋',
+      color: 'from-orange-500 to-red-600',
+      category: t('dashboard.templateCategories.atsReady')
+    }
+  ];
+
   useEffect(() => {
     // Only load CV history when user is authenticated and loading is complete
-    // This prevents the "No user found" message during sign-up process
     if (!authLoading) {
       loadCVHistory();
     }
@@ -98,14 +152,12 @@ export default function Dashboard({ onCreateNew, onEditCV }: DashboardProps) {
   const handleSignOut = async () => {
     try {
       await signOut();
-      // Redirect to home page after successful sign out
       window.location.href = '/';
     } catch (error) {
       console.error('Error signing out:', error);
     }
   };
 
-  // Close mobile menu when tab changes
   const handleTabChange = (tab: SidebarTab) => {
     setActiveTab(tab);
     setIsMobileMenuOpen(false);
@@ -116,27 +168,17 @@ export default function Dashboard({ onCreateNew, onEditCV }: DashboardProps) {
   }, [selectedCVs]);
 
   const loadCVHistory = async () => {
-    // If still loading authentication, don't proceed
-    if (authLoading) {
-      console.log('🔄 Authentication still loading, waiting...');
-      return;
-    }
+    if (authLoading) return;
 
     if (!user) {
-      console.log('👤 No authenticated user, checking for local CV data...');
-      
       // Check for unsaved CV in localStorage
       const localCV = localStorage.getItem('cvData');
-      // const localProgress = localStorage.getItem('cvProgress'); // Unused for now
       
       if (localCV) {
         try {
           const cvData = JSON.parse(localCV);
-          // const progress = localProgress ? parseInt(localProgress) : 0; // Unused for now
           
           if (cvData.personalInfo.fullName) {
-            console.log('📋 Found local CV draft:', cvData.personalInfo.fullName);
-            
             // Create a temporary record for display
             const tempRecord: CVDownloadRecord = {
               id: 'local-temp',
@@ -156,16 +198,10 @@ export default function Dashboard({ onCreateNew, onEditCV }: DashboardProps) {
               totalViews: 1,
               avgRating: 0
             });
-            
-            console.log('✅ Local CV loaded for preview');
-          } else {
-            console.log('📝 No complete CV data found locally');
           }
         } catch (error) {
           console.error('❌ Failed to parse local CV:', error);
         }
-      } else {
-        console.log('📝 No local CV data found');
       }
       
       setLoading(false);
@@ -173,16 +209,7 @@ export default function Dashboard({ onCreateNew, onEditCV }: DashboardProps) {
     }
     
     try {
-      console.log('📊 Loading comprehensive CV data for user:', user.uid);
       const downloads = await getUserCVDownloads(user.uid);
-      console.log('📄 CVs found:', downloads.length);
-      console.log('📋 CV Details:', downloads.map(d => ({ 
-        id: d.id, 
-        fileName: d.fileName, 
-        template: d.templateType,
-        date: d.downloadedAt 
-      })));
-      
       setCVHistory(downloads);
       
       // Calculate advanced stats
@@ -200,8 +227,6 @@ export default function Dashboard({ onCreateNew, onEditCV }: DashboardProps) {
         totalViews: downloads.length * 3, // Simulated
         avgRating: 4.8 // Simulated
       });
-      
-      console.log('✅ CV data loaded with advanced analytics');
     } catch (error) {
       console.error('❌ Failed to load CV data:', error);
     } finally {
@@ -222,7 +247,7 @@ export default function Dashboard({ onCreateNew, onEditCV }: DashboardProps) {
         case 'duplicate':
           if (onEditCV) {
             const duplicatedData = { ...record.cvData };
-            duplicatedData.personalInfo.fullName += ' (Copy)';
+            duplicatedData.personalInfo.fullName += ` (${t('dashboard.actions.copySuffix')})`;
             onEditCV(duplicatedData);
           }
           break;
@@ -232,14 +257,14 @@ export default function Dashboard({ onCreateNew, onEditCV }: DashboardProps) {
         case 'share':
           const shareUrl = `${window.location.origin}/cv/shared/${record.id}`;
           await navigator.clipboard.writeText(shareUrl);
-          alert('✅ Shareable link copied to clipboard!');
+          alert(t('dashboard.alerts.shareLinkCopied'));
           break;
         case 'change-template':
           setSelectedCVForTemplate(record);
           setShowTemplateModal(true);
           break;
         case 'delete':
-          if (confirm('Are you sure you want to delete this CV?')) {
+          if (confirm(t('dashboard.alerts.confirmDelete'))) {
             await deleteCVDownload(record.id);
             setCVHistory(prev => prev.filter(cv => cv.id !== record.id));
           }
@@ -247,20 +272,18 @@ export default function Dashboard({ onCreateNew, onEditCV }: DashboardProps) {
       }
     } catch (error) {
       console.error(`❌ Failed to ${action} CV:`, error);
-      alert(`Failed to ${action} CV. Please try again.`);
+      alert(t('dashboard.alerts.actionFailed', { action }));
     } finally {
       setIsDownloading(null);
     }
   };
 
-  // Handle template change for CV
   const handleTemplateChange = async (newTemplate: TemplateType) => {
     if (!selectedCVForTemplate || !user) return;
 
     try {
       setIsDownloading(selectedCVForTemplate.id);
       
-      // Save new CV with different template
       await saveCVDownload(
         user.uid,
         user.email || '',
@@ -268,75 +291,20 @@ export default function Dashboard({ onCreateNew, onEditCV }: DashboardProps) {
         newTemplate
       );
 
-      // Refresh CV history to show new template
       loadCVHistory();
       
-      // Close modal
       setShowTemplateModal(false);
       setSelectedCVForTemplate(null);
       
-      // Success message
-      alert(`✅ CV template changed to ${getTemplateDisplayName(newTemplate)}!`);
+      alert(t('dashboard.alerts.templateChanged', { template: getTemplateDisplayName(newTemplate) }));
       
     } catch (error) {
       console.error('❌ Failed to change template:', error);
-      alert('Failed to change template. Please try again.');
+      alert(t('dashboard.alerts.templateChangeFailed'));
     } finally {
       setIsDownloading(null);
     }
   };
-
-  // Available templates - All 6 stunning templates
-  const availableTemplates: { type: TemplateType; name: string; description: string; preview: string; color: string; category: string }[] = [
-    {
-      type: 'modern',
-      name: 'Modern Professional',
-      description: 'Clean, contemporary design with perfect visual hierarchy and progress indicators',
-      preview: '✨',
-      color: 'from-blue-500 to-purple-600',
-      category: 'Professional'
-    },
-    {
-      type: 'creative',
-      name: 'Creative Studio',
-      description: 'Bold, artistic design with asymmetric layout perfect for creative professionals',
-      preview: '🎨',
-      color: 'from-purple-500 to-pink-600',
-      category: 'Creative'
-    },
-    {
-      type: 'executive',
-      name: 'Executive Elite',
-      description: 'Sophisticated luxury design with gold accents for leadership positions',
-      preview: '👑',
-      color: 'from-gray-800 to-yellow-600',
-      category: 'Leadership'
-    },
-    {
-      type: 'minimalist',
-      name: 'Pure Minimalist',
-      description: 'Ultra-clean design with generous white space and elegant typography',
-      preview: '�',
-      color: 'from-gray-400 to-gray-600',
-      category: 'Minimal'
-    },
-    {
-      type: 'tech',
-      name: 'Tech Developer',
-      description: 'Terminal-inspired design with neon accents perfect for tech professionals',
-      preview: '⚡',
-      color: 'from-green-500 to-teal-600',
-      category: 'Technology'
-    },
-    {
-      type: 'ats',
-      name: 'ATS Optimized',
-      description: 'Simple, structured format optimized for Applicant Tracking Systems',
-      preview: '�',
-      color: 'from-orange-500 to-red-600',
-      category: 'ATS-Ready'
-    }
-  ];
 
   const handleBulkAction = async (action: string) => {
     if (selectedCVs.length === 0) return;
@@ -353,7 +321,7 @@ export default function Dashboard({ onCreateNew, onEditCV }: DashboardProps) {
           }
           break;
         case 'delete':
-          if (confirm(`Delete ${selectedCVs.length} selected CVs?`)) {
+          if (confirm(t('dashboard.alerts.confirmBulkDelete', { count: selectedCVs.length }))) {
             for (const cvId of selectedCVs) {
               await deleteCVDownload(cvId);
             }
@@ -387,7 +355,6 @@ export default function Dashboard({ onCreateNew, onEditCV }: DashboardProps) {
       if (result.success) {
         setContactSubmitStatus('success');
         setContactForm({ issueType: 'general', message: '' });
-        // Reset success status after 3 seconds
         setTimeout(() => setContactSubmitStatus('idle'), 3000);
       } else {
         throw new Error(result.message);
@@ -395,7 +362,6 @@ export default function Dashboard({ onCreateNew, onEditCV }: DashboardProps) {
     } catch (error) {
       console.error('❌ Contact form submission failed:', error);
       setContactSubmitStatus('error');
-      // Reset error status after 5 seconds
       setTimeout(() => setContactSubmitStatus('idle'), 5000);
     } finally {
       setIsSubmittingContact(false);
@@ -426,15 +392,9 @@ export default function Dashboard({ onCreateNew, onEditCV }: DashboardProps) {
   };
 
   const getTemplateDisplayName = (template: TemplateType): string => {
-    const names: Record<TemplateType, string> = {
-      modern: 'Modern',
-      creative: 'Creative',
-      ats: 'ATS-Friendly',
-      executive: 'Executive',
-      minimalist: 'Minimalist', 
-      tech: 'Tech'
-    };
-    return names[template] || template;
+    // We use the translated names from availableTemplates array
+    const templateObj = availableTemplates.find(t => t.type === template);
+    return templateObj ? templateObj.name : template;
   };
 
   const getTemplateColor = (template: TemplateType): string => {
@@ -454,11 +414,11 @@ export default function Dashboard({ onCreateNew, onEditCV }: DashboardProps) {
       <div className="bg-white rounded-xl shadow-sm p-6">
         <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center">
           <User className="h-5 w-5 mr-2" />
-          Profile Settings
+          {t('dashboard.settings.profile.title')}
         </h3>
         <div className="space-y-4">
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">Display Name</label>
+            <label className="block text-sm font-medium text-gray-700 mb-2">{t('dashboard.settings.profile.displayName')}</label>
             <input
               type="text"
               defaultValue={user?.displayName || ''}
@@ -466,7 +426,7 @@ export default function Dashboard({ onCreateNew, onEditCV }: DashboardProps) {
             />
           </div>
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">Email</label>
+            <label className="block text-sm font-medium text-gray-700 mb-2">{t('dashboard.settings.profile.email')}</label>
             <input
               type="email"
               defaultValue={user?.email || ''}
@@ -480,17 +440,17 @@ export default function Dashboard({ onCreateNew, onEditCV }: DashboardProps) {
       <div className="bg-white rounded-xl shadow-sm p-6">
         <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center">
           <Palette className="h-5 w-5 mr-2" />
-          Preferences
+          {t('dashboard.settings.preferences.title')}
         </h3>
         <div className="space-y-4">
           <div className="flex items-center justify-between">
-            <span className="text-sm font-medium text-gray-700">Dark Mode</span>
+            <span className="text-sm font-medium text-gray-700">{t('dashboard.settings.preferences.darkMode')}</span>
             <button className="relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent bg-gray-200 transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
               <span className="translate-x-0 pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out"></span>
             </button>
           </div>
           <div className="flex items-center justify-between">
-            <span className="text-sm font-medium text-gray-700">Email Notifications</span>
+            <span className="text-sm font-medium text-gray-700">{t('dashboard.settings.preferences.emailNotifications')}</span>
             <button className="relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent bg-blue-700 transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
               <span className="translate-x-5 pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out"></span>
             </button>
@@ -506,8 +466,8 @@ export default function Dashboard({ onCreateNew, onEditCV }: DashboardProps) {
         <motion.div className="bg-white rounded-xl shadow-sm p-6">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-sm text-gray-600 mb-1">Total Views</p>
-              <p className="text-2xl font-bold text-gray-900">{stats.totalViews}</p>
+              <p className="text-sm text-gray-600 mb-1">{t('dashboard.analytics.totalViews')}</p>
+              <p className="text-2xl font-medium text-gray-900">{stats.totalViews}</p>
             </div>
             <div className="bg-blue-100 p-3 rounded-full">
               <Eye className="h-6 w-6 text-blue-700" />
@@ -518,8 +478,8 @@ export default function Dashboard({ onCreateNew, onEditCV }: DashboardProps) {
         <motion.div className="bg-white rounded-xl shadow-sm p-6">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-sm text-gray-600 mb-1">This Month</p>
-              <p className="text-2xl font-bold text-gray-900">{stats.thisMonthDownloads}</p>
+              <p className="text-sm text-gray-600 mb-1">{t('dashboard.analytics.thisMonth')}</p>
+              <p className="text-2xl font-medium text-gray-900">{stats.thisMonthDownloads}</p>
             </div>
             <div className="bg-green-100 p-3 rounded-full">
               <TrendingUp className="h-6 w-6 text-green-600" />
@@ -530,8 +490,8 @@ export default function Dashboard({ onCreateNew, onEditCV }: DashboardProps) {
         <motion.div className="bg-white rounded-xl shadow-sm p-6">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-sm text-gray-600 mb-1">Avg Rating</p>
-              <p className="text-2xl font-bold text-gray-900">{stats.avgRating}</p>
+              <p className="text-sm text-gray-600 mb-1">{t('dashboard.analytics.avgRating')}</p>
+              <p className="text-2xl font-medium text-gray-900">{stats.avgRating}</p>
             </div>
             <div className="bg-yellow-100 p-3 rounded-full">
               <Star className="h-6 w-6 text-yellow-600" />
@@ -542,8 +502,8 @@ export default function Dashboard({ onCreateNew, onEditCV }: DashboardProps) {
         <motion.div className="bg-white rounded-xl shadow-sm p-6">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-sm text-gray-600 mb-1">Success Rate</p>
-              <p className="text-2xl font-bold text-gray-900">94%</p>
+              <p className="text-sm text-gray-600 mb-1">{t('dashboard.analytics.successRate')}</p>
+              <p className="text-2xl font-medium text-gray-900">94%</p>
             </div>
             <div className="bg-purple-100 p-3 rounded-full">
               <Target className="h-6 w-6 text-blue-700" />
@@ -553,19 +513,19 @@ export default function Dashboard({ onCreateNew, onEditCV }: DashboardProps) {
       </div>
 
       <div className="bg-white rounded-xl shadow-sm p-6">
-        <h3 className="text-lg font-semibold text-gray-900 mb-4">Performance Insights</h3>
+        <h3 className="text-lg font-semibold text-gray-900 mb-4">{t('dashboard.analytics.performanceInsights')}</h3>
         <div className="space-y-4">
           <div className="flex items-center justify-between p-4 bg-blue-50 rounded-lg">
             <div className="flex items-center space-x-3">
               <Award className="h-5 w-5 text-blue-700" />
-              <span className="font-medium text-blue-700">Most Popular Template</span>
+              <span className="font-medium text-blue-700">{t('dashboard.analytics.mostPopularTemplate')}</span>
             </div>
-            <span className="text-blue-700 font-semibold">Modern Template</span>
+            <span className="text-blue-700 font-semibold">{t('dashboard.templates.modern.name')}</span>
           </div>
           <div className="flex items-center justify-between p-4 bg-green-50 rounded-lg">
             <div className="flex items-center space-x-3">
               <Zap className="h-5 w-5 text-green-600" />
-              <span className="font-medium text-green-900">Peak Download Time</span>
+              <span className="font-medium text-green-900">{t('dashboard.analytics.peakDownloadTime')}</span>
             </div>
             <span className="text-green-700 font-semibold">2:00 PM - 4:00 PM</span>
           </div>
@@ -580,7 +540,7 @@ export default function Dashboard({ onCreateNew, onEditCV }: DashboardProps) {
       <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50 flex items-center justify-center">
         <div className="text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-4 border-blue-500 border-t-transparent mx-auto mb-4"></div>
-          <p className="text-gray-600 font-medium">Authenticating...</p>
+          <p className="text-gray-600 font-medium">{t('dashboard.loading.authenticating')}</p>
         </div>
       </div>
     );
@@ -591,7 +551,7 @@ export default function Dashboard({ onCreateNew, onEditCV }: DashboardProps) {
       <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50 flex items-center justify-center">
         <div className="text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-4 border-blue-500 border-t-transparent mx-auto mb-4"></div>
-          <p className="text-gray-600 font-medium">Loading your professional dashboard...</p>
+          <p className="text-gray-600 font-medium">{t('dashboard.loading.dashboard')}</p>
         </div>
       </div>
     );
@@ -619,13 +579,13 @@ export default function Dashboard({ onCreateNew, onEditCV }: DashboardProps) {
         <div className="p-6 border-b border-gray-200">
           <div className="flex items-center space-x-3">
             <div className="h-10 w-10 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-xl flex items-center justify-center shadow-lg">
-              <span className="text-white font-bold text-lg">
+              <span className="text-white font-medium text-lg">
                 {user?.displayName?.charAt(0) || user?.email?.charAt(0) || 'U'}
               </span>
             </div>
             <div className="min-w-0 flex-1">
               <p className="font-semibold text-gray-900 truncate">
-                {user?.displayName || 'Professional User'}
+                {user?.displayName || t('dashboard.user.defaultName')}
               </p>
               <p className="text-xs text-gray-500 truncate">{user?.email}</p>
             </div>
@@ -635,12 +595,12 @@ export default function Dashboard({ onCreateNew, onEditCV }: DashboardProps) {
         {/* Navigation */}
         <nav className="flex-1 p-4 space-y-2 overflow-y-auto">
           {[
-            { id: 'dashboard', icon: BarChart3, label: 'Dashboard', badge: cvHistory.length },
-            { id: 'analytics', icon: TrendingUp, label: 'Analytics', badge: null },
-            { id: 'templates', icon: Palette, label: 'Templates', badge: null },
-            { id: 'resources', icon: BookOpen, label: 'Resources', badge: blogPosts.length },
-            { id: 'settings', icon: Settings, label: 'Settings', badge: null },
-            { id: 'help', icon: HelpCircle, label: 'Help & Support', badge: null }
+            { id: 'dashboard', icon: BarChart3, label: t('dashboard.nav.dashboard'), badge: cvHistory.length },
+            { id: 'analytics', icon: TrendingUp, label: t('dashboard.nav.analytics'), badge: null },
+            { id: 'templates', icon: Palette, label: t('dashboard.nav.templates'), badge: null },
+            { id: 'resources', icon: BookOpen, label: t('dashboard.nav.resources'), badge: blogPosts.length },
+            { id: 'settings', icon: Settings, label: t('dashboard.nav.settings'), badge: null },
+            { id: 'help', icon: HelpCircle, label: t('dashboard.nav.help'), badge: null }
           ].map((item) => (
             <button
               key={item.id}
@@ -656,7 +616,7 @@ export default function Dashboard({ onCreateNew, onEditCV }: DashboardProps) {
                 <span className="font-medium truncate">{item.label}</span>
               </div>
               {item.badge && (
-                <span className={`px-2 py-1 rounded-full text-xs font-bold flex-shrink-0 ${
+                <span className={`px-2 py-1 rounded-full text-xs font-medium flex-shrink-0 ${
                   activeTab === item.id ? 'bg-white text-blue-700' : 'bg-blue-100 text-blue-700'
                 }`}>
                   {item.badge}
@@ -673,7 +633,7 @@ export default function Dashboard({ onCreateNew, onEditCV }: DashboardProps) {
             className="w-full flex items-center justify-center space-x-2 px-4 py-3 bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-lg hover:from-blue-700 hover:to-indigo-700 transition-all duration-200 shadow-lg"
           >
             <Plus className="h-4 w-4 flex-shrink-0" />
-            <span className="font-semibold">Create New CV</span>
+            <span className="font-semibold">{t('dashboard.actions.createNew')}</span>
           </button>
           
           <button 
@@ -681,7 +641,7 @@ export default function Dashboard({ onCreateNew, onEditCV }: DashboardProps) {
             className="w-full flex items-center justify-center space-x-2 px-4 py-2 text-gray-600 hover:text-gray-800 hover:bg-gray-100 rounded-lg transition-colors"
           >
             <LogOut className="h-4 w-4 flex-shrink-0" />
-            <span>Sign Out</span>
+            <span>{t('dashboard.actions.signOut')}</span>
           </button>
         </div>
       </div>
@@ -708,13 +668,13 @@ export default function Dashboard({ onCreateNew, onEditCV }: DashboardProps) {
         <div className="p-4 border-b border-gray-200">
           <div className="flex items-center space-x-3">
             <div className="h-10 w-10 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-xl flex items-center justify-center shadow-lg">
-              <span className="text-white font-bold text-lg">
+              <span className="text-white font-medium text-lg">
                 {user?.displayName?.charAt(0) || user?.email?.charAt(0) || 'U'}
               </span>
             </div>
             <div className="min-w-0 flex-1">
               <p className="font-semibold text-gray-900 truncate text-sm">
-                {user?.displayName || 'Professional User'}
+                {user?.displayName || t('dashboard.user.defaultName')}
               </p>
               <p className="text-xs text-gray-500 truncate">{user?.email}</p>
             </div>
@@ -724,12 +684,12 @@ export default function Dashboard({ onCreateNew, onEditCV }: DashboardProps) {
         {/* Navigation */}
         <nav className="flex-1 p-3 space-y-1 overflow-y-auto">
           {[
-            { id: 'dashboard', icon: BarChart3, label: 'Dashboard', badge: cvHistory.length },
-            { id: 'analytics', icon: TrendingUp, label: 'Analytics', badge: null },
-            { id: 'templates', icon: Palette, label: 'Templates', badge: null },
-            { id: 'resources', icon: BookOpen, label: 'Resources', badge: blogPosts.length },
-            { id: 'settings', icon: Settings, label: 'Settings', badge: null },
-            { id: 'help', icon: HelpCircle, label: 'Help & Support', badge: null }
+            { id: 'dashboard', icon: BarChart3, label: t('dashboard.nav.dashboard'), badge: cvHistory.length },
+            { id: 'analytics', icon: TrendingUp, label: t('dashboard.nav.analytics'), badge: null },
+            { id: 'templates', icon: Palette, label: t('dashboard.nav.templates'), badge: null },
+            { id: 'resources', icon: BookOpen, label: t('dashboard.nav.resources'), badge: blogPosts.length },
+            { id: 'settings', icon: Settings, label: t('dashboard.nav.settings'), badge: null },
+            { id: 'help', icon: HelpCircle, label: t('dashboard.nav.help'), badge: null }
           ].map((item) => (
             <button
               key={item.id}
@@ -745,7 +705,7 @@ export default function Dashboard({ onCreateNew, onEditCV }: DashboardProps) {
                 <span className="font-medium truncate">{item.label}</span>
               </div>
               {item.badge && (
-                <span className={`px-2 py-1 rounded-full text-xs font-bold flex-shrink-0 ${
+                <span className={`px-2 py-1 rounded-full text-xs font-medium flex-shrink-0 ${
                   activeTab === item.id ? 'bg-white text-blue-700' : 'bg-blue-100 text-blue-700'
                 }`}>
                   {item.badge}
@@ -762,7 +722,7 @@ export default function Dashboard({ onCreateNew, onEditCV }: DashboardProps) {
             className="w-full flex items-center justify-center space-x-2 px-4 py-3 bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-lg hover:from-blue-700 hover:to-indigo-700 transition-all duration-200 shadow-lg text-sm"
           >
             <Plus className="h-4 w-4 flex-shrink-0" />
-            <span className="font-semibold">Create New CV</span>
+            <span className="font-semibold">{t('dashboard.actions.createNew')}</span>
           </button>
           
           <button 
@@ -770,7 +730,7 @@ export default function Dashboard({ onCreateNew, onEditCV }: DashboardProps) {
             className="w-full flex items-center justify-center space-x-2 px-4 py-2 text-gray-600 hover:text-gray-800 hover:bg-gray-100 rounded-lg transition-colors text-sm"
           >
             <LogOut className="h-4 w-4 flex-shrink-0" />
-            <span>Sign Out</span>
+            <span>{t('dashboard.actions.signOut')}</span>
           </button>
         </div>
       </motion.div>
@@ -785,71 +745,64 @@ export default function Dashboard({ onCreateNew, onEditCV }: DashboardProps) {
           >
             <Menu className="h-5 w-5" />
           </button>
-          <h1 className="text-lg font-bold text-gray-900">
-            {activeTab === 'dashboard' ? 'Dashboard' :
-             activeTab === 'analytics' ? 'Analytics' :
-             activeTab === 'templates' ? 'Templates' :
-             activeTab === 'resources' ? 'Resources' :
-             activeTab === 'settings' ? 'Settings' : 'Help & Support'}
+          <h1 className="text-lg font-medium text-gray-900">
+            {t(`dashboard.nav.${activeTab}`)}
           </h1>
-          <div className="w-9"></div> {/* Spacer for center alignment */}
+          <LanguageSelector className="scale-90" />
         </div>
 
         {/* Desktop Header */}
         <div className="hidden lg:block bg-white shadow-sm border-b border-gray-200 px-6 py-4">
           <div className="flex items-center justify-between">
             <div>
-              <h1 className="text-2xl font-bold text-gray-900">
-                {activeTab === 'dashboard' ? 'Dashboard' :
-                 activeTab === 'analytics' ? 'Analytics' :
-                 activeTab === 'templates' ? 'Templates' :
-                 activeTab === 'resources' ? 'Resources' :
-                 activeTab === 'settings' ? 'Settings' : 'Help & Support'}
+              <h1 className="text-2xl font-medium text-gray-900">
+                {t(`dashboard.nav.${activeTab}`)}
               </h1>
               <p className="text-gray-600">
-                {activeTab === 'dashboard' ? 'Manage your professional CVs' :
-                 activeTab === 'analytics' ? 'Track your CV performance' :
-                 activeTab === 'templates' ? 'Browse and select CV templates' :
-                 activeTab === 'resources' ? 'Career tips, guides, and insights' :
-                 activeTab === 'settings' ? 'Customize your preferences' : 'Get help and support'}
+                {t(`dashboard.descriptions.${activeTab}`)}
               </p>
             </div>
 
-            {activeTab === 'dashboard' && (
-              <div className="flex items-center justify-between space-x-4 w-full">
-                {/* Search on the left */}
-                <div className="relative flex-1 max-w-md">
-                  <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
-                  <input
-                    type="text"
-                    placeholder="Search CVs..."
-                    value={searchQuery}
-                    onChange={(e) => setSearchQuery(e.target.value)}
-                    className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                  />
+            <div className="flex items-center space-x-4">
+              {activeTab === 'dashboard' && (
+                <div className="flex items-center justify-between space-x-4 w-full">
+                  {/* Search on the left */}
+                  <div className="relative flex-1 max-w-md">
+                    <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
+                    <input
+                      type="text"
+                      placeholder={t('dashboard.searchPlaceholder')}
+                      value={searchQuery}
+                      onChange={(e) => setSearchQuery(e.target.value)}
+                      className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    />
+                  </div>
+                  
+                  {/* View mode toggle on the right */}
+                  <div className="flex items-center space-x-1 bg-gray-100 rounded-lg p-1">
+                    <button
+                      onClick={() => setViewMode('grid')}
+                      className={`p-2 rounded-md transition-colors ${
+                        viewMode === 'grid' ? 'bg-white shadow-sm' : 'hover:bg-gray-200'
+                      }`}
+                    >
+                      <Grid className="h-4 w-4" />
+                    </button>
+                    <button
+                      onClick={() => setViewMode('list')}
+                      className={`p-2 rounded-md transition-colors ${
+                        viewMode === 'list' ? 'bg-white shadow-sm' : 'hover:bg-gray-200'
+                      }`}
+                    >
+                      <List className="h-4 w-4" />
+                    </button>
+                  </div>
                 </div>
-                
-                {/* View mode toggle on the right */}
-                <div className="flex items-center space-x-1 bg-gray-100 rounded-lg p-1">
-                  <button
-                    onClick={() => setViewMode('grid')}
-                    className={`p-2 rounded-md transition-colors ${
-                      viewMode === 'grid' ? 'bg-white shadow-sm' : 'hover:bg-gray-200'
-                    }`}
-                  >
-                    <Grid className="h-4 w-4" />
-                  </button>
-                  <button
-                    onClick={() => setViewMode('list')}
-                    className={`p-2 rounded-md transition-colors ${
-                      viewMode === 'list' ? 'bg-white shadow-sm' : 'hover:bg-gray-200'
-                    }`}
-                  >
-                    <List className="h-4 w-4" />
-                  </button>
-                </div>
+              )}
+              <div className="flex-shrink-0">
+                <LanguageSelector />
               </div>
-            )}
+            </div>
           </div>
         </div>
 
@@ -865,7 +818,7 @@ export default function Dashboard({ onCreateNew, onEditCV }: DashboardProps) {
                     <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
                     <input
                       type="text"
-                      placeholder="Search CVs..."
+                      placeholder={t('dashboard.searchPlaceholder')}
                       value={searchQuery}
                       onChange={(e) => setSearchQuery(e.target.value)}
                       className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
@@ -906,8 +859,8 @@ export default function Dashboard({ onCreateNew, onEditCV }: DashboardProps) {
                 >
                   <div className="flex items-center justify-between">
                     <div>
-                      <p className="text-xs lg:text-sm text-gray-600 mb-1">Total CVs</p>
-                      <p className="text-xl lg:text-3xl font-bold text-gray-900">{stats.totalDownloads}</p>
+                      <p className="text-xs lg:text-sm text-gray-600 mb-1">{t('dashboard.stats.totalCVs')}</p>
+                      <p className="text-xl lg:text-3xl font-medium text-gray-900">{stats.totalDownloads}</p>
                     </div>
                     <div className="bg-blue-100 p-2 lg:p-3 rounded-full">
                       <FileText className="h-4 w-4 lg:h-6 lg:w-6 text-blue-700" />
@@ -923,8 +876,8 @@ export default function Dashboard({ onCreateNew, onEditCV }: DashboardProps) {
                 >
                   <div className="flex items-center justify-between">
                     <div>
-                      <p className="text-xs lg:text-sm text-gray-600 mb-1">Templates Used</p>
-                      <p className="text-xl lg:text-3xl font-bold text-gray-900">{stats.templatesUsed}</p>
+                      <p className="text-xs lg:text-sm text-gray-600 mb-1">{t('dashboard.stats.templatesUsed')}</p>
+                      <p className="text-xl lg:text-3xl font-medium text-gray-900">{stats.templatesUsed}</p>
                     </div>
                     <div className="bg-purple-100 p-2 lg:p-3 rounded-full">
                       <Palette className="h-4 w-4 lg:h-6 lg:w-6 text-blue-700" />
@@ -940,9 +893,9 @@ export default function Dashboard({ onCreateNew, onEditCV }: DashboardProps) {
                 >
                   <div className="flex items-center justify-between">
                     <div>
-                      <p className="text-xs lg:text-sm text-gray-600 mb-1">Last Activity</p>
+                      <p className="text-xs lg:text-sm text-gray-600 mb-1">{t('dashboard.stats.lastActivity')}</p>
                       <p className="text-sm lg:text-lg font-semibold text-gray-900">
-                        {stats.lastDownload ? formatDate(stats.lastDownload as Date).split(',')[0] : 'Never'}
+                        {stats.lastDownload ? formatDate(stats.lastDownload as Date).split(',')[0] : t('dashboard.stats.never')}
                       </p>
                     </div>
                     <div className="bg-green-100 p-2 lg:p-3 rounded-full">
@@ -959,8 +912,8 @@ export default function Dashboard({ onCreateNew, onEditCV }: DashboardProps) {
                 >
                   <div className="flex items-center justify-between">
                     <div>
-                      <p className="text-xs lg:text-sm text-gray-600 mb-1">Success Rate</p>
-                      <p className="text-xl lg:text-3xl font-bold text-gray-900">98%</p>
+                      <p className="text-xs lg:text-sm text-gray-600 mb-1">{t('dashboard.stats.successRate')}</p>
+                      <p className="text-xl lg:text-3xl font-medium text-gray-900">98%</p>
                     </div>
                     <div className="bg-yellow-100 p-2 lg:p-3 rounded-full">
                       <Star className="h-4 w-4 lg:h-6 lg:w-6 text-yellow-600" />
@@ -980,26 +933,26 @@ export default function Dashboard({ onCreateNew, onEditCV }: DashboardProps) {
                   >
                     <div className="flex items-center justify-between">
                       <span className="text-blue-700 font-medium">
-                        {selectedCVs.length} CV(s) selected
+                        {t('dashboard.bulkActions.selected', { count: selectedCVs.length })}
                       </span>
                       <div className="flex items-center space-x-2">
                         <button
                           onClick={() => handleBulkAction('download')}
                           className="px-3 py-1 bg-blue-700 text-white rounded-md hover:bg-blue-600 transition-colors"
                         >
-                          Download All
+                          {t('dashboard.bulkActions.downloadAll')}
                         </button>
                         <button
                           onClick={() => handleBulkAction('delete')}
                           className="px-3 py-1 bg-red-600 text-white rounded-md hover:bg-red-700 transition-colors"
                         >
-                          Delete All
+                          {t('dashboard.bulkActions.deleteAll')}
                         </button>
                         <button
                           onClick={() => setSelectedCVs([])}
                           className="px-3 py-1 text-gray-600 hover:text-gray-800"
                         >
-                          Clear
+                          {t('dashboard.bulkActions.clear')}
                         </button>
                       </div>
                     </div>
@@ -1015,9 +968,9 @@ export default function Dashboard({ onCreateNew, onEditCV }: DashboardProps) {
                 className="bg-white rounded-xl shadow-sm"
               >
                 <div className="p-4 lg:p-6 border-b border-gray-200">
-                  <h2 className="text-lg lg:text-xl font-bold text-gray-900 flex items-center">
+                  <h2 className="text-lg lg:text-xl font-medium text-gray-900 flex items-center">
                     <Folder className="h-4 w-4 lg:h-5 lg:w-5 mr-2" />
-                    Your CVs ({filteredCVs.length})
+                    {t('dashboard.yourCVs', { count: filteredCVs.length })}
                   </h2>
                 </div>
 
@@ -1026,10 +979,10 @@ export default function Dashboard({ onCreateNew, onEditCV }: DashboardProps) {
                     <div className="text-center py-8 lg:py-12">
                       <FileText className="h-8 w-8 lg:h-12 lg:w-12 text-gray-400 mx-auto mb-4" />
                       <h3 className="text-base lg:text-lg font-semibold text-gray-900 mb-2">
-                        {searchQuery ? 'No CVs found' : 'No CVs yet'}
+                        {searchQuery ? t('dashboard.emptyState.noResults') : t('dashboard.emptyState.noCVs')}
                       </h3>
                       <p className="text-sm lg:text-base text-gray-600 mb-4 lg:mb-6 px-4">
-                        {searchQuery ? 'Try adjusting your search terms' : 'Create your first professional CV to get started!'}
+                        {searchQuery ? t('dashboard.emptyState.tryAdjusting') : t('dashboard.emptyState.createFirst')}
                       </p>
                       {!searchQuery && (
                         <button
@@ -1037,7 +990,7 @@ export default function Dashboard({ onCreateNew, onEditCV }: DashboardProps) {
                           className="flex items-center space-x-2 px-4 lg:px-6 py-2 lg:py-3 bg-blue-700 text-white rounded-lg hover:bg-blue-600 transition-colors mx-auto text-sm lg:text-base"
                         >
                           <Plus className="h-4 w-4" />
-                          <span>Create Your First CV</span>
+                          <span>{t('dashboard.actions.createFirstCV')}</span>
                         </button>
                       )}
                     </div>
@@ -1086,12 +1039,12 @@ export default function Dashboard({ onCreateNew, onEditCV }: DashboardProps) {
                                         >
                                           <div className="py-1">
                                             {[
-                                              { action: 'edit', label: 'Edit CV', icon: Edit },
-                                              { action: 'duplicate', label: 'Duplicate', icon: Copy },
-                                              { action: 'change-template', label: 'Change Template', icon: Palette },
-                                              { action: 'download', label: 'Download', icon: Download },
-                                              { action: 'share', label: 'Share', icon: Share2 },
-                                              { action: 'delete', label: 'Delete', icon: Trash2, danger: true }
+                                              { action: 'edit', label: t('dashboard.actions.edit'), icon: Edit },
+                                              { action: 'duplicate', label: t('dashboard.actions.duplicate'), icon: Copy },
+                                              { action: 'change-template', label: t('dashboard.actions.changeTemplate'), icon: Palette },
+                                              { action: 'download', label: t('dashboard.actions.download'), icon: Download },
+                                              { action: 'share', label: t('dashboard.actions.share'), icon: Share2 },
+                                              { action: 'delete', label: t('dashboard.actions.delete'), icon: Trash2, danger: true }
                                             ].map(({ action, label, icon: Icon, danger }) => (
                                               <button
                                                 key={action}
@@ -1143,12 +1096,12 @@ export default function Dashboard({ onCreateNew, onEditCV }: DashboardProps) {
 
                               <div className="flex items-center space-x-1 lg:space-x-2 flex-shrink-0">
                                 {[
-                                  { action: 'edit', icon: Edit, tooltip: 'Edit' },
-                                  { action: 'duplicate', icon: Copy, tooltip: 'Duplicate', hideOnMobile: true },
-                                  { action: 'change-template', icon: Palette, tooltip: 'Change Template', hideOnMobile: true },
-                                  { action: 'download', icon: Download, tooltip: 'Download' },
-                                  { action: 'share', icon: Share2, tooltip: 'Share', hideOnMobile: true },
-                                  { action: 'delete', icon: Trash2, tooltip: 'Delete', danger: true }
+                                  { action: 'edit', icon: Edit, tooltip: t('dashboard.actions.edit') },
+                                  { action: 'duplicate', icon: Copy, tooltip: t('dashboard.actions.duplicate'), hideOnMobile: true },
+                                  { action: 'change-template', icon: Palette, tooltip: t('dashboard.actions.changeTemplate'), hideOnMobile: true },
+                                  { action: 'download', icon: Download, tooltip: t('dashboard.actions.download') },
+                                  { action: 'share', icon: Share2, tooltip: t('dashboard.actions.share'), hideOnMobile: true },
+                                  { action: 'delete', icon: Trash2, tooltip: t('dashboard.actions.delete'), danger: true }
                                 ].map(({ action, icon: Icon, tooltip, danger, hideOnMobile }) => (
                                   <button
                                     key={action}
@@ -1188,9 +1141,9 @@ export default function Dashboard({ onCreateNew, onEditCV }: DashboardProps) {
                                       >
                                         <div className="py-1">
                                           {[
-                                            { action: 'duplicate', label: 'Duplicate', icon: Copy },
-                                            { action: 'change-template', label: 'Change Template', icon: Palette },
-                                            { action: 'share', label: 'Share', icon: Share2 }
+                                            { action: 'duplicate', label: t('dashboard.actions.duplicate'), icon: Copy },
+                                            { action: 'change-template', label: t('dashboard.actions.changeTemplate'), icon: Palette },
+                                            { action: 'share', label: t('dashboard.actions.share'), icon: Share2 }
                                           ].map(({ action, label, icon: Icon }) => (
                                             <button
                                               key={action}
@@ -1224,8 +1177,8 @@ export default function Dashboard({ onCreateNew, onEditCV }: DashboardProps) {
             <div className="space-y-6">
               {/* Header Section */}
               <div className="bg-blue-700 rounded-xl p-6 text-white">
-                <h3 className="text-xl font-bold mb-2">Professional CV Templates Gallery</h3>
-                <p className="text-blue-100">Choose from our collection of stunning, professionally designed templates</p>
+                <h3 className="text-xl font-medium mb-2">{t('dashboard.templates.gallery.title')}</h3>
+                <p className="text-blue-100">{t('dashboard.templates.gallery.subtitle')}</p>
               </div>
 
               {/* Templates Grid */}
@@ -1233,9 +1186,9 @@ export default function Dashboard({ onCreateNew, onEditCV }: DashboardProps) {
                 <div className="mb-6">
                   <h4 className="text-lg font-semibold text-gray-900 mb-2 flex items-center">
                     <Palette className="h-5 w-5 mr-2" />
-                    All Templates ({availableTemplates.length})
+                    {t('dashboard.templates.allTemplates', { count: availableTemplates.length })}
                   </h4>
-                  <p className="text-gray-600">Browse our professional CV templates and create new CVs with different styles</p>
+                  <p className="text-gray-600">{t('dashboard.templates.description')}</p>
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -1264,7 +1217,7 @@ export default function Dashboard({ onCreateNew, onEditCV }: DashboardProps) {
                       {/* Content */}
                       <div className="p-6">
                         <div className="mb-4">
-                          <h4 className="font-bold text-gray-900 mb-2 text-lg group-hover:text-blue-700 transition-colors">
+                          <h4 className="font-medium text-gray-900 mb-2 text-lg group-hover:text-blue-700 transition-colors">
                             {template.name}
                           </h4>
                           <p className="text-sm text-gray-600 leading-relaxed">
@@ -1275,7 +1228,7 @@ export default function Dashboard({ onCreateNew, onEditCV }: DashboardProps) {
                         {/* Stats */}
                         <div className="mb-4 text-xs text-gray-500 bg-gray-50 rounded-lg p-3">
                           <div className="flex items-center justify-between">
-                            <span>CVs Created:</span>
+                            <span>{t('dashboard.templates.usageCount')}:</span>
                             <span className="font-semibold text-gray-700">
                               {cvHistory.filter(cv => cv.templateType === template.type).length}
                             </span>
@@ -1292,7 +1245,7 @@ export default function Dashboard({ onCreateNew, onEditCV }: DashboardProps) {
                             className={`w-full flex items-center justify-center space-x-2 px-4 py-3 bg-gradient-to-r ${template.color} text-white rounded-lg hover:opacity-90 transition-all duration-200 shadow-lg font-medium`}
                           >
                             <Plus className="h-4 w-4" />
-                            <span>Create with {template.name}</span>
+                            <span>{t('dashboard.templates.createWith', { name: template.name })}</span>
                           </button>
                           
                           {cvHistory.filter(cv => cv.templateType === template.type).length > 0 && (
@@ -1306,7 +1259,7 @@ export default function Dashboard({ onCreateNew, onEditCV }: DashboardProps) {
                               className="w-full flex items-center justify-center space-x-2 px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors text-sm"
                             >
                               <Edit className="h-4 w-4" />
-                              <span>Edit Existing</span>
+                              <span>{t('dashboard.templates.editExisting')}</span>
                             </button>
                           )}
                         </div>
@@ -1315,9 +1268,9 @@ export default function Dashboard({ onCreateNew, onEditCV }: DashboardProps) {
                       {/* Popular Badge */}
                       {template.type === 'modern' && (
                         <div className="absolute top-2 left-2">
-                          <span className="inline-flex items-center px-2 py-1 bg-yellow-400 text-yellow-900 rounded-full text-xs font-bold shadow-sm">
+                          <span className="inline-flex items-center px-2 py-1 bg-yellow-400 text-yellow-900 rounded-full text-xs font-medium shadow-sm">
                             <Star className="h-3 w-3 mr-1" />
-                            Popular
+                            {t('dashboard.templates.badges.popular')}
                           </span>
                         </div>
                       )}
@@ -1325,9 +1278,9 @@ export default function Dashboard({ onCreateNew, onEditCV }: DashboardProps) {
                       {/* New Badge */}
                       {(template.type === 'tech' || template.type === 'executive') && (
                         <div className="absolute top-2 left-2">
-                          <span className="inline-flex items-center px-2 py-1 bg-green-400 text-green-900 rounded-full text-xs font-bold shadow-sm">
+                          <span className="inline-flex items-center px-2 py-1 bg-green-400 text-green-900 rounded-full text-xs font-medium shadow-sm">
                             <Zap className="h-3 w-3 mr-1" />
-                            New
+                            {t('dashboard.templates.badges.new')}
                           </span>
                         </div>
                       )}
@@ -1338,28 +1291,28 @@ export default function Dashboard({ onCreateNew, onEditCV }: DashboardProps) {
                 {/* Template Tips Section */}
                 <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div className="p-6 bg-blue-50 rounded-xl">
-                    <h5 className="font-bold text-blue-700 mb-3 flex items-center">
+                    <h5 className="font-medium text-blue-700 mb-3 flex items-center">
                       <Award className="h-5 w-5 mr-2" />
-                      Template Selection Tips
+                      {t('dashboard.templates.tips.title')}
                     </h5>
                     <ul className="text-blue-700 text-sm space-y-2">
-                      <li>• <strong>Modern:</strong> Perfect for tech, creative, and contemporary industries</li>
-                      <li>• <strong>Executive:</strong> Ideal for senior leadership and management roles</li>
-                      <li>• <strong>ATS-Optimized:</strong> Best for applications through job portals</li>
-                      <li>• <strong>Creative:</strong> Great for design, marketing, and artistic professions</li>
+                      <li>• {t('dashboard.templates.tips.modern')}</li>
+                      <li>• {t('dashboard.templates.tips.executive')}</li>
+                      <li>• {t('dashboard.templates.tips.ats')}</li>
+                      <li>• {t('dashboard.templates.tips.creative')}</li>
                     </ul>
                   </div>
 
                   <div className="p-6 bg-green-50 rounded-xl">
-                    <h5 className="font-bold text-green-900 mb-3 flex items-center">
+                    <h5 className="font-medium text-green-900 mb-3 flex items-center">
                       <Target className="h-5 w-5 mr-2" />
-                      Industry Recommendations
+                      {t('dashboard.templates.industry.title')}
                     </h5>
                     <ul className="text-green-700 text-sm space-y-2">
-                      <li>• <strong>Tech:</strong> Use Tech Developer template for programming roles</li>
-                      <li>• <strong>Finance:</strong> Executive or Minimalist templates work best</li>
-                      <li>• <strong>Healthcare:</strong> Modern or ATS templates are recommended</li>
-                      <li>• <strong>Education:</strong> Minimalist or Modern templates</li>
+                      <li>• {t('dashboard.templates.industry.tech')}</li>
+                      <li>• {t('dashboard.templates.industry.finance')}</li>
+                      <li>• {t('dashboard.templates.industry.healthcare')}</li>
+                      <li>• {t('dashboard.templates.industry.education')}</li>
                     </ul>
                   </div>
                 </div>
@@ -1368,15 +1321,15 @@ export default function Dashboard({ onCreateNew, onEditCV }: DashboardProps) {
                 <div className="mt-6 p-4 bg-gray-50 rounded-xl">
                   <div className="flex flex-col sm:flex-row items-center justify-between space-y-3 sm:space-y-0">
                     <div>
-                      <h5 className="font-medium text-gray-900">Need help choosing?</h5>
-                      <p className="text-sm text-gray-600">Our template wizard can help you find the perfect match</p>
+                      <h5 className="font-medium text-gray-900">{t('dashboard.templates.help.title')}</h5>
+                      <p className="text-sm text-gray-600">{t('dashboard.templates.help.subtitle')}</p>
                     </div>
                     <button
                       onClick={() => setActiveTab('help')}
                       className="flex items-center space-x-2 px-4 py-2 bg-gray-800 text-white rounded-lg hover:bg-gray-900 transition-colors text-sm"
                     >
                       <HelpCircle className="h-4 w-4" />
-                      <span>Get Help</span>
+                      <span>{t('dashboard.templates.help.button')}</span>
                     </button>
                   </div>
                 </div>
@@ -1388,19 +1341,19 @@ export default function Dashboard({ onCreateNew, onEditCV }: DashboardProps) {
             <div className="space-y-6">
               {/* Featured Resources Header */}
               <div className="bg-blue-700 rounded-xl p-6 text-white">
-                <h3 className="text-xl font-bold mb-2">Career Resources & Insights</h3>
-                <p className="text-blue-100">Expert tips, guides, and industry insights to boost your career success</p>
+                <h3 className="text-xl font-medium mb-2">{t('dashboard.resources.header.title')}</h3>
+                <p className="text-blue-100">{t('dashboard.resources.header.subtitle')}</p>
               </div>
 
               {/* Blog Posts Grid */}
               <div className="bg-white rounded-xl shadow-sm p-6">
                 <div className="flex items-center justify-between mb-6">
-                  <h4 className="text-lg font-semibold text-gray-900">Latest Articles</h4>
+                  <h4 className="text-lg font-semibold text-gray-900">{t('dashboard.resources.latestArticles')}</h4>
                   <a 
                     href="/blogs" 
                     className="text-blue-700 hover:text-blue-700 text-sm font-medium flex items-center"
                   >
-                    View All Articles
+                    {t('dashboard.resources.viewAll')}
                     <ChevronRight className="h-4 w-4 ml-1" />
                   </a>
                 </div>
@@ -1461,13 +1414,11 @@ export default function Dashboard({ onCreateNew, onEditCV }: DashboardProps) {
           
           {activeTab === 'help' && (
             <div className="space-y-6">
-
-
               {/* Contact Support Section */}
               <div className="bg-white rounded-xl shadow-sm p-6">
                 <h3 className="text-xl font-semibold text-gray-900 mb-6 flex items-center">
                   <Headphones className="h-6 w-6 mr-2 text-blue-700" />
-                  Contact Support
+                  {t('dashboard.support.title')}
                 </h3>
                 
                 <div className="grid md:grid-cols-2 gap-6 mb-8">
@@ -1476,9 +1427,9 @@ export default function Dashboard({ onCreateNew, onEditCV }: DashboardProps) {
                     <div className="p-4 bg-blue-50 rounded-lg">
                       <div className="flex items-center space-x-3 mb-2">
                         <Mail className="h-5 w-5 text-blue-700" />
-                        <h4 className="font-medium text-blue-700">Email Support</h4>
+                        <h4 className="font-medium text-blue-700">{t('dashboard.support.email.title')}</h4>
                       </div>
-                      <p className="text-blue-700 text-sm mb-2">Get help via email within 2 hours</p>
+                      <p className="text-blue-700 text-sm mb-2">{t('dashboard.support.email.subtitle')}</p>
                       <a href="mailto:mbaforfoghang@gmail.com" className="text-blue-700 hover:text-blue-700 font-medium">
                         mbaforfoghang@gmail.com
                       </a>
@@ -1487,52 +1438,52 @@ export default function Dashboard({ onCreateNew, onEditCV }: DashboardProps) {
                     <div className="p-4 bg-green-50 rounded-lg">
                       <div className="flex items-center space-x-3 mb-2">
                         <MessageCircle className="h-5 w-5 text-green-600" />
-                        <h4 className="font-medium text-green-900">Live Chat</h4>
+                        <h4 className="font-medium text-green-900">{t('dashboard.support.chat.title')}</h4>
                       </div>
-                      <p className="text-green-700 text-sm mb-2">Chat with our support team</p>
+                      <p className="text-green-700 text-sm mb-2">{t('dashboard.support.chat.subtitle')}</p>
                       <button className="text-green-600 hover:text-green-800 font-medium">
-                        Start Chat Session
+                        {t('dashboard.support.chat.button')}
                       </button>
                     </div>
                     
                     <div className="p-4 bg-purple-50 rounded-lg">
                       <div className="flex items-center space-x-3 mb-2">
                         <HelpCircle className="h-5 w-5 text-blue-700" />
-                        <h4 className="font-medium text-blue-700">Knowledge Base</h4>
+                        <h4 className="font-medium text-blue-700">{t('dashboard.support.kb.title')}</h4>
                       </div>
-                      <p className="text-blue-700 text-sm mb-2">Browse our help articles</p>
+                      <p className="text-blue-700 text-sm mb-2">{t('dashboard.support.kb.subtitle')}</p>
                       <button className="text-blue-700 hover:text-blue-700 font-medium">
-                        Browse Articles
+                        {t('dashboard.support.kb.button')}
                       </button>
                     </div>
                   </div>
 
                   {/* Quick Contact Form */}
                   <div className="bg-gray-50 rounded-lg p-6">
-                    <h4 className="font-semibold text-gray-900 mb-4">Quick Support Request</h4>
+                    <h4 className="font-semibold text-gray-900 mb-4">{t('dashboard.support.form.title')}</h4>
                     <form onSubmit={handleContactSubmit} className="space-y-4">
                       <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-1">Issue Type</label>
+                        <label className="block text-sm font-medium text-gray-700 mb-1">{t('dashboard.support.form.issueType')}</label>
                         <select 
                           value={contactForm.issueType}
                           onChange={(e) => setContactForm(prev => ({ ...prev, issueType: e.target.value }))}
                           className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm"
                         >
-                          <option value="technical">Technical Issue</option>
-                          <option value="support">Account Problem</option>
-                          <option value="general">CV Download Issue</option>
-                          <option value="feature">Template Question</option>
-                          <option value="general">General Question</option>
+                          <option value="technical">{t('dashboard.support.form.issues.technical')}</option>
+                          <option value="support">{t('dashboard.support.form.issues.account')}</option>
+                          <option value="general">{t('dashboard.support.form.issues.download')}</option>
+                          <option value="feature">{t('dashboard.support.form.issues.template')}</option>
+                          <option value="general">{t('dashboard.support.form.issues.general')}</option>
                         </select>
                       </div>
                       <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-1">Message</label>
+                        <label className="block text-sm font-medium text-gray-700 mb-1">{t('dashboard.support.form.message')}</label>
                         <textarea
                           rows={3}
                           value={contactForm.message}
                           onChange={(e) => setContactForm(prev => ({ ...prev, message: e.target.value }))}
                           className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm"
-                          placeholder="Describe your issue..."
+                          placeholder={t('dashboard.support.form.placeholder')}
                           required
                         />
                       </div>
@@ -1540,14 +1491,14 @@ export default function Dashboard({ onCreateNew, onEditCV }: DashboardProps) {
                         <div className="p-3 bg-green-50 border border-green-200 rounded-lg">
                           <p className="text-sm text-green-700 flex items-center">
                             <CheckCircle2 className="h-4 w-4 mr-2" />
-                            Support request sent successfully! We'll get back to you soon.
+                            {t('dashboard.support.form.success')}
                           </p>
                         </div>
                       )}
                       {contactSubmitStatus === 'error' && (
                         <div className="p-3 bg-red-50 border border-red-200 rounded-lg">
                           <p className="text-sm text-red-700">
-                            Failed to send message. Please try again or email us directly at mbaforfoghang@gmail.com
+                            {t('dashboard.support.form.error')}
                           </p>
                         </div>
                       )}
@@ -1559,12 +1510,12 @@ export default function Dashboard({ onCreateNew, onEditCV }: DashboardProps) {
                         {isSubmittingContact ? (
                           <>
                             <div className="h-4 w-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
-                            <span>Sending...</span>
+                            <span>{t('dashboard.support.form.sending')}</span>
                           </>
                         ) : (
                           <>
                             <Send className="h-4 w-4" />
-                            <span>Send Support Request</span>
+                            <span>{t('dashboard.support.form.send')}</span>
                           </>
                         )}
                       </button>
@@ -1572,7 +1523,6 @@ export default function Dashboard({ onCreateNew, onEditCV }: DashboardProps) {
                   </div>
                 </div>
               </div>
-
             </div>
           )}
         </div>
@@ -1596,11 +1546,11 @@ export default function Dashboard({ onCreateNew, onEditCV }: DashboardProps) {
               onClick={(e) => e.stopPropagation()}
             >
               <div className="px-4 lg:px-6 py-3 lg:py-4 border-b border-gray-200">
-                <h2 className="text-lg lg:text-xl font-bold text-gray-900 flex items-center">
+                <h2 className="text-lg lg:text-xl font-medium text-gray-900 flex items-center">
                   <Palette className="h-4 w-4 lg:h-5 lg:w-5 mr-2" />
-                  Choose Template for {selectedCVForTemplate?.fileName || 'CV'}
+                  {t('dashboard.modals.chooseTemplate.title', { fileName: selectedCVForTemplate?.fileName || 'CV' })}
                 </h2>
-                <p className="text-sm lg:text-base text-gray-600 mt-1">Select a new template to apply to your CV</p>
+                <p className="text-sm lg:text-base text-gray-600 mt-1">{t('dashboard.modals.chooseTemplate.subtitle')}</p>
               </div>
 
               <div className="p-4 lg:p-6 max-h-[70vh] lg:max-h-[60vh] overflow-y-auto">
@@ -1638,7 +1588,7 @@ export default function Dashboard({ onCreateNew, onEditCV }: DashboardProps) {
                         {selectedCVForTemplate?.templateType === template.type ? (
                           <span className="inline-flex items-center px-3 py-1 rounded-full text-xs lg:text-sm font-medium bg-blue-100 text-blue-700">
                             <CheckCircle2 className="h-3 w-3 lg:h-4 lg:w-4 mr-1" />
-                            Current Template
+                            {t('dashboard.modals.chooseTemplate.currentTemplate')}
                           </span>
                         ) : (
                           <button
@@ -1648,12 +1598,12 @@ export default function Dashboard({ onCreateNew, onEditCV }: DashboardProps) {
                             {isDownloading === selectedCVForTemplate?.id ? (
                               <>
                                 <Clock className="h-3 w-3 lg:h-4 lg:w-4 mr-2 animate-spin" />
-                                Applying...
+                                {t('dashboard.modals.chooseTemplate.applying')}
                               </>
                             ) : (
                               <>
                                 <Palette className="h-3 w-3 lg:h-4 lg:w-4 mr-2" />
-                                Apply
+                                {t('dashboard.modals.chooseTemplate.apply')}
                               </>
                             )}
                           </button>
@@ -1669,7 +1619,7 @@ export default function Dashboard({ onCreateNew, onEditCV }: DashboardProps) {
                   onClick={() => setShowTemplateModal(false)}
                   className="px-4 py-2 text-gray-600 hover:text-gray-800 transition-colors text-sm lg:text-base"
                 >
-                  Cancel
+                  {t('dashboard.modals.chooseTemplate.cancel')}
                 </button>
               </div>
             </motion.div>

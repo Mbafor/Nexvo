@@ -4,12 +4,16 @@ import {
   Linkedin,
   Twitter,
 } from "lucide-react";
+import { useTranslation } from 'react-i18next'; // Import added
+import LanguageSelector from "../LanguageSelector";
 
 interface FooterProps {
   onGetStarted?: () => void;
 }
 
 export default function Footer({ onGetStarted }: FooterProps) {
+  const { t } = useTranslation();
+
   const handleGetStarted = () => {
     if (onGetStarted) {
       onGetStarted();
@@ -25,42 +29,43 @@ export default function Footer({ onGetStarted }: FooterProps) {
         {/* Main Footer Content */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-6">
           {/* Company Info */}
-       <div className="sm:col-span-2 lg:col-span-1 space-y-4 text-center sm:text-left">
-  <h3 className="text-xl lg:text-2xl font-bold text-blue-700">
-    QuickCV
-  </h3>
-  <p className="text-gray-600 leading-relaxed text-sm lg:text-base max-w-sm mx-auto sm:mx-0">
-    Create professional, ATS-optimized CVs that land interviews at top companies.
-  </p>
-</div>
-
+          <div className="sm:col-span-2 lg:col-span-1 space-y-4 text-center sm:text-left">
+            <h3 className="text-xl lg:text-2xl font-medium text-blue-700">
+              QuickCV
+            </h3>
+            <p className="text-gray-600 leading-relaxed text-sm lg:text-base max-w-sm mx-auto sm:mx-0">
+              {t('footer.tagline')}
+            </p>
+          </div>
 
           {/* Product Links */}
           <div className="space-y-4 text-center sm:text-left">
-            <h4   className="font-semibold text-gray-800 text-sm lg:text-base block py-1">Product</h4>
+            <h4 className="font-semibold text-gray-800 text-sm lg:text-base block py-1">
+              {t('footer.columns.product.title')}
+            </h4>
             <ul className="space-y-3">
               <li>
                 <a
                   href="/#templates"
-                  className="text-gray-600 hover:text-black transition-colors text-sm lg:text-base block py-1"
+                  className="text-gray-600 hover:text-black hover:underline transition-colors text-sm lg:text-base block py-1"
                 >
-                  Templates
+                  {t('footer.columns.product.links.templates')}
                 </a>
               </li>
               <li>
                 <a
                   href="/#features"
-                  className="text-gray-600 hover:text-black transition-colors text-sm lg:text-base block py-1"
+                  className="text-gray-600 hover:text-black hover:underline transition-colors text-sm lg:text-base block py-1"
                 >
-                  Features
+                  {t('footer.columns.product.links.features')}
                 </a>
               </li>
               <li>
                 <button
                   onClick={handleGetStarted}
-                  className="text-gray-600 hover:text-black transition-colors text-sm lg:text-base text-left py-1"
+                  className="text-gray-600 hover:text-black hover:underline transition-colors text-sm lg:text-base text-left py-1"
                 >
-                  CV Builder
+                  {t('footer.columns.product.links.cvBuilder')}
                 </button>
               </li>
             </ul>
@@ -68,30 +73,24 @@ export default function Footer({ onGetStarted }: FooterProps) {
 
           {/* Support Links */}
           <div className="space-y-4 text-center sm:text-left">
-            <h4 className="font-semibold text-gray-800 text-sm lg:text-base block py-1">Support</h4>
+            <h4 className="font-semibold text-gray-800 text-sm lg:text-base block py-1">
+              {t('footer.columns.support.title')}
+            </h4>
             <ul className="space-y-3">
               <li>
                 <Link
                   to="/faq"
-                  className="text-gray-600 hover:text-black transition-colors text-sm lg:text-base block py-1"
+                  className="text-gray-600 hover:text-black hover:underline transition-colors text-sm lg:text-base block py-1"
                 >
-                  FAQ
+                  {t('footer.columns.support.links.faq')}
                 </Link>
               </li>
               <li>
                 <Link
                   to="/contact"
-                  className="text-gray-600 hover:text-black transition-colors text-sm lg:text-base block py-1"
+                  className="text-gray-600 hover:text-black hover:underline transition-colors text-sm lg:text-base block py-1"
                 >
-                  Contact Us
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to="/help"
-                  className="text-gray-600 hover:text-black transition-colors text-sm lg:text-base block py-1"
-                >
-                  Help Center
+                  {t('footer.columns.support.links.contact')}
                 </Link>
               </li>
             </ul>
@@ -99,72 +98,78 @@ export default function Footer({ onGetStarted }: FooterProps) {
 
           {/* Company Links */}
           <div className="space-y-4 text-center sm:text-left">
-            <h4 className="font-semibold text-gray-800 text-sm lg:text-base block py-1">Company</h4>
+            <h4 className="font-semibold text-gray-800 text-sm lg:text-base block py-1">
+              {t('footer.columns.company.title')}
+            </h4>
             <ul className="space-y-3">
               <li>
                 <Link
                   to="/about"
-                  className="text-gray-600 hover:text-black transition-colors text-sm lg:text-base block py-1"
+                  className="text-gray-600 hover:text-black hover:underline transition-colors text-sm lg:text-base block py-1"
                 >
-                  About
+                  {t('footer.columns.company.links.about')}
                 </Link>
               </li>
               <li>
                 <Link
                   to="/privacy"
-                  className="text-gray-600 hover:text-black transition-colors text-sm lg:text-base block py-1"
+                  className="text-gray-600 hover:text-black hover:underlinetransition-colors text-sm lg:text-base block py-1"
                 >
-                  Privacy Policy
+                  {t('footer.columns.company.links.privacy')}
                 </Link>
               </li>
               <li>
                 <Link
                   to="/terms"
-                  className="text-gray-600 hover:text-black transition-colors text-sm lg:text-base block py-1"
+                  className="text-gray-600 hover:text-black hover:underline transition-colors text-sm lg:text-base block py-1"
                 >
-                  Terms of Service
+                  {t('footer.columns.company.links.terms')}
                 </Link>
               </li>
             </ul>
           </div>
         </div>
 
-     {/* Social Links */}
-<div className="mt-10 space-y-4 text-center sm:text-left">
-  <h4 className="font-semibold text-gray-800 text-sm lg:text-base block py-1">Follow Us</h4>
-  <div className="flex justify-center sm:justify-start space-x-3">
-    <a
-      href="https://linkedin.com/company/quickcv"
-      target="_blank"
-      rel="noopener noreferrer"
-      className="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center hover:bg-blue-600 transition-colors"
-    >
-      <Linkedin className="h-5 w-5 text-blue-700" />
-    </a>
-    <a
-      href="https://twitter.com/quickcv"
-      target="_blank"
-      rel="noopener noreferrer"
-      className="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center hover:bg-blue-600 transition-colors"
-    >
-      <Twitter className="h-5 w-5 text-blue-700" />
-    </a>
-    <a
-      href="mailto:mbaforfoghang@gmail.com"
-      className="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center hover:bg-blue-600 transition-colors"
-    >
-      <Mail className="h-5 w-5 text-blue-700" />
-    </a>
-  </div>
-</div>
-
+        {/* Social Links */}
+        <div className="mt-10 space-y-4 text-center sm:text-left">
+          <h4 className="font-semibold text-gray-800 text-sm lg:text-base block py-1">
+            {t('footer.followUs')}
+          </h4>
+          <div className="flex justify-center sm:justify-start space-x-3">
+            <a
+              href="https://linkedin.com/company/quickcv"
+              target="_blank"
+              rel="noopener noreferrer"
+              className=" flex items-center justify-center transition-colors"
+            >
+              <Linkedin className="h-5 w-5 text-gray-700  hover:text-blue-600" />
+            </a>
+            <a
+              href="https://twitter.com/quickcv"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-10 h-10 rounded-full flex items-center justify-center transition-colors"
+            >
+              <Twitter className="h-5 w-5 text-gray-700  hover:text-blue-600" />
+            </a>
+            <a
+              href="mailto:mbaforfoghang@gmail.com"
+              className=" flex items-center justify-center transition-colors"
+            >
+              <Mail className="h-5 w-5 text-gray-700 hover:text-blue-600" />
+            </a>
+          </div>
+        </div>
 
         {/* Bottom Bar */}
         <div className="border-t border-blue-100 mt-8 lg:mt-12 pt-6 lg:pt-8">
           <div className="flex flex-col space-y-4 sm:flex-row sm:justify-between sm:items-center sm:space-y-0">
             <p className="text-gray-500 text-sm text-center sm:text-left">
-              © 2025 QuickCV. All rights reserved.
+              {t('footer.copyright', { year: new Date().getFullYear() })}
             </p>
+            <div className="flex justify-center sm:justify-end">
+              <LanguageSelector className="scale-90 sm:scale-100" />
+            </div>
           </div>
         </div>
       </div>

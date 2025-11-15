@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useTranslation } from 'react-i18next'; // Import added
 import { 
   Lightbulb, 
   AlertCircle, 
@@ -33,6 +34,7 @@ export default function ContextualTips({
   validationResult, 
   staticTips = [] 
 }: ContextualTipsProps) {
+  const { t } = useTranslation(); // Hook initialized
   const [isExpanded, setIsExpanded] = useState(false);
   const [dismissedTips, setDismissedTips] = useState<Set<string>>(new Set());
 
@@ -42,35 +44,35 @@ export default function ContextualTips({
     switch (sectionId) {
       case 'personal':
         if (validationResult?.completionScore && validationResult.completionScore < 50) {
-          tips.push('A complete personal section increases your chances of getting noticed by 40%');
+          tips.push(t('contextualTips.smartTips.personal.completion'));
         }
-        tips.push('Include your phone number - 85% of recruiters prefer to call first');
-        tips.push('Adding a LinkedIn profile increases profile views by 2.5x');
+        tips.push(t('contextualTips.smartTips.personal.phone'));
+        tips.push(t('contextualTips.smartTips.personal.linkedin'));
         break;
       
       case 'experience':
         if (validationResult?.completionScore && validationResult.completionScore < 70) {
-          tips.push('Use action verbs like "achieved," "led," "improved" to start bullet points');
-          tips.push('Include numbers and metrics - "increased sales by 25%" is more impactful');
+          tips.push(t('contextualTips.smartTips.experience.actionVerbs'));
+          tips.push(t('contextualTips.smartTips.experience.metrics'));
         }
-        tips.push('List experience in reverse chronological order (most recent first)');
+        tips.push(t('contextualTips.smartTips.experience.reverseChronological'));
         break;
       
       case 'education':
-        tips.push('Include relevant coursework only if you\'re a recent graduate');
-        tips.push('Add certifications here if you don\'t have a separate section');
+        tips.push(t('contextualTips.smartTips.education.coursework'));
+        tips.push(t('contextualTips.smartTips.education.certifications'));
         break;
       
       case 'skills':
         if (validationResult?.completionScore && validationResult.completionScore < 60) {
-          tips.push('Include both technical and soft skills for a well-rounded profile');
-          tips.push('Tailor skills to match the job description keywords');
+          tips.push(t('contextualTips.smartTips.skills.balance'));
+          tips.push(t('contextualTips.smartTips.skills.keywords'));
         }
-        tips.push('List skills by proficiency level to help recruiters understand your strengths');
+        tips.push(t('contextualTips.smartTips.skills.proficiency'));
         break;
       
       default:
-        tips.push('Complete sections improve your CV\'s ATS compatibility score');
+        tips.push(t('contextualTips.smartTips.default.ats'));
     }
 
     return tips.filter(tip => !dismissedTips.has(tip));
@@ -83,7 +85,7 @@ export default function ContextualTips({
       items: validationResult?.errors || [],
       color: 'text-red-700',
       bgColor: 'bg-red-50 border-red-200',
-      title: 'Required Fields'
+      title: t('contextualTips.categories.required')
     },
     {
       type: 'warning' as const,
@@ -91,7 +93,7 @@ export default function ContextualTips({
       items: validationResult?.warnings || [],
       color: 'text-blue-700',
       bgColor: 'bg-blue-50 border-blue-200',
-      title: 'Recommendations'
+      title: t('contextualTips.categories.recommendations')
     },
     {
       type: 'suggestion' as const,
@@ -99,7 +101,7 @@ export default function ContextualTips({
       items: validationResult?.suggestions || [],
       color: 'text-black',
       bgColor: 'bg-blue-50 border-blue-200',
-      title: 'Pro Tips'
+      title: t('contextualTips.categories.proTips')
     },
     {
       type: 'tip' as const,
@@ -107,7 +109,7 @@ export default function ContextualTips({
       items: [...getSmartTips(), ...staticTips],
       color: 'text-black',
       bgColor: 'bg-blue-50 border-blue-200',
-      title: 'Smart Suggestions'
+      title: t('contextualTips.categories.smartSuggestions')
     }
   ].filter(category => category.items.length > 0);
 
@@ -125,11 +127,11 @@ export default function ContextualTips({
         <div className="flex items-center space-x-2">
           <CheckCircle2 className="h-5 w-5 text-blue-700" />
           <span className="font-medium text-blue-700">
-            Great work on your {sectionLabel} section!
+            {t('contextualTips.success.title', { section: sectionLabel })}
           </span>
         </div>
         <p className="text-blue-700 text-sm mt-1">
-          Your section looks complete. You can move on to the next section or preview your CV.
+          {t('contextualTips.success.description')}
         </p>
       </motion.div>
     );
@@ -152,10 +154,10 @@ export default function ContextualTips({
           </div>
           <div>
             <h3 className="font-semibold text-gray-900">
-              Tips for {sectionLabel}
+              {t('contextualTips.header.title', { section: sectionLabel })}
             </h3>
             <p className="text-sm text-gray-600">
-              {categories.reduce((sum, cat) => sum + cat.items.length, 0)} suggestions available
+              {t('contextualTips.header.count', { count: categories.reduce((sum, cat) => sum + cat.items.length, 0) })}
             </p>
           </div>
         </div>
@@ -220,7 +222,7 @@ export default function ContextualTips({
                           <button
                             onClick={() => dismissTip(item)}
                             className="opacity-0 group-hover:opacity-100 transition-opacity p-1 hover:bg-white rounded"
-                            title="Dismiss tip"
+                            title={t('contextualTips.actions.dismiss')}
                           >
                             <X className="h-3 w-3 text-gray-400 hover:text-gray-600" />
                           </button>

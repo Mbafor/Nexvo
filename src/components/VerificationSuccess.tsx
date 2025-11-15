@@ -51,7 +51,7 @@ export default function VerificationSuccess() {
                 <CheckCircle2 className="h-8 w-8 text-green-600" />
               </div>
               
-              <h1 className="text-2xl font-bold text-gray-900 mb-4">
+              <h1 className="text-2xl font-medium text-gray-900 mb-4">
                 Email Verified Successfully! 🎉
               </h1>
               
@@ -86,7 +86,7 @@ export default function VerificationSuccess() {
                 <CheckCircle2 className="h-8 w-8 text-blue-700" />
               </div>
               
-              <h1 className="text-2xl font-bold text-gray-900 mb-4">
+              <h1 className="text-2xl font-medium text-gray-900 mb-4">
                 Already Verified ✅
               </h1>
               
@@ -121,7 +121,7 @@ export default function VerificationSuccess() {
                 <X className="h-8 w-8 text-red-600" />
               </div>
               
-              <h1 className="text-2xl font-bold text-gray-900 mb-4">
+              <h1 className="text-2xl font-medium text-gray-900 mb-4">
                 Verification Error
               </h1>
               

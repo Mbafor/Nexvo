@@ -1,6 +1,7 @@
 // Stunning CV Preview Page - Professional Template Gallery
 import { useState, useEffect } from 'react';
 import { Sparkles, Zap, Crown, Minimize2, Code, FileText } from 'lucide-react';
+import { useTranslation } from 'react-i18next'; // Import added
 import { CVData, TemplateType } from '../types/cv';
 import { PDFViewer } from '@react-pdf/renderer';
 import { generatePDFBlob, getTemplate } from '../lib/pdfGenerator';
@@ -15,77 +16,8 @@ interface PreviewPageProps {
   onShowAuth?: () => void;
 }
 
-// Template metadata with enhanced styling
-const templateConfig = {
-  modern: {
-    name: 'Modern Professional',
-    description: 'Clean, contemporary design with perfect visual hierarchy',
-    icon: Sparkles,
-    color: 'from-blue-500 to-purple-600',
-    bgColor: 'bg-blue-50',
-    borderColor: 'border-blue-200',
-    textColor: 'text-blue-700',
-    category: 'Professional',
-    features: ['Two-column layout', 'Progress indicators', 'Modern typography']
-  },
-  creative: {
-    name: 'Creative Studio',
-    description: 'Bold, artistic design that showcases your creativity',
-    icon: Zap,
-    color: 'from-purple-500 to-pink-600',
-    bgColor: 'bg-purple-50',
-    borderColor: 'border-purple-200',
-    textColor: 'text-purple-700',
-    category: 'Creative',
-    features: ['Artistic header', 'Visual elements', 'Creative layout']
-  },
-  executive: {
-    name: 'Executive Elite',
-    description: 'Sophisticated design for leadership positions',
-    icon: Crown,
-    color: 'from-gray-800 to-yellow-600',
-    bgColor: 'bg-yellow-50',
-    borderColor: 'border-yellow-200',
-    textColor: 'text-yellow-700',
-    category: 'Leadership',
-    features: ['Luxury styling', 'Premium layout', 'Gold accents']
-  },
-  minimalist: {
-    name: 'Pure Minimalist',
-    description: 'Ultra-clean design focusing on content clarity',
-    icon: Minimize2,
-    color: 'from-gray-400 to-gray-600',
-    bgColor: 'bg-gray-50',
-    borderColor: 'border-gray-200',
-    textColor: 'text-gray-700',
-    category: 'Minimal',
-    features: ['Clean typography', 'White space', 'Elegant simplicity']
-  },
-  tech: {
-    name: 'Tech Developer',
-    description: 'Modern terminal-inspired design for tech professionals',
-    icon: Code,
-    color: 'from-green-500 to-teal-600',
-    bgColor: 'bg-green-50',
-    borderColor: 'border-green-200',
-    textColor: 'text-green-700',
-    category: 'Technology',
-    features: ['Terminal styling', 'Neon accents', 'Developer aesthetics']
-  },
-  ats: {
-    name: 'ATS Optimized',
-    description: 'Perfect compatibility with applicant tracking systems',
-    icon: FileText,
-    color: 'from-orange-500 to-red-600',
-    bgColor: 'bg-orange-50',
-    borderColor: 'border-orange-200',
-    textColor: 'text-orange-700',
-    category: 'ATS-Ready',
-    features: ['ATS compatible', 'Clean structure', 'Professional format']
-  }
-};
-
 export default function PreviewPage({ cvData, onBack, onDownload, onShowAuth }: PreviewPageProps) {
+  const { t } = useTranslation(); // Hook initialized
   const { user } = useAuth();
   const [selectedTemplate, setSelectedTemplate] = useState<TemplateType>(() => {
     const savedTemplate = localStorage.getItem('selectedTemplate') as TemplateType;
@@ -93,6 +25,76 @@ export default function PreviewPage({ cvData, onBack, onDownload, onShowAuth }: 
   });
   const [isPreviewMode, setIsPreviewMode] = useState(false);
   const [animatedTemplate, setAnimatedTemplate] = useState<string | null>(null);
+
+  // Template metadata moved inside component to allow translation
+  const templateConfig = {
+    modern: {
+      name: t('preview.templates.modern.name'),
+      description: t('preview.templates.modern.description'),
+      icon: Sparkles,
+      color: 'from-blue-500 to-purple-600',
+      bgColor: 'bg-blue-50',
+      borderColor: 'border-blue-200',
+      textColor: 'text-blue-700',
+      category: t('preview.categories.professional'),
+      features: t('preview.templates.modern.features', { returnObjects: true }) as string[]
+    },
+    creative: {
+      name: t('preview.templates.creative.name'),
+      description: t('preview.templates.creative.description'),
+      icon: Zap,
+      color: 'from-purple-500 to-pink-600',
+      bgColor: 'bg-purple-50',
+      borderColor: 'border-purple-200',
+      textColor: 'text-purple-700',
+      category: t('preview.categories.creative'),
+      features: t('preview.templates.creative.features', { returnObjects: true }) as string[]
+    },
+    executive: {
+      name: t('preview.templates.executive.name'),
+      description: t('preview.templates.executive.description'),
+      icon: Crown,
+      color: 'from-gray-800 to-yellow-600',
+      bgColor: 'bg-yellow-50',
+      borderColor: 'border-yellow-200',
+      textColor: 'text-yellow-700',
+      category: t('preview.categories.leadership'),
+      features: t('preview.templates.executive.features', { returnObjects: true }) as string[]
+    },
+    minimalist: {
+      name: t('preview.templates.minimalist.name'),
+      description: t('preview.templates.minimalist.description'),
+      icon: Minimize2,
+      color: 'from-gray-400 to-gray-600',
+      bgColor: 'bg-gray-50',
+      borderColor: 'border-gray-200',
+      textColor: 'text-gray-700',
+      category: t('preview.categories.minimal'),
+      features: t('preview.templates.minimalist.features', { returnObjects: true }) as string[]
+    },
+    tech: {
+      name: t('preview.templates.tech.name'),
+      description: t('preview.templates.tech.description'),
+      icon: Code,
+      color: 'from-green-500 to-teal-600',
+      bgColor: 'bg-green-50',
+      borderColor: 'border-green-200',
+      textColor: 'text-green-700',
+      category: t('preview.categories.technology'),
+      features: t('preview.templates.tech.features', { returnObjects: true }) as string[]
+    },
+    ats: {
+      name: t('preview.templates.ats.name'),
+      description: t('preview.templates.ats.description'),
+      icon: FileText,
+      color: 'from-orange-500 to-red-600',
+      bgColor: 'bg-orange-50',
+      borderColor: 'border-orange-200',
+      textColor: 'text-orange-700',
+      category: t('preview.categories.atsReady'),
+      features: t('preview.templates.ats.features', { returnObjects: true }) as string[]
+    }
+  };
 
   // Save selected template to localStorage
   useEffect(() => {
@@ -109,7 +111,7 @@ export default function PreviewPage({ cvData, onBack, onDownload, onShowAuth }: 
 
   const handleDownload = async () => {
     if (!cvData.personalInfo.fullName) {
-      alert('Please provide your full name in Personal Info before downloading.');
+      alert(t('preview.alerts.missingName'));
       return;
     }
 
@@ -132,7 +134,7 @@ export default function PreviewPage({ cvData, onBack, onDownload, onShowAuth }: 
       saveAs(blob, `${cvData.personalInfo.fullName}.pdf`);
     } catch (err) {
       console.error('Error generating PDF:', err);
-      alert('Failed to generate CV. Check console for details.');
+      alert(t('preview.alerts.generateError'));
     }
   };
 
@@ -151,21 +153,17 @@ export default function PreviewPage({ cvData, onBack, onDownload, onShowAuth }: 
                 }}
                 className="group flex items-center space-x-2 px-4 py-2 text-white  bg-blue-700 hover:text-blue-700 hover:bg-gradient-to- rounded-xl transition-all duration-300 border border-gray-200 hover:border-transparent shadow-sm hover:shadow-md"
               >
-              <span className="font-medium text-white  bg-blue-700 transition-colors duration-200 cursor-pointer">
-  Back to Editor
-</span>
-
+                <span className="font-medium text-white  bg-blue-700 transition-colors duration-200 cursor-pointer">
+                  {t('preview.actions.backToEditor')}
+                </span>
               </button>
-              
-          
             </div>
 
             {/* Right: Action Buttons */}
             <div className="flex items-center space-x-3">
               {!user && (
                 <div  className= "bg-blue-700 hover:bg-blue-600 rounded-2xl text-white font-semibold transition-all duration-300 shadow-sm" >
-                 
-                  <span>Sign in to download</span>
+                  <span>{t('preview.actions.signInToDownload')}</span>
                 </div>
               )}
               
@@ -173,8 +171,7 @@ export default function PreviewPage({ cvData, onBack, onDownload, onShowAuth }: 
                 onClick={() => setIsPreviewMode(!isPreviewMode)}
                 className="hidden lg:flex items-center space-x-2 px-4 py-2 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-xl transition-colors font-medium"
               >
-               
-                <span>{isPreviewMode ? 'Gallery' : 'Preview'}</span>
+                <span>{isPreviewMode ? t('preview.actions.gallery') : t('preview.actions.preview')}</span>
               </button>
 
               <button
@@ -183,8 +180,9 @@ export default function PreviewPage({ cvData, onBack, onDownload, onShowAuth }: 
               >
                 <div className="absolute inset-0 bg-gradient-to-r text-blue-700 opacity-0 group-hover:opacity-20 transition-opacity duration-300"></div>
                 {!user}
-                
-                <span className="relative z-10">{user ? 'Download PDF' : 'Get Started'}</span>
+                <span className="relative z-10">
+                  {user ? t('preview.actions.downloadPdf') : t('preview.actions.getStarted')}
+                </span>
               </button>
             </div>
           </div>
@@ -193,18 +191,15 @@ export default function PreviewPage({ cvData, onBack, onDownload, onShowAuth }: 
 
       {/* Main Content */}
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-
-
         <div className={`grid ${isPreviewMode ? 'lg:grid-cols-2' : 'grid-cols-1'} gap-8`}>
           {/* Template Gallery */}
           <div className={`${isPreviewMode ? '' : 'max-w-4xl mx-auto'}`}>
             <div className="text-center mb-8">
               <h2 className="text-3xl font-medium text-gray-900 mb-3">
-                Choose Your Perfect Template
+                {t('preview.hero.title')}
               </h2>
               <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-                Each template is professionally designed to make you stand out. 
-                Select the one that best represents your professional story.
+                {t('preview.hero.subtitle')}
               </p>
             </div>
 
@@ -245,7 +240,7 @@ export default function PreviewPage({ cvData, onBack, onDownload, onShowAuth }: 
                             <IconComponent className="h-6 w-6 text-white" />
                           </div>
                           <div>
-                            <h3 className="font-bold text-gray-900 text-lg">{config.name}</h3>
+                            <h3 className="font-medium text-gray-900 text-lg">{config.name}</h3>
                             <span className={`inline-block px-2 py-1 text-xs font-medium ${config.textColor} ${config.bgColor} rounded-full border ${config.borderColor} mt-1`}>
                               {config.category}
                             </span>
@@ -261,7 +256,9 @@ export default function PreviewPage({ cvData, onBack, onDownload, onShowAuth }: 
                         
                         {/* Features */}
                         <div className="space-y-2">
-                          <p className="text-xs font-semibold text-gray-500 uppercase tracking-wider">Features</p>
+                          <p className="text-xs font-semibold text-gray-500 uppercase tracking-wider">
+                            {t('preview.card.featuresLabel')}
+                          </p>
                           <div className="flex flex-wrap gap-1">
                             {config.features.map((feature, idx) => (
                               <span
@@ -280,7 +277,7 @@ export default function PreviewPage({ cvData, onBack, onDownload, onShowAuth }: 
                             ? `bg-gradient-to-r ${config.color} text-white shadow-lg`
                             : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                         }`}>
-                          {isSelected ? 'Selected' : 'Select Template'}
+                          {isSelected ? t('preview.card.selected') : t('preview.card.selectTemplate')}
                         </button>
                       </div>
                     </div>
@@ -295,8 +292,7 @@ export default function PreviewPage({ cvData, onBack, onDownload, onShowAuth }: 
                 onClick={() => setIsPreviewMode(!isPreviewMode)}
                 className="inline-flex items-center space-x-2 px-6 py-3 text-white font-medium"
               >
-          
-                <span>{isPreviewMode ? 'Back to Gallery' : 'Preview Selected'}</span>
+                <span>{isPreviewMode ? t('preview.actions.backToGallery') : t('preview.actions.previewSelected')}</span>
               </button>
             </div>
           </div>
@@ -309,13 +305,30 @@ export default function PreviewPage({ cvData, onBack, onDownload, onShowAuth }: 
                 <div className="bg-gradient-to-r from-gray-50 to-blue-50 p-6 border-b border-gray-200">
                   <div className="flex items-center justify-between">
                     <div>
-                      <h3 className="text-xl font-bold text-gray-900 mb-1">Live Preview</h3>
+                      <h3 className="text-xl font-medium text-gray-900 mb-1">{t('preview.panel.title')}</h3>
                       <p className="text-sm text-gray-600">
-                        <span className="font-medium">{templateConfig[selectedTemplate].name}</span> Template
+                        <span className="font-medium">
+                          {
+                            // @ts-ignore - Dynamic access
+                            templateConfig[selectedTemplate].name
+                          }
+                        </span> {t('preview.panel.templateSuffix')}
                       </p>
                     </div>
-                    <div className={`px-3 py-1 text-xs font-medium ${templateConfig[selectedTemplate].textColor} ${templateConfig[selectedTemplate].bgColor} rounded-full border ${templateConfig[selectedTemplate].borderColor}`}>
-                      {templateConfig[selectedTemplate].category}
+                    <div className={`px-3 py-1 text-xs font-medium ${
+                      // @ts-ignore
+                      templateConfig[selectedTemplate].textColor
+                    } ${
+                      // @ts-ignore
+                      templateConfig[selectedTemplate].bgColor
+                    } rounded-full border ${
+                      // @ts-ignore
+                      templateConfig[selectedTemplate].borderColor
+                    }`}>
+                      {
+                        // @ts-ignore
+                        templateConfig[selectedTemplate].category
+                      }
                     </div>
                   </div>
                 </div>
