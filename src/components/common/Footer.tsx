@@ -158,8 +158,13 @@ export default function Footer({ onGetStarted }: FooterProps) {
             >
               <Mail className="h-5 w-5 text-gray-700 hover:text-blue-600" />
             </a>
+            
           </div>
+            
         </div>
+        <div className="flex justify-center sm:justify-end py-1">
+              <LanguageSelector className="scale-90 sm:scale-100" />
+            </div>
 
         {/* Bottom Bar */}
         <div className="border-t border-blue-100 mt-8 lg:mt-12 pt-6 lg:pt-8">
@@ -167,9 +172,7 @@ export default function Footer({ onGetStarted }: FooterProps) {
             <p className="text-gray-500 text-sm text-center sm:text-left">
               {t('footer.copyright', { year: new Date().getFullYear() })}
             </p>
-            <div className="flex justify-center sm:justify-end">
-              <LanguageSelector className="scale-90 sm:scale-100" />
-            </div>
+      
           </div>
         </div>
       </div>

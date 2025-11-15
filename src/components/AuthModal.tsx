@@ -135,7 +135,7 @@ export default function AuthModal({ isOpen, onClose, onSuccess }: AuthModalProps
 
   // Dynamic Description Helper
   const getModalDescription = () => {
-    if (hasPendingDownload) return t('auth.descriptions.download');
+    if (hasPendingDownload) return t('auth2.descriptions.download'); // Fixed prefix
     if (mode === 'signin') return t('auth2.descriptions.signin');
     if (mode === 'signup') return t('auth2.descriptions.signup');
     return t('auth2.descriptions.reset');
@@ -157,7 +157,8 @@ export default function AuthModal({ isOpen, onClose, onSuccess }: AuthModalProps
             <div className="bg-blue-50 border border-blue-200 rounded-lg p-3 sm:p-4 mb-3 sm:mb-4">
               <div className="flex items-center space-x-2">
                 <Download className="h-4 w-4 sm:h-5 sm:w-5 text-blue-700 flex-shrink-0" />
-                <span className="font-medium text-blue-700 text-sm sm:text-base">{t('auth.download_ready.title')}</span>
+                {/* Fixed prefix from auth to auth2 */}
+                <span className="font-medium text-blue-700 text-sm sm:text-base">{t('auth2.download_ready.title')}</span>
               </div>
               <p className="text-xs sm:text-sm text-blue-700 mt-1">
                 {t('auth2.download_ready.message')}
@@ -175,7 +176,8 @@ export default function AuthModal({ isOpen, onClose, onSuccess }: AuthModalProps
 
         <form onSubmit={handleEmailAuth} className="space-y-3 sm:space-y-4">
           <div>
-            <label className="block text-sm font-medium text-slate-700 mb-1 sm:mb-2">{t('auth.labels.email')}</label>
+            {/* Fixed prefix */}
+            <label className="block text-sm font-medium text-slate-700 mb-1 sm:mb-2">{t('auth2.labels.email')}</label>
             <input
               type="email"
               value={email}
@@ -189,7 +191,8 @@ export default function AuthModal({ isOpen, onClose, onSuccess }: AuthModalProps
 
           {mode !== 'reset' && (
             <div>
-              <label className="block text-sm font-medium text-slate-700 mb-1 sm:mb-2">{t('auth.labels.password')}</label>
+              {/* Fixed prefix */}
+              <label className="block text-sm font-medium text-slate-700 mb-1 sm:mb-2">{t('auth2.labels.password')}</label>
               <input
                 type="password"
                 value={password}
@@ -248,7 +251,8 @@ export default function AuthModal({ isOpen, onClose, onSuccess }: AuthModalProps
                 <div className="w-full border-t border-slate-300"></div>
               </div>
               <div className="relative flex justify-center text-sm">
-                <span className="px-2 sm:px-3 bg-white text-slate-500 py-5">{t('auth.or_google')}</span>
+                {/* Fixed prefix */}
+                <span className="px-2 sm:px-3 bg-white text-slate-500 py-5">{t('auth2.or_google')}</span>
               </div>
             </div>
 
@@ -282,14 +286,13 @@ export default function AuthModal({ isOpen, onClose, onSuccess }: AuthModalProps
           </>
         )}
 
-      
-
         {/* Benefits section for download intent */}
         {hasPendingDownload && (
           <div className="mt-4 sm:mt-6 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-lg p-3 sm:p-4">
             <div className="flex items-center space-x-2 mb-2 sm:mb-3">
               <Shield className="h-4 w-4 sm:h-5 sm:w-5 text-blue-700 flex-shrink-0" />
-              <span className="font-semibold text-blue-700 text-sm sm:text-base">{t('auth.benefits.title')}</span>
+              {/* Fixed prefix */}
+              <span className="font-semibold text-blue-700 text-sm sm:text-base">{t('auth2.benefits.title')}</span>
             </div>
             <ul className="space-y-1 text-xs sm:text-sm text-blue-700">
               <li>• {t('auth2.benefits.item1')}</li>
@@ -307,7 +310,7 @@ export default function AuthModal({ isOpen, onClose, onSuccess }: AuthModalProps
               setError('');
               setSuccessMessage('');
             }}
-            className="text-xs sm:text-sm text-slate-600 hover:text-slate-900 touch-manipulation py-2 px-3 rounded hover:bg-slate-50 transition-colors block w-full"
+            className="text-xs sm:text-sm text-slate-600 hover:underline py-2 px-3 rounded block w-full"
           >
             {mode === 'signin'
               ? t('auth2.links.no_account')
@@ -323,7 +326,7 @@ export default function AuthModal({ isOpen, onClose, onSuccess }: AuthModalProps
                 setError('');
                 setSuccessMessage('');
               }}
-              className="text-xs sm:text-sm text-slate-600 hover:text-slate-900 touch-manipulation py-2 px-3 rounded hover:bg-slate-50 transition-colors"
+              className="text-xs sm:text-sm hover:underline py-2 px-3 rounded"
             >
               {t('auth2.links.forgot_password')}
             </button>

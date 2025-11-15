@@ -738,7 +738,7 @@ export default function Dashboard({ onCreateNew, onEditCV }: DashboardProps) {
       {/* Main Content */}
       <div className="flex-1 flex flex-col min-w-0 lg:ml-0">
         {/* Mobile Header with Hamburger */}
-        <div className="lg:hidden bg-white shadow-sm border-b border-gray-200 px-4 py-3 flex items-center justify-between">
+        <div className="lg:hidden bg-white shadow-sm border-b border-gray-200 px-4 py-3 flex items-center justify-between relative z-50">
           <button
             onClick={() => setIsMobileMenuOpen(true)}
             className="p-2 text-gray-600 hover:text-gray-800 hover:bg-gray-100 rounded-lg transition-colors"
@@ -748,7 +748,7 @@ export default function Dashboard({ onCreateNew, onEditCV }: DashboardProps) {
           <h1 className="text-lg font-medium text-gray-900">
             {t(`dashboard.nav.${activeTab}`)}
           </h1>
-          <LanguageSelector className="scale-90" />
+          <LanguageSelector className="scale-90 " />
         </div>
 
         {/* Desktop Header */}
@@ -763,7 +763,7 @@ export default function Dashboard({ onCreateNew, onEditCV }: DashboardProps) {
               </p>
             </div>
 
-            <div className="flex items-center space-x-4">
+            <div className="flex items-center space-x-4 relative z-50">
               {activeTab === 'dashboard' && (
                 <div className="flex items-center justify-between space-x-4 w-full">
                   {/* Search on the left */}
@@ -807,7 +807,7 @@ export default function Dashboard({ onCreateNew, onEditCV }: DashboardProps) {
         </div>
 
         {/* Content Area - Mobile optimized */}
-        <div className="flex-1 p-4 lg:p-6 overflow-auto">
+        <div className="flex-1 p-4 lg:p-6 overflow-auto py-15 ">
           {activeTab === 'dashboard' && (
             <>
               {/* Mobile Search and View Toggle */}
