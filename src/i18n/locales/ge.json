@@ -3,6 +3,11 @@
     "common": {
       "readMore": "Mehr lesen"
     },
+    "blog": {
+      "title": "Neueste Karriere-Einblicke",
+      "subtitle": "Bleiben Sie einen Schritt voraus mit Expertentipps, Lebenslauf-Ratgebern und den neuesten Rekrutierungstrends für Ihren Traumjob."
+    },
+   
     "hero": {
       "title_start": "Erstelle deinen",
       "title_highlight": "perfekten Lebenslauf",
@@ -1757,5 +1762,49 @@
   },
   "dash": {
     "title": "Dashboard"
+  }, 
+
+  
+  "career_center": {
+    "latest_posts": {
+      "read_article": "Artikel lesen"
+    }
+  }
+,
+
+  "blog": {
+    "authors": {
+      "mbafor_joshua": {
+        "bio": "Senior Produktmanager und Karrierecoach mit über 8 Jahren Erfahrung darin, Fachkräften zu ihrem Traumjob zu verhelfen. Leidenschaftlich interessiert an modernen Rekrutierungstrends und Lebenslauf-Optimierung.",
+        "title": "Senior Produktmanager & Karrierecoach"
+      },
+      "sarah_chen": {
+        "bio": "HR-Direktorin bei Fortune-500-Unternehmen mit Expertise in Talentakquise und modernen Rekrutierungsstrategien. Hilft Arbeitssuchenden zu verstehen, was Personalvermittler wirklich wollen.",
+        "title": "HR-Direktorin & Recruiting-Expertin"
+      }
+    },
+    "categories": {
+      "cv_tips": {
+        "name": "Lebenslauf-Tipps",
+        "description": "Expertenratschläge für die Erstellung herausragender Lebensläufe, die von Personalverantwortlichen bemerkt werden"
+      },
+      "career_advice": {
+        "name": "Karriereberatung",
+        "description": "Professionelle Anleitung, um Ihre Karriere voranzutreiben und Ihren Traumjob zu finden"
+      },
+      "industry_insights": {
+        "name": "Branchen-Einblicke",
+        "description": "Neueste Trends und Erkenntnisse aus der Personal- und Recruiting-Branche"
+      },
+      "templates": {
+        "name": "Vorlagen",
+        "description": "Moderne Lebenslauf-Vorlagen und Design-Inspirationen für verschiedene Branchen"
+      }
+    }
+  },
+
+    "faq1": {
+    "question": "Hast du unbeantwortete Fragen?",
+    "cta": "FAQ"
   }
 }

@@ -804,6 +804,10 @@ export default function LandingPage({ onGetStarted, onSignIn }: LandingPageProps
             ))}
           </div>
         </div>
+  <p className="py-10 text-center">{t("faq1.question")}{" "}<a href="/faq" className="text-blue-700 underline">
+        {t("faq1.cta")}
+      </a>
+    </p>
       </section>
 
       {/* Final CTA Section */}

@@ -11,8 +11,9 @@ export const authors: Author[] = [
     name: "Mbafor Joshua",
     email: "mbafor.joshua@quickcv.com",
     avatar: "/images/authors/mbafor-joshua.jpg",
-    bio: "Senior Product Manager and Career Coach with 8+ years of experience helping professionals land their dream jobs. Passionate about modern recruitment trends and CV optimization.",
-    title: "Senior Product Manager & Career Coach",
+    // UPDATED: Namespace changed to 'resources.'
+    bio: "resources.authors.mbafor_joshua.bio",
+    title: "resources.authors.mbafor_joshua.title",
     social: {
       linkedin: "https://linkedin.com/in/mbafor-joshua",
       twitter: "https://twitter.com/mbaforjoshua",
@@ -25,8 +26,9 @@ export const authors: Author[] = [
     name: "Sarah Chen",
     email: "sarah.chen@quickcv.com",
     avatar: "/images/authors/sarah-chen.jpg",
-    bio: "HR Director at Fortune 500 companies with expertise in talent acquisition and modern recruitment strategies. Helps job seekers understand what recruiters really want.",
-    title: "HR Director & Recruitment Expert",
+    // UPDATED: Namespace changed to 'resources.'
+    bio: "resources.authors.sarah_chen.bio",
+    title: "resources.authors.sarah_chen.title",
     social: {
       linkedin: "https://linkedin.com/in/sarah-chen-hr"
     },
@@ -38,39 +40,40 @@ export const authors: Author[] = [
 export const categories: Category[] = [
   {
     id: "cv-tips",
-    name: "CV Tips",
+    // UPDATED: Namespace changed to 'resources.'
+    name: "resources.categories.cv_tips.name",
     slug: "cv-tips",
-    description: "Expert advice on creating standout CVs that get noticed by recruiters",
+    description: "resources.categories.cv_tips.description",
     color: "#3B82F6",
     icon: "📝"
   },
   {
     id: "career-advice",
-    name: "Career Advice",
+    name: "resources.categories.career_advice.name",
     slug: "career-advice", 
-    description: "Professional guidance for advancing your career and landing your dream job",
+    description: "resources.categories.career_advice.description",
     color: "#10B981",
     icon: "🚀"
   },
   {
     id: "industry-insights",
-    name: "Industry Insights",
+    name: "resources.categories.industry_insights.name",
     slug: "industry-insights",
-    description: "Latest trends and insights from the recruitment and hiring industry",
+    description: "resources.categories.industry_insights.description",
     color: "#8B5CF6",
     icon: "💡"
   },
   {
     id: "templates",
-    name: "Templates",
+    name: "resources.categories.templates.name",
     slug: "templates",
-    description: "Modern CV templates and design inspiration for different industries",
+    description: "resources.categories.templates.description",
     color: "#F59E0B",
     icon: "🎨"
   }
 ];
 
-// Blog posts data (imported from individual files)
+// Blog posts data
 export const blogPosts: BlogPost[] = [
   atsOptimizedCvGuide,
   modernCvTemplates2025,

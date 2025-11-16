@@ -3,6 +3,11 @@
     "common": {
       "readMore": "Leer más"
     },
+        "blog": {
+       "title": "Últimos consejos profesionales",
+      "subtitle": "Mantente a la vanguardia con consejos de expertos, guías de CV y las últimas tendencias de reclutamiento para conseguir el trabajo de tus sueños."
+    },
+  
     "hero": {
       "title_start": "Crea tu",
       "title_highlight": "CV Perfecto",
@@ -1758,5 +1763,49 @@
   "dash": {
     "title": "Panel"
   }
+}, 
+
+  "career_center": {
+    "latest_posts": {
+      "read_article": "Leer artículo"
+    }
+  }
+,
+
+  "blog": {
+    "authors": {
+      "mbafor_joshua": {
+        "bio": "Gerente de Producto Senior y Coach Profesional con más de 8 años de experiencia ayudando a profesionales a conseguir el trabajo de sus sueños. Apasionado por las tendencias modernas de reclutamiento y la optimización de currículums.",
+        "title": "Gerente de Producto Senior y Coach Profesional"
+      },
+      "sarah_chen": {
+        "bio": "Directora de RR.HH. en empresas Fortune 500 con experiencia en adquisición de talento y estrategias modernas de reclutamiento. Ayuda a los candidatos a entender lo que los reclutadores realmente buscan.",
+        "title": "Directora de RR.HH. y Experta en Reclutamiento"
+      }
+    },
+    "categories": {
+      "cv_tips": {
+        "name": "Consejos para CV",
+        "description": "Asesoramiento experto para crear currículums destacados que llamen la atención de los reclutadores"
+      },
+      "career_advice": {
+        "name": "Asesoramiento Profesional",
+        "description": "Orientación profesional para avanzar en tu carrera y conseguir el trabajo de tus sueños"
+      },
+      "industry_insights": {
+        "name": "Perspectivas de la Industria",
+        "description": "Últimas tendencias y conocimientos de la industria de la contratación y el reclutamiento"
+      },
+      "templates": {
+        "name": "Plantillas",
+        "description": "Plantillas de CV modernas e inspiración de diseño para diferentes industrias"
+      }
+    }
+  }
+  ,
+
+   "faq1": {
+    "question": "¿Tienes preguntas sin responder?",
+    "cta": "Preguntas frecuentes"
 }
 }

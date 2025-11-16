@@ -3,6 +3,11 @@
     "common": {
       "readMore": "Lire la suite"
     },
+    "blog": {
+      "title": "Derniers conseils de carrière",
+      "subtitle": "Gardez une longueur d'avance grâce à des conseils d'experts, des guides de CV et les dernières tendances du recrutement pour décrocher le poste de vos rêves."
+    },
+  
     "hero": {
       "title_start": "Créez votre",
       "title_highlight": "CV Parfait",
@@ -1802,19 +1807,46 @@
   "dash": {
     "title": "Tableau de bord"
   }
+, 
+
+  "career_center": {
+    "latest_posts": {
+      "read_article": "Lire l'article"
+    }
+  },
+  "blog": {
+    "authors": {
+      "mbafor_joshua": {
+        "bio": "Chef de produit senior et coach de carrière avec plus de 8 ans d'expérience pour aider les professionnels à décrocher le job de leurs rêves. Passionné par les tendances modernes du recrutement et l'optimisation des CV.",
+        "title": "Chef de produit senior et coach de carrière"
+      },
+      "sarah_chen": {
+        "bio": "Directrice des RH dans des entreprises du Fortune 500, experte en acquisition de talents et en stratégies de recrutement modernes. Aide les chercheurs d'emploi à comprendre ce que les recruteurs attendent vraiment.",
+        "title": "Directrice des RH et experte en recrutement"
+      }
+    },
+    "categories": {
+      "cv_tips": {
+        "name": "Conseils CV",
+        "description": "Conseils d'experts pour créer des CV percutants qui se font remarquer par les recruteurs"
+      },
+      "career_advice": {
+        "name": "Conseils Carrière",
+        "description": "Orientation professionnelle pour faire progresser votre carrière et obtenir le poste de vos rêves"
+      },
+      "industry_insights": {
+        "name": "Perspectives du secteur",
+        "description": "Dernières tendances et informations sur le secteur du recrutement et de l'embauche"
+      },
+      "templates": {
+        "name": "Modèles",
+        "description": "Modèles de CV modernes et inspiration design pour différents secteurs"
+      }
+    }
+  },
+
+    "faq1": {
+    "question": "Avez-vous des questions sans réponse ?",
+    "cta": "FAQ"
+  }
 }
-
-
-
-
-
-
-  
-
-
-
-
-
-
-
-
