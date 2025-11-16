@@ -2,15 +2,12 @@ import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useTranslation } from 'react-i18next'; // Import added
 import { 
-  Mail, 
-  Phone, 
-  Clock, 
+
   CheckCircle2, 
   AlertCircle,
   MessageCircle,
   Headphones,
-  Linkedin,
-  Twitter,
+
   Building2,
   Star
 } from 'lucide-react';
@@ -102,32 +99,7 @@ export default function ContactPage() {
   };
 
   // Static data moved inside to allow translation
-  const contactInfo = [
-    {
-      icon: Mail,
-      title: t('contact.info.email.title'),
-      subtitle: t('contact.info.email.subtitle'),
-      value: 'mbaforfoghang@gmail.com',
-      link: 'mailto:mbaforfoghang@gmail.com',
-      color: ' text-gray-700  hover:text-blue-600'
-    },
-    {
-      icon: Phone,
-      title: t('contact.info.phone.title'),
-      subtitle: t('contact.info.phone.subtitle'),
-      value: '+237 683094941',
-      link: 'tel:+237683094941',
-      color: ' text-gray-700  hover:text-blue-600'
-    },
-    {
-      icon: Clock,
-      title: t('contact.info.hours.title'),
-      subtitle: t('contact.info.hours.subtitle'),
-      value: t('contact.info.hours.value'),
-      link: null,
-      color: ' text-gray-700  hover:text-blue-600'
-    }
-  ];
+ 
 
   const inquiryTypes = [
     { value: 'general', label: t('contact.form.inquiryTypes.general'), icon: MessageCircle },
@@ -164,103 +136,7 @@ export default function ContactPage() {
         </motion.div>
 
         <div className="grid lg:grid-cols-3 gap-8">
-          {/* Contact Information */}
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 0.2 }}
-            className="lg:col-span-1 space-y-6"
-          >
-            <div className="bg-white rounded-xl shadow-sm p-6">
-              <h3 className="text-xl font-semibold text-gray-900 mb-6 flex items-center">
-                {t('contact.info.sectionTitle')}
-              </h3>
-              
-              <div className="space-y-6">
-                {contactInfo.map((item, index) => (
-                  <motion.div
-                    key={index}
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.3 + index * 0.1 }}
-                    className="flex items-start space-x-4"
-                  >
-                    <div className={`p-3 rounded-lg ${item.color} flex-shrink-0`}>
-                      <item.icon className="h-6 w-6 " />
-                    </div>
-                    <div className="flex-1">
-                      <h4 className="font-semibold text-gray-900 mb-1">{item.title}</h4>
-                      <p className="text-sm text-gray-600 mb-2">{item.subtitle}</p>
-                      {item.link ? (
-                        <a
-                          href={item.link}
-                          target={item.link.startsWith('http') ? '_blank' : undefined}
-                          rel={item.link.startsWith('http') ? 'noopener noreferrer' : undefined}
-                          className="text-blue-700 hover:text-blue-700 transition-colors whitespace-pre-line text-sm font-medium"
-                        >
-                          {item.value}
-                        </a>
-                      ) : (
-                        <p className="text-gray-800 whitespace-pre-line text-sm font-medium">
-                          {item.value}
-                        </p>
-                      )}
-                    </div>
-                  </motion.div>
-                ))}
-              </div>
-            </div>
-
-            {/* Social Links */}
-            <div className="bg-white rounded-xl shadow-sm p-6">
-              <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center">
-                {t('contact.social.title')}
-              </h3>
-              <div className="flex space-x-4">
-                <a
-                  href="https://linkedin.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="p-3  text-gray-700  hover:text-blue-600"
-                >
-                  <Linkedin className="h-5 w-5" />
-                </a>
-                <a
-                  href="https://twitter.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="p-3  text-gray-700  hover:text-blue-600"
-                >
-                  <Twitter className="h-5 w-5" />
-                </a>
-                <a
-                  href="mailto:mbaforfoghang@gmail.com"
-                  className="p-3  text-gray-700  hover:text-blue-600"
-                >
-                  <Mail className="h-5 w-5" />
-                </a>
-              </div>
-            </div>
-
-            {/* Quick Stats */}
-            <div className=" bg-white p-6 text-black">
-              <h3 className="text-lg font-semibold mb-4">{t('contact.stats.title')}</h3>
-              <div className="space-y-3">
-                <div className="flex items-center justify-between">
-                  <span className="text-black">{t('contact.stats.general')}</span>
-                  <span className="font-semibold">&lt; 2 {t('contact.time.hours')}</span>
-                </div>
-                <div className="flex items-center justify-between">
-                  <span className="text-black">{t('contact.stats.technical')}</span>
-                  <span className="font-semibold">&lt; 30 {t('contact.time.minutes')}</span>
-                </div>
-                <div className="flex items-center justify-between">
-                  <span className="text-black">{t('contact.stats.business')}</span>
-                  <span className="font-semibold">&lt; 24 {t('contact.time.hours')}</span>
-                </div>
-              </div>
-            </div>
-          </motion.div>
+         
 
           {/* Contact Form */}
           <motion.div
@@ -436,6 +312,7 @@ export default function ContactPage() {
           </motion.div>
         </div>
       </div>
+      
       
       <Footer />
     </div>

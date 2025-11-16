@@ -440,7 +440,6 @@
   }
 ,
 
-
   "header": {
     "nav": {
       "templates": "Templates",
@@ -449,9 +448,11 @@
       "contact": "Contact"
     },
     "actions": {
-      "signIn": "Sign In"
+      "signIn": "Sign In",
+      "createCV": "Create CV"
     }
   }
+
 ,
 
 
@@ -1936,5 +1937,11 @@
         "description": "Master ATS optimization with our comprehensive 2025 guide. Learn how to create CVs that pass Applicant Tracking Systems while impressing human recruiters."
       }
     }
+  }
+,
+
+
+  "dash": {
+    "title": "Dashboard"
   }
 }

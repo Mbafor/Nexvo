@@ -26,7 +26,7 @@ export default function PrivacyPolicy() {
       </section>
 
       {/* Content */}
-      <main className="max-w-5xl mx-auto px-5 py-1 leading-relaxed space-y-10">
+      <main className="max-w-5xl mx-auto px-5 py-10 leading-relaxed space-y-10">
         <div className="bg-white border border-gray-100 rounded-2xl shadow-sm p-10 space-y-10">
           
           <h1 className="text-3xl font-bold text-center text-gray-900 mb-8">

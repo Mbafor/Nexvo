@@ -26,8 +26,8 @@ export default function TermsConditions() {
       </section>
 
       {/* Content */}
-      <main className="max-w-5xl mx-auto px-5 py-2 leading-relaxed space-y-10">
-        <div className="bg-white border border-gray-100 rounded-2xl shadow-sm p-10 space-y-10">
+      <main className="max-w-5xl mx-auto px-5 leading-relaxed space-y-20">
+        <div className="bg-white border border-gray-100 rounded-2xl shadow-sm p-10 space-y-20">
 
           {/* Content Sections */}
           <div className="prose prose-gray max-w-none space-y-8">
@@ -37,7 +37,7 @@ export default function TermsConditions() {
 
             {/* 1. Acceptance */}
             <section>
-              <h2 className="mt-8 text-2xl font-semibold text-black-700 ">
+              <h2 className="mt-8 text-2xl font-semibold text-black-700 py-5">
                 {t('terms.sections.acceptance.title')}
               </h2>
               <p>{t('terms.sections.acceptance.para1')}</p>
@@ -46,7 +46,7 @@ export default function TermsConditions() {
 
             {/* 2. Service Overview */}
             <section>
-              <h2 className="mt-8 text-2xl font-semibold text-black-700 ">
+              <h2 className="mt-8 text-2xl font-semibold text-black-700 py-5">
                 {t('terms.sections.overview.title')}
               </h2>
               <p>{t('terms.sections.overview.para1')}</p>
@@ -55,7 +55,7 @@ export default function TermsConditions() {
 
             {/* 3. User Accounts */}
             <section>
-              <h2 className="mt-8 text-2xl font-semibold text-black-700 ">
+              <h2 className="mt-8 text-2xl font-semibold text-black-700 py-5 ">
                 {t('terms.sections.accounts.title')}
               </h2>
               <p>{t('terms.sections.accounts.para1')}</p>
@@ -64,7 +64,7 @@ export default function TermsConditions() {
 
             {/* 4. Acceptable Use */}
             <section>
-              <h2 className="mt-8 text-2xl font-semibold text-black-700 ">
+              <h2 className="mt-8 text-2xl font-semibold text-black-700 py-5 ">
                 {t('terms.sections.usage.title')}
               </h2>
               <p>{t('terms.sections.usage.para1')}</p>
@@ -73,7 +73,7 @@ export default function TermsConditions() {
 
             {/* 5. Intellectual Property */}
             <section>
-              <h2 className="mt-8 text-2xl font-semibold text-black-700 ">
+              <h2 className="mt-8 text-2xl font-semibold text-black-700 py-5 ">
                 {t('terms.sections.ip.title')}
               </h2>
               <p>{t('terms.sections.ip.para1')}</p>
@@ -82,7 +82,7 @@ export default function TermsConditions() {
 
             {/* 6. Privacy and Data Protection (Has Link) */}
             <section>
-              <h2 className="mt-8 text-2xl font-semibold text-black-700 ">
+              <h2 className="mt-8 text-2xl font-semibold text-black-700 py-5">
                 {t('terms.sections.privacy.title')}
               </h2>
               <p>
@@ -95,7 +95,7 @@ export default function TermsConditions() {
 
             {/* 7. Payments and Billing */}
             <section>
-              <h2 className="mt-8 text-2xl font-semibold text-black-700 ">
+              <h2 className="mt-8 text-2xl font-semibold text-black-700 py-5">
                 {t('terms.sections.payments.title')}
               </h2>
               <p>{t('terms.sections.payments.para1')}</p>
@@ -104,7 +104,7 @@ export default function TermsConditions() {
 
             {/* 8. Limitation of Liability */}
             <section>
-              <h2 className="mt-8 text-2xl font-semibold text-black-700 ">
+              <h2 className="mt-8 text-2xl font-semibold text-black-700 py-5">
                 {t('terms.sections.liability.title')}
               </h2>
               <p>{t('terms.sections.liability.para1')}</p>
@@ -113,7 +113,7 @@ export default function TermsConditions() {
 
             {/* 9. Termination */}
             <section>
-              <h2 className="mt-8 text-2xl font-semibold text-black-700 ">
+              <h2 className="mt-8 text-2xl font-semibold text-black-700 py-5">
                 {t('terms.sections.termination.title')}
               </h2>
               <p>{t('terms.sections.termination.para1')}</p>
@@ -121,7 +121,7 @@ export default function TermsConditions() {
 
             {/* 10. Modifications to Terms */}
             <section>
-              <h2 className="mt-8 text-2xl font-semibold text-black-700 ">
+              <h2 className="mt-8 text-2xl font-semibold text-black-700 py-5">
                 {t('terms.sections.modifications.title')}
               </h2>
               <p>{t('terms.sections.modifications.para1')}</p>
@@ -129,7 +129,7 @@ export default function TermsConditions() {
 
             {/* 11. Governing Law */}
             <section>
-              <h2 className="mt-8 text-2xl font-semibold text-black-700 ">
+              <h2 className="mt-8 text-2xl font-semibold text-black-700 py-5 ">
                 {t('terms.sections.law.title')}
               </h2>
               <p>{t('terms.sections.law.para1')}</p>
@@ -137,7 +137,7 @@ export default function TermsConditions() {
 
             {/* 12. Contact Information (Has Link) */}
             <section>
-              <h2 className="mt-8 text-2xl font-semibold text-black-700 ">
+              <h2 className="mt-8 text-2xl font-semibold text-black-700 py-5">
                 {t('terms.sections.contact.title')}
               </h2>
               <p>

@@ -131,40 +131,47 @@ export default function Footer({ onGetStarted }: FooterProps) {
         </div>
 
         {/* Social Links */}
-        <div className="mt-10 space-y-4 text-center sm:text-left">
-          <h4 className="font-semibold text-gray-800 text-sm lg:text-base block py-1">
-            {t('footer.followUs')}
-          </h4>
-          <div className="flex justify-center sm:justify-start space-x-3">
-            <a
-              href="https://linkedin.com/company/quickcv"
-              target="_blank"
-              rel="noopener noreferrer"
-              className=" flex items-center justify-center transition-colors"
-            >
-              <Linkedin className="h-5 w-5 text-gray-700  hover:text-blue-600" />
-            </a>
-            <a
-              href="https://twitter.com/quickcv"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-10 h-10 rounded-full flex items-center justify-center transition-colors"
-            >
-              <Twitter className="h-5 w-5 text-gray-700  hover:text-blue-600" />
-            </a>
-            <a
-              href="mailto:mbaforfoghang@gmail.com"
-              className=" flex items-center justify-center transition-colors"
-            >
-              <Mail className="h-5 w-5 text-gray-700 hover:text-blue-600" />
-            </a>
-            
-          </div>
-            
-        </div>
-        <div className="flex justify-center sm:justify-end py-1">
-              <LanguageSelector className="scale-90 sm:scale-100" />
-            </div>
+       {/* Social Links + Language Selector Row */}
+<div className="mt-10 flex flex-col sm:flex-row sm:items-center sm:justify-between">
+
+  {/* Social Links (left on desktop, center on mobile) */}
+  <div className="text-center sm:text-left">
+    <h4 className="font-semibold text-gray-800 text-sm lg:text-base block py-1">
+      {t('footer.followUs')}
+    </h4>
+
+    <div className="flex justify-center sm:justify-start space-x-5 mt-2">
+      <a
+        href="https://linkedin.com/company/quickcv"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="flex items-center justify-center transition-colors"
+      >
+        <Linkedin className="h-5 w-5 text-gray-700 hover:text-blue-600" />
+      </a>
+      <a
+        href="https://twitter.com/quickcv"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="flex items-center justify-center transition-colors"
+      >
+        <Twitter className="h-5 w-5 text-gray-700 hover:text-blue-600" />
+      </a>
+      <a
+        href="mailto:mbaforfoghang@gmail.com"
+        className="flex items-center justify-center transition-colors"
+      >
+        <Mail className="h-5 w-5 text-gray-700 hover:text-blue-600" />
+      </a>
+    </div>
+  </div>
+
+  {/* Language Selector (right on desktop, center on mobile) */}
+  <div className="mt-6 sm:mt-0 flex justify-center sm:justify-end">
+    <LanguageSelector className="scale-90 sm:scale-100" />
+  </div>
+</div>
+
 
         {/* Bottom Bar */}
         <div className="border-t border-blue-100 mt-8 lg:mt-12 pt-6 lg:pt-8">

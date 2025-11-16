@@ -34,17 +34,12 @@ import ContextualTips from "./ContextualTips";
 import SubtleToast from "./SubtleToast";
 import OnboardingTour from "./OnboardingTour";
 import CollapsibleSections from "./CollapsibleSections";
+import LanguageSelector from "./LanguageSelector";
 
 // Validation
 import { CVValidator, SectionValidation } from "../utils/cvValidator";
 
-// Load dynamic tips
-import tipsData from "../data/tips.json";
-
-// Type for tips data
-type TipsData = {
-  [key: string]: string[];
-};
+// --- REMOVED: import tipsData from "../data/tips.json"; ---
 
 interface CVBuilderProps {
   cvData: CVData;
@@ -101,6 +96,17 @@ export default function CVBuilder({
 
   const currentSection = steps[currentStep];
   const saveTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+
+  // --- ADDED: Helper to get tips from i18n ---
+  const getTipsForSection = (sectionId: string): string[] => {
+    // Use returnObjects: true to get the array from json
+    const tips = t(`tips.${sectionId}`, { returnObjects: true });
+    // Ensure it is actually an array before returning
+    if (Array.isArray(tips)) {
+      return tips as string[];
+    }
+    return [];
+  };
 
   // Check if user should see onboarding
   useEffect(() => {
@@ -426,105 +432,124 @@ export default function CVBuilder({
 
   return (
     <div className="min-h-screen bg-white">
-      {/* Top Navigation */}
-      <motion.nav 
-        className="bg-white border-b border-black/20 sticky top-0 z-50 shadow-sm"
-        initial={{ y: -100 }}
-        animate={{ y: 0 }}
-        transition={{ duration: 0.3 }}
+ {/* Top Navigation */}
+<motion.nav 
+  // --- EDITED: Background and border color ---
+  className="bg-blue-900 border-b border-gray-700 sticky top-0 z-50 shadow-sm"
+  initial={{ y: -100 }}
+  animate={{ y: 0 }}
+  transition={{ duration: 0.3 }}
+>
+  <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div className="flex items-center justify-between h-16">
+      {/* Logo and Home */}
+      <motion.button
+        onClick={goHome}
+        // --- EDITED: Text color ---
+        className="flex items-center space-x-3 text-white hover:text-blue-400 transition-colors min-h-[44px] min-w-[44px]"
+        whileHover={{ scale: 1.05 }}
+        whileTap={{ scale: 0.95 }}
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-16">
-            {/* Logo and Home */}
-            <motion.button
-              onClick={goHome}
-              className="flex items-center space-x-3 text-black hover:text-blue-700 transition-colors min-h-[44px] min-w-[44px]"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              <ChevronLeft className="h-5 w-5" />
-              <span className="font-semibold text-lg">{t('common.home')}</span>
-            </motion.button>
+        <ChevronLeft className="h-5 w-5" />
+        <span className="font-semibold text-lg">{t('common.home')}</span>
+      </motion.button>
 
-            {/* Progress indicator - Desktop only */}
-            <div className="hidden md:flex items-center space-x-2 md:space-x-4">
-              <div className="flex items-center space-x-2">
-                <div className="w-20 md:w-32 h-2 bg-black/20 rounded-full overflow-hidden">
-                  <motion.div 
-                    className="h-full bg-blue-700 rounded-full"
-                    initial={{ width: "0%" }}
-                    animate={{ width: `${progressPercentage}%` }}
-                    transition={{ duration: 0.5 }}
-                  />
-                </div>
-                <span className="text-xs md:text-sm font-medium text-black/70">
-                  {progressPercentage}%
-                </span>
-              </div>
-              
-              {/* Auto-save status */}
-              <div className="flex items-center space-x-2">
-                <div className={`w-2 h-2 rounded-full ${
-                  autoSaveStatus === 'saved' ? 'bg-blue-700' : 
-                  autoSaveStatus === 'saving' ? 'bg-black/50' : 'bg-black'
-                }`} />
-                <span className="text-xs text-black/60">
-                  {autoSaveStatus === 'saved' ? t('common.saved') : 
-                   autoSaveStatus === 'saving' ? t('common.saving') : t('common.error')}
-                </span>
-              </div>
-            </div>
-
-            {/* Action buttons - Mobile responsive */}
-            <div className="flex items-center space-x-1 sm:space-x-3">
-
-              {/* Preview CV Button */}
-              <motion.button
-                onClick={onPreview}
-                className="flex items-center space-x-1 sm:space-x-2 px-2 sm:px-4 py-2 text-white bg-blue-700 hover:bg-blue-600 rounded-lg transition-colors min-h-[44px]"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                <span>{t('cv.preview')}</span>
-              </motion.button>
-
-              {/* Sections Button */}
-              <motion.button
-                onClick={() => setShowSectionManager(true)}
-                className="flex items-center space-x-1 sm:space-x-2 px-2 sm:px-4 py-2 text-white bg-blue-700 hover:bg-blue-600 rounded-lg transition-colors min-h-[44px]"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-              
-                <span>{t('common.sections')}</span>
-              </motion.button>
-
-              {/* Dashboard/Sign In Button */}
-              {user && onDashboard ? (
-                <motion.button
-                  onClick={onDashboard}
-                  className="flex items-center space-x-1 sm:space-x-2 px-2 sm:px-4 py-2 text-white bg-blue-700 hover:bg-blue-600 rounded-lg transition-colors min-h-[44px]"
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  <span>Go to Dashboard</span>
-                </motion.button>
-              ) : onSignIn && !user ? (
-                <motion.button
-                  onClick={onSignIn}
-                  className="flex items-center space-x-1 sm:space-x-2 px-2 sm:px-4 py-2 text-white bg-blue-700 hover:bg-blue-600 rounded-lg transition-colors min-h-[44px]"
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  <span>{t('common.signIn')}</span>
-                </motion.button>
-              ) : null}
-
-          
-            </div>
+      {/* Progress indicator - Desktop only */}
+      <div className="hidden md:flex items-center space-x-2 md:space-x-4">
+        <div className="flex items-center space-x-2">
+          {/* --- EDITED: Background and text color --- */}
+          <div className="w-20 md:w-32 h-2 bg-gray-700 rounded-full overflow-hidden">
+            <motion.div 
+              className="h-full bg-blue-600 rounded-full"
+              initial={{ width: "0%" }}
+              animate={{ width: `${progressPercentage}%` }}
+              transition={{ duration: 0.5 }}
+            />
           </div>
+          <span className="text-xs md:text-sm font-medium text-gray-300">
+            {progressPercentage}%
+          </span>
         </div>
-      </motion.nav>
+        
+        {/* Auto-save status */}
+        <div className="flex items-center space-x-2">
+          {/* --- EDITED: Dot colors --- */}
+          <div className={`w-2 h-2 rounded-full ${
+            autoSaveStatus === 'saved' ? 'bg-blue-500' : 
+            autoSaveStatus === 'saving' ? 'bg-gray-500' : 'bg-red-500'
+          }`} />
+          {/* --- EDITED: Text color --- */}
+          <span className="text-xs text-gray-400">
+            {autoSaveStatus === 'saved' ? t('common.saved') : 
+             autoSaveStatus === 'saving' ? t('common.saving') : t('common.error')}
+          </span>
+        </div>
+      </div>
+
+      {/* Action buttons - Mobile responsive */}
+      <div className="flex items-center space-x-1 sm:space-x-2">
+
+        {/* Preview CV Button - HIDDEN on mobile */}
+        <motion.button
+          onClick={onPreview}
+          // --- EDITED: Hidden on mobile, flex on sm+ ---
+          className="hidden sm:flex items-center space-x-1.5 px-3 sm:px-4 py-2 text-gray-800 bg-white hover:bg-gray-200 rounded-lg transition-colors min-h-[44px]"
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+          aria-label={t('cv.preview')}
+        >
+         
+          <span className="hidden sm:inline text-sm font-semibold">{t('cv.preview')}</span>
+        </motion.button>
+
+        {/* Sections Button */}
+        <motion.button
+          onClick={() => setShowSectionManager(true)}
+          // --- EDITED: Icon hidden on mobile, text size/padding adjusted ---
+          className="flex items-center space-x-1.5 px-2 sm:px-4 py-2 text-gray-800 bg-white hover:bg-gray-200 rounded-lg transition-colors min-h-[44px]"
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+          aria-label={t('common.sections')}
+        >
+          
+          <span className="inline text-sm sm:text-sm font-semibold">{t('common.sections')}</span>
+        </motion.button>
+
+        {/* Dashboard/Sign In Button */}
+        {user && onDashboard ? (
+          <motion.button
+            onClick={onDashboard}
+            // --- EDITED: Icon hidden on mobile, text size/padding adjusted ---
+            className="flex items-center space-x-1.5 px-2 sm:px-4 py-2 text-gray-800 bg-white hover:bg-gray-200 rounded-lg transition-colors min-h-[44px]"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            aria-label={t('dash.title')}
+          >
+            <span className="inline text-sm sm:text-sm font-semibold">{t('dash.title')}</span>
+          </motion.button>
+        ) : onSignIn && !user ? (
+          <motion.button
+            onClick={onSignIn}
+            // --- EDITED: Icon hidden on mobile, text size/padding adjusted ---
+            className="flex items-center space-x-1.5 px-2 sm:px-4 py-2 text-gray-800 bg-white hover:bg-gray-200 rounded-lg transition-colors min-h-[44px]"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            aria-label={t('common.signIn')}
+          >
+            
+            <span className="inline text-sm sm:text-sm font-semibold">{t('common.signIn')}</span>
+          </motion.button>
+        ) : null}
+      
+        {/* --- ADDED: Language Selector --- */}
+        <div className="pl-1">
+          <LanguageSelector />
+        </div>
+        
+      </div>
+    </div>
+  </div>
+</motion.nav>
 
       <div className="flex">
         {/* Enhanced Left Sidebar - Progress Enhancement */}
@@ -674,7 +699,8 @@ export default function CVBuilder({
                 sectionId={currentSection.id}
                 sectionLabel={currentSection.label}
                 validationResult={getCurrentValidationResult()}
-                staticTips={(tipsData as TipsData)[currentSection.id] || []}
+                // --- MODIFIED: Using dynamic tips from i18n ---
+                staticTips={getTipsForSection(currentSection.id)}
               />
               
               {/* Enhanced Content with Validation - Desktop Step View */}
@@ -696,7 +722,7 @@ export default function CVBuilder({
                 </motion.button>
 
                 <div className="flex items-center space-x-3">
-                 
+                  
 
                   <motion.button
                     onClick={handleNext}
@@ -920,8 +946,8 @@ export default function CVBuilder({
               autoSaveStatus === 'saving' ? 'bg-black/50' : 'bg-black'
             }`} />
             <span className="text-xs text-black/60">
-              {autoSaveStatus === 'saved' ? 'Saved' : 
-               autoSaveStatus === 'saving' ? 'Saving...' : 'Error'}
+              {autoSaveStatus === 'saved' ? t('common.saved') : 
+               autoSaveStatus === 'saving' ? t('common.saving') : t('common.error')}
             </span>
           </div>
         </div>

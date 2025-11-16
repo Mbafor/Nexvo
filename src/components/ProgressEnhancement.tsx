@@ -104,18 +104,6 @@ export default function ProgressEnhancement({
           </motion.button>
         ))}
       </div>
-
-      {/* Quick Actions */}
-      <div className="mt-6 pt-4 border-t border-gray-200">
-        <div className="flex space-x-2">
-          <button className="flex-1 px-3 py-2 text-sm bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors">
-            {t('progressEnhancement.actions.saveDraft')}
-          </button>
-          <button className="flex-1 px-3 py-2 text-sm bg-blue-700 text-white rounded-lg hover:bg-blue-600 transition-colors">
-            {t('progressEnhancement.actions.preview')}
-          </button>
-        </div>
-      </div>
     </div>
   );
 }

@@ -1,0 +1,1880 @@
+{
+  "landing": {
+    "common": {
+      "readMore": "Leer más"
+    },
+    "hero": {
+      "title_start": "Crea tu",
+      "title_highlight": "CV Perfecto",
+      "title_end": "en Minutos",
+      "subtitle_start": "Crea CVs profesionales optimizados para ATS que consiguen entrevistas en las mejores empresas.",
+      "subtitle_highlight": "No se requiere registro.",
+      "cta": "Crea tu CV gratis",
+      "stats": {
+        "cvsCreated": "CVs Creados",
+        "successRate": "Tasa de Éxito",
+        "avgResponse": "Respuesta Promedio",
+        "countries": "Países"
+      }
+    },
+    "whyChooseUs": {
+      "title": "Por qué elegirnos",
+      "subtitle": "Nuestra plataforma no solo te ayuda a crear currículums, te ayuda a construir confianza, claridad y credibilidad.",
+      "section1": {
+        "title": "Plantillas diseñadas profesionalmente",
+        "description": "Elige de una biblioteca de diseños aprobados por RR.HH. que pasan los escaneos ATS y comunican instantáneamente tus fortalezas a los reclutadores.",
+        "points": [
+          "✔ Creadas con la aportación de gerentes de contratación",
+          "✔ Optimizadas para el equilibrio visual y la claridad",
+          "✔ Probadas para aumentar las tasas de respuesta"
+        ]
+      },
+      "section2": {
+        "title": "Rápido. Simple. Intuitivo.",
+        "description": "Nuestro constructor de currículums está diseñado para ayudarte a terminar tu CV profesional en minutos, sin necesidad de habilidades de diseño.",
+        "points": [
+          "✔ Edición y formato en tiempo real",
+          "✔ Alineación automática para un espaciado perfecto",
+          "✔ Opciones de descarga y exportación instantánea"
+        ]
+      },
+      "section3": {
+        "title": "Datos que trabajan para ti",
+        "description": "Utilizamos análisis de tendencias de contratación reales para proporcionar recomendaciones personalizadas que mantengan tu currículum alineado con las expectativas actuales de los reclutadores.",
+        "points": [
+          "✔ Información sobre optimización de palabras clave",
+          "✔ Seguimiento de métricas de éxito",
+          "✔ Sugerencias de mejora continua"
+        ]
+      },
+      "section4": {
+        "title": "Alcance global. Soporte humano.",
+        "description": "Ya sea que estés solicitando empleo local o internacionalmente, nuestra plataforma se adapta a tus necesidades, y nuestro equipo de soporte siempre está ahí para ayudar.",
+        "points": [
+          "✔ Plantillas ajustadas a estándares globales",
+          "✔ Compatibilidad multi-idioma",
+          "✔ Asistencia experta 24/7"
+        ]
+      }
+    },
+    "templates": {
+      "title": "Plantillas Profesionales",
+      "subtitle": "Elige de nuestra colección de plantillas aprobadas por RR.HH. diseñadas para pasar sistemas ATS e impresionar a los gerentes de contratación.",
+      "useTemplate": "Usar esta plantilla",
+      "perfectFor": "Perfecta para profesionales de {{role}}",
+      "creative": {
+        "name": "Profesional Creativo",
+        "description": "Destaca con un diseño moderno",
+        "features": ["Integración de portafolio", "Diseños creativos", "Personalización de color"]
+      },
+      "modern": {
+        "name": "Ejecutivo Moderno",
+        "description": "Excelencia limpia y profesional",
+        "features": ["Optimizado para ATS", "Formato ejecutivo", "Estándar de la industria"]
+      },
+      "ats": {
+        "name": "Especialista en ATS",
+        "description": "Compatibilidad ATS garantizada",
+        "features": ["Pase ATS 100%", "Optimizado para palabras clave", "Aprobado por RR.HH."]
+      }
+    },
+    "testimonials": {
+      "title": "Lo que dice la gente",
+      "subtitle": "Experiencias reales de profesionales que consiguieron el trabajo de sus sueños usando QuickCV.",
+      "list": [
+        {
+          "role": "Ingeniero de Software en Google",
+          "review": "Conseguí el trabajo de mis sueños en Google a las 2 semanas de usar QuickCV. ¡La optimización ATS realmente funciona!"
+        },
+        {
+          "role": "Director de Marketing en Meta",
+          "review": "Las plantillas son increíblemente profesionales. Recibí 3 llamadas para entrevistas en mi primera semana de solicitud."
+        },
+        {
+          "role": "Diseñador UX en Apple",
+          "review": "Limpio, moderno y eficaz. La plantilla creativa mostró perfectamente mi portafolio de diseño."
+        },
+        {
+          "role": "Científico de Datos en Microsoft",
+          "review": "¡Experiencia increíble! La optimización ATS me ayudó a superar las evaluaciones iniciales cada vez."
+        }
+      ]
+    },
+    "blog": {
+      "title": "Perspectivas de Carrera de Expertos",
+      "subtitle": "Mantente a la vanguardia con los últimos consejos y estrategias de expertos en carreras"
+    },
+    "faq": {
+      "title": "Preguntas Frecuentes",
+      "subtitle": "Todo lo que necesitas saber sobre cómo crear tu CV perfecto",
+      "list": [
+        {
+          "question": "¿Cómo asegura QuickCV la compatibilidad con ATS?",
+          "answer": "Nuestras plantillas son probadas con más de 50 sistemas ATS principales, incluidos Workday, Greenhouse y BambooHR. Usamos un formato limpio, fuentes estándar y estructuras probadas que pasan los escaneos ATS con más del 95% de precisión."
+        },
+        {
+          "question": "¿Puedo personalizar las plantillas para que coincidan con mi industria?",
+          "answer": "¡Absolutamente! Cada plantilla viene con variaciones específicas de la industria y opciones de personalización. Puedes ajustar colores, fuentes y diseños manteniendo la compatibilidad con ATS."
+        },
+        {
+          "question": "¿Qué hace diferente a QuickCV de otros creadores de CV?",
+          "answer": "Nos enfocamos en tres áreas clave: optimización ATS, diseño profesional y velocidad. Nuestras plantillas son creadas por profesionales de RR.HH. y tienen un historial comprobado de conseguir entrevistas en las mejores empresas."
+        },
+        {
+          "question": "¿Ofrecen soporte después de descargar mi CV?",
+          "answer": "¡Sí! Ofrecemos 30 días de soporte gratuito que incluyen actualizaciones de plantillas, asistencia de formato y asesoramiento profesional. Nuestro equipo de expertos en carreras está aquí para ayudarte a tener éxito."
+        },
+        {
+          "question": "¿Qué tan rápido puedo crear un CV profesional?",
+          "answer": "La mayoría de los usuarios completan su CV en 8-12 minutos. Nuestros formularios inteligentes sugieren contenido automáticamente y nuestro asistente de IA ayuda a optimizar tus descripciones para lograr el máximo impacto."
+        },
+        {
+          "question": "¿Está segura mi información personal?",
+          "answer": "La seguridad es nuestra máxima prioridad. Utilizamos encriptación de grado empresarial, no almacenamos datos personales más allá de tu sesión y cumplimos totalmente con el RGPD. Tu información nunca se comparte con terceros."
+        }
+      ]
+    },
+    "finalCta": {
+      "title": "¿Listo para conseguir el trabajo de tus sueños?",
+      "subtitle": "Únete a más de 50,000 profesionales que han creado exitosamente su CV perfecto con QuickCV",
+      "startNow": "Empezar a construir ahora",
+      "browseTemplates": "Explorar plantillas"
+    },
+    "contact": {
+      "title": "Ponte en contacto",
+      "subtitle": "¿Tienes preguntas? ¿Necesitas ayuda? ¿Quieres asociarte con nosotros? Nos encantaría saber de ti.",
+      "formTitle": "Envíanos un mensaje",
+      "placeholders": {
+        "name": "Tu Nombre",
+        "email": "Tu Email",
+        "message": "Tu Mensaje"
+      },
+      "button": {
+        "send": "Enviar Mensaje",
+        "sending": "Enviando...",
+        "success": "¡Mensaje Enviado!"
+      }
+    }
+  },
+  "navigation": {
+    "home": "Inicio",
+    "about": "Nosotros",
+    "contact": "Contacto",
+    "blog": "Blog",
+    "privacy": "Política de Privacidad",
+    "terms": "Términos y Condiciones",
+    "faq": "Preguntas Frecuentes",
+    "dashboard": "Panel"
+  },
+  "cv": {
+    "title": "Constructor de CV",
+    "preview": "Vista Previa del CV",
+    "download": "Descargar CV",
+    "save": "Guardar",
+    "reset": "Reiniciar",
+    "selectTemplate": "Seleccionar Plantilla",
+    "personalInfo": "Información Personal",
+    "experience": "Experiencia Laboral",
+    "education": "Educación",
+    "skills": "Habilidades",
+    "projects": "Proyectos",
+    "achievements": "Logros",
+    "references": "Referencias",
+    "languages": "Idiomas",
+    "hobbies": "Pasatiempos e Intereses",
+    "certifications": "Certificaciones",
+    "volunteerWork": "Voluntariado"
+  },
+  "templates": {
+    "modern": "Moderno",
+    "minimalist": "Minimalista",
+    "creative": "Creativo",
+    "executive": "Ejecutivo",
+    "tech": "Tecnología",
+    "ats": "Optimizado ATS"
+  },
+  "personalInfo": {
+    "fullName": "Nombre Completo",
+    "photo": "Foto de Perfil",
+    "photoAlt": "Foto de Perfil",
+    "removePhoto": "Eliminar foto",
+    "noPhoto": "Sin Foto",
+    "email": "Email",
+    "phone": "Teléfono",
+    "location": "Ubicación",
+    "linkedin": "LinkedIn",
+    "website": "Sitio Web",
+    "summary": "Resumen Profesional",
+    "placeholders": {
+      "fullName": "Ingresa nombre completo",
+      "email": "Ingresa email",
+      "phone": "Ingresa número de teléfono",
+      "location": "Ingresa ubicación",
+      "linkedin": "Ingresa URL de perfil de LinkedIn",
+      "website": "Ingresa URL del sitio web",
+      "summary": "Escribe un breve resumen profesional"
+    }
+  },
+  "experience": {
+    "title": "Experiencia",
+    "noEntries": "Aún no se ha añadido experiencia laboral.",
+    "company": "Empresa",
+    "jobTitle": "Título del Puesto",
+    "location": "Ubicación",
+    "startDate": "Fecha de Inicio",
+    "endDate": "Fecha de Finalización",
+    "current": "Trabajo aquí actualmente",
+    "description": "Descripción",
+    "addExperience": "Añadir Experiencia",
+    "placeholders": {
+      "company": "Ingresa nombre de la empresa",
+      "jobTitle": "Ingresa título del puesto",
+      "location": "Ingresa ubicación del trabajo",
+      "description": "Añade responsabilidades, resultados o logros"
+    }
+  },
+  "education": {
+    "title": "Educación",
+    "noEntries": "Aún no se ha añadido educación.",
+    "institution": "Institución",
+    "degree": "Título",
+    "field": "Campo de estudio",
+    "startDate": "Fecha de Inicio",
+    "endDate": "Fecha de Finalización",
+    "current": "Estudio aquí actualmente",
+    "description": "Descripción",
+    "addEducation": "Añadir Educación",
+    "placeholders": {
+      "institution": "Ingresa nombre de la institución",
+      "degree": "Ingresa título (ej. Licenciatura, Máster)",
+      "field": "Ingresa campo de estudio",
+      "description": "Añade logros o responsabilidades clave"
+    }
+  },
+  "skills": {
+    "technicalSkills": "Habilidades Técnicas",
+    "softSkills": "Habilidades Blandas",
+    "technicalSkill": "Habilidad Técnica",
+    "softSkill": "Habilidad Blanda",
+    "level": "Nivel de Competencia",
+    "addTechnical": "Añadir Habilidad Técnica",
+    "addSoft": "Añadir Habilidad Blanda",
+    "noSkills": "Aún no se han añadido habilidades. Añade tus habilidades técnicas y blandas a continuación.",
+    "noTechnical": "Aún no hay habilidades técnicas. Haz clic en \"Añadir Habilidad Técnica\" para empezar.",
+    "noSoft": "Aún no hay habilidades blandas. Haz clic en \"Añadir Habilidad Blanda\" para empezar.",
+    "levels": {
+      "beginner": "Principiante",
+      "intermediate": "Intermedio",
+      "advanced": "Avanzado",
+      "expert": "Experto"
+    },
+    "placeholders": {
+      "technical": "JavaScript, Python, SQL...",
+      "soft": "Comunicación, Trabajo en equipo, Liderazgo..."
+    }
+  },
+  "projects": {
+    "title": "Proyecto",
+    "noProjects": "Aún no hay proyectos. Haz clic en \"Añadir Proyecto\" para empezar.",
+    "name": "Nombre del Proyecto",
+    "description": "Descripción",
+    "technologies": "Tecnologías Utilizadas",
+    "link": "Enlace del Proyecto (Opcional)",
+    "startDate": "Fecha de Inicio",
+    "endDate": "Fecha de Finalización",
+    "addProject": "Añadir Proyecto",
+    "placeholders": {
+      "name": "Plataforma de Comercio Electrónico",
+      "description": "• Breve descripción del proyecto y tu rol...\n• Desarrollo de aplicación web full-stack\n• Implementación de diseño responsivo\n• Colaboración con un equipo de 4 desarrolladores",
+      "technologies": "React, Node.js, MongoDB",
+      "link": "https://github.com/usuario/proyecto"
+    }
+  },
+  "achievements": {
+    "title": "Logro",
+    "achievementTitle": "Título",
+    "description": "Descripción",
+    "date": "Fecha",
+    "addAchievement": "Añadir Logro",
+    "removeAchievement": "Eliminar logro",
+    "noAchievements": "Aún no hay logros. Haz clic en \"Añadir Logro\" para empezar.",
+    "placeholders": {
+      "title": "Empleado del Año, Trabajo de Investigación Publicado, etc.",
+      "description": "• Detalles sobre este logro...\n• Cuantifica el impacto si es posible\n• Incluye métricas o resultados específicos\n• Menciona el reconocimiento recibido"
+    }
+  },
+  "references": {
+    "title": "Referencia",
+    "name": "Nombre",
+    "position": "Posición",
+    "company": "Empresa",
+    "email": "Email",
+    "phone": "Teléfono",
+    "addReference": "Añadir Referencia",
+    "noReferences": "Aún no hay referencias. Haz clic en \"Añadir Referencia\" para empezar.",
+    "placeholders": {
+      "name": "Nombre de la Referencia",
+      "position": "Gerente Senior",
+      "company": "Nombre de la Empresa",
+      "email": "referencia@empresa.com",
+      "phone": "+1 (555) 123-4567"
+    }
+  },
+  "languages": {
+    "language": "Idioma",
+    "level": "Nivel de Competencia",
+    "noLanguages": "Aún no hay idiomas. Haz clic en \"Añadir Idioma\" para empezar.",
+    "addLanguage": "Añadir Idioma",
+    "placeholders": {
+      "name": "Inglés, Francés, Español..."
+    },
+    "levels": {
+      "beginner": "Principiante",
+      "intermediate": "Intermedio",
+      "advanced": "Avanzado",
+      "fluent": "Fluido",
+      "native": "Nativo"
+    }
+  },
+  "hobbies": {
+    "hobby": "Pasatiempo/Interés",
+    "addHobby": "Añadir Pasatiempo",
+    "noHobbies": "Aún no hay pasatiempos. Haz clic en \"Añadir Pasatiempo\" para empezar.",
+    "placeholders": {
+      "name": "Fotografía, Ajedrez, Viajar..."
+    }
+  },
+  "certifications": {
+    "certification": "Certificación",
+    "addCertification": "Añadir Certificación",
+    "removeCertification": "Eliminar certificación",
+    "noCertifications": "Aún no hay certificaciones. Haz clic en \"Añadir Certificación\" para empezar.",
+    "placeholders": {
+      "name": "Arquitecto de Soluciones AWS Certificado, PMP, etc."
+    }
+  },
+  "volunteer": {
+    "title": "Trabajo Voluntario",
+    "organization": "Organización",
+    "role": "Rol",
+    "startDate": "Fecha de Inicio",
+    "endDate": "Fecha de Finalización",
+    "current": "Soy voluntario aquí actualmente",
+    "description": "Descripción",
+    "addVolunteer": "Añadir Voluntariado",
+    "noVolunteer": "Aún no hay trabajo voluntario. Haz clic en \"Añadir Voluntariado\" para empezar.",
+    "placeholders": {
+      "organization": "Nombre de la Organización",
+      "role": "Posición de Voluntario",
+      "description": "• Qué hiciste y qué impacto tuviste...\n• Organización de eventos comunitarios\n• Recaudación de $5000 para caridad\n• Entrenamiento de 10 nuevos voluntarios"
+    }
+  },
+  "common": {
+    "add": "Añadir",
+    "edit": "Editar",
+    "delete": "Eliminar",
+    "cancel": "Cancelar",
+    "save": "Guardar",
+    "loading": "Cargando...",
+    "optional": "Opcional",
+    "required": "Requerido",
+    "selectLanguage": "Seleccionar Idioma",
+    "bulletPointPlaceholder": "• Empieza a escribir y presiona Enter para nuevos puntos...",
+    "bulletPointTip": "💡 Consejo: Presiona Enter para crear nuevos puntos automáticamente. Los puntos vacíos serán eliminados.",
+    "home": "Inicio",
+    "sections": "Secciones",
+    "signIn": "Iniciar Sesión",
+    "buildYourCV": "Construye Tu CV",
+    "complete": "Completar",
+    "next": "Siguiente",
+    "previous": "Anterior",
+    "saved": "Guardado",
+    "saving": "Guardando...",
+    "error": "Error"
+  },
+  "templateSections": {
+    "personalInfo": "Información Personal",
+    "experience": "Experiencia Profesional",
+    "education": "Educación",
+    "skills": "Habilidades",
+    "projects": "Proyectos",
+    "achievements": "Logros Clave",
+    "references": "Referencias",
+    "languages": "Idiomas",
+    "hobbies": "Intereses",
+    "certifications": "Certificaciones",
+    "volunteerWork": "Experiencia de Voluntariado"
+  },
+  "footer": {
+    "tagline": "Crea CVs profesionales optimizados para ATS que consiguen entrevistas en las mejores empresas.",
+    "followUs": "Síguenos",
+    "copyright": "© {{year}} QuickCV. Todos los derechos reservados.",
+    "columns": {
+      "product": {
+        "title": "Producto",
+        "links": {
+          "templates": "Plantillas",
+          "features": "Características",
+          "cvBuilder": "Constructor de CV"
+        }
+      },
+      "support": {
+        "title": "Soporte",
+        "links": {
+          "faq": "Preguntas Frecuentes",
+          "contact": "Contáctanos"
+        }
+      },
+      "company": {
+        "title": "Empresa",
+        "links": {
+          "about": "Nosotros",
+          "privacy": "Política de Privacidad",
+          "terms": "Términos de Servicio"
+        }
+      }
+    }
+  },
+  "header": {
+    "nav": {
+      "templates": "Plantillas",
+      "features": "Características",
+      "blog": "Blog",
+      "contact": "Contacto"
+    },
+    "actions": {
+      "signIn": "Iniciar Sesión",
+      "createCV": "Crear CV"
+    }
+  },
+  "about": {
+    "mission": {
+      "title": "Nuestra Misión",
+      "description": "QuickCV fue fundado para empoderar a profesionales en todo el mundo proporcionando plantillas de CV modernas y optimizadas para ATS y herramientas que ayudan a los candidatos a mostrar sus habilidades y conseguir entrevistas en las mejores empresas. Nuestro objetivo es democratizar el acceso a herramientas de éxito profesional para todos, independientemente de su ubicación o nivel de experiencia."
+    },
+    "stats": {
+      "cvs": {
+        "value": "50,000+",
+        "label": "CVs Creados"
+      },
+      "countries": {
+        "value": "150+",
+        "label": "Países"
+      },
+      "success": {
+        "value": "95%",
+        "label": "Tasa de Éxito"
+      },
+      "support": {
+        "value": "24/7",
+        "label": "Soporte"
+      }
+    },
+    "whatWeDo": {
+      "title": "Lo Que Hacemos",
+      "description": "QuickCV combina un diseño hermoso con optimización ATS para asegurar que tu CV pase el software de reclutamiento moderno y capte la atención de los gerentes de contratación. Ofrecemos un constructor fácil de usar que permite a los profesionales elaborar CVs de alto impacto en minutos.",
+      "points": [
+        "Plantillas de CV diseñadas profesionalmente",
+        "Diseños amigables con ATS para pasar la evaluación automatizada",
+        "Constructor de CV guiado paso a paso",
+        "Múltiples formatos incluyendo exportación a PDF, DOCX",
+        "Consejos de carrera y asesoramiento a través de nuestro blog"
+      ]
+    },
+    "values": {
+      "title": "Nuestros Valores",
+      "cards": {
+        "excellence": {
+          "title": "Excelencia Profesional",
+          "description": "Cada profesional merece un CV que muestre su mejor versión. Nuestras plantillas destacan habilidades y logros de manera efectiva."
+        },
+        "accessibility": {
+          "title": "Accesibilidad",
+          "description": "La creación de CV debe estar disponible para todos. Hacemos nuestra plataforma intuitiva, accesible y asequible."
+        },
+        "innovation": {
+          "title": "Innovación Continua",
+          "description": "Evolucionamos nuestras herramientas basándonos en las tendencias de la industria, comentarios de gerentes de contratación y actualizaciones tecnológicas para mantenerte a la vanguardia."
+        },
+        "success": {
+          "title": "Éxito del Usuario",
+          "description": "Tu éxito profesional es nuestra misión. Proporcionamos recursos, consejos y herramientas para empoderar tu viaje."
+        }
+      }
+    },
+    "impact": {
+      "title": "Nuestro Impacto",
+      "description": "Desde su lanzamiento, QuickCV ha ayudado a miles de profesionales en todo el mundo a elaborar CVs convincentes que aumentan sus tasas de entrevista y aceleran el crecimiento de su carrera.",
+      "points": [
+        "Tasas de respuesta a entrevistas más altas",
+        "Éxito más rápido en la búsqueda de empleo",
+        "Mejores negociaciones salariales",
+        "Aumento de la confianza del solicitante"
+      ]
+    },
+    "team": {
+      "title": "Conoce al Equipo",
+      "members": {
+        "joshua": {
+          "role": "Cofundador y CEO",
+          "bio": "Joshua lidera QuickCV con la visión de empoderar a profesionales en todo el mundo."
+        },
+        "alain": {
+          "role": "COO",
+          "bio": "Yohnjie supervisa la tecnología y el desarrollo de productos, asegurando que QuickCV siga siendo moderno y fácil de usar."
+        }
+      }
+    }
+  },
+  "contact": {
+    "hero": {
+      "title_start": "Ponte en",
+      "title_highlight": "Contacto",
+      "title_end": "con Nosotros",
+      "subtitle": "¿Tienes preguntas sobre QuickCV? ¿Necesitas ayuda con tu CV? ¿Quieres asociarte con nosotros? Estamos aquí para ayudar y nos encantaría saber de ti."
+    },
+    "info": {
+      "sectionTitle": "Información de Contacto",
+      "email": {
+        "title": "Envíanos un Email",
+        "subtitle": "Envíanos un mensaje en cualquier momento"
+      },
+      "phone": {
+        "title": "Llámanos",
+        "subtitle": "Lun-Vie de 8am a 6pm"
+      },
+      "hours": {
+        "title": "Horario Comercial",
+        "subtitle": "Estamos aquí para ayudar",
+        "value": "Lun-Vie: 8am-6pm PST\nSáb-Dom: 10am-4pm PST"
+      }
+    },
+    "social": {
+      "title": "Síguenos"
+    },
+    "stats": {
+      "title": "Tiempo de Respuesta",
+      "general": "Consultas Generales",
+      "technical": "Soporte Técnico",
+      "business": "Asociaciones Comerciales"
+    },
+    "time": {
+      "hours": "horas",
+      "minutes": "minutos"
+    },
+    "form": {
+      "title": "Envíanos un Mensaje",
+      "nameLabel": "Nombre Completo *",
+      "namePlaceholder": "Tu nombre completo",
+      "emailLabel": "Dirección de Email *",
+      "emailPlaceholder": "tu.email@ejemplo.com",
+      "inquiryTypeLabel": "Tipo de Consulta",
+      "priorityLabel": "Nivel de Prioridad",
+      "subjectLabel": "Asunto",
+      "subjectPlaceholder": "Asunto breve de tu mensaje",
+      "messageLabel": "Mensaje *",
+      "messagePlaceholder": "Cuéntanos cómo podemos ayudarte...",
+      "send": "Enviar Mensaje",
+      "sending": "Enviando...",
+      "sent": "¡Mensaje Enviado!",
+      "inquiryTypes": {
+        "general": "Consulta General",
+        "support": "Soporte Técnico",
+        "business": "Asociación Comercial",
+        "bug": "Informe de Error",
+        "feature": "Solicitud de Función"
+      },
+      "urgency": {
+        "low": "Prioridad Baja",
+        "medium": "Prioridad Media",
+        "high": "Prioridad Alta"
+      }
+    },
+    "validation": {
+      "requiredFields": "Por favor completa todos los campos requeridos",
+      "invalidEmail": "Por favor ingresa una dirección de email válida",
+      "genericError": "Error al enviar mensaje. Por favor intenta de nuevo."
+    },
+    "status": {
+      "success": {
+        "title": "¡Mensaje enviado exitosamente!",
+        "message": "Te responderemos dentro de las próximas 24 horas."
+      },
+      "error": {
+        "title": "Error al enviar mensaje"
+      }
+    }
+  },
+  "faq": {
+    "hero": {
+      "title": "Preguntas Frecuentes",
+      "subtitle": "Encuentra respuestas a preguntas comunes sobre QuickCV, nuestras características y cómo crear el CV perfecto."
+    },
+    "search": {
+      "placeholder": "Buscar preguntas frecuentes..."
+    },
+    "filter": {
+      "allCategories": "Todas las Categorías",
+      "all": "Todas"
+    },
+    "categories": {
+      "general": "General",
+      "templates": "Plantillas",
+      "features": "Características",
+      "privacy": "Privacidad",
+      "billing": "Facturación",
+      "support": "Soporte"
+    },
+    "results": {
+      "showing": "Mostrando {{count}} de {{total}} preguntas",
+      "forQuery": " para \"{{query}}\"",
+      "inCategory": " en {{category}}"
+    },
+    "noResults": {
+      "title": "No se encontraron preguntas frecuentes",
+      "subtitle": "Intenta ajustar tus términos de búsqueda o seleccionar una categoría diferente.",
+      "clearFilters": "Borrar filtros"
+    },
+    "support": {
+      "title": "¿Aún necesitas ayuda?",
+      "subtitle": "¿No encuentras la respuesta que buscas? Nuestro amable equipo de soporte está aquí para ayudarte a tener éxito.",
+      "contactBtn": "Contactar Soporte",
+      "callBtn": "Llámanos"
+    },
+    "questions": {
+      "q1": {
+        "question": "¿Qué es QuickCV y cómo funciona?",
+        "answer": "QuickCV es un constructor de CV en línea que te ayuda a crear currículums profesionales optimizados para ATS en minutos. Simplemente elige una plantilla, completa tu información usando nuestros formularios guiados y descarga tu CV en formato PDF o DOCX. Nuestra plataforma utiliza principios de diseño moderno y mejores prácticas de contratación para asegurar que tu CV se destaque."
+      },
+      "q2": {
+        "question": "¿Qué tan rápido puedo crear un CV profesional?",
+        "answer": "La mayoría de los usuarios completan su CV en 8-12 minutos. Nuestros formularios inteligentes sugieren contenido automáticamente y nuestro asistente de IA ayuda a optimizar tus descripciones para lograr el máximo impacto. El tiempo exacto depende de cuánta información tengas preparada y qué plantilla elijas."
+      },
+      "q3": {
+        "question": "¿Necesito crear una cuenta para usar QuickCV?",
+        "answer": "¡No se requiere registro para empezar a construir tu CV! Puedes crear y descargar tu primer CV sin crear una cuenta. Sin embargo, crear una cuenta gratuita te permite guardar tu progreso, acceder a tu CV más tarde y hacer actualizaciones cuando sea necesario."
+      },
+      "q4": {
+        "question": "¿Es QuickCV realmente gratuito?",
+        "answer": "¡Sí! QuickCV ofrece un nivel gratuito que incluye acceso a plantillas profesionales, opciones básicas de personalización y descargas en PDF. Las características premium como plantillas avanzadas, exportaciones DOCX y soporte prioritario están disponibles con nuestros planes pagos."
+      },
+      "q5": {
+        "question": "¿Cuántas plantillas de CV están disponibles?",
+        "answer": "Ofrecemos más de 15 plantillas diseñadas profesionalmente en diferentes estilos: desde formatos modernos y creativos hasta tradicionales y ejecutivos. Cada plantilla está elaborada por expertos en diseño y optimizada para diferentes industrias y niveles profesionales."
+      },
+      "q6": {
+        "question": "¿Puedo personalizar las plantillas para que coincidan con mi estilo?",
+        "answer": "¡Absolutamente! Puedes personalizar colores, fuentes, diseños de sección y espaciado. Nuestras plantillas están diseñadas para ser flexibles manteniendo los estándares profesionales y la compatibilidad con ATS. Los usuarios premium obtienen acceso a opciones de personalización avanzadas."
+      },
+      "q7": {
+        "question": "¿Qué significa optimizado para ATS?",
+        "answer": "La optimización para ATS (Sistema de Seguimiento de Candidatos) significa que tu CV está formateado para ser leído fácilmente por el software que las empresas usan para escanear currículums. Nuestras plantillas usan fuentes estándar, encabezados de sección claros y formato adecuado para asegurar que tu CV pase a través de los filtros ATS con éxito."
+      },
+      "q8": {
+        "question": "¿En qué formatos de archivo puedo descargar mi CV?",
+        "answer": "Todos los usuarios pueden descargar su CV como un PDF de alta calidad. Los usuarios premium también tienen acceso al formato DOCX (Microsoft Word), que es útil para realizar ediciones rápidas o cuando los empleadores solicitan específicamente documentos de Word."
+      },
+      "q9": {
+        "question": "¿Puedo editar mi CV después de descargarlo?",
+        "answer": "¡Sí! Si creas una cuenta, tu CV se guarda automáticamente y puedes volver a editarlo en cualquier momento. Puedes actualizar información, cambiar plantillas, ajustar el formato y descargar versiones actualizadas cuando sea necesario."
+      },
+      "q10": {
+        "question": "¿Funciona QuickCV en dispositivos móviles?",
+        "answer": "¡Sí! QuickCV es totalmente responsivo y funciona perfectamente en teléfonos inteligentes, tabletas y computadoras de escritorio. Puedes crear, editar y descargar tu CV desde cualquier dispositivo con conexión a internet."
+      },
+      "q11": {
+        "question": "¿Qué tan segura está mi información personal?",
+        "answer": "Nos tomamos la seguridad muy en serio. Todos los datos están encriptados en tránsito y en reposo. Utilizamos medidas de seguridad de grado empresarial y nunca vendemos tu información personal a terceros. Puedes eliminar tu cuenta y datos en cualquier momento."
+      },
+      "q12": {
+        "question": "¿Comparten mi información con empleadores?",
+        "answer": "No, nunca compartimos tu información personal con empleadores o terceros sin tu consentimiento explícito. Los datos de tu CV te pertenecen y tienes control total sobre cómo se usan y comparten."
+      },
+      "q13": {
+        "question": "¿Puedo eliminar mi cuenta y datos?",
+        "answer": "Sí, tienes control total sobre tus datos. Puedes eliminar tu cuenta y todos los datos asociados en cualquier momento desde la configuración de tu cuenta. Esta acción es permanente y no se puede deshacer, así que asegúrate de descargar cualquier CV que quieras conservar primero."
+      },
+      "q14": {
+        "question": "¿Qué métodos de pago aceptan?",
+        "answer": "Aceptamos todas las tarjetas de crédito principales (Visa, MasterCard, American Express), PayPal y varios métodos de pago locales dependiendo de tu región. Todos los pagos se procesan de forma segura a través de procesadores de pago estándar de la industria."
+      },
+      "q15": {
+        "question": "¿Puedo cancelar mi suscripción en cualquier momento?",
+        "answer": "Sí, puedes cancelar tu suscripción en cualquier momento desde la configuración de tu cuenta. No hay cargos por cancelación y continuarás teniendo acceso premium hasta el final de tu período de facturación actual."
+      },
+      "q16": {
+        "question": "¿Ofrecen reembolsos?",
+        "answer": "Ofrecemos una garantía de devolución de dinero de 30 días para todas las suscripciones premium. Si no estás satisfecho con nuestro servicio, contacta a nuestro equipo de soporte dentro de los 30 días de la compra para un reembolso completo."
+      },
+      "q17": {
+        "question": "¿Cómo puedo obtener ayuda si estoy atascado?",
+        "answer": "Ofrecemos múltiples canales de soporte: chat en vivo durante el horario comercial, soporte por correo electrónico (respuesta dentro de 24 horas), documentación de ayuda completa y tutoriales en video. Los usuarios premium obtienen soporte prioritario con tiempos de respuesta más rápidos."
+      },
+      "q18": {
+        "question": "¿Proporcionan asesoramiento profesional o servicios de revisión de CV?",
+        "answer": "Aunque QuickCV se enfoca en los aspectos técnicos de la creación de CV, nos asociamos con expertos en carreras para brindar orientación. Nuestro blog presenta consejos de carrera, y los usuarios premium tienen acceso a listas de verificación de revisión de CV y asesoramiento específico de la industria."
+      },
+      "q19": {
+        "question": "¿Qué pasa si encuentro un problema técnico?",
+        "answer": "Los problemas técnicos son raros, pero si encuentras alguno, nuestro equipo de soporte está aquí para ayudar. Contáctanos a través del chat en vivo o correo electrónico con detalles sobre el problema, y lo resolveremos rápidamente. La mayoría de los problemas técnicos se resuelven en unas pocas horas."
+      },
+      "q20": {
+        "question": "¿Puedo crear múltiples CVs para diferentes solicitudes de empleo?",
+        "answer": "¡Sí! Los usuarios premium pueden crear CVs ilimitados y guardar diferentes versiones adaptadas para roles o industrias específicas. Esto te permite resaltar habilidades y experiencias relevantes para cada solicitud."
+      }
+    }
+  },
+  "privacy": {
+    "title": "Política de Privacidad",
+    "meta": {
+      "effectiveDate": "Efectivo: {{date}}"
+    },
+    "sections": {
+      "overview": {
+        "title": "1. Visión General",
+        "content": "QuickCV se compromete a respetar tu privacidad y proteger tus datos personales. Esta Política de Privacidad describe los tipos de información que recopilamos, cómo la usamos y protegemos, y tus derechos con respecto a tus datos. Al usar nuestros servicios, aceptas los términos de esta Política de Privacidad. Se aplica a todos los usuarios, incluidos visitantes, usuarios registrados y clientes que acceden a QuickCV desde cualquier parte del mundo."
+      },
+      "collection": {
+        "title": "2. Información que Recopilamos",
+        "content": "Recopilamos información para proporcionar mejores servicios y mejorar la experiencia del usuario. Esto incluye:",
+        "list": [
+          { "label": "Información Personal:", "text": "Nombre, correo electrónico, número de teléfono y cualquier detalle proporcionado al construir tu CV." },
+          { "label": "Datos de la Cuenta:", "text": "Nombre de usuario, contraseña e información de perfil para usuarios registrados." },
+          { "label": "Contenido del CV:", "text": "Educación, historial laboral, habilidades, certificaciones y otro contenido personal ingresado en el constructor de CV." },
+          { "label": "Datos de Uso:", "text": "Páginas visitadas, acciones realizadas, duración de la sesión e interacciones dentro de la plataforma." },
+          { "label": "Información del Dispositivo:", "text": "Dirección IP, tipo de navegador, sistema operativo y otra información específica del dispositivo." },
+          { "label": "Cookies y Rastreo:", "text": "Para mejorar la funcionalidad, analizar el uso y mejorar la experiencia del usuario." }
+        ]
+      },
+      "usage": {
+        "title": "3. Cómo Usamos Tu Información",
+        "content": "La información recopilada se utiliza responsablemente para:",
+        "list": [
+          "Proporcionar, operar y mantener el servicio de QuickCV.",
+          "Crear y formatear tu CV con precisión.",
+          "Mejorar y personalizar la experiencia del usuario.",
+          "Comunicar actualizaciones importantes del servicio o avisos de la cuenta.",
+          "Detectar y prevenir fraudes, mal uso u otras actividades dañinas.",
+          "Cumplir con obligaciones legales y requisitos reglamentarios."
+        ]
+      },
+      "sharing": {
+        "title": "4. Intercambio y Divulgación de Información",
+        "content": "No vendemos tu información personal. La información puede compartirse solo con terceros de confianza para proporcionar servicios o según lo requiera la ley.",
+        "list": [
+          { "label": "Proveedores de Servicios:", "text": "Para apoyar el alojamiento, análisis, procesamiento de pagos y otras necesidades operativas." },
+          { "label": "Cumplimiento Legal:", "text": "Cuando sea requerido por ley o para responder a solicitudes legales de las autoridades." },
+          { "label": "Transferencias Comerciales:", "text": "Durante fusiones, adquisiciones o reestructuración corporativa." },
+          { "label": "Datos Agregados:", "text": "Estadísticas no identificables para mejorar la plataforma." }
+        ]
+      },
+      "security": {
+        "title": "5. Seguridad de Datos",
+        "content": "Implementamos salvaguardas técnicas y administrativas avanzadas, incluyendo encriptación, servidores seguros y acceso limitado para proteger tu información personal. Aunque ningún sistema está completamente libre de riesgos, mejoramos continuamente nuestras medidas de seguridad para minimizar vulnerabilidades potenciales."
+      },
+      "retention": {
+        "title": "6. Retención de Datos",
+        "content": "Retenemos tus datos personales solo durante el tiempo necesario para proporcionar nuestros servicios, cumplir con obligaciones legales y resolver disputas. Puedes solicitar la eliminación de tu información contactándonos en <0>mbaforfoghang@gmail.com</0>."
+      },
+      "rights": {
+        "title": "7. Tus Derechos de Privacidad",
+        "content": "Dependiendo de tu jurisdicción, puedes tener derecho a acceder, corregir, eliminar, restringir el procesamiento o transferir tus datos personales. También puedes oponerte a ciertos tipos de procesamiento de datos. Para ejercer estos derechos, contáctanos directamente."
+      },
+      "cookies": {
+        "title": "8. Cookies y Rastreo",
+        "content": "Las cookies y tecnologías similares se utilizan para mejorar tu experiencia, recordar preferencias y analizar el uso. Deshabilitar las cookies puede limitar la funcionalidad de algunas características."
+      },
+      "thirdParty": {
+        "title": "9. Servicios de Terceros",
+        "content": "QuickCV puede integrar servicios de terceros como Google Analytics o inicios de sesión sociales. Recomendamos revisar sus políticas de privacidad para saber cómo manejan tus datos."
+      },
+      "international": {
+        "title": "10. Transferencias Internacionales de Datos",
+        "content": "Tus datos pueden ser procesados en países fuera del tuyo. Implementamos salvaguardas consistentes con el RGPD y estándares internacionales para asegurar una protección adecuada."
+      },
+      "children": {
+        "title": "11. Privacidad de los Niños",
+        "content": "QuickCV no está destinado a niños menores de 13 años. No recopilamos datos de menores a sabiendas. Si crees que un niño ha enviado información personal, contáctanos inmediatamente."
+      },
+      "changes": {
+        "title": "12. Cambios a Esta Política",
+        "content": "Podemos actualizar esta Política de Privacidad periódicamente. Los cambios se publicarán en esta página con una fecha actualizada de \"última actualización\". El uso continuo del servicio indica tu aceptación de cualquier actualización."
+      },
+      "contact": {
+        "title": "13. Contáctanos",
+        "content": "Para preguntas, inquietudes o solicitudes de privacidad, contacta a nuestro Equipo de Privacidad <0>aquí</0>"
+      }
+    }
+  },
+  "terms": {
+    "title": "Términos y Condiciones",
+    "meta": {
+      "lastUpdated": "Última Actualización: {{date}}"
+    },
+    "sections": {
+      "acceptance": {
+        "title": "1. Aceptación de Términos",
+        "para1": "Al acceder o usar QuickCV, afirmas que tienes al menos 18 años, o tienes el consentimiento de un padre o tutor, y tienes plena autoridad para aceptar estos Términos. Aceptas cumplir con todas las leyes, reglas y regulaciones aplicables en relación con tu uso del Servicio. QuickCV se reserva el derecho de modificar o actualizar estos Términos en cualquier momento, y tu uso continuo del Servicio constituye la aceptación de esos cambios.",
+        "para2": "Estos Términos se aplican a todos los usuarios, incluidos individuos, empresas y otras entidades legales. Cubren cada aspecto del Servicio, incluyendo, pero no limitado a, creación de cuenta, envío de contenido, pago, comunicaciones y participación en cualquier evento o programa asociado. El incumplimiento de estos Términos puede resultar en la suspensión o terminación de tu cuenta y remedios legales donde sea apropiado."
+      },
+      "overview": {
+        "title": "2. Visión General del Servicio",
+        "para1": "QuickCV es una plataforma en línea que proporciona herramientas de creación de CV y currículums diseñadas para ayudar a los usuarios a crear CVs profesionales y de alta calidad de manera eficiente. El Servicio incluye plantillas prediseñadas, funciones de edición y salida descargable en múltiples formatos. Si bien nos esforzamos por mantener un Servicio consistente y confiable, QuickCV puede actualizar, suspender o descontinuar ciertas características sin previo aviso. Alguna funcionalidad puede estar limitada según tu tipo de suscripción o plan de usuario.",
+        "para2": "Nuestro objetivo es proporcionar herramientas precisas y actualizadas; sin embargo, no ofrecemos garantías con respecto a la integridad, precisión o idoneidad de cualquier material disponible a través del Servicio. Los usuarios son responsables de verificar el contenido que producen y asegurarse de que cumpla con sus requisitos personales o profesionales."
+      },
+      "accounts": {
+        "title": "3. Cuentas de Usuario",
+        "para1": "Para acceder a ciertas características de QuickCV, es posible que debas registrarte para obtener una cuenta. Aceptas proporcionar información precisa, actual y completa durante el registro y mantener la seguridad de tus credenciales de inicio de sesión. Eres responsable de toda la actividad que ocurra bajo tu cuenta, incluidas las interacciones, comunicaciones y cargas de contenido.",
+        "para2": "Aceptas notificar inmediatamente a QuickCV de cualquier uso no autorizado de tu cuenta o cualquier brecha de seguridad. QuickCV se reserva el derecho de suspender o terminar cualquier cuenta a nuestra discreción, particularmente si la cuenta se utiliza para violar estos Términos, infringir la propiedad intelectual o participar en actividades ilegales."
+      },
+      "usage": {
+        "title": "4. Uso Aceptable",
+        "para1": "Aceptas usar QuickCV de manera responsable y ética. Las actividades prohibidas incluyen, entre otras, transmitir código dañino o malicioso, intentar obtener acceso no autorizado a las cuentas de otros usuarios, participar en actividades fraudulentas o engañosas, o violar derechos de propiedad intelectual. No puedes usar el Servicio para acosar, amenazar o intimidar a otros. QuickCV se reserva el derecho de investigar cualquier violación y tomar las medidas apropiadas, incluida la acción legal.",
+        "para2": "Los usuarios son los únicos responsables del contenido que generan, suben o comparten a través de QuickCV. No respaldamos ni garantizamos ningún contenido creado por los usuarios, y no somos responsables de disputas que surjan del contenido generado por el usuario."
+      },
+      "ip": {
+        "title": "5. Propiedad Intelectual",
+        "para1": "Todos los diseños, plantillas, software, logotipos y tecnología patentada disponibles a través de QuickCV son propiedad de QuickCV o sus licenciantes y están protegidos bajo las leyes de propiedad intelectual en todo el mundo. Los usuarios conservan la propiedad de su contenido personal creado utilizando el Servicio, como CVs y currículums. Sin embargo, a los usuarios se les otorga solo una licencia limitada, no exclusiva e intransferible para usar los materiales de QuickCV estrictamente para fines personales o profesionales.",
+        "para2": "Cualquier copia, redistribución o modificación no autorizada de los materiales de QuickCV está estrictamente prohibida. Los usuarios aceptan no eliminar ni alterar ningún aviso de derechos de autor o de propiedad del contenido del Servicio."
+      },
+      "privacy": {
+        "title": "6. Privacidad y Protección de Datos",
+        "para1": "QuickCV se compromete a proteger tu privacidad. Recopilamos información personal necesaria para proporcionar y mejorar el Servicio, incluidos detalles de registro, datos de uso e información técnica. Por favor revisa nuestra <0>Política de Privacidad</0> para obtener información detallada sobre cómo se recopilan, usan, almacenan y comparten tus datos.",
+        "para2": "Implementamos fuertes salvaguardas técnicas, administrativas y físicas para proteger tus datos personales contra acceso no autorizado, divulgación, alteración o destrucción. Puedes solicitar acceso a, corrección de, o eliminación de tus datos personales de acuerdo con la ley aplicable. QuickCV también puede utilizar datos anonimizados o agregados para investigación y análisis con el fin de mejorar nuestro Servicio."
+      },
+      "payments": {
+        "title": "7. Pagos y Facturación",
+        "para1": "Ciertas características o contenido en QuickCV pueden requerir pago. Todas las tarifas están denominadas en dólares estadounidenses a menos que se indique lo contrario. El procesamiento de pagos se maneja a través de proveedores externos seguros. Los usuarios son responsables de asegurar información de facturación precisa y pagos puntuales. QuickCV se reserva el derecho de suspender el acceso a funciones pagas por falta de pago.",
+        "para2": "Los reembolsos, si los hay, se emiten de acuerdo con nuestra política de reembolso. Los usuarios deben revisar la política cuidadosamente antes de suscribirse. QuickCV no es responsable de cargos de terceros, incluidas tarifas bancarias o tarifas de procesamiento de pagos."
+      },
+      "liability": {
+        "title": "8. Limitación de Responsabilidad",
+        "para1": "El Servicio se proporciona \"tal cual\" y sin garantías de ningún tipo, ya sean expresas o implícitas. QuickCV no garantiza un funcionamiento ininterrumpido, libre de errores o seguro. En la medida máxima permitida por la ley, QuickCV no es responsable de daños indirectos, incidentales, especiales, consecuentes o punitivos que surjan de o estén relacionados con el uso del Servicio, incluso si se ha advertido de la posibilidad de tales daños.",
+        "para2": "La responsabilidad total de QuickCV hacia un usuario por cualquier reclamo que surja del Servicio no excederá la cantidad pagada por el usuario en los doce (12) meses anteriores al reclamo. Esta limitación se aplica a todos los reclamos, incluidos, entre otros, negligencia, incumplimiento de contrato o tergiversación."
+      },
+      "termination": {
+        "title": "9. Terminación",
+        "para1": "QuickCV se reserva el derecho de suspender, restringir o terminar cuentas de usuario a nuestra discreción, incluso por violaciones de estos Términos o leyes aplicables. Al momento de la terminación, todos los derechos de acceso o uso del Servicio cesan inmediatamente. Los usuarios pueden solicitar el cierre de la cuenta en cualquier momento. Las disposiciones que deberían sobrevivir a la terminación, como los derechos de propiedad intelectual, descargos de responsabilidad y limitaciones de responsabilidad, permanecen en vigor."
+      },
+      "modifications": {
+        "title": "10. Modificaciones a los Términos",
+        "para1": "QuickCV puede actualizar estos Términos periódicamente para reflejar cambios en la ley, prácticas comerciales o funcionalidad del Servicio. Los Términos actualizados entran en vigor inmediatamente después de su publicación en esta página. Se anima a los usuarios a revisar esta página regularmente. El uso continuo del Servicio constituye la aceptación de los Términos actualizados."
+      },
+      "law": {
+        "title": "11. Ley Aplicable",
+        "para1": "Estos Términos se rigen por las leyes del Estado de California, Estados Unidos, sin tener en cuenta los principios de conflicto de leyes. Cualquier disputa o reclamo que surja bajo estos Términos estará sujeto a la jurisdicción exclusiva de los tribunales ubicados en California. Si alguna parte de estos Términos se considera inaplicable, las disposiciones restantes seguirán siendo totalmente efectivas."
+      },
+      "contact": {
+        "title": "12. Información de Contacto",
+        "para1": "Si tienes preguntas, inquietudes o quejas con respecto a estos Términos, por favor contáctanos <0>aquí</0>"
+      }
+    }
+  },
+  "blog": {
+    "filters": {
+      "searchPlaceholder": "Buscar artículos, temas o autores...",
+      "allCategories": "Todas las Categorías",
+      "featuredOnly": "Solo destacados",
+      "tags": "Etiquetas",
+      "authors": "Autores",
+      "clearAll": "Borrar todos los filtros",
+      "active": {
+        "search": "Búsqueda",
+        "category": "Categoría",
+        "author": "Autor",
+        "featured": "Destacado"
+      }
+    }
+  },
+  "pagination": {
+    "previous": "Anterior",
+    "next": "Siguiente",
+    "showing": "Mostrando página",
+    "of": "de",
+    "mobilePageInfo": "Página {{current}} de {{total}}",
+    "aria": {
+      "navLabel": "Paginación",
+      "goToPage": "Ir a la página {{page}}",
+      "first": "Primera página",
+      "last": "Última página",
+      "previous": "Página anterior",
+      "next": "Página siguiente"
+    }
+  },
+  "builder": {
+    "sections": {
+      "notFound": "Contenido de sección no encontrado",
+      "personal": {
+        "label": "Información Personal",
+        "description": "Tus detalles de contacto y resumen personal"
+      },
+      "education": {
+        "label": "Educación",
+        "description": "Tu historial académico y calificaciones"
+      },
+      "experience": {
+        "label": "Experiencia",
+        "description": "Tu historial laboral y experiencia profesional"
+      },
+      "volunteer": {
+        "label": "Voluntariado",
+        "description": "Servicio comunitario y trabajo voluntario"
+      },
+      "skills": {
+        "label": "Habilidades",
+        "description": "Tus habilidades técnicas y blandas"
+      },
+      "projects": {
+        "label": "Proyectos",
+        "description": "Proyectos clave y logros"
+      },
+      "achievements": {
+        "label": "Logros",
+        "description": "Premios, honores y reconocimientos"
+      },
+      "languages": {
+        "label": "Idiomas",
+        "description": "Idiomas que hablas y niveles de competencia"
+      },
+      "references": {
+        "label": "Referencias",
+        "description": "Referencias profesionales"
+      },
+      "hobbies": {
+        "label": "Pasatiempos",
+        "description": "Tus intereses y actividades fuera del trabajo"
+      },
+      "certifications": {
+        "label": "Certificaciones",
+        "description": "Certificaciones profesionales y licencias"
+      }
+    },
+    "tips": {
+      "title": "Consejos y Mejores Prácticas"
+    },
+    "validation": {
+      "requiredCount": "{{count}} requeridos",
+      "tipsCount": "{{count}} consejos",
+      "suggestionsCount": "{{count}} sugerencias",
+      "requiredFieldsTitle": "Campos Requeridos"
+    }
+  },
+  "tips": {
+    "personal": [
+      "Usa una dirección de correo electrónico profesional. Un formato simple como nombre.apellido@email.com presenta una imagen profesional. Evita los informales como 'gamerboi123@yahoo.com'.",
+      "Usa siempre tu nombre legal completo en tu CV (nombre + apellido). Evita apodos o nombres abreviados a menos que sean tu nombre oficial. Ejemplo: 'Roberto Miguel'.",
+      "Incluye un número de teléfono que uses activamente y asegúrate de que tu correo de voz sea profesional.",
+      "Incluye una foto profesional solo si la han solicitado. Si añades una, asegúrate de que sea una foto clara, de alta resolución con un fondo neutro y ropa profesional.",
+      "Escribe un breve resumen personal (2–4 oraciones) para presentarte. Incluye lo que estás haciendo actualmente, tus fortalezas y tus objetivos profesionales. Ejemplo: 'Recién graduado en negocios con una base sólida en finanzas y Excel. Buscando comenzar mi carrera en un rol basado en datos dentro de una empresa progresista.'"
+    ],
+    "education": [
+      "Enumera tu educación más reciente primero (orden cronológico inverso). Ejemplo: 'Diplomado en Desarrollo de Software – Instituto de Tecnología NZ (2022–2023)'.",
+      "Incluye nombre de la institución, título/diploma/certificado, ubicación y año de finalización. Ejemplo: 'Licenciatura en Ciencias en Ingeniería Informática – KNUST, Ghana (Esperado 2027)'.",
+      "Si te falta experiencia laboral, añade cursos relevantes o proyectos académicos. Ejemplo: 'Módulos relevantes: Desarrollo de Apps Móviles, Diseño UX, Gestión de Proyectos Ágil'.",
+      "Si recibiste becas, premios u honores, lístalos bajo educación para resaltar la excelencia académica."
+    ],
+    "experience": [
+      "Enumera tu experiencia laboral en orden cronológico inverso (la más reciente primero). Ejemplo: 'Asistente de Servicio al Cliente – The Warehouse, Auckland | May 2021 – Oct 2023'.",
+      "Incluye título del trabajo, nombre de la empresa, ubicación y fechas de inicio–fin (mes + año).",
+      "Describe tus responsabilidades usando viñetas. (Las viñetas se han insertado por defecto). Concéntrate en logros, no solo tareas.",
+      "Usa verbos de acción fuertes como 'Lideré', 'Organicé', 'Implementé', 'Mejoré'. Ejemplo: 'Mejoré los tiempos de procesamiento de pedidos en un 20% introduciendo un nuevo método de seguimiento.'",
+      "Cuantifica los logros cuando sea posible. Los números aclaran el impacto. Ejemplo: 'Manejé más de 50 consultas de clientes diariamente con una tasa de satisfacción del 95%.'",
+      "Si tienes pasantías o trabajos a tiempo parcial, inclúyelos. Los empleadores valoran las habilidades transferibles incluso si no están relacionadas con la industria."
+    ],
+    "skills": [
+      "Concéntrate en habilidades relevantes para el trabajo. Lee la descripción del trabajo cuidadosamente e incluye palabras clave coincidentes.",
+      "Separa habilidades técnicas y blandas para mayor claridad. Ejemplo: 'Técnicas: Microsoft Excel, Python, Tableau | Habilidades Blandas: Trabajo en equipo, Adaptabilidad, Pensamiento Crítico'.",
+      "Sé honesto sobre tu nivel de competencia. Ejemplo: 'Python – Intermedio' o 'Excel – Avanzado'.",
+      "Evita habilidades genéricas que no añaden valor, como 'Email' o 'Mecanografía', a menos que sean específicamente relevantes."
+    ],
+    "projects": [
+      "Incluye proyectos personales, académicos o freelance para mostrar tus habilidades, especialmente si te falta experiencia.",
+      "Dale a cada proyecto un título, una breve descripción, tu rol y las tecnologías/herramientas utilizadas.",
+      "Ejemplo: 'Sitio Web de Portafolio Personal: Diseñé y construí un sitio web de portafolio responsivo usando ReactJS y Tailwind CSS. Muestra estudios de caso UI/UX y proyectos. URL: https://minombre.dev'.",
+      "Ejemplo: 'App de Salud Mental (Proyecto de Equipo): Diseñé el flujo de usuario y prototipé la UI. Realicé pruebas de usuario con 10 participantes e iteré basándome en los comentarios.'",
+      "Si está disponible, incluye enlaces a GitHub, Behance, Dribbble o sitios web personales."
+    ],
+    "achievements": [
+      "Lista logros que demuestren excelencia, liderazgo o impacto.",
+      "Incluye logros académicos, profesionales o personales relevantes para el trabajo.",
+      "Usa números o evidencia para respaldar. Ejemplo: 'Aumenté los seguidores de Instagram en un 150% en 6 meses a través de estrategia de contenido y análisis.'",
+      "Ejemplo: 'Mejor Vendedor en Countdown (Q3 2023)' o 'Lista del Decano – KNUST (2024)'.",
+      "Evita logros no relacionados u obsoletos (ej., 'Gané una competencia local de ajedrez en 2010') a menos que sean relevantes."
+    ],
+    "volunteer": [
+      "Incluye roles de voluntariado para mostrar participación comunitaria y habilidades transferibles.",
+      "Resalta roles de liderazgo y trabajo en equipo. Ejemplo: 'Líder de Equipo – Colecta de Alimentos Universitaria: Gestioné 8 voluntarios para distribuir más de 500 paquetes de alimentos en 2 días.'",
+      "Muestra impacto, no solo participación. Ejemplo: 'Organicé una recaudación de fondos escolar que reunió $2,500 para esfuerzos locales de ayuda por inundaciones.'",
+      "Si fuiste voluntario en un área relacionada con tu carrera, enfatiza eso. Ejemplo: 'Fui voluntario como tutor de codificación para estudiantes de secundaria, enseñando HTML y CSS.'"
+    ],
+    "certifications": [
+      "Incluye certificaciones relevantes a tu industria o rol. Prioriza credenciales oficiales o reconocidas que prueben capacitación, cumplimiento o experiencia técnica. Ejemplo: 'Certificado de Análisis de Datos de Google – Coursera (2024)' o 'Licencia de Operador de Montacargas – Worksafe NZ (válida hasta 2026)'.",
+      "Añade la organización emisora y la fecha de finalización. Esto añade credibilidad y ayuda a los empleadores a validar tus calificaciones."
+    ],
+    "languages": [
+      "Solo incluye idiomas que puedas hablar.",
+      "Indica competencia ej. principiante, avanzado.",
+      "Ejemplos: 'Francés – Fluido (C1)', 'Mandarín – Intermedio (HSK Nivel 4)', 'Español – Conversación Básica'.",
+      "Si eres bilingüe o multilingüe, resáltalo ya que es valioso en roles globales."
+    ],
+    "references": [
+      "Incluye referencias solo si se solicitan. La mayoría de los empleadores preguntarán en las etapas finales de contratación.",
+      "'Disponible a petición' es aceptable y mantiene tu CV limpio.",
+      "Si incluyes referentes, proporciona su nombre, título del trabajo, empresa, teléfono y correo electrónico (con su permiso).",
+      "Elige referencias que puedan hablar sobre tu ética de trabajo, habilidades o desempeño académico (ej., ex empleador, gerente, profesor)."
+    ],
+    "hobbies": [
+      "Añade pasatiempos que muestren personalidad o habilidades transferibles. Elige actividades que resalten cualidades como liderazgo, creatividad o disciplina. Ejemplo: 'Fotografía – Desarrollé un blog de viajes con más de 10,000 visitas mensuales, mostrando creatividad y consistencia.'",
+      "Mantenlo conciso y profesional. Cíñete a 2–3 pasatiempos que puedan reflejar positivamente sobre ti como candidato."
+    ]
+  },
+  "contextualTips": {
+    "categories": {
+      "required": "Campos Requeridos",
+      "recommendations": "Recomendaciones",
+      "proTips": "Consejos Pro",
+      "smartSuggestions": "Sugerencias Inteligentes"
+    },
+    "success": {
+      "title": "¡Gran trabajo en tu sección de {{section}}!",
+      "description": "Tu sección parece completa. Puedes pasar a la siguiente sección o previsualizar tu CV."
+    },
+    "header": {
+      "title": "Consejos para {{section}}",
+      "count": "{{count}} sugerencias disponibles"
+    },
+    "actions": {
+      "dismiss": "Descartar consejo"
+    },
+    "smartTips": {
+      "personal": {
+        "completion": "Una sección personal completa aumenta tus posibilidades de ser notado en un 40%",
+        "phone": "Incluye tu número de teléfono - el 85% de los reclutadores prefieren llamar primero",
+        "linkedin": "Añadir un perfil de LinkedIn aumenta las visitas al perfil 2.5 veces"
+      },
+      "experience": {
+        "actionVerbs": "Usa verbos de acción como 'logré', 'lideré', 'mejoré' para comenzar las viñetas",
+        "metrics": "Incluye números y métricas - 'aumenté las ventas en un 25%' es más impactante",
+        "reverseChronological": "Lista la experiencia en orden cronológico inverso (la más reciente primero)"
+      },
+      "education": {
+        "coursework": "Incluye cursos relevantes solo si eres un recién graduado",
+        "certifications": "Añade certificaciones aquí si no tienes una sección separada"
+      },
+      "skills": {
+        "balance": "Incluye tanto habilidades técnicas como blandas para un perfil completo",
+        "keywords": "Adapta las habilidades para que coincidan con las palabras clave de la descripción del trabajo",
+        "proficiency": "Lista habilidades por nivel de competencia para ayudar a los reclutadores a entender tus fortalezas"
+      },
+      "default": {
+        "ats": "Las secciones completas mejoran la puntuación de compatibilidad ATS de tu CV"
+      }
+    }
+  },
+  "auth": {
+    "verification": {
+      "title": "Verificación de Email Requerida",
+      "description": "Por favor verifica tu dirección de correo electrónico ({{email}}) para asegurar tu cuenta y acceder a todas las funciones.",
+      "successSent": "¡Email de verificación enviado! Revisa tu bandeja de entrada y carpeta de spam.",
+      "actions": {
+        "dismiss": "Descartar notificación"
+      },
+      "status": {
+        "sending": "Enviando...",
+        "checking": "Comprobando..."
+      },
+      "buttons": {
+        "resend": "Reenviar Verificación",
+        "emailSent": "Email Enviado",
+        "verified": "Ya Verifiqué"
+      },
+      "errors": {
+        "sendFailed": "Error al enviar email de verificación",
+        "checkFailed": "Error al comprobar el estado de verificación. Por favor intenta de nuevo."
+      },
+      "troubleshoot": {
+        "title": "¿No recibiste el email?",
+        "spam": "Revisa tu carpeta de spam/correo no deseado",
+        "correctEmail": "Asegúrate de que {{email}} sea correcto",
+        "wait": "Espera unos minutos para la entrega",
+        "retry": "Intenta reenviar el email de verificación"
+      }
+    }
+  },
+  "navHelper": {
+    "header": {
+      "title": "¿Qué Sigue?",
+      "progress": "Tu CV está completo al {{progress}}%"
+    },
+    "recent": {
+      "title": "CVs Recientes",
+      "viewAll": "Ver todos los {{count}} CVs"
+    },
+    "actions": {
+      "dashboard": {
+        "label": "Ir al Panel",
+        "description": "Gestiona todos tus CVs y rastrea solicitudes"
+      },
+      "templates": {
+        "label": "Probar Nueva Plantilla",
+        "description": "Empieza de nuevo con un estilo de CV diferente"
+      },
+      "recent": {
+        "label": "Continuar Reciente",
+        "description": "Retoma donde lo dejaste"
+      }
+    }
+  },
+  "progressEnhancement": {
+    "header": {
+      "title": "Finalización del CV",
+      "percentComplete": "{{percent}}% Completo",
+      "sectionsCompleted": "{{completed}} de {{total}} secciones completadas"
+    },
+    "status": {
+      "fixErrors": "Corregir errores",
+      "complete": "Completo"
+    },
+    "actions": {
+      "saveDraft": "Guardar Borrador",
+      "preview": "Vista Previa del CV"
+    },
+    "sections": {
+      "personal": "Información Personal",
+      "education": "Educación",
+      "experience": "Experiencia",
+      "volunteer": "Voluntariado",
+      "skills": "Habilidades",
+      "projects": "Proyectos",
+      "achievements": "Logros",
+      "languages": "Idiomas",
+      "references": "Referencias",
+      "hobbies": "Pasatiempos",
+      "certifications": "Certificaciones"
+    }
+  },
+  "resources": {
+    "authors": {
+      "mbafor-joshua": {
+        "title": "Gerente Senior de Producto y Coach de Carrera",
+        "bio": "Gerente Senior de Producto y Coach de Carrera con más de 8 años de experiencia ayudando a profesionales a conseguir el trabajo de sus sueños. Apasionado por las tendencias modernas de reclutamiento y la optimización de CV."
+      },
+      "sarah-chen": {
+        "title": "Directora de RR.HH. y Experta en Reclutamiento",
+        "bio": "Directora de RR.HH. en empresas Fortune 500 con experiencia en adquisición de talento y estrategias modernas de reclutamiento. Ayuda a los buscadores de empleo a entender lo que los reclutadores realmente quieren."
+      }
+    },
+    "categories": {
+      "cv-tips": {
+        "name": "Consejos de CV",
+        "description": "Asesoramiento experto sobre cómo crear CVs destacados que sean notados por los reclutadores"
+      },
+      "career-advice": {
+        "name": "Consejos de Carrera",
+        "description": "Orientación profesional para avanzar en tu carrera y conseguir el trabajo de tus sueños"
+      },
+      "industry-insights": {
+        "name": "Perspectivas de la Industria",
+        "description": "Últimas tendencias y perspectivas de la industria de reclutamiento y contratación"
+      },
+      "templates": {
+        "name": "Plantillas",
+        "description": "Plantillas de CV modernas e inspiración de diseño para diferentes industrias"
+      }
+    }
+  },
+  "onboardingTour": {
+    "progress": {
+      "step": "Paso {{current}} de {{total}}"
+    },
+    "actions": {
+      "next": "Siguiente",
+      "back": "Atrás",
+      "skip": "Omitir Tour",
+      "finish": "Finalizar Tour",
+      "close": "Cerrar tour"
+    },
+    "steps": {
+      "welcome": {
+        "title": "🎉 ¡Bienvenido al Constructor QuickCV!",
+        "content": "Hagamos un recorrido rápido para ayudarte a crear tu CV perfecto en minutos. Este tour guiado te mostrará todas las características clave."
+      },
+      "navigation": {
+        "title": "🧭 Navegación Fácil",
+        "content": "Esta sección muestra tu progreso actual y te permite navegar entre las secciones del CV. Usa los botones Anterior/Siguiente para moverte por tu CV."
+      },
+      "sections": {
+        "title": "📊 Rastrea Tu Progreso",
+        "content": "Aquí puedes ver todas las secciones disponibles del CV. Las marcas de verificación verdes muestran las secciones completadas, y puedes hacer clic en cualquier sección para ir a ella instantáneamente."
+      },
+      "preview": {
+        "title": "👁️ Vista Previa y Descarga",
+        "content": "Previsualiza tu CV en cualquier momento para ver cómo luce. Cuando estés listo, puedes descargarlo como documento PDF o Word."
+      }
+    }
+  },
+  "preview": {
+    "hero": {
+      "title": "Elige Tu Plantilla Perfecta",
+      "subtitle": "Cada plantilla está diseñada profesionalmente para hacerte destacar. Selecciona la que mejor represente tu historia profesional."
+    },
+    "actions": {
+      "backToEditor": "Volver al Editor",
+      "signInToDownload": "Inicia sesión para descargar",
+      "gallery": "Galería",
+      "preview": "Vista Previa",
+      "downloadPdf": "Descargar PDF",
+      "getStarted": "Comenzar",
+      "backToGallery": "Volver a la Galería",
+      "previewSelected": "Previsualizar Seleccionada"
+    },
+    "alerts": {
+      "missingName": "Por favor proporciona tu nombre completo en Información Personal antes de descargar.",
+      "generateError": "Error al generar CV. Revisa la consola para más detalles."
+    },
+    "card": {
+      "featuresLabel": "CARACTERÍSTICAS",
+      "selected": "Seleccionada",
+      "selectTemplate": "Seleccionar Plantilla"
+    },
+    "panel": {
+      "title": "Vista Previa en Vivo",
+      "templateSuffix": "Plantilla"
+    },
+    "categories": {
+      "professional": "Profesional",
+      "creative": "Creativa",
+      "leadership": "Liderazgo",
+      "minimal": "Minimalista",
+      "technology": "Tecnología",
+      "atsReady": "Lista para ATS"
+    },
+    "templates": {
+      "modern": {
+        "name": "Profesional Moderno",
+        "description": "Diseño limpio y contemporáneo con jerarquía visual perfecta",
+        "features": ["Diseño de dos columnas", "Indicadores de progreso", "Tipografía moderna"]
+      },
+      "creative": {
+        "name": "Estudio Creativo",
+        "description": "Diseño audaz y artístico que muestra tu creatividad",
+        "features": ["Encabezado artístico", "Elementos visuales", "Diseño creativo"]
+      },
+      "executive": {
+        "name": "Élite Ejecutiva",
+        "description": "Diseño sofisticado para posiciones de liderazgo",
+        "features": ["Estilo de lujo", "Diseño premium", "Acentos dorados"]
+      },
+      "minimalist": {
+        "name": "Minimalista Puro",
+        "description": "Diseño ultra limpio centrado en la claridad del contenido",
+        "features": ["Tipografía limpia", "Espacio en blanco", "Simplicidad elegante"]
+      },
+      "tech": {
+        "name": "Desarrollador Tech",
+        "description": "Diseño moderno inspirado en terminales para profesionales de tecnología",
+        "features": ["Estilo de terminal", "Acentos neón", "Estética de desarrollador"]
+      },
+      "ats": {
+        "name": "Optimizado ATS",
+        "description": "Compatibilidad perfecta con sistemas de seguimiento de candidatos",
+        "features": ["Compatible con ATS", "Estructura limpia", "Formato profesional"]
+      }
+    }
+  },
+  "dashboard": {
+    "user": {
+      "defaultName": "Usuario Profesional"
+    },
+    "nav": {
+      "dashboard": "Panel",
+      "analytics": "Análisis",
+      "templates": "Plantillas",
+      "resources": "Recursos",
+      "settings": "Configuración",
+      "help": "Ayuda y Soporte"
+    },
+    "descriptions": {
+      "dashboard": "Gestiona tus CVs profesionales",
+      "analytics": "Rastrea el rendimiento de tu CV",
+      "templates": "Explora y selecciona plantillas de CV",
+      "resources": "Consejos de carrera, guías y perspectivas",
+      "settings": "Personaliza tus preferencias",
+      "help": "Obtén ayuda y soporte"
+    },
+    "searchPlaceholder": "Buscar CVs...",
+    "stats": {
+      "totalCVs": "Total de CVs",
+      "templatesUsed": "Plantillas Usadas",
+      "lastActivity": "Última Actividad",
+      "successRate": "Tasa de Éxito",
+      "never": "Nunca"
+    },
+    "bulkActions": {
+      "selected": "{{count}} CV(s) seleccionado(s)",
+      "downloadAll": "Descargar Todo",
+      "deleteAll": "Eliminar Todo",
+      "clear": "Limpiar"
+    },
+    "yourCVs": "Tus CVs ({{count}})",
+    "emptyState": {
+      "noCVs": "Aún no hay CVs",
+      "noResults": "No se encontraron CVs",
+      "createFirst": "¡Crea tu primer CV profesional para empezar!",
+      "tryAdjusting": "Intenta ajustar tus términos de búsqueda"
+    },
+    "actions": {
+      "createNew": "Crear Nuevo CV",
+      "createFirstCV": "Crea Tu Primer CV",
+      "signOut": "Cerrar Sesión",
+      "edit": "Editar CV",
+      "duplicate": "Duplicar",
+      "changeTemplate": "Cambiar Plantilla",
+      "download": "Descargar",
+      "share": "Compartir",
+      "delete": "Eliminar",
+      "copySuffix": "Copia"
+    },
+    "alerts": {
+      "shareLinkCopied": "✅ ¡Enlace para compartir copiado al portapapeles!",
+      "confirmDelete": "¿Estás seguro de que quieres eliminar este CV?",
+      "actionFailed": "Error al {{action}} CV. Por favor intenta de nuevo.",
+      "templateChanged": "✅ ¡Plantilla de CV cambiada a {{template}}!",
+      "templateChangeFailed": "Error al cambiar plantilla. Por favor intenta de nuevo.",
+      "confirmBulkDelete": "¿Eliminar {{count}} CVs seleccionados?"
+    },
+    "settings": {
+      "profile": {
+        "title": "Configuración de Perfil",
+        "displayName": "Nombre para Mostrar",
+        "email": "Email"
+      },
+      "preferences": {
+        "title": "Preferencias",
+        "darkMode": "Modo Oscuro",
+        "emailNotifications": "Notificaciones por Email"
+      }
+    },
+    "analytics": {
+      "totalViews": "Vistas Totales",
+      "thisMonth": "Este Mes",
+      "avgRating": "Calificación Promedio",
+      "successRate": "Tasa de Éxito",
+      "performanceInsights": "Información de Rendimiento",
+      "mostPopularTemplate": "Plantilla Más Popular",
+      "peakDownloadTime": "Hora Pico de Descarga"
+    },
+    "templates": {
+      "gallery": {
+        "title": "Galería de Plantillas de CV Profesionales",
+        "subtitle": "Elige de nuestra colección de plantillas impresionantes, diseñadas profesionalmente"
+      },
+      "allTemplates": "Todas las Plantillas ({{count}})",
+      "description": "Explora nuestras plantillas de CV profesionales y crea nuevos CVs con diferentes estilos",
+      "usageCount": "CVs Creados",
+      "createWith": "Crear con {{name}}",
+      "editExisting": "Editar Existente",
+      "badges": {
+        "popular": "Popular",
+        "new": "Nueva"
+      },
+      "tips": {
+        "title": "Consejos de Selección de Plantilla",
+        "modern": "Moderna: Perfecta para industrias tecnológicas, creativas y contemporáneas",
+        "executive": "Ejecutiva: Ideal para roles de liderazgo senior y gestión",
+        "ats": "Optimizada ATS: La mejor para solicitudes a través de portales de empleo",
+        "creative": "Creativa: Genial para diseño, marketing y profesiones artísticas"
+      },
+      "industry": {
+        "title": "Recomendaciones por Industria",
+        "tech": "Tecnología: Usa la plantilla Desarrollador Tech para roles de programación",
+        "finance": "Finanzas: Las plantillas Ejecutiva o Minimalista funcionan mejor",
+        "healthcare": "Salud: Se recomiendan las plantillas Moderna o ATS",
+        "education": "Educación: Plantillas Minimalista o Moderna"
+      },
+      "help": {
+        "title": "¿Necesitas ayuda para elegir?",
+        "subtitle": "Nuestro asistente de plantillas puede ayudarte a encontrar la combinación perfecta",
+        "button": "Obtener Ayuda"
+      },
+      "modern": {
+        "name": "Profesional Moderno",
+        "description": "Diseño limpio y contemporáneo con jerarquía visual perfecta e indicadores de progreso"
+      },
+      "creative": {
+        "name": "Estudio Creativo",
+        "description": "Diseño audaz y artístico con diseño asimétrico perfecto para profesionales creativos"
+      },
+      "executive": {
+        "name": "Élite Ejecutiva",
+        "description": "Diseño de lujo sofisticado con acentos dorados para posiciones de liderazgo"
+      },
+      "minimalist": {
+        "name": "Minimalista Puro",
+        "description": "Diseño ultra limpio con generoso espacio en blanco y tipografía elegante"
+      },
+      "tech": {
+        "name": "Desarrollador Tech",
+        "description": "Diseño inspirado en terminales con acentos neón perfecto para profesionales de tecnología"
+      },
+      "ats": {
+        "name": "Optimizado ATS",
+        "description": "Formato simple y estructurado optimizado para Sistemas de Seguimiento de Candidatos"
+      }
+    },
+    "templateCategories": {
+      "professional": "Profesional",
+      "creative": "Creativa",
+      "leadership": "Liderazgo",
+      "minimal": "Minimalista",
+      "technology": "Tecnología",
+      "atsReady": "Lista para ATS"
+    },
+    "resources": {
+      "header": {
+        "title": "Recursos de Carrera y Perspectivas",
+        "subtitle": "Consejos expertos, guías y perspectivas de la industria para impulsar tu éxito profesional"
+      },
+      "latestArticles": "Últimos Artículos",
+      "viewAll": "Ver Todos los Artículos"
+    },
+    "support": {
+      "title": "Contactar Soporte",
+      "email": {
+        "title": "Soporte por Email",
+        "subtitle": "Obtén ayuda vía email en 2 horas"
+      },
+      "chat": {
+        "title": "Chat en Vivo",
+        "subtitle": "Chatea con nuestro equipo de soporte",
+        "button": "Iniciar Sesión de Chat"
+      },
+      "kb": {
+        "title": "Base de Conocimientos",
+        "subtitle": "Explora nuestros artículos de ayuda",
+        "button": "Explorar Artículos"
+      },
+      "form": {
+        "title": "Solicitud de Soporte Rápida",
+        "issueType": "Tipo de Problema",
+        "issues": {
+          "technical": "Problema Técnico",
+          "account": "Problema de Cuenta",
+          "download": "Problema de Descarga de CV",
+          "template": "Pregunta sobre Plantilla",
+          "general": "Pregunta General"
+        },
+        "message": "Mensaje",
+        "placeholder": "Describe tu problema...",
+        "success": "¡Solicitud de soporte enviada exitosamente! Te responderemos pronto.",
+        "error": "Error al enviar mensaje. Por favor intenta de nuevo o envíanos un email directamente a mbaforfoghang@gmail.com",
+        "send": "Enviar Solicitud de Soporte",
+        "sending": "Enviando..."
+      }
+    },
+    "modals": {
+      "chooseTemplate": {
+        "title": "Elegir Plantilla para {{fileName}}",
+        "subtitle": "Selecciona una nueva plantilla para aplicar a tu CV",
+        "currentTemplate": "Plantilla Actual",
+        "apply": "Aplicar",
+        "applying": "Aplicando...",
+        "cancel": "Cancelar"
+      }
+    },
+    "loading": {
+      "authenticating": "Autenticando...",
+      "dashboard": "Cargando tu panel profesional..."
+    }
+  },
+  "blogList": {
+    "meta": {
+      "title": "Blog QuickCV - Asesoramiento Experto en CV y Carrera",
+      "description": "Descubre perspectivas expertas sobre construcción de CV, desarrollo de carrera, estrategias de búsqueda de empleo y tendencias de la industria. Orientación profesional para ayudarte a conseguir el trabajo de tus sueños."
+    },
+    "hero": {
+      "titleStart": "Domina Tu",
+      "titleHighlight": "Viaje Profesional",
+      "subtitle": "Perspectivas expertas, estrategias probadas y consejos prácticos para ayudarte a construir CVs destacados, avanzar en tu carrera y conseguir el trabajo de tus sueños en el mercado competitivo de hoy."
+    },
+    "stats": {
+      "articles": "Artículos de Expertos",
+      "readers": "Lectores Mensuales",
+      "successRate": "Tasa de Éxito",
+      "support": "Soporte Profesional"
+    },
+    "results": {
+      "searchTitle": "Resultados de Búsqueda para \"{{query}}\"",
+      "filteredTitle": "Artículos Filtrados",
+      "count_one": "{{count}} artículo encontrado",
+      "count_other": "{{count}} artículos encontrados",
+      "searchResults": "Resultados de Búsqueda",
+      "latestArticles": "Últimos Artículos",
+      "pageInfo": "Página {{current}} de {{total}}"
+    },
+    "sort": {
+      "label": "Ordenar por",
+      "latest": "Más Reciente Primero",
+      "popular": "Más Popular",
+      "views": "Más Visto"
+    },
+    "empty": {
+      "title": "No se encontraron artículos",
+      "filteredMessage": "Intenta ajustar tus términos de búsqueda o filtros para encontrar lo que buscas.",
+      "defaultMessage": "Estamos trabajando en añadir más contenido. ¡Vuelve pronto!",
+      "clearFilters": "Borrar todos los filtros"
+    },
+    "newsletter": {
+      "title": "Mantente Actualizado con Perspectivas de Carrera",
+      "subtitle": "Recibe los últimos consejos de CV, asesoramiento profesional y perspectivas de la industria en tu bandeja de entrada semanalmente. Únete a más de 10,000 profesionales avanzando en sus carreras.",
+      "placeholder": "Ingresa tu email",
+      "button": "Suscribirse Gratis",
+      "disclaimer": "Sin spam. Cancela la suscripción en cualquier momento. Privacidad 100% protegida."
+    }
+  },
+  "blogPost": {
+    "meta": {
+      "views": "vistas"
+    },
+    "notFound": {
+      "pageTitle": "Publicación No Encontrada - Blog QuickCV",
+      "title": "Artículo No Encontrado",
+      "message": "El artículo que buscas no existe o puede haber sido movido.",
+      "browseButton": "Explorar Todos los Artículos",
+      "homeButton": "Ir a la Página de Inicio"
+    },
+    "actions": {
+      "allArticles": "Todos los Artículos"
+    },
+    "share": {
+      "twitter": "Compartir en Twitter",
+      "linkedin": "Compartir en LinkedIn",
+      "facebook": "Compartir en Facebook",
+      "copyLink": "Copiar Enlace"
+    },
+    "article": {
+      "tableOfContents": "Tabla de Contenidos",
+      "keyTakeaways": "Puntos Clave",
+      "tags": "Etiquetas"
+    },
+    "related": {
+      "title": "Artículos Relacionados"
+    },
+    "newsletter": {
+      "title": "Obtén Más Perspectivas de Carrera",
+      "subtitle": "Únete a más de 10,000 profesionales que reciben consejos semanales sobre optimización de CV, crecimiento profesional y estrategias de búsqueda de empleo.",
+      "placeholder": "Ingresa tu email",
+      "button": "Suscribirse",
+      "disclaimer": "Sin spam. Cancela la suscripción en cualquier momento."
+    }
+  },
+  "blog1": {
+    "latest_posts": {
+      "read_more": "Leer Más →",
+      "read_time": "{{minutes}} min de lectura"
+    }
+  },
+  "layout": {
+    "blog": {
+      "default_title": "Blog QuickCV",
+      "default_description": "Perspectivas expertas sobre construcción de CV, desarrollo de carrera y estrategias de búsqueda de empleo"
+    },
+    "nav": {
+      "home": "Inicio",
+      "builder": "Constructor de CV",
+      "blog": "Blog",
+      "create_cv": "Crear CV",
+      "toggle_menu": "Alternar menú"
+    }
+  },
+  "common2": {
+    "close": "Cerrar",
+    "processing": "Procesando...",
+    "terms": "Términos de Servicio",
+    "privacy": "Política de Privacidad",
+    "support": "Soporte"
+  },
+  "auth2": {
+    "titles": {
+      "signin": "Iniciar Sesión",
+      "signup": "Crear Cuenta",
+      "reset": "Restablecer Contraseña",
+      "download": "Inicia sesión para descargar"
+    },
+    "descriptions": {
+      "signin": "¡Bienvenido de nuevo! Inicia sesión para acceder a tu panel.",
+      "signup": "Únete a miles de profesionales que confían en nuestro constructor de CV.",
+      "reset": "Ingresa tu dirección de correo electrónico y te enviaremos un enlace para restablecer tu contraseña.",
+      "download": "¡Tu CV está listo! Inicia sesión para descargar y acceder a tu panel personal."
+    },
+    "download_ready": {
+      "title": "Descarga de CV Lista",
+      "message": "Inicia sesión para descargar tu CV y acceder a tu panel personal."
+    },
+    "labels": {
+      "email": "Email",
+      "password": "Contraseña"
+    },
+    "buttons": {
+      "signin": "Iniciar Sesión",
+      "signup": "Crear Cuenta",
+      "send_reset": "Enviar Enlace de Restablecimiento"
+    },
+    "errors": {
+      "generic": "Autenticación fallida. Por favor intenta de nuevo.",
+      "email_required": "Por favor ingresa tu dirección de correo electrónico",
+      "reset_failed": "Error al enviar email de restablecimiento de contraseña. Por favor intenta de nuevo.",
+      "fill_all": "Por favor completa todos los campos",
+      "password_length": "La contraseña debe tener al menos 6 caracteres",
+      "email_in_use": "Este correo electrónico ya está en uso. Por favor inicia sesión en su lugar.",
+      "invalid_credentials": "Email o contraseña inválidos. Por favor revisa tus credenciales e intenta de nuevo.",
+      "invalid_email": "Dirección de correo electrónico inválida",
+      "too_many_requests": "Demasiados intentos fallidos. Por favor intenta de nuevo más tarde."
+    },
+    "success": {
+      "reset_sent": "📧 ¡Enlace de restablecimiento de contraseña enviado a {{email}}!\n\nPor favor revisa tu correo electrónico y sigue las instrucciones para restablecer tu contraseña.",
+      "account_created": "✅ ¡Cuenta creada exitosamente!\n\n📧 Por favor revisa tu correo electrónico ({{email}}) para un enlace de verificación.",
+      "can_signin": "Ahora puedes iniciar sesión con tus credenciales."
+    },
+    "benefits": {
+      "title": "Lo que obtienes:",
+      "item1": "Descarga instantánea de CV en alta calidad",
+      "item2": "Panel personal para gestionar todos tus CVs",
+      "item3": "Historial de descargas y re-descarga en cualquier momento",
+      "item4": "Múltiples plantillas profesionales"
+    },
+    "links": {
+      "no_account": "¿No tienes una cuenta? Regístrate",
+      "have_account": "¿Ya tienes una cuenta? Inicia sesión",
+      "back_signin": "Volver al inicio de sesión",
+      "forgot_password": "¿Olvidaste tu contraseña?"
+    },
+    "terms": {
+      "agree_signin": "Al iniciar sesión, aceptas nuestros",
+      "agree_signup": "Al crear una cuenta, aceptas nuestros"
+    },
+    "or_google": "O continúa con Google",
+    "continue_google": "Continuar con Google",
+    "powered_by": "Autenticación segura impulsada por Firebase"
+  },
+  "articles": {
+    "ats_guide": {
+      "meta": {
+        "title": "La Guía Completa para CVs Optimizados para ATS en 2025",
+        "subtitle": "Domina el arte de vencer a los Sistemas de Seguimiento de Candidatos y poner tu CV frente a reclutadores humanos",
+        "excerpt": "Aprende cómo crear CVs amigables con ATS que pasen los sistemas de evaluación automatizados mientras mantienen el atractivo visual y la legibilidad para los reclutadores humanos."
+      },
+      "images": {
+        "featured": {
+          "alt": "Profesional moderno revisando un CV optimizado para ATS en una pantalla de computadora",
+          "caption": "Entender los sistemas ATS es crucial para los buscadores de empleo modernos"
+        }
+      },
+      "content": {
+        "intro": "En 2025, más del 98% de las empresas Fortune 500 utilizan Sistemas de Seguimiento de Candidatos (ATS) para filtrar CVs antes de que lleguen a los reclutadores humanos. Esto significa que tu CV perfectamente elaborado podría nunca ser visto si no está optimizado para estos sistemas. Esta guía completa te enseñará todo lo que necesitas saber sobre cómo crear CVs amigables con ATS que no sacrifiquen el atractivo visual o la legibilidad.",
+        "conclusion": "Dominar la optimización ATS ya no es opcional en el mercado laboral competitivo de hoy. Al seguir estas estrategias, asegurarás que tu CV no solo pase a través de los filtros ATS sino que también impresione a los reclutadores humanos. Recuerda, el objetivo es crear un CV que funcione para ambos sistemas mientras representa auténticamente tu valor profesional. Empieza a implementar estas técnicas hoy, y observa cómo aumenta significativamente tu tasa de entrevistas."
+      },
+      "common": {
+        "avoid": "Evita:",
+        "use_instead": "Usa en su lugar:"
+      },
+      "sections": {
+        "understanding": {
+          "title": "Entendiendo Cómo Funcionan los Sistemas ATS",
+          "intro": "Los Sistemas de Seguimiento de Candidatos son aplicaciones de software que ayudan a los empleadores a gestionar el proceso de reclutamiento. Escanean, analizan y clasifican CVs basándose en criterios específicos antes de que los reclutadores humanos los vean.",
+          "callout": {
+            "title": "Funciones Clave de ATS",
+            "parsing_label": "Análisis:",
+            "parsing_desc": "Extracción de información de tu CV en datos estructurados",
+            "keyword_label": "Coincidencia de Palabras Clave:",
+            "keyword_desc": "Comparación de tu CV con los requisitos del trabajo",
+            "ranking_label": "Clasificación:",
+            "ranking_desc": "Puntuación de CVs basada en relevancia y porcentaje de coincidencia",
+            "filtering_label": "Filtrado:",
+            "filtering_desc": "Eliminación de CVs que no cumplen con los criterios mínimos"
+          },
+          "stats": {
+            "fortune": "Fortune 500 usando ATS",
+            "filtered": "CVs filtrados",
+            "review_time": "Tiempo prom. revisión de reclutador",
+            "keywords": "Palabras clave escaneadas"
+          }
+        },
+        "mistakes": {
+          "title": "Errores Comunes de ATS Que Matan Tus Posibilidades",
+          "intro": "Muchos buscadores de empleo sabotean sin saberlo sus solicitudes con estos errores comunes:",
+          "complex": {
+            "title": "1. Formato Complejo",
+            "desc_start": "Aunque visualmente atractivos, los diseños complejos con tablas, cuadros de texto y gráficos pueden confundir a los analizadores ATS.",
+            "highlight": "Cíñete a un formato simple y limpio con secciones claras.",
+            "avoid_list": {
+              "tables": "Tablas para diseño",
+              "boxes": "Cuadros de texto y gráficos",
+              "columns": "Múltiples columnas",
+              "headers": "Encabezados y pies de página con texto"
+            },
+            "use_list": {
+              "single": "Diseño de una sola columna",
+              "headers": "Encabezados de sección claros",
+              "fonts": "Fuentes estándar",
+              "spacing": "Espaciado consistente"
+            }
+          },
+          "headers": {
+            "title": "2. Encabezados de Sección No Estándar",
+            "desc_start": "Usar encabezados creativos como",
+            "bad_example": "\"Mi Viaje\"",
+            "desc_mid": "en lugar de",
+            "good_example": "\"Experiencia Laboral\"",
+            "desc_end": "puede impedir que el ATS categorice tu información correctamente."
+          },
+          "images": {
+            "title": "3. Texto Basado en Imágenes",
+            "desc": "El texto dentro de imágenes, logotipos o gráficos es invisible para la mayoría de los sistemas ATS. Usa siempre texto real que pueda ser analizado y leído por el software."
+          }
+        },
+        "strategies": {
+          "title": "Estrategias Probadas de Optimización ATS",
+          "quote": {
+            "text": "La clave para la optimización ATS es hacer que tu CV sea legible tanto para máquinas como para humanos. Las palabras clave deben mejorar, no reemplazar, la narración convincente sobre tus logros.",
+            "author": "Sarah Chen",
+            "role": "Directora de RR.HH. y Experta en Implementación ATS"
+          },
+          "formats": {
+            "title": "Mejores Prácticas de Formato de Archivo",
+            "intro": "Usa formatos de archivo estándar que los sistemas ATS puedan analizar fácilmente:",
+            "pdf": {
+              "title": "PDF (Recomendado)",
+              "desc": "Mejor opción para mantener el formato mientras se asegura el análisis. Usa herramientas estándar de creación de PDF."
+            },
+            "doc": {
+              "title": "DOC/DOCX",
+              "desc": "Altamente compatible pero puede tener problemas de formato en diferentes sistemas. Buena opción de respaldo."
+            },
+            "avoid": {
+              "title": "Evita",
+              "desc": "Imágenes, PNG, JPG o cualquier formato gráfico. Estos no pueden ser analizados por los sistemas ATS."
+            }
+          },
+          "keywords": {
+            "title": "Optimización de Palabras Clave Sin Saturación",
+            "intro": "La ubicación estratégica de palabras clave es crucial, pero debe sentirse natural:",
+            "list": {
+              "mirror_bold": "Refleja el lenguaje de la publicación del trabajo",
+              "mirror_text": "en tus descripciones de experiencia",
+              "terms_bold": "Incluye terminología específica de la industria",
+              "terms_text": "y habilidades técnicas naturalmente",
+              "acronyms_bold": "Usa tanto acrónimos como formas completas",
+              "acronyms_text": "(ej., \"Optimización para Motores de Búsqueda (SEO)\")",
+              "context_bold": "Incorpora palabras clave en contexto,",
+              "context_text": "no como listas aisladas",
+              "certs_bold": "Incluye certificaciones relevantes",
+              "certs_text": "y software mencionado en las publicaciones de trabajo"
+            }
+          }
+        },
+        "formatting": {
+          "title": "Pautas de Formato Amigables con ATS",
+          "structure": {
+            "title": "Estructura y Diseño",
+            "fonts_label": "Fuentes estándar:",
+            "fonts_val": "Arial, Helvetica, Times New Roman o Calibri",
+            "size_label": "Tamaño de fuente:",
+            "size_val": "10-12 puntos para texto del cuerpo, 14-16 para encabezados",
+            "align_label": "Alineación de texto:",
+            "align_val": "Alinea todo el texto a la izquierda (evita alineación centrada o derecha)",
+            "style_label": "Formato consistente:",
+            "style_val": "Usa el mismo estilo en todo",
+            "space_label": "Espacio en blanco:",
+            "space_val": "Incluye mucho espacio para la legibilidad"
+          },
+          "sections": {
+            "title": "Organización de Secciones",
+            "intro": "Organiza tu CV con estas secciones estándar en orden:",
+            "list": {
+              "contact": "Información de Contacto",
+              "summary": "Resumen Profesional",
+              "experience": "Experiencia Laboral",
+              "education": "Educación",
+              "skills": "Habilidades",
+              "certs": "Certificaciones (si aplica)",
+              "additional": "Secciones Adicionales"
+            }
+          }
+        },
+        "testing": {
+          "title": "Probando Tu CV para Compatibilidad ATS",
+          "intro": "Antes de enviar tu CV, prueba su compatibilidad con ATS con estos métodos:",
+          "copy_paste": {
+            "title": "Prueba Simple de Copiar y Pegar",
+            "step1": "Copia todo el texto de tu CV",
+            "step2": "Pégalo en un editor de texto plano (Notepad)",
+            "step3": "Revisa si la información es legible y está organizada correctamente",
+            "step4": "Asegúrate de que no se pierdan ni mezclen detalles importantes"
+          },
+          "online": {
+            "title": "Verificadores ATS en Línea",
+            "intro": "Usa herramientas como Jobscan, ResumeWorded o SkillSyncer para:",
+            "list": {
+              "compare": "Comparar tu CV con publicaciones de trabajo específicas",
+              "identify": "Identificar palabras clave faltantes",
+              "score": "Obtener puntuaciones de compatibilidad ATS",
+              "recommend": "Recibir recomendaciones de optimización"
+            }
+          }
+        },
+        "industry": {
+          "title": "Consejos ATS Específicos de la Industria",
+          "tech": {
+            "title": "Sector Tecnológico",
+            "tip1": "Incluye lenguajes de programación y marcos de trabajo",
+            "tip2": "Menciona tecnologías específicas de las publicaciones de trabajo",
+            "tip3": "Usa terminología tanto técnica como comercial",
+            "tip4": "Resalta GitHub, certificaciones y proyectos"
+          },
+          "health": {
+            "title": "Salud",
+            "tip1": "Incluye certificaciones, licencias y conocimiento de cumplimiento",
+            "tip2": "Usa terminología médica apropiadamente",
+            "tip3": "Resalta la experiencia en atención al paciente y seguridad",
+            "tip4": "Menciona sistemas EMR y software médico"
+          },
+          "finance": {
+            "title": "Finanzas",
+            "tip1": "Enfatiza habilidades analíticas y software financiero",
+            "tip2": "Incluye regulaciones relevantes y cumplimiento",
+            "tip3": "Menciona instrumentos o procesos financieros específicos",
+            "tip4": "Resalta la gestión de riesgos y experiencia en auditoría"
+          }
+        },
+        "future": {
+          "title": "El Futuro de la Tecnología ATS",
+          "intro": "A medida que avanzamos en 2025, los sistemas ATS se vuelven más sofisticados:",
+          "ai": {
+            "title": "Integración de IA",
+            "desc": "Procesamiento de lenguaje natural avanzado para una mejor comprensión del contexto y coincidencia semántica."
+          },
+          "skills": {
+            "title": "Coincidencia Basada en Habilidades",
+            "desc": "Enfoque en competencias y habilidades demostradas en lugar de solo coincidencia de palabras clave."
+          },
+          "bias": {
+            "title": "Reducción de Sesgos",
+            "desc": "Algoritmos mejorados para reducir el sesgo inconsciente en la selección y promover la diversidad."
+          },
+          "video": {
+            "title": "Integración de Video",
+            "desc": "Algunos sistemas ahora analizan envíos de video junto con CVs tradicionales para una evaluación completa."
+          }
+        }
+      },
+      "seo": {
+        "title": "Guía Completa de CV Optimizado para ATS 2025 | Vence a los Sistemas de Seguimiento de Candidatos",
+        "description": "Domina la optimización ATS con nuestra guía completa 2025. Aprende cómo crear CVs que pasen los Sistemas de Seguimiento de Candidatos mientras impresionas a los reclutadores humanos."
+      }
+    }
+  },
+  "dash": {
+    "title": "Panel"
+  }
+}

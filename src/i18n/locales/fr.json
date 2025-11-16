@@ -453,11 +453,11 @@
       "contact": "Contact"
     },
     "actions": {
-      "signIn": "Connexion"
+      "signIn": "Se connecter",
+      "createCV": "Créer un CV"
     }
-  }, 
-
-
+  }
+,
   "about": {
     "mission": {
       "title": "Notre Mission",
@@ -2568,7 +2568,13 @@
     "continue_google": "Continuer avec Google",
     "powered_by": "Authentification sécurisée propulsée par Firebase"
   }
+,
+
+  "dash": {
+    "title": "Tableau de bord"
+  }
 }
+
 
 
 
