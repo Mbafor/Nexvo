@@ -1,10 +1,11 @@
 import { useNavigate } from "react-router-dom";
-import { useTranslation } from "react-i18next";
+// Removed useTranslation import
 import { formatDate, getReadTimeText } from "../utils/blogUtils";
 import { getLatestPosts } from "../data/blogPosts";
+import { BlogPost } from "../types/blog";
 
 const LatestPosts = () => {
-  const { t } = useTranslation();
+  // Removed const { t } = useTranslation();
   const navigate = useNavigate();
 
   // Get latest posts with limit
@@ -16,7 +17,7 @@ const LatestPosts = () => {
 
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-      {latestBlogs.map((blog) => (
+      {latestBlogs.map((blog: BlogPost) => (
         <div
           key={blog.id}
           onClick={() => handleClick(blog.slug)}
@@ -66,7 +67,7 @@ const LatestPosts = () => {
               }}
               className="text-blue-700 font-medium hover:text-blue-600 transition-colors"
             >
-              {t('blog1.latest_posts.read_more')}
+              Read More
             </button>
           </div>
         </div>

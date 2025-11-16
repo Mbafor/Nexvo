@@ -1,6 +1,6 @@
 // Stunning CV Preview Page - Professional Template Gallery
 import { useState, useEffect } from 'react';
-import { Sparkles, Zap, Crown, Minimize2, Code, FileText, ChevronLeft, Download } from 'lucide-react';
+import { Sparkles, Zap, Crown, Minimize2, Code, FileText, ChevronLeft } from 'lucide-react';
 import { useTranslation } from 'react-i18next'; // Import added
 import { CVData, TemplateType } from '../types/cv';
 import { PDFViewer } from '@react-pdf/renderer';
@@ -141,62 +141,57 @@ export default function PreviewPage({ cvData, onBack, onDownload, onShowAuth }: 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 to-blue-50">
       {/* Stunning Header with Glassmorphism Effect */}
-      <header className="sticky top-0 z-50 backdrop-blur-xl bg-blue-900 shadow-lg transition-all duration-300">
+    <header className="sticky top-0 z-50 backdrop-blur-xl bg-blue-900 shadow-lg transition-all duration-300">
   <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div className="flex items-center justify-between h-16">
       
-      {/* Left: Enhanced Back Button */}
-      <div className="flex items-center">
+      {/* Left: Back Button (Compact on mobile) */}
+      <div className="flex items-center flex-shrink-0">
         <button
           onClick={() => {
             localStorage.setItem('cvData', JSON.stringify(cvData));
             onBack();
           }}
-          className="group flex items-center justify-center p-2 rounded-full hover:bg-white/10 transition-colors duration-200"
-          aria-label="Go back"
+          className="group flex items-center justify-center p-2 rounded-full hover:bg-white/10 text-white transition-colors duration-200"
         >
-          <ChevronLeft className="h-6 w-6 text-white" />
+          <ChevronLeft className="h-6 w-6" />
         </button>
-      </div>
-
-      {/* Center: Mobile Title (Optional - adds context on small screens) */}
-      <div className="lg:hidden absolute left-1/2 transform -translate-x-1/2">
-        <span className="text-white font-medium text-sm opacity-90">
-          CV Preview
-        </span>
       </div>
 
       {/* Right: Action Buttons */}
       <div className="flex items-center space-x-3">
         
-        {/* Desktop Preview Toggle */}
+        {/* Preview Toggle - Hidden on Mobile (You have the bottom bar for this) */}
         <button
           onClick={() => setIsPreviewMode(!isPreviewMode)}
-          className="hidden lg:flex items-center space-x-2 px-4 py-2 bg-white/10 hover:bg-white/20 text-white rounded-xl transition-colors font-medium border border-white/10 backdrop-blur-sm"
+          className="hidden lg:flex items-center space-x-2 px-4 py-2 bg-white/10 hover:bg-white/20 text-white rounded-xl transition-colors font-medium border border-white/10"
         >
           <span>{isPreviewMode ? t('preview.actions.gallery') : t('preview.actions.preview')}</span>
         </button>
 
-        {/* Responsive Download Button */}
+        {/* Download Button - Text Visible on Mobile */}
         <button
           onClick={handleDownload}
-          // 1. Changed px-6 to px-3 (mobile) sm:px-6 (desktop)
-          // 2. Added responsive text hiding
-          className="group relative flex items-center justify-center space-x-2 px-3 sm:px-6 py-2 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-xl font-semibold transition-all duration-300 shadow-sm overflow-hidden"
+          className="group relative flex items-center space-x-2 
+            px-4 py-2 text-sm       /* Mobile: Smaller padding & text */
+            sm:px-6 sm:text-base    /* Desktop: Larger padding & text */
+            bg-gray-100 hover:bg-white text-gray-900 
+            rounded-xl font-semibold transition-all duration-300 shadow-md"
         >
-          <div className="absolute inset-0 bg-gradient-to-r text-blue-700 opacity-0 group-hover:opacity-20 transition-opacity duration-300"></div>
+          <div className="absolute inset-0 bg-gradient-to-r from-blue-50 to-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-xl" />
           
-          {/* Icon always visible, but maybe swap icon types on mobile if needed */}
           <span className="relative z-10 flex items-center gap-2">
-            {/* Show explicit Download icon on mobile only */}
-            <Download className="h-5 w-5 sm:hidden" />
-            
-            {/* Show Text only on larger screens */}
-            <span className="hidden sm:inline">
+            {/* Icon hidden on very small screens to save space for text, visible on larger mobile/desktop */}
+            <span className="hidden xs:inline-block"> 
+               {user ? <FileText className="w-4 h-4 text-blue-700" /> : <Zap className="w-4 h-4 text-blue-700" />}
+            </span>
+
+            <span className="whitespace-nowrap text-blue-900">
               {user ? t('preview.actions.downloadPdf') : t('preview.actions.getStarted')}
             </span>
           </span>
         </button>
+
       </div>
     </div>
   </div>

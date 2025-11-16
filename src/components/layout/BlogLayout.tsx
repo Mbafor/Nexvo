@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useTranslation } from 'react-i18next';
+// Removed useTranslation import
 import Footer from '../common/Footer';
 
 interface BlogLayoutProps {
@@ -14,13 +14,13 @@ const BlogLayout: React.FC<BlogLayoutProps> = ({
   title, 
   description 
 }) => {
-  const { t } = useTranslation();
+  // Removed const { t } = useTranslation();
   const navigate = useNavigate();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
-  // Default values using translation keys if props are not provided
-  const pageTitle = title || t('layout.blog.default_title');
-  const pageDescription = description || t('layout.blog.default_description');
+  // Default values using static English text
+  const pageTitle = title || "QuickCV Blog - Career Insights & Resume Tips";
+  const pageDescription = description || "Expert advice on CV writing, interview preparation, and career development to help you land your dream job.";
 
   // Set document title and meta description dynamically
   useEffect(() => {
@@ -42,9 +42,9 @@ const BlogLayout: React.FC<BlogLayoutProps> = ({
   }, [pageTitle, pageDescription]);
 
   const navLinks = [
-    { label: t('layout.nav.home'), path: '/' },
-    { label: t('layout.nav.builder'), path: '/builder' },
-    { label: t('layout.nav.blog'), path: '/blogs', active: true }, // Explicitly marking active for Blog layout
+    { label: "Home", path: '/' },
+    { label: "Builder", path: '/builder' },
+    { label: "Blog", path: '/blogs', active: true }, // Explicitly marking active for Blog layout
   ];
 
   return (
@@ -89,7 +89,7 @@ const BlogLayout: React.FC<BlogLayoutProps> = ({
                 type="button"
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
                 className="text-gray-600 hover:text-blue-700 transition-colors"
-                aria-label={t('layout.nav.toggle_menu')}
+                aria-label="Toggle menu"
               >
                 {isMobileMenuOpen ? (
                   <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -109,7 +109,7 @@ const BlogLayout: React.FC<BlogLayoutProps> = ({
                 onClick={() => navigate("/builder")}
                 className="bg-blue-700 hover:bg-blue-600 text-white px-4 py-2 rounded-lg font-medium transition-colors shadow-sm"
               >
-                {t('layout.nav.create_cv')}
+                Create My CV
               </button>
             </div>
           </div>
@@ -144,7 +144,7 @@ const BlogLayout: React.FC<BlogLayoutProps> = ({
                   }}
                   className="w-full bg-blue-700 hover:bg-blue-600 text-white px-4 py-2 rounded-lg font-medium transition-colors shadow-sm"
                 >
-                  {t('layout.nav.create_cv')}
+                  Create My CV
                 </button>
               </div>
             </div>

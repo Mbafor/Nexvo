@@ -99,11 +99,8 @@
           "review": "¡Experiencia increíble! La optimización ATS me ayudó a superar las evaluaciones iniciales cada vez."
         }
       ]
-    },
-    "blog": {
-      "title": "Perspectivas de Carrera de Expertos",
-      "subtitle": "Mantente a la vanguardia con los últimos consejos y estrategias de expertos en carreras"
-    },
+    }
+    ,
     "faq": {
       "title": "Preguntas Frecuentes",
       "subtitle": "Todo lo que necesitas saber sobre cómo crear tu CV perfecto",
@@ -870,22 +867,6 @@
       }
     }
   },
-  "blog": {
-    "filters": {
-      "searchPlaceholder": "Buscar artículos, temas o autores...",
-      "allCategories": "Todas las Categorías",
-      "featuredOnly": "Solo destacados",
-      "tags": "Etiquetas",
-      "authors": "Autores",
-      "clearAll": "Borrar todos los filtros",
-      "active": {
-        "search": "Búsqueda",
-        "category": "Categoría",
-        "author": "Autor",
-        "featured": "Destacado"
-      }
-    }
-  },
   "pagination": {
     "previous": "Anterior",
     "next": "Siguiente",
@@ -1486,107 +1467,7 @@
       "authenticating": "Autenticando...",
       "dashboard": "Cargando tu panel profesional..."
     }
-  },
-  "blogList": {
-    "meta": {
-      "title": "Blog QuickCV - Asesoramiento Experto en CV y Carrera",
-      "description": "Descubre perspectivas expertas sobre construcción de CV, desarrollo de carrera, estrategias de búsqueda de empleo y tendencias de la industria. Orientación profesional para ayudarte a conseguir el trabajo de tus sueños."
-    },
-    "hero": {
-      "titleStart": "Domina Tu",
-      "titleHighlight": "Viaje Profesional",
-      "subtitle": "Perspectivas expertas, estrategias probadas y consejos prácticos para ayudarte a construir CVs destacados, avanzar en tu carrera y conseguir el trabajo de tus sueños en el mercado competitivo de hoy."
-    },
-    "stats": {
-      "articles": "Artículos de Expertos",
-      "readers": "Lectores Mensuales",
-      "successRate": "Tasa de Éxito",
-      "support": "Soporte Profesional"
-    },
-    "results": {
-      "searchTitle": "Resultados de Búsqueda para \"{{query}}\"",
-      "filteredTitle": "Artículos Filtrados",
-      "count_one": "{{count}} artículo encontrado",
-      "count_other": "{{count}} artículos encontrados",
-      "searchResults": "Resultados de Búsqueda",
-      "latestArticles": "Últimos Artículos",
-      "pageInfo": "Página {{current}} de {{total}}"
-    },
-    "sort": {
-      "label": "Ordenar por",
-      "latest": "Más Reciente Primero",
-      "popular": "Más Popular",
-      "views": "Más Visto"
-    },
-    "empty": {
-      "title": "No se encontraron artículos",
-      "filteredMessage": "Intenta ajustar tus términos de búsqueda o filtros para encontrar lo que buscas.",
-      "defaultMessage": "Estamos trabajando en añadir más contenido. ¡Vuelve pronto!",
-      "clearFilters": "Borrar todos los filtros"
-    },
-    "newsletter": {
-      "title": "Mantente Actualizado con Perspectivas de Carrera",
-      "subtitle": "Recibe los últimos consejos de CV, asesoramiento profesional y perspectivas de la industria en tu bandeja de entrada semanalmente. Únete a más de 10,000 profesionales avanzando en sus carreras.",
-      "placeholder": "Ingresa tu email",
-      "button": "Suscribirse Gratis",
-      "disclaimer": "Sin spam. Cancela la suscripción en cualquier momento. Privacidad 100% protegida."
-    }
-  },
-  "blogPost": {
-    "meta": {
-      "views": "vistas"
-    },
-    "notFound": {
-      "pageTitle": "Publicación No Encontrada - Blog QuickCV",
-      "title": "Artículo No Encontrado",
-      "message": "El artículo que buscas no existe o puede haber sido movido.",
-      "browseButton": "Explorar Todos los Artículos",
-      "homeButton": "Ir a la Página de Inicio"
-    },
-    "actions": {
-      "allArticles": "Todos los Artículos"
-    },
-    "share": {
-      "twitter": "Compartir en Twitter",
-      "linkedin": "Compartir en LinkedIn",
-      "facebook": "Compartir en Facebook",
-      "copyLink": "Copiar Enlace"
-    },
-    "article": {
-      "tableOfContents": "Tabla de Contenidos",
-      "keyTakeaways": "Puntos Clave",
-      "tags": "Etiquetas"
-    },
-    "related": {
-      "title": "Artículos Relacionados"
-    },
-    "newsletter": {
-      "title": "Obtén Más Perspectivas de Carrera",
-      "subtitle": "Únete a más de 10,000 profesionales que reciben consejos semanales sobre optimización de CV, crecimiento profesional y estrategias de búsqueda de empleo.",
-      "placeholder": "Ingresa tu email",
-      "button": "Suscribirse",
-      "disclaimer": "Sin spam. Cancela la suscripción en cualquier momento."
-    }
-  },
-  "blog1": {
-    "latest_posts": {
-      "read_more": "Leer Más →",
-      "read_time": "{{minutes}} min de lectura"
-    }
-  },
-  "layout": {
-    "blog": {
-      "default_title": "Blog QuickCV",
-      "default_description": "Perspectivas expertas sobre construcción de CV, desarrollo de carrera y estrategias de búsqueda de empleo"
-    },
-    "nav": {
-      "home": "Inicio",
-      "builder": "Constructor de CV",
-      "blog": "Blog",
-      "create_cv": "Crear CV",
-      "toggle_menu": "Alternar menú"
-    }
-  },
+  ,
   "common2": {
     "close": "Cerrar",
     "processing": "Procesando...",
@@ -1877,4 +1758,5 @@
   "dash": {
     "title": "Panel"
   }
+}
 }

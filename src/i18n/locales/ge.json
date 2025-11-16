@@ -111,11 +111,8 @@
           "review": "Tolle Erfahrung! Die ATS-Optimierung hat mir geholfen, jedes Mal die erste Auswahlrunde zu bestehen."
         }
       ]
-    },
-    "blog": {
-      "title": "Experten-Einblicke zur Karriere",
-      "subtitle": "Bleib vorne mit den neuesten Tipps und Strategien von Karriereexperten"
-    },
+    }
+    ,
     "faq": {
       "title": "Häufig gestellte Fragen",
       "subtitle": "Alles, was du wissen musst, um deinen perfekten Lebenslauf zu erstellen",
@@ -881,38 +878,7 @@
         "para1": "Wenn Sie Fragen, Bedenken oder Beschwerden bezüglich dieser Bedingungen haben, kontaktieren Sie uns bitte <0>hier</0>"
       }
     }
-  },
-  "blog": {
-    "filters": {
-      "searchPlaceholder": "Suche Artikel, Themen oder Autoren...",
-      "allCategories": "Alle Kategorien",
-      "featuredOnly": "Nur Empfohlene",
-      "tags": "Tags",
-      "authors": "Autoren",
-      "clearAll": "Alle Filter löschen",
-      "active": {
-        "search": "Suche",
-        "category": "Kategorie",
-        "author": "Autor",
-        "featured": "Empfohlen"
-      }
-    }
-  },
-  "pagination": {
-    "previous": "Zurück",
-    "next": "Weiter",
-    "showing": "Zeige Seite",
-    "of": "von",
-    "mobilePageInfo": "Seite {{current}} von {{total}}",
-    "aria": {
-      "navLabel": "Seitennavigation",
-      "goToPage": "Gehe zu Seite {{page}}",
-      "first": "Erste Seite",
-      "last": "Letzte Seite",
-      "previous": "Vorherige Seite",
-      "next": "Nächste Seite"
-    }
-  },
+},
   "builder": {
     "sections": {
       "notFound": "Abschnittsinhalt nicht gefunden",
@@ -1499,106 +1465,9 @@
       "dashboard": "Lade dein professionelles Dashboard..."
     }
   },
-  "blogList": {
-    "meta": {
-      "title": "QuickCV Blog - Expertenrat zu CV und Karriere",
-      "description": "Entdecke Experteneinblicke zur Lebenslauferstellung, Karriereentwicklung, Jobsuchstrategien und Branchentrends. Professionelle Anleitung, um deinen Traumjob zu finden."
-    },
-    "hero": {
-      "titleStart": "Meistere deine",
-      "titleHighlight": "Karrierereise",
-      "subtitle": "Experteneinblicke, bewährte Strategien und umsetzbare Ratschläge, die dir helfen, herausragende Lebensläufe zu erstellen, deine Karriere voranzutreiben und deinen Traumjob im heutigen wettbewerbsintensiven Markt zu finden."
-    },
-    "stats": {
-      "articles": "Expertenartikel",
-      "readers": "Monatliche Leser",
-      "successRate": "Erfolgsquote",
-      "support": "Karriereunterstützung"
-    },
-    "results": {
-      "searchTitle": "Suchergebnisse für \"{{query}}\"",
-      "filteredTitle": "Gefilterte Artikel",
-      "count_one": "{{count}} Artikel gefunden",
-      "count_other": "{{count}} Artikel gefunden",
-      "searchResults": "Suchergebnisse",
-      "latestArticles": "Neueste Artikel",
-      "pageInfo": "Seite {{current}} von {{total}}"
-    },
-    "sort": {
-      "label": "Sortieren nach",
-      "latest": "Neueste zuerst",
-      "popular": "Beliebteste",
-      "views": "Meistgesehen"
-    },
-    "empty": {
-      "title": "Keine Artikel gefunden",
-      "filteredMessage": "Versuche, deine Suchbegriffe oder Filter anzupassen, um zu finden, wonach du suchst.",
-      "defaultMessage": "Wir arbeiten daran, mehr Inhalte hinzuzufügen. Schau bald wieder vorbei!",
-      "clearFilters": "Alle Filter löschen"
-    },
-    "newsletter": {
-      "title": "Bleib auf dem Laufenden mit Karriere-Einblicken",
-      "subtitle": "Erhalte die neuesten CV-Tipps, Karriereratschläge und Brancheneinblicke wöchentlich in deinen Posteingang. Schließe dich 10.000+ Profis an, die ihre Karriere voranbringen.",
-      "placeholder": "Gib deine E-Mail ein",
-      "button": "Kostenlos abonnieren",
-      "disclaimer": "Kein Spam. Jederzeit abbestellbar. 100% Datenschutz."
-    }
-  },
-  "blogPost": {
-    "meta": {
-      "views": "Ansichten"
-    },
-    "notFound": {
-      "pageTitle": "Beitrag nicht gefunden - QuickCV Blog",
-      "title": "Artikel nicht gefunden",
-      "message": "Der Artikel, den du suchst, existiert nicht oder wurde verschoben.",
-      "browseButton": "Alle Artikel durchsuchen",
-      "homeButton": "Zur Startseite"
-    },
-    "actions": {
-      "allArticles": "Alle Artikel"
-    },
-    "share": {
-      "twitter": "Auf Twitter teilen",
-      "linkedin": "Auf LinkedIn teilen",
-      "facebook": "Auf Facebook teilen",
-      "copyLink": "Link kopieren"
-    },
-    "article": {
-      "tableOfContents": "Inhaltsverzeichnis",
-      "keyTakeaways": "Wichtige Erkenntnisse",
-      "tags": "Tags"
-    },
-    "related": {
-      "title": "Verwandte Artikel"
-    },
-    "newsletter": {
-      "title": "Hol dir mehr Karriere-Einblicke",
-      "subtitle": "Schließe dich 10.000+ Profis an, die wöchentliche Tipps zu CV-Optimierung, Karrierewachstum und Jobsuchstrategien erhalten.",
-      "placeholder": "Gib deine E-Mail ein",
-      "button": "Abonnieren",
-      "disclaimer": "Kein Spam. Jederzeit abbestellbar."
-    }
-  },
-  "blog1": {
-    "latest_posts": {
-      "read_more": "Weiterlesen →",
-      "read_time": "{{minutes}} Min. Lesezeit"
-    }
-  },
-  "layout": {
-    "blog": {
-      "default_title": "QuickCV Blog",
-      "default_description": "Experteneinblicke zu Lebenslauferstellung, Karriereentwicklung und Jobsuchstrategien"
-    },
-    "nav": {
-      "home": "Startseite",
-      "builder": "CV Builder",
-      "blog": "Blog",
-      "create_cv": "CV erstellen",
-      "toggle_menu": "Menü umschalten"
-    }
-  },
+  
+    
+    
   "common2": {
     "close": "Schließen",
     "processing": "Verarbeitung...",
