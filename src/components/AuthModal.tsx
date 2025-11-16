@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { X, Loader2, Download, Shield, CheckCircle2 } from 'lucide-react';
+import { X, Loader2, Shield, CheckCircle2 } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { useAuth } from '../context/AuthContext';
 import { downloadIntentService } from '../utils/downloadIntent';
@@ -153,18 +153,7 @@ export default function AuthModal({ isOpen, onClose, onSuccess }: AuthModalProps
         </button>
 
         <div className="mb-4 sm:mb-6">
-          {hasPendingDownload && (
-            <div className="bg-blue-50 border border-blue-200 rounded-lg p-3 sm:p-4 mb-3 sm:mb-4">
-              <div className="flex items-center space-x-2">
-                <Download className="h-4 w-4 sm:h-5 sm:w-5 text-blue-700 flex-shrink-0" />
-                {/* Fixed prefix from auth to auth2 */}
-                <span className="font-medium text-blue-700 text-sm sm:text-base">{t('auth2.download_ready.title')}</span>
-              </div>
-              <p className="text-xs sm:text-sm text-blue-700 mt-1">
-                {t('auth2.download_ready.message')}
-              </p>
-            </div>
-          )}
+          {hasPendingDownload}
           
           <h2 className="text-xl sm:text-2xl font-bold text-slate-900 mb-2">
             {getModalTitle()}
@@ -358,18 +347,8 @@ export default function AuthModal({ isOpen, onClose, onSuccess }: AuthModalProps
                 {t('common2.privacy')}
               </a>
               <span className="text-slate-400">•</span>
-              <a 
-                href="/contact" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="text-slate-600 hover:text-slate-900 underline touch-manipulation py-1 px-2 rounded hover:bg-slate-50"
-              >
-                {t('common2.support')}
-              </a>
+           
             </div>
-            <p className="text-xs text-slate-400 text-center mt-2 sm:mt-3">
-              {t('auth2.powered_by')}
-            </p>
           </div>
         )}
       </div>

@@ -309,8 +309,8 @@ export default function LandingPage({ onGetStarted, onSignIn }: LandingPageProps
       <main>
         {/* Hero Section - Blue, Black, White Theme */}
         <section className="relative min-h-screen flex items-center overflow-hidden">
-          <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
-            <div className="grid lg:grid-cols-2 gap-12 items-center">
+          <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <div className="grid lg:grid-cols-2 gap-12 items-center py-1">
               {/* Left Section - Text Content */}
               <motion.div
                 variants={containerVariants}
@@ -333,7 +333,7 @@ export default function LandingPage({ onGetStarted, onSignIn }: LandingPageProps
                 {/* Description */}
                 <motion.p
                   variants={itemVariants}
-                  className="text-xl text-black leading-relaxed max-w-2xl"
+                  className="text-xl text-black leading-relaxed max-w-2xl "
                 >
                   {t('landing.hero.subtitle_start')}
                   <span className="text-blue-700"> {t('landing.hero.subtitle_highlight')}</span>

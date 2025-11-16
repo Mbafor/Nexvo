@@ -450,8 +450,8 @@ export default function CVBuilder({
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
       >
-        <ChevronLeft className="h-5 w-5" />
-        <span className="font-semibold text-lg">{t('common.home')}</span>
+        <ChevronLeft className="h-7 w-7" />
+       
       </motion.button>
 
       {/* Progress indicator - Desktop only */}
@@ -788,119 +788,126 @@ export default function CVBuilder({
       </div>
 
       {/* Section Manager Modal */}
-      <AnimatePresence>
-        {showSectionManager && (
-          <motion.div
-            className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            onClick={() => setShowSectionManager(false)}
-          >
-            <motion.div
-              className="bg-white rounded-xl shadow-xl border border-black/20 w-full max-w-md max-h-[80vh] overflow-hidden"
-              initial={{ scale: 0.9, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.9, opacity: 0 }}
-              onClick={(e) => e.stopPropagation()}
+<AnimatePresence>
+  {showSectionManager && (
+    <motion.div
+      className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      onClick={() => setShowSectionManager(false)}
+    >
+      <motion.div
+        // 1. ADD 'flex flex-col' here
+        // 2. I increased max-h to 90vh for better mobile spacing
+        className="bg-white rounded-xl shadow-xl border border-black/20 w-full max-w-md max-h-[90vh] flex flex-col overflow-hidden"
+        initial={{ scale: 0.9, opacity: 0 }}
+        animate={{ scale: 1, opacity: 1 }}
+        exit={{ scale: 0.9, opacity: 0 }}
+        onClick={(e) => e.stopPropagation()}
+      >
+        {/* Header - Stays Fixed at Top */}
+        <div className="p-6 border-b border-black/20 flex-shrink-0">
+          <div className="flex items-center justify-between">
+            <h3 className="text-lg font-semibold text-black">Customize Sections</h3>
+            <button
+              onClick={() => setShowSectionManager(false)}
+              className="p-2 text-black/50 hover:text-black/70 rounded-lg hover:bg-black/5"
             >
-              <div className="p-6 border-b border-black/20">
-                <div className="flex items-center justify-between">
-                  <h3 className="text-lg font-semibold text-black">Customize Sections</h3>
+              <X className="h-5 w-5" />
+            </button>
+          </div>
+          <p className="text-sm text-black/70 mt-1">
+            Add or remove sections to customize your CV structure
+          </p>
+        </div>
+
+        {/* Body - Scrollable Middle Section */}
+        {/* 3. CHANGED: Removed max-h-[60vh], added flex-1 and min-h-0 */}
+        <div className="p-6 overflow-y-auto flex-1 min-h-0">
+          <div className="space-y-3">
+            {allSections.map((section) => {
+              const isActive = steps.some((s) => s.id === section.id);
+              const isRequired = section.required;
+              const Icon = section.icon;
+
+              return (
+                <div
+                  key={section.id}
+                  className={`flex items-center justify-between p-3 rounded-lg border transition-colors ${
+                    isActive
+                      ? 'bg-white border-blue-600'
+                      : 'bg-white border-black/20 hover:bg-black/5'
+                  }`}
+                >
+                  <div className="flex items-center space-x-3">
+                    <Icon className={`h-5 w-5 ${
+                      isActive ? 'text-blue-700' : 'text-black/50'
+                    }`} />
+                    <div>
+                      <p className={`font-medium ${
+                        isActive ? 'text-black' : 'text-black/70'
+                      }`}>
+                        {section.label}
+                        {isRequired && (
+                          <span className="text-red-500 ml-1">*</span>
+                        )}
+                      </p>
+                      <p className="text-xs text-black/60">
+                        {section.description}
+                      </p>
+                    </div>
+                  </div>
+
                   <button
-                    onClick={() => setShowSectionManager(false)}
-                    className="p-2 text-black/50 hover:text-black/70 rounded-lg hover:bg-black/5"
+                    onClick={() => toggleSection(section.id)}
+                    disabled={isRequired && isActive}
+                    className={`p-2 rounded-lg transition-colors ${
+                      isActive
+                        ? isRequired
+                          ? 'bg-slate-200 text-slate-400 cursor-not-allowed'
+                          : 'bg-white border border-red-200 text-red-600 hover:bg-red-50'
+                        : 'bg-white border border-green-200 text-green-600 hover:bg-green-50'
+                    }`}
+                    title={
+                      isRequired && isActive
+                        ? 'Required section'
+                        : isActive
+                        ? 'Remove section'
+                        : 'Add section'
+                    }
                   >
-                    <X className="h-5 w-5" />
+                    {isActive ? (
+                      <Minus className="h-4 w-4" />
+                    ) : (
+                      <Plus className="h-4 w-4" />
+                    )}
                   </button>
                 </div>
-                <p className="text-sm text-black/70 mt-1">
-                  Add or remove sections to customize your CV structure
-                </p>
-              </div>
+              );
+            })}
+          </div>
+        </div>
 
-              <div className="p-6 overflow-y-auto max-h-[60vh]">
-                <div className="space-y-3">
-                  {allSections.map((section) => {
-                    const isActive = steps.some((s) => s.id === section.id);
-                    const isRequired = section.required;
-                    const Icon = section.icon;
-
-                    return (
-                      <div
-                        key={section.id}
-                        className={`flex items-center justify-between p-3 rounded-lg border transition-colors ${
-                          isActive
-                            ? 'bg-white border-blue-600'
-                            : 'bg-white border-black/20 hover:bg-black/5'
-                        }`}
-                      >
-                        <div className="flex items-center space-x-3">
-                          <Icon className={`h-5 w-5 ${
-                            isActive ? 'text-blue-700' : 'text-black/50'
-                          }`} />
-                          <div>
-                            <p className={`font-medium ${
-                              isActive ? 'text-black' : 'text-black/70'
-                            }`}>
-                              {section.label}
-                              {isRequired && (
-                                <span className="text-red-500 ml-1">*</span>
-                              )}
-                            </p>
-                            <p className="text-xs text-black/60">
-                              {section.description}
-                            </p>
-                          </div>
-                        </div>
-
-                        <button
-                          onClick={() => toggleSection(section.id)}
-                          disabled={isRequired && isActive}
-                          className={`p-2 rounded-lg transition-colors ${
-                            isActive
-                              ? isRequired
-                                ? 'bg-slate-200 text-slate-400 cursor-not-allowed'
-                                : 'bg-white border border-red-200 text-red-600 hover:bg-red-50'
-                              : 'bg-white border border-green-200 text-green-600 hover:bg-green-50'
-                          }`}
-                          title={
-                            isRequired && isActive
-                              ? 'Required section'
-                              : isActive
-                              ? 'Remove section'
-                              : 'Add section'
-                          }
-                        >
-                          {isActive ? (
-                            <Minus className="h-4 w-4" />
-                          ) : (
-                            <Plus className="h-4 w-4" />
-                          )}
-                        </button>
-                      </div>
-                    );
-                  })}
-                </div>
-              </div>
-
-              <div className="p-6 border-t border-black/20 bg-black/5">
-                <div className="flex justify-between items-center">
-                  <p className="text-sm text-black/70">
-                    {steps.length} sections selected
-                  </p>
-                  <button
-                    onClick={() => setShowSectionManager(false)}
-                    className="px-4 py-2 bg-blue-700 text-white rounded-lg hover:bg-blue-600 transition-colors"
-                  >
-                    Done
-                  </button>
-                </div>
-              </div>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+        {/* Footer - Stays Fixed at Bottom */}
+        {/* Added flex-shrink-0 to ensure it never gets squashed */}
+        <div className="p-6 border-t border-black/20 bg-black/5 flex-shrink-0">
+          <div className="flex justify-between items-center">
+            <p className="text-sm text-black/70">
+              {steps.length} sections selected
+            </p>
+            <button
+              onClick={() => setShowSectionManager(false)}
+              className="px-4 py-2 bg-blue-700 text-white rounded-lg hover:bg-blue-600 transition-colors"
+            >
+              Done
+            </button>
+          </div>
+        </div>
+      </motion.div>
+    </motion.div>
+  )}
+</AnimatePresence>
 
 
 

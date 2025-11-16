@@ -1,6 +1,6 @@
 // Stunning CV Preview Page - Professional Template Gallery
 import { useState, useEffect } from 'react';
-import { Sparkles, Zap, Crown, Minimize2, Code, FileText } from 'lucide-react';
+import { Sparkles, Zap, Crown, Minimize2, Code, FileText, ChevronLeft, Download } from 'lucide-react';
 import { useTranslation } from 'react-i18next'; // Import added
 import { CVData, TemplateType } from '../types/cv';
 import { PDFViewer } from '@react-pdf/renderer';
@@ -141,53 +141,66 @@ export default function PreviewPage({ cvData, onBack, onDownload, onShowAuth }: 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 to-blue-50">
       {/* Stunning Header with Glassmorphism Effect */}
-      <header className="sticky top-0 z-50 backdrop-blur-xl bg-white/80 border-b border-white/20 shadow-lg shadow-black/5">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-16">
-            {/* Left: Enhanced Back Button */}
-            <div className="flex items-center space-x-4">
-              <button
-                onClick={() => {
-                  localStorage.setItem('cvData', JSON.stringify(cvData));
-                  onBack();
-                }}
-                className="group flex items-center space-x-2 px-4 py-2 text-white  bg-blue-700 hover:text-blue-700 hover:bg-gradient-to- rounded-xl transition-all duration-300 border border-gray-200 hover:border-transparent shadow-sm hover:shadow-md"
-              >
-                <span className="font-medium text-white  bg-blue-700 transition-colors duration-200 cursor-pointer">
-                  {t('preview.actions.backToEditor')}
-                </span>
-              </button>
-            </div>
+      <header className="sticky top-0 z-50 backdrop-blur-xl bg-blue-900 shadow-lg transition-all duration-300">
+  <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div className="flex items-center justify-between h-16">
+      
+      {/* Left: Enhanced Back Button */}
+      <div className="flex items-center">
+        <button
+          onClick={() => {
+            localStorage.setItem('cvData', JSON.stringify(cvData));
+            onBack();
+          }}
+          className="group flex items-center justify-center p-2 rounded-full hover:bg-white/10 transition-colors duration-200"
+          aria-label="Go back"
+        >
+          <ChevronLeft className="h-6 w-6 text-white" />
+        </button>
+      </div>
 
-            {/* Right: Action Buttons */}
-            <div className="flex items-center space-x-3">
-              {!user && (
-                <div  className= "bg-blue-700 hover:bg-blue-600 rounded-2xl text-white font-semibold transition-all duration-300 shadow-sm" >
-                  <span>{t('preview.actions.signInToDownload')}</span>
-                </div>
-              )}
-              
-              <button
-                onClick={() => setIsPreviewMode(!isPreviewMode)}
-                className="hidden lg:flex items-center space-x-2 px-4 py-2 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-xl transition-colors font-medium"
-              >
-                <span>{isPreviewMode ? t('preview.actions.gallery') : t('preview.actions.preview')}</span>
-              </button>
+      {/* Center: Mobile Title (Optional - adds context on small screens) */}
+      <div className="lg:hidden absolute left-1/2 transform -translate-x-1/2">
+        <span className="text-white font-medium text-sm opacity-90">
+          CV Preview
+        </span>
+      </div>
 
-              <button
-                onClick={handleDownload}
-                className="group relative flex items-center space-x-2 px-6 py-2 bg-blue-700 hover:bg-blue-600 rounded-2xl text-white font-semibold transition-all duration-300 shadow-sm overflow-hidden"
-              >
-                <div className="absolute inset-0 bg-gradient-to-r text-blue-700 opacity-0 group-hover:opacity-20 transition-opacity duration-300"></div>
-                {!user}
-                <span className="relative z-10">
-                  {user ? t('preview.actions.downloadPdf') : t('preview.actions.getStarted')}
-                </span>
-              </button>
-            </div>
-          </div>
-        </div>
-      </header>
+      {/* Right: Action Buttons */}
+      <div className="flex items-center space-x-3">
+        
+        {/* Desktop Preview Toggle */}
+        <button
+          onClick={() => setIsPreviewMode(!isPreviewMode)}
+          className="hidden lg:flex items-center space-x-2 px-4 py-2 bg-white/10 hover:bg-white/20 text-white rounded-xl transition-colors font-medium border border-white/10 backdrop-blur-sm"
+        >
+          <span>{isPreviewMode ? t('preview.actions.gallery') : t('preview.actions.preview')}</span>
+        </button>
+
+        {/* Responsive Download Button */}
+        <button
+          onClick={handleDownload}
+          // 1. Changed px-6 to px-3 (mobile) sm:px-6 (desktop)
+          // 2. Added responsive text hiding
+          className="group relative flex items-center justify-center space-x-2 px-3 sm:px-6 py-2 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-xl font-semibold transition-all duration-300 shadow-sm overflow-hidden"
+        >
+          <div className="absolute inset-0 bg-gradient-to-r text-blue-700 opacity-0 group-hover:opacity-20 transition-opacity duration-300"></div>
+          
+          {/* Icon always visible, but maybe swap icon types on mobile if needed */}
+          <span className="relative z-10 flex items-center gap-2">
+            {/* Show explicit Download icon on mobile only */}
+            <Download className="h-5 w-5 sm:hidden" />
+            
+            {/* Show Text only on larger screens */}
+            <span className="hidden sm:inline">
+              {user ? t('preview.actions.downloadPdf') : t('preview.actions.getStarted')}
+            </span>
+          </span>
+        </button>
+      </div>
+    </div>
+  </div>
+</header>
 
       {/* Main Content */}
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
