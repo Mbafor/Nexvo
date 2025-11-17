@@ -2,6 +2,7 @@ import { Plus, Trash2 } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { Achievement } from "../../types/cv";
 import BulletPointTextarea from "../common/BulletPointTextarea";
+import AIRewriteButton from "../common/AIRewriteButton.tsx";
 
 interface AchievementsFormProps {
   data: Achievement[];
@@ -86,6 +87,15 @@ export default function AchievementsForm({ data, onChange }: AchievementsFormPro
               }
               placeholder={t("achievements.placeholders.description")}
               rows={3}
+            />
+
+            {/* AI Rewrite Button */}
+            <AIRewriteButton
+              text={ach.description}
+              onRewrite={(rewrittenText: string) =>
+                updateAchievement(ach.id, "description", rewrittenText)
+              }
+              context="achievement description"
             />
 
             {/* Date */}

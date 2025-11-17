@@ -2,6 +2,7 @@ import { Plus, Trash2 } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { VolunteerWork } from '../../types/cv';
 import BulletPointTextarea from '../common/BulletPointTextarea';
+import AIRewriteButton from '../common/AIRewriteButton.tsx';
 
 interface VolunteerFormProps {
   data: VolunteerWork[];
@@ -128,6 +129,15 @@ export default function VolunteerForm({ data, onChange }: VolunteerFormProps) {
               onChange={(value) => updateVolunteer(vol.id, 'description', value)}
               placeholder={t('volunteer.placeholders.description')}
               rows={4}
+            />
+
+            {/* AI Rewrite Button */}
+            <AIRewriteButton
+              text={vol.description}
+              onRewrite={(rewrittenText: string) =>
+                updateVolunteer(vol.id, 'description', rewrittenText)
+              }
+              context="volunteer description"
             />
           </div>
         </div>

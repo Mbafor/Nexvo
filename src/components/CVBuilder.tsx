@@ -17,6 +17,7 @@ import { useAuth } from "../context/AuthContext";
 
 // Forms
 import PersonalInfoForm from "./forms/PersonalInfoForm";
+import CVUploadBar from "./common/CVUploadBar";
 import EducationForm from "./forms/EducationForm";
 import ExperienceForm from "./forms/ExperienceForm";
 import VolunteerForm from "./forms/VolunteerForm";
@@ -95,7 +96,7 @@ export default function CVBuilder({
   const [toastMessage, setToastMessage] = useState('');
 
   const currentSection = steps[currentStep];
-  const saveTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const saveTimeoutRef = useRef<any>(null);
 
   // --- ADDED: Helper to get tips from i18n ---
   const getTipsForSection = (sectionId: string): string[] => {
@@ -143,23 +144,23 @@ export default function CVBuilder({
 
   // Simple auto-save to localStorage
   useEffect(() => {
-    if (saveTimeoutRef.current) clearTimeout(saveTimeoutRef.current);
+    if (saveTimeoutRef.current) window.clearTimeout(saveTimeoutRef.current);
 
     setAutoSaveStatus('saving');
     
-    saveTimeoutRef.current = setTimeout(() => {
+    saveTimeoutRef.current = window.setTimeout(() => {
       try {
-        localStorage.setItem('cv_builder_data', JSON.stringify(cvData));
-        
+        // Use the same key that load/preview logic reads from: 'cvData'
+        localStorage.setItem('cvData', JSON.stringify(cvData));
         setAutoSaveStatus('saved');
       } catch (err) {
-        console.error("Error auto-saving CV:", err);
+        console.error('Error auto-saving CV:', err);
         setAutoSaveStatus('error');
       }
     }, 1000);
 
     return () => {
-      if (saveTimeoutRef.current) clearTimeout(saveTimeoutRef.current);
+      if (saveTimeoutRef.current) window.clearTimeout(saveTimeoutRef.current);
     };
   }, [cvData]);
 
@@ -348,12 +349,10 @@ export default function CVBuilder({
     switch (currentSection.id) {
       case "personal":
         return (
-          <>
-            <PersonalInfoForm
-              data={cvData.personalInfo}
-              onChange={(personalInfo) => onUpdateCVData({ ...cvData, personalInfo })}
-            />
-          </>
+          <PersonalInfoForm
+            data={cvData.personalInfo}
+            onChange={(personalInfo) => onUpdateCVData({ ...cvData, personalInfo })}
+          />
         );
       case "education":
         return (
@@ -621,6 +620,20 @@ export default function CVBuilder({
         <div className="flex-1 p-4 sm:p-6 lg:p-8 pb-20 md:pb-4">
           <div className="max-w-4xl mx-auto">
             {/* Desktop Step-by-Step View - Hidden on mobile */}
+            {/* CV Upload Bar - desktop placement (full width under navbar) */}
+            <div className="hidden md:block">
+              <CVUploadBar
+                onParsed={(parsed) => {
+                  try {
+                    // Merge parsed partial CV data into current cvData
+                    const merged = { ...cvData, ...parsed };
+                    onUpdateCVData(merged as any);
+                  } catch (err) {
+                    console.error('Failed to apply parsed CV data', err);
+                  }
+                }}
+              />
+            </div>
             <div className="hidden md:block">
               {/* Section Navigation - Enhanced for desktop */}
               <div id="section-navigation" className="mb-6 bg-white rounded-xl shadow-sm border border-black/20 p-4">
@@ -694,17 +707,16 @@ export default function CVBuilder({
               )}
             </div>
 
-              {/* Contextual Tips Component - Desktop Only */}
-              <ContextualTips 
-                sectionId={currentSection.id}
-                sectionLabel={currentSection.label}
-                validationResult={getCurrentValidationResult()}
-                // --- MODIFIED: Using dynamic tips from i18n ---
-                staticTips={getTipsForSection(currentSection.id)}
-              />
-              
               {/* Enhanced Content with Validation - Desktop Step View */}
               <div className="bg-white rounded-xl shadow-sm border border-black/20 p-4 sm:p-6 lg:p-8">
+                {/* Contextual Tips now rendered inside the form content so they're visible when the form is open (desktop) */}
+                <ContextualTips
+                  sectionId={currentSection.id}
+                  sectionLabel={currentSection.label}
+                  validationResult={getCurrentValidationResult()}
+                  staticTips={getTipsForSection(currentSection.id)}
+                />
+
                 {currentSection && renderStepContent()}
               </div>
 
@@ -740,6 +752,21 @@ export default function CVBuilder({
 
             {/* Mobile Collapsible View - Visible only on mobile */}
             <div className="md:hidden">
+              {/* CV Upload Bar - Mobile placement (just below navbar) */}
+              <div className="mb-4">
+                <CVUploadBar
+                  onParsed={(parsed) => {
+                    try {
+                      const merged = { ...cvData, ...parsed };
+                      onUpdateCVData(merged as any);
+                    } catch (err) {
+                      console.error('Failed to apply parsed CV data', err);
+                    }
+                  }}
+                  compact={true}
+                />
+              </div>
+
               {/* Mobile Header */}
               <div className="mb-6 bg-white rounded-xl shadow-sm border border-black/20 p-4">
                 <div className="flex items-center justify-between mb-3">

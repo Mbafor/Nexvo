@@ -2,6 +2,7 @@ import { Plus, Trash2 } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { Experience } from "../../types/cv";
 import BulletPointTextarea from "../common/BulletPointTextarea";
+import AIRewriteButton from "../common/AIRewriteButton.tsx";
 
 interface ExperienceFormProps {
   data: Experience[];
@@ -190,6 +191,15 @@ export default function ExperienceForm({ data, onChange }: ExperienceFormProps) 
               }
               placeholder={t("experience.placeholders.description")}
               rows={4}
+            />
+
+            {/* AI Rewrite Button */}
+            <AIRewriteButton
+              text={exp.description}
+              onRewrite={(rewrittenText: string) =>
+                updateExperience(exp.id, "description", rewrittenText)
+              }
+              context="job description"
             />
           </div>
         </div>

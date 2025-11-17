@@ -2,6 +2,7 @@ import { Plus, Trash2 } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { Education } from "../../types/cv";
 import BulletPointTextarea from "../common/BulletPointTextarea";
+import AIRewriteButton from "../common/AIRewriteButton.tsx";
 
 interface EducationFormProps {
   data: Education[];
@@ -179,6 +180,15 @@ export default function EducationForm({ data, onChange }: EducationFormProps) {
               }
               placeholder={t("education.placeholders.description")}
               rows={3}
+            />
+
+            {/* AI Rewrite Button */}
+            <AIRewriteButton
+              text={edu.description || ""}
+              onRewrite={(rewrittenText: string) =>
+                updateEducation(edu.id, "description", rewrittenText)
+              }
+              context="education description"
             />
           </div>
         </div>

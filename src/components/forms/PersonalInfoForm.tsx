@@ -1,5 +1,6 @@
 import { useTranslation } from 'react-i18next';
 import { PersonalInfo } from '../../types/cv';
+import AIRewriteButton from '../common/AIRewriteButton.tsx';
 
 interface PersonalInfoFormProps {
   data: PersonalInfo;
@@ -161,6 +162,13 @@ export default function PersonalInfoForm({ data, onChange }: PersonalInfoFormPro
           rows={4}
           placeholder={t("personalInfo.placeholders.summary")}
         />
+        <div className="mt-2">
+          <AIRewriteButton
+            text={data.summary || ""}
+            onRewrite={(rewrittenText: string) => handleChange("summary", rewrittenText)}
+            context="professional summary"
+          />
+        </div>
       </div>
     </div>
   );

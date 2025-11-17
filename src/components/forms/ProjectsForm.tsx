@@ -2,6 +2,7 @@ import { Plus, Trash2 } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { Project } from '../../types/cv';
 import BulletPointTextarea from '../common/BulletPointTextarea';
+import AIRewriteButton from '../common/AIRewriteButton.tsx';
 
 interface ProjectsFormProps {
   data: Project[];
@@ -80,6 +81,15 @@ export default function ProjectsForm({ data, onChange }: ProjectsFormProps) {
               onChange={(value) => updateProject(proj.id, 'description', value)}
               placeholder={t('projects.placeholders.description')}
               rows={3}
+            />
+
+            {/* AI Rewrite Button */}
+            <AIRewriteButton
+              text={proj.description}
+              onRewrite={(rewrittenText: string) =>
+                updateProject(proj.id, 'description', rewrittenText)
+              }
+              context="project description"
             />
 
             {/* Technologies */}
