@@ -19,7 +19,7 @@ export default function AboutPage() {
       
 
       {/* Main Content */}
-      <div className="max-w-6xl mx-auto px-6 py-12">
+      <div className="max-w-6xl mx-auto px-6 py-12 pt-24">
         {/* Mission */}
         <div className="bg-white rounded-xl shadow-lg p-8 mb-12">
           <div className="bg-white-50 border-l-4 border-blue-600 p-6 rounded-r-lg mb-8">

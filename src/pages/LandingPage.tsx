@@ -306,7 +306,7 @@ export default function LandingPage({ onGetStarted, onSignIn }: LandingPageProps
 
       <Header onGetStarted={onGetStarted} onSignIn={onSignIn} />
 
-      <main>
+      <main className="pt-20">
         {/* Hero Section - Blue, Black, White Theme */}
         <section className="relative min-h-screen flex items-center overflow-hidden">
           <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">

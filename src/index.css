@@ -1,3 +1,13 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Smooth scrolling for better navigation experience */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Ensure header stays on top of all content */
+nav[class*="fixed"] {
+  z-index: 9999 !important;
+}

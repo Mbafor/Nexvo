@@ -218,7 +218,7 @@ export default function FAQPage() {
     <div className="min-h-screen">
       <Header />
 
-      <main className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <main className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 pt-24">
         {/* Hero */}
         <div className="text-center mb-8">
           <h1 className="text-4xl lg:text-5xl font-medium text-gray-900 mb-4">

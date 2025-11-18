@@ -26,7 +26,7 @@ export default function TermsConditions() {
       </section>
 
       {/* Content */}
-      <main className="max-w-5xl mx-auto px-5 leading-relaxed space-y-20">
+      <main className="max-w-5xl mx-auto px-5 leading-relaxed space-y-20 pt-24">
         <div className="bg-white border border-gray-100 rounded-2xl shadow-sm p-10 space-y-20">
 
           {/* Content Sections */}
