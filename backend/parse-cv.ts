@@ -1,3 +1,4 @@
+import type { VercelRequest, VercelResponse } from '@vercel/node';
 import OpenAI from 'openai';
 
 export default async function handler(req: any, res: any) {

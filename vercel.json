@@ -1,13 +1,28 @@
 {
+  "version": 2,
   "functions": {
-    "backend/*.ts": {
-      "runtime": "nodejs18.x"
+    "backend/parse-cv.ts": {
+      "runtime": "nodejs20.x"
+    },
+    "backend/rewrite.ts": {
+      "runtime": "nodejs20.x"
+    },
+    "backend/contact.ts": {
+      "runtime": "nodejs20.x"
     }
   },
   "rewrites": [
     {
-      "source": "/api/(.*)",
-      "destination": "/backend/$1"
+      "source": "/api/parse-cv",
+      "destination": "/backend/parse-cv"
+    },
+    {
+      "source": "/api/rewrite",
+      "destination": "/backend/rewrite"
+    },
+    {
+      "source": "/api/contact",
+      "destination": "/backend/contact"
     },
     {
       "source": "/(.*)",
@@ -16,6 +31,14 @@
   ],
   "headers": [
     {
+      "source": "/api/(.*)",
+      "headers": [
+        { "key": "Access-Control-Allow-Origin", "value": "*" },
+        { "key": "Access-Control-Allow-Methods", "value": "GET, POST, PUT, DELETE, OPTIONS" },
+        { "key": "Access-Control-Allow-Headers", "value": "Content-Type, Authorization" }
+      ]
+    },
+    {
       "source": "/(.*)",
       "headers": [
         { "key": "X-Frame-Options", "value": "DENY" },
@@ -23,5 +46,9 @@
         { "key": "Referrer-Policy", "value": "origin-when-cross-origin" }
       ]
     }
-  ]
+  ],
+  "env": {
+    "OPENAI_API_KEY": "@openai_api_key",
+    "RESEND_API_KEY": "@resend_api_key"
+  }
 }
