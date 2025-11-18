@@ -1,8 +1,9 @@
+
 // src/components/LandingPage.tsx
 import { useState, useEffect } from "react";
 import { Zap, Shield, Award, ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-import { useTranslation } from 'react-i18next'; // Import added
+import { useTranslation } from 'react-i18next';
 import LatestPosts from "../components/LatestPosts";
 import { sendContactMessage } from "../utils/contactService";
 import Header from "../components/common/Header";
@@ -37,7 +38,6 @@ function CarouselTestimonials() {
   const { t } = useTranslation();
   const [index, setIndex] = useState(0);
 
-  // Moved inside to use 't'
   const testimonials = [
     { 
       name: "Sarah Chen", 
@@ -80,28 +80,30 @@ function CarouselTestimonials() {
   const testimonial = testimonials[index];
 
   return (
-    <div className="relative w-full max-w-3xl mx-auto">
+    <div className="relative w-full max-w-4xl mx-auto">
       <AnimatePresence mode="wait">
         <motion.div
           key={index}
-          initial={{ opacity: 0, x: 100 }}
+          initial={{ opacity: 0, x: 50 }}
           animate={{ opacity: 1, x: 0 }}
-          exit={{ opacity: 0, x: -100 }}
-          transition={{ duration: 0.6 }}
-          className="bg-white rounded-3xl shadow-lg p-10 border border-blue-100"
+          exit={{ opacity: 0, x: -50 }}
+          transition={{ duration: 0.5 }}
+          className="bg-white rounded-[2rem] shadow-xl p-8 md:p-12 border border-blue-50 relative z-10"
         >
-          <div className="flex flex-col items-center">
-            <div className="w-16 h-16 bg-gradient-to-br from-blue-400 to-blue-600 rounded-full flex items-center justify-center text-white font-medium text-xl mb-4">
+          <div className="flex flex-col items-center text-center">
+            <div className="w-20 h-20 bg-gradient-to-br from-blue-100 to-blue-50 rounded-full flex items-center justify-center text-3xl mb-6 shadow-inner">
               {testimonial.avatar}
             </div>
-            <p className="text-lg italic text-gray-700 mb-6 leading-relaxed">
-              “{testimonial.review}”
+            <p className="text-xl md:text-2xl font-light italic text-gray-700 mb-8 leading-relaxed max-w-2xl">
+              "{testimonial.review}"
             </p>
-            <h4 className="font-semibold text-blue-700 text-xl">
-              {testimonial.name}
-            </h4>
-            <p className="text-gray-500 text-sm">{testimonial.role}</p>
-            <div className="flex mt-3">
+            <div>
+              <h4 className="font-medium text-blue-900 text-xl">
+                {testimonial.name}
+              </h4>
+              <p className="text-blue-600 font-medium text-sm mt-1">{testimonial.role}</p>
+            </div>
+            <div className="flex mt-4 space-x-1">
               {[...Array(testimonial.rating)].map((_, i) => (
                 <svg
                   key={i}
@@ -116,28 +118,28 @@ function CarouselTestimonials() {
         </motion.div>
       </AnimatePresence>
 
-      {/* Navigation buttons */}
+      {/* Navigation buttons - Moved outside for better spacing */}
       <button
         onClick={prev}
-        className="absolute top-1/2 left-0 transform -translate-y-1/2 bg-blue-100 text-gray-900 rounded-full p-3 hover:text-white hover:bg-blue-500 transition"
+        className="absolute top-1/2 -left-4 md:-left-16 transform -translate-y-1/2 bg-white border border-gray-200 text-gray-600 rounded-full p-4 hover:bg-blue-600 hover:text-white hover:border-blue-600 shadow-lg transition-all duration-300 z-20"
       >
         <ChevronLeft className="w-6 h-6" />
       </button>
       <button
         onClick={next}
-        className="absolute top-1/2 right-0 transform -translate-y-1/2 bg-blue-100 text-gray-900 rounded-full p-3 hover:text-white hover:bg-blue-500 transition"
+        className="absolute top-1/2 -right-4 md:-right-16 transform -translate-y-1/2 bg-white border border-gray-200 text-gray-600 rounded-full p-4 hover:bg-blue-600 hover:text-white hover:border-blue-600 shadow-lg transition-all duration-300 z-20"
       >
         <ChevronRight className="w-6 h-6" />
       </button>
 
       {/* Dots */}
-      <div className="flex justify-center mt-8 space-x-3">
+      <div className="flex justify-center mt-10 space-x-3">
         {testimonials.map((_, i) => (
           <button
             key={i}
             onClick={() => setIndex(i)}
-            className={`w-3 h-3 rounded-full transition-all ${
-              i === index ? "bg-blue-700 scale-125" : "bg-blue-300"
+            className={`h-3 rounded-full transition-all duration-300 ${
+              i === index ? "w-8 bg-blue-600" : "w-3 bg-gray-300 hover:bg-blue-300"
             }`}
           ></button>
         ))}
@@ -158,7 +160,6 @@ export default function LandingPage({ onGetStarted, onSignIn }: LandingPageProps
   const [contactForm, setContactForm] = useState({ name: '', email: '', message: '' });
   const [contactStatus, setContactStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle');
   
-  // Moved inside for translation
   const stats = [
     { value: 10000, suffix: "K+", label: t('landing.hero.stats.cvsCreated') },
     { value: 95, suffix: "%", label: t('landing.hero.stats.successRate') },
@@ -171,65 +172,31 @@ export default function LandingPage({ onGetStarted, onSignIn }: LandingPageProps
       img: "creative.png", 
       name: t('landing.templates.creative.name'), 
       description: t('landing.templates.creative.description'),
-      features: [
-          t('landing.templates.creative.features.0'), 
-          t('landing.templates.creative.features.1'), 
-          t('landing.templates.creative.features.2')
-      ],
       popular: false
     },
     { 
       img: "modern.png", 
       name: t('landing.templates.modern.name'), 
       description: t('landing.templates.modern.description'),
-      features: [
-          t('landing.templates.modern.features.0'), 
-          t('landing.templates.modern.features.1'), 
-          t('landing.templates.modern.features.2')
-      ],
       popular: true
     },
     { 
       img: "ats.jpg", 
       name: t('landing.templates.ats.name'), 
       description: t('landing.templates.ats.description'),
-      features: [
-          t('landing.templates.ats.features.0'), 
-          t('landing.templates.ats.features.1'), 
-          t('landing.templates.ats.features.2')
-      ],
       popular: false
     },
   ];
 
   const faqs = [
-    { 
-      question: t('landing.faq.list.0.question'), 
-      answer: t('landing.faq.list.0.answer') 
-    },
-    { 
-      question: t('landing.faq.list.1.question'), 
-      answer: t('landing.faq.list.1.answer') 
-    },
-    { 
-      question: t('landing.faq.list.2.question'), 
-      answer: t('landing.faq.list.2.answer') 
-    },
-    { 
-      question: t('landing.faq.list.3.question'), 
-      answer: t('landing.faq.list.3.answer') 
-    },
-    { 
-      question: t('landing.faq.list.4.question'), 
-      answer: t('landing.faq.list.4.answer') 
-    },
-    { 
-      question: t('landing.faq.list.5.question'), 
-      answer: t('landing.faq.list.5.answer') 
-    }
+    { question: t('landing.faq.list.0.question'), answer: t('landing.faq.list.0.answer') },
+    { question: t('landing.faq.list.1.question'), answer: t('landing.faq.list.1.answer') },
+    { question: t('landing.faq.list.2.question'), answer: t('landing.faq.list.2.answer') },
+    { question: t('landing.faq.list.3.question'), answer: t('landing.faq.list.3.answer') },
+    { question: t('landing.faq.list.4.question'), answer: t('landing.faq.list.4.answer') },
+    { question: t('landing.faq.list.5.question'), answer: t('landing.faq.list.5.answer') }
   ];
 
-  // Scroll to top when component mounts
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -252,7 +219,6 @@ export default function LandingPage({ onGetStarted, onSignIn }: LandingPageProps
       
       setContactStatus('success');
       setContactForm({ name: '', email: '', message: '' });
-      
       setTimeout(() => setContactStatus('idle'), 3000);
     } catch (error) {
       setContactStatus('error');
@@ -260,7 +226,6 @@ export default function LandingPage({ onGetStarted, onSignIn }: LandingPageProps
     }
   };
 
-  // Animation variants
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -275,80 +240,62 @@ export default function LandingPage({ onGetStarted, onSignIn }: LandingPageProps
   };
 
   return (
-    <div className="min-h-screen bg-white text-gray-900 overflow-hidden">
-      {/* Animated background elements */}
-      <div className="fixed inset-0 overflow-hidden pointer-events-none">
+    <div className="w-full bg-white text-gray-900 overflow-hidden font-sans">
+      {/* Background Elements */}
+      <div className="fixed inset-0 overflow-hidden pointer-events-none z-0">
         <motion.div 
-          className="absolute -top-40 -right-40 w-80 h-80 bg-blue-500/8 rounded-full blur-3xl"
-          animate={{ 
-            scale: [1, 1.2, 1],
-            opacity: [0.3, 0.5, 0.3]
-          }}
+          className="absolute -top-40 -right-40 w-96 h-96 bg-blue-500/5 rounded-full blur-3xl"
+          animate={{ scale: [1, 1.2, 1], opacity: [0.3, 0.5, 0.3] }}
           transition={{ duration: 8, repeat: Infinity }}
         />
         <motion.div 
-          className="absolute -bottom-40 -left-40 w-96 h-96 bg-blue-400/6 rounded-full blur-3xl"
-          animate={{ 
-            scale: [1.2, 1, 1.2],
-            opacity: [0.2, 0.4, 0.2]
-          }}
-          transition={{ duration: 10, repeat: Infinity }}
-        />
-        <motion.div 
-          className="absolute top-1/2 left-1/2 w-64 h-64 bg-blue-300/4 rounded-full blur-2xl"
-          animate={{ 
-            x: [0, 100, 0],
-            y: [0, -50, 0]
-          }}
+          className="absolute top-1/2 left-1/2 w-[500px] h-[500px] bg-blue-100/20 rounded-full blur-[100px]"
+          animate={{ x: [0, 50, 0], y: [0, -50, 0] }}
           transition={{ duration: 12, repeat: Infinity }}
         />
       </div>
 
       <Header onGetStarted={onGetStarted} onSignIn={onSignIn} />
 
-      <main className="pt-20">
-        {/* Hero Section - Blue, Black, White Theme */}
-        <section className="relative min-h-screen flex items-center overflow-hidden">
-          <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-            <div className="grid lg:grid-cols-2 gap-12 items-center py-1">
-              {/* Left Section - Text Content */}
+      <main className="relative z-10">
+        {/* HERO SECTION - INCREASED PADDING */}
+        <section className="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden">
+          <div className="max-w-7xl mx-auto px-6 lg:px-8">
+            <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-center">
+              
+              {/* Left Section */}
               <motion.div
                 variants={containerVariants}
                 initial="hidden"
                 animate="visible"
-                className="space-y-8"
+                className="space-y-10" // Increased vertical space between elements
               >
-
-                {/* Hero Title */}
                 <motion.h1
                   variants={itemVariants}
-                  className="text-5xl lg:text-6xl leading-tight mt-[-50px]"
+                  className="text-5xl lg:text-7xl font-semibold tracking-tight leading-[1.1]"
                 >
-                  <span className="font-medium text-gray-900">
-                    {t('landing.hero.title_start')} <span className="text-blue-700">{t('landing.hero.title_highlight')}</span> {t('landing.hero.title_end')}
+                  <span className="text-gray-900">
+                    {t('landing.hero.title_start')} <span className="text-blue-600 inline-block">{t('landing.hero.title_highlight')}</span> {t('landing.hero.title_end')}
                   </span>
-                  <br />
                 </motion.h1>
 
-                {/* Description */}
                 <motion.p
                   variants={itemVariants}
-                  className="text-xl text-black leading-relaxed max-w-2xl "
+                  className="text-xl text-gray-600 leading-relaxed max-w-2xl"
                 >
                   {t('landing.hero.subtitle_start')}
-                  <span className="text-blue-700"> {t('landing.hero.subtitle_highlight')}</span>
+                  <span className="text-blue-700 font-medium"> {t('landing.hero.subtitle_highlight')}</span>
                 </motion.p>
 
-                {/* CTA Buttons */}
                 <motion.div
                   variants={itemVariants}
-                  className="flex flex-col sm:flex-row gap-4"
+                  className="flex flex-col sm:flex-row gap-5 pt-4"
                 >
                   <motion.button
                     onClick={onGetStarted}
-                    className="group px-8 py-4 bg-blue-700 hover:bg-blue-600 rounded-2xl text-white text-lg font-medium shadow-2xl transition-all duration-300"
-                    whileHover={{ scale: 1.05, y: -2 }}
-                    whileTap={{ scale: 0.95 }}
+                    className="group px-8 py-4 bg-blue-600 hover:bg-blue-700 rounded-xl text-white text-lg font-medium shadow-lg shadow-blue-600/20 transition-all duration-300"
+                    whileHover={{ scale: 1.02, y: -2 }}
+                    whileTap={{ scale: 0.98 }}
                   >
                     <span className="flex items-center space-x-3">
                       <span>{t('landing.hero.cta')}</span>
@@ -356,328 +303,184 @@ export default function LandingPage({ onGetStarted, onSignIn }: LandingPageProps
                     </span>
                   </motion.button>
                 </motion.div>
-
-                {/* Stats Section - Enhanced Mobile Responsive */}
-                <motion.div
-                  variants={itemVariants}
-                  className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-4 pt-400"
-                >
-                  {stats.map((stat, idx) => {
-                    const count = useCountUp(stat.value, 2500); 
-
-                    return (
-                      <motion.div
-                        key={idx}
-                        className="text-center p-4 md:p-2 bg-white/50 md:bg-transparent rounded-xl md:rounded-none border md:border-0 border-blue-100 backdrop-blur-sm"
-                        whileHover={{ scale: 1.05 }}
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.5, delay: idx * 0.15 }}
-                      >
-                        <div className="md:hidden mb-2 flex justify-center">
-                        </div>
-                        <div className="text-xl md:text-2xl lg:text-3xl font-semibold text-blue-700 mb-1">
-                          {count}{stat.suffix}
-                        </div>
-                        <div className="text-sm md:text-sm text-black font-medium">{stat.label}</div>
-                      </motion.div>
-                    );
-                  })}
-                </motion.div>
-
               </motion.div>
 
-              {/* Right Section - Floating Hero Image */}
+              {/* Right Section - Floating Image */}
               <motion.div
                 className="relative lg:block hidden"
-                initial={{ opacity: 0, x: 50 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.8, delay: 0.4 }}
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.8, delay: 0.2 }}
               >
-                <div className="relative">
-                  {/* Main CV Mockup */}
+                <div className="relative mx-auto">
                   <motion.div
-                    className="relative z-10 bg-white rounded-3xl shadow-2xl p-8 max-w-md mx-auto"
-                    animate={{
-                      y: [-10, 10, -10],
-                    }}
-                    transition={{
-                      duration: 3,
-                      repeat: Infinity,
-                      ease: "easeInOut",
-                    }}
+                    className="relative z-10 bg-white rounded-2xl shadow-2xl border border-gray-100 p-2 max-w-md mx-auto"
+                    animate={{ y: [-15, 15, -15] }}
+                    transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
                   >
                     <img
                       src="/Images/hero.jpg"
                       alt="Professional CV preview"
-                      className="w-full h-auto rounded-2xl shadow-lg"
+                      className="w-full h-auto rounded-xl"
                     />
                   </motion.div>
-
-                  {/* Floating Elements */}
-                  <motion.div
-                    className="absolute -top-6 -left-6 w-20 h-20 bg-gradient-to-br from-blue-400 to-blue-600 rounded-2xl flex items-center justify-center shadow-xl"
-                    animate={{
-                      y: [0, -20, 0],
-                      rotate: [0, 5, 0],
-                    }}
+                  
+                  {/* Floating Icons - Spaced out more */}
+                  <motion.div 
+                    className="absolute -top-12 -left-12 bg-white p-4 rounded-2xl shadow-xl"
+                    animate={{ y: [0, -20, 0] }}
                     transition={{ duration: 4, repeat: Infinity }}
                   >
-                    <Zap className="h-8 w-8 text-white" />
+                    <div className="bg-blue-100 p-3 rounded-xl">
+                      <Zap className="h-8 w-8 text-blue-600" />
+                    </div>
                   </motion.div>
 
-                  <motion.div
-                    className="absolute -bottom-6 -right-6 w-24 h-24 bg-gradient-to-br from-blue-500 to-blue-700 rounded-2xl flex items-center justify-center shadow-xl"
-                    animate={{
-                      y: [0, 15, 0],
-                      rotate: [0, -5, 0],
-                    }}
-                    transition={{ duration: 5, repeat: Infinity, delay: 1 }}
+                   <motion.div 
+                    className="absolute top-1/2 -right-16 bg-white p-4 rounded-2xl shadow-xl"
+                    animate={{ x: [0, 15, 0] }}
+                    transition={{ duration: 5, repeat: Infinity }}
                   >
-                    <Shield className="h-10 w-10 text-white" />
-                  </motion.div>
-
-                  <motion.div
-                    className="absolute top-1/2 -right-12 w-16 h-16 bg-gradient-to-br from-blue-300 to-blue-500 rounded-full flex items-center justify-center shadow-xl"
-                    animate={{
-                      x: [0, 10, 0],
-                      y: [0, -10, 0],
-                    }}
-                    transition={{ duration: 3, repeat: Infinity, delay: 2 }}
-                  >
-                    <Award className="h-6 w-6 text-white" />
+                    <div className="bg-green-100 p-3 rounded-xl">
+                      <Award className="h-8 w-8 text-green-600" />
+                    </div>
                   </motion.div>
                 </div>
               </motion.div>
             </div>
+            
+            {/* Stats Section - Separated with significant margin */}
+            <motion.div
+                variants={containerVariants}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+                className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-32"
+            >
+                {stats.map((stat, idx) => {
+                    const count = useCountUp(stat.value, 2500); 
+                    return (
+                        <motion.div
+                            key={idx}
+                            className="text-center p-8 bg-white rounded-2xl shadow-md border border-gray-100 hover:border-blue-100 transition-colors"
+                            whileHover={{ y: -5 }}
+                            variants={itemVariants}
+                        >
+                            <div className="text-4xl lg:text-5xl font-medium text-blue-600 mb-3">
+                                {count}{stat.suffix}
+                            </div>
+                            <div className="text-gray-600 font-medium">{stat.label}</div>
+                        </motion.div>
+                    );
+                })}
+            </motion.div>
           </div>
         </section>
 
-        {/* Why Choose Us - Alternating Split Layout */}
-        <section id="why-choose-us">
-          <div className="max-w-7xl mx-auto py-15 px-6 lg:px-12 space-y-16">
+        {/* WHY CHOOSE US - WIDER GAPS */}
+        <section id="why-choose-us" className="py-10 lg:py-10 bg-gray-50/50">
+          <div className="max-w-7xl mx-auto px-6 lg:px-8 space-y-32"> {/* space-y-32 for massive separation between rows */}
 
-            {/* Section Intro */}
-            <motion.div
-              className="text-center mb-6"
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              viewport={{ once: true }}
-            >
-              <h2 className="text-4xl lg:text-5xl mb-4 font-medium text-gray-900">
+            {/* Header */}
+            <div className="text-center max-w-3xl mx-auto mb-16">
+              <h2 className="text-4xl lg:text-5xl font-semibold text-gray-900 mb-6">
                 {t('landing.whyChooseUs.title')}
               </h2>
-              <p className="text-lg text-gray-700 max-w-3xl mx-auto">
+              <p className="text-xl text-gray-600 leading-relaxed">
                 {t('landing.whyChooseUs.subtitle')}
               </p>
-            </motion.div>
+            </div>
 
-            {/* 1️⃣ Section One */}
-            <motion.div
-              className="flex flex-col lg:flex-row items-center gap-16"
-              initial={{ opacity: 0, x: -50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.7 }}
-              viewport={{ once: true }}
-            >
-              {/* Text */}
-              <div className="flex-1">
-                <h3 className="text-2xl font-medium text-gray-900 mb-4">
-                  {t('landing.whyChooseUs.section1.title')}
-                </h3>
-                <p className="text-gray-700 text-lg leading-relaxed mb-6">
-                  {t('landing.whyChooseUs.section1.description')}
-                </p>
-                <ul className="space-y-2 text-gray-600">
-                  <li>{t('landing.whyChooseUs.section1.points.0')}</li>
-                  <li>{t('landing.whyChooseUs.section1.points.1')}</li>
-                  <li>{t('landing.whyChooseUs.section1.points.2')}</li>
-                </ul>
-                <button
-                  onClick={() => navigate("/about")}
-                  className="flex items-center gap-2 px-6 py-3 mt-6 bg-blue-700 text-white font-semibold rounded-2xl shadow-lg hover:bg-blue-600 hover:scale-105 transition-all duration-300"
-                >
-                  {t('landing.common.readMore')}
-                  <ArrowRight className="w-5 h-5" />
-                </button>
-              </div>
+            {/* Feature 1 */}
+            <FeatureRow 
+              title={t('landing.whyChooseUs.section1.title')}
+              desc={t('landing.whyChooseUs.section1.description')}
+              points={[
+                t('landing.whyChooseUs.section1.points.0'),
+                t('landing.whyChooseUs.section1.points.1'),
+                t('landing.whyChooseUs.section1.points.2')
+              ]}
+              imgSrc="/Images/image.png"
+              navigate={navigate}
+              btnText={t('landing.common.readMore')}
+            />
 
-              {/* Image */}
-              <div className="flex-1 flex justify-center">
-                <img
-                  src="/Images/image.png"
-                  alt="Template Preview"
-                  className="rounded-3xl shadow-lg w-[500px] h-[350px] object-cover"
-                />
-              </div>
-            </motion.div>
+            {/* Feature 2 - Reversed */}
+            <FeatureRow 
+              title={t('landing.whyChooseUs.section2.title')}
+              desc={t('landing.whyChooseUs.section2.description')}
+              points={[
+                t('landing.whyChooseUs.section2.points.0'),
+                t('landing.whyChooseUs.section2.points.1'),
+                t('landing.whyChooseUs.section2.points.2')
+              ]}
+              imgSrc="/Images/fast.png"
+              reversed
+              navigate={navigate}
+              btnText={t('landing.common.readMore')}
+            />
 
-            {/* 2️⃣ Section Two */}
-            <motion.div
-              className="flex flex-col lg:flex-row-reverse items-center gap-16"
-              initial={{ opacity: 0, x: 50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.7 }}
-              viewport={{ once: true }}
-            >
-              <div className="flex-1">
-                <h3 className="text-2xl font-medium text-gray-900 mb-4">
-                  {t('landing.whyChooseUs.section2.title')}
-                </h3>
-                <p className="text-gray-700 text-lg leading-relaxed mb-6">
-                  {t('landing.whyChooseUs.section2.description')}
-                </p>
-                <ul className="space-y-2 text-gray-600">
-                  <li>{t('landing.whyChooseUs.section2.points.0')}</li>
-                  <li>{t('landing.whyChooseUs.section2.points.1')}</li>
-                  <li>{t('landing.whyChooseUs.section2.points.2')}</li>
-                </ul>
-
-                <button
-                  onClick={() => navigate("/about")}
-                  className="flex items-center gap-2 px-6 py-3 mt-6 bg-blue-700 text-white font-semibold rounded-2xl shadow-lg hover:bg-blue-600 hover:scale-105 transition-all duration-300"
-                >
-                  {t('landing.common.readMore')}
-                  <ArrowRight className="w-5 h-5" />
-                </button>
-              </div>
-
-              <div className="flex-1 flex justify-center">
-                <img
-                  src="/Images/fast.png"
-                  alt="Easy Resume Builder"
-                  className="rounded-3xl shadow-lg w-[500px] h-[350px] object-cover"
-                />
-              </div>
-            </motion.div>
-
-            {/* 3️⃣ Section Three */}
-            <motion.div
-              className="flex flex-col lg:flex-row items-center gap-16"
-              initial={{ opacity: 0, x: -50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.7 }}
-              viewport={{ once: true }}
-            >
-              <div className="flex-1">
-                <h3 className="text-2xl font-medium text-gray-900 mb-4">
-                  {t('landing.whyChooseUs.section3.title')}
-                </h3>
-                <p className="text-gray-700 text-lg leading-relaxed mb-6">
-                  {t('landing.whyChooseUs.section3.description')}
-                </p>
-                <ul className="space-y-2 text-gray-600">
-                  <li>{t('landing.whyChooseUs.section3.points.0')}</li>
-                  <li>{t('landing.whyChooseUs.section3.points.1')}</li>
-                  <li>{t('landing.whyChooseUs.section3.points.2')}</li>
-                </ul>
-                <button
-                  onClick={() => navigate("/about")}
-                  className="flex items-center gap-2 px-6 py-3 mt-6 bg-blue-700 hover:bg-blue-600 text-white font-semibold rounded-2xl shadow-lg hover:scale-105 transition-all duration-300"
-                >
-                  {t('landing.common.readMore')}
-                  <ArrowRight className="w-5 h-5" />
-                </button>
-              </div>
-
-              <div className="flex-1 flex justify-center">
-                <img
-                  src="/Images/data.png"
-                  alt="Data Insights"
-                  className="rounded-3xl shadow-lg w-[500px] h-[350px] object-cover"
-                />
-              </div>
-            </motion.div>
-
-            {/* 4️⃣ Section Four */}
-            <motion.div
-              className="flex flex-col lg:flex-row-reverse items-center gap-16"
-              initial={{ opacity: 0, x: 50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.7 }}
-              viewport={{ once: true }}
-            >
-              <div className="flex-1">
-                <h3 className="text-2xl font-medium text-gray-900 mb-4">
-                  {t('landing.whyChooseUs.section4.title')}
-                </h3>
-                <p className="text-gray-700 text-lg leading-relaxed mb-6">
-                  {t('landing.whyChooseUs.section4.description')}
-                </p>
-                <ul className="space-y-2 text-gray-600">
-                  <li>{t('landing.whyChooseUs.section4.points.0')}</li>
-                  <li>{t('landing.whyChooseUs.section4.points.1')}</li>
-                  <li>{t('landing.whyChooseUs.section4.points.2')}</li>
-                </ul>
-                <br></br>
-                <button
-                  onClick={() => navigate("/about")}
-                  className="flex items-center gap-2 px-6 py-3 bg-blue-700 text-white font-semibold rounded-2xl shadow-lg hover:bg-blue-600 hover:scale-105 transition-all duration-300"
-                >
-                  {t('landing.common.readMore')}
-                  <ArrowRight className="w-5 h-5" />
-                </button>
-              </div>
-
-              <div className="flex-1 flex justify-center">
-                <img
-                  src="/Images/image.png"
-                  alt="Global Support"
-                  className="rounded-3xl shadow-lg w-[500px] h-[350px] object-cover"
-                />
-              </div>
-            </motion.div>
+            {/* Feature 3 */}
+            <FeatureRow 
+              title={t('landing.whyChooseUs.section3.title')}
+              desc={t('landing.whyChooseUs.section3.description')}
+              points={[
+                t('landing.whyChooseUs.section3.points.0'),
+                t('landing.whyChooseUs.section3.points.1'),
+                t('landing.whyChooseUs.section3.points.2')
+              ]}
+              imgSrc="/Images/data.png"
+              navigate={navigate}
+              btnText={t('landing.common.readMore')}
+            />
           </div>
         </section>
 
-        {/* Templates Section - White & Blue Theme */}
-        <section id="templates" className="py-8 bg-white">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
-            <motion.div
-              className="text-center mb-8"
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              viewport={{ once: true }}
-            >
-              <h2 className="text-4xl lg:text-5xl mb-4 font-medium text-gray-900">
+        {/* TEMPLATES SECTION */}
+        <section id="templates" className="py-10 lg:py-10 bg-white">
+          <div className="max-w-7xl mx-auto px-6 lg:px-8">
+            <div className="text-center mb-20">
+              <h2 className="text-4xl lg:text-5xl font-semibold text-gray-900 mb-6">
                 {t('landing.templates.title')}
               </h2>
-              <p className="text-lg text-black max-w-3xl mx-auto">
+              <p className="text-xl text-gray-600 max-w-2xl mx-auto">
                 {t('landing.templates.subtitle')}
               </p>
-            </motion.div>
+            </div>
 
-            <div className="grid lg:grid-cols-3 gap-10">
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-12">
               {templates.map((template, idx) => (
                 <motion.div
                   key={idx}
-                  className="group relative bg-white border border-gray-200 rounded-3xl shadow-sm hover:shadow-lg transition-all duration-500"
+                  className="group bg-white rounded-3xl border border-gray-200 overflow-hidden hover:shadow-2xl hover:shadow-blue-900/5 transition-all duration-500"
                   initial={{ opacity: 0, y: 30 }}
                   whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: idx * 0.1 }}
+                  transition={{ delay: idx * 0.1 }}
                   viewport={{ once: true }}
-                  whileHover={{ scale: 1.02, y: -6 }}
                 >
-                  <div className="aspect-[3/4] overflow-hidden rounded-t-3xl">
+                  <div className="relative aspect-[4/5] bg-gray-100 overflow-hidden">
                     <img
                       src={`/Images/${template.img}`}
                       alt={template.name}
-                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                      className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-700"
                     />
+                    {template.popular && (
+                      <div className="absolute top-4 right-4 bg-blue-600 text-white text-xs font-medium px-3 py-1 rounded-full shadow-lg">
+                        POPULAR
+                      </div>
+                    )}
                   </div>
 
-                  <div className="p-6">
-                    <h3 className="text-xl font-semibold text-gray-800 mb-2">
+                  <div className="p-8">
+                    <h3 className="text-2xl font-medium text-gray-900 mb-3">
                       {template.name}
                     </h3>
-                    <p className="text-gray-500 mb-6">
+                    <p className="text-gray-500 mb-8 text-sm leading-relaxed">
                       {t('landing.templates.perfectFor', { role: template.name.toLowerCase() })}
                     </p>
                     <button
                       onClick={onGetStarted}
-                      className="w-full py-3 bg-blue-700 hover:bg-blue-600 rounded-2xl text-white font-semibold transition-all duration-300 shadow-sm hover:shadow-blue-500/25"
+                      className="w-full py-4 bg-blue-600 hover:bg-blue-700 hover:text-white text-white font-semibold rounded-xl transition-all duration-300"
                     >
                       {t('landing.templates.useTemplate')}
                     </button>
@@ -688,281 +491,247 @@ export default function LandingPage({ onGetStarted, onSignIn }: LandingPageProps
           </div>
         </section>
 
-        {/* Testimonials Section – Carousel Slider Style */}
-        <section className="py-15">
-          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <motion.h2
-              className="text-4xl lg:text-5xl mb-6 font-medium text-gray-900"
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              viewport={{ once: true }}
-            >
-              {t('landing.testimonials.title')}
-            </motion.h2>
-            <motion.p
-              className="text-lg text-gray-700 mb-12 max-w-2xl mx-auto"
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.1 }}
-              viewport={{ once: true }}
-            >
-              {t('landing.testimonials.subtitle')}
-            </motion.p>
-
+        {/* TESTIMONIALS */}
+        <section className="py-10 lg:py-10 bg-blue-50/30">
+          <div className="max-w-7xl mx-auto px-6 lg:px-8">
+            <div className="text-center mb-20">
+              <h2 className="text-4xl lg:text-5xl font-semibold text-gray-900 mb-6">
+                {t('landing.testimonials.title')}
+              </h2>
+              <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+                {t('landing.testimonials.subtitle')}
+              </p>
+            </div>
             <CarouselTestimonials />
           </div>
         </section>
 
+        {/* BLOG SECTION */}
+         <section className="py-10 lg:py-10 bg-blue-50/30">
+          <div className="max-w-7xl mx-auto px-6 lg:px-8">
+            <div className="text-center mb-20">
+                <h2 className="text-4xl lg:text-5xl font-semibold text-gray-900 mb-6">
+                  {t('landing.blog.title')}
+                </h2>
+                <p className="text-xl text-gray-600">
+                  {t('landing.blog.subtitle')}
+                </p>
+              </div>
+            <div className="mb-12 text-center">
+            </div>
+            
+            <div className="bg-gray-50 rounded-[2rem] p-5 md:p-10">
+              <LatestPosts />
+            </div>
+          </div>
+        </section>
+
+        {/* FAQ SECTION */}
+        <section id="faq" className="py-10 lg:py-10 bg-white">
+          <div className="max-w-3xl mx-auto px-6 lg:px-8">
+            <div className="text-center mb-16">
+              <h2 className="text-4xl lg:text-5xl font-semibold text-gray-900 mb-6">
+                {t('landing.faq.title')}
+              </h2>
+              <p className="text-lg text-gray-600">
+                {t('landing.faq.subtitle')}
+              </p>
+            </div>
+
+            <div className="space-y-6"> {/* Increased space between FAQ items */}
+              {faqs.map((faq, idx) => (
+                <motion.div
+                  key={idx}
+                  className="bg-white rounded-2xl border border-gray-200 hover:border-blue-300 transition-colors duration-300"
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ delay: idx * 0.05 }}
+                  viewport={{ once: true }}
+                >
+                  <button
+                    onClick={() => toggleFAQ(idx)}
+                    className="w-full p-6 md:p-8 text-left flex justify-between items-center"
+                  >
+                    <span className="text-lg font-medium text-gray-900 pr-8">
+                      {faq.question}
+                    </span>
+                    <motion.div
+                      animate={{ rotate: openFAQ === idx ? 180 : 0 }}
+                      transition={{ duration: 0.2 }}
+                      className="flex-shrink-0 text-blue-600"
+                    >
+                      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                      </svg>
+                    </motion.div>
+                  </button>
+                  <AnimatePresence>
+                    {openFAQ === idx && (
+                      <motion.div
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: "auto", opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        className="overflow-hidden"
+                      >
+                        <div className="px-6 md:px-8 pb-8 pt-0 text-gray-600 leading-relaxed">
+                          {faq.answer}
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </motion.div>
+              ))}
+            </div>
+            
+            <p className="mt-12 text-center text-gray-500">
+              {t("faq1.question")}{" "}
+              <a href="/faq" className="text-blue-600 font-medium hover:underline">
+                {t("faq1.cta")}
+              </a>
+            </p>
+          </div>
+        </section>
+
+        {/* FINAL CTA */}
+        <section className="relative py-32 bg-blue-900 overflow-hidden">
+           <div className="absolute inset-0 opacity-20">
+              <img src="/Images/call.png" alt="" className="w-full h-full object-cover" />
+           </div>
+           <div className="relative z-10 max-w-4xl mx-auto px-6 text-center">
+            <h2 className="text-4xl lg:text-6xl font-medium text-white mb-8">
+               {t('landing.finalCta.title')}
+            </h2>
+            <p className="text-xl text-blue-100 mb-12 max-w-2xl mx-auto">
+               {t('landing.finalCta.subtitle')}
+            </p>
+            <div className="flex flex-col sm:flex-row gap-5 justify-center">
+               <button
+                onClick={onGetStarted}
+                className="px-10 py-4 bg-white text-blue-900 rounded-xl font-medium text-lg hover:bg-blue-50 transition-colors"
+               >
+                  {t('landing.finalCta.startNow')}
+               </button>
+               <a
+                href="#templates"
+                className="px-10 py-4 border border-blue-400 text-white rounded-xl font-semibold hover:bg-blue-800 transition-colors"
+               >
+                 {t('landing.finalCta.browseTemplates')}
+               </a>
+            </div>
+           </div>
+        </section>
+
+        {/* CONTACT SECTION */}
+        <section id="contact" className="py-10 lg:py-20 bg-gray-50">
+          <div className="max-w-3xl mx-auto px-6 lg:px-8">
+            <div className="text-center mb-16">
+              <h2 className="text-4xl font-semibold text-gray-900 mb-4">
+                {t('landing.contact.title')}
+              </h2>
+              <p className="text-xl text-gray-600">
+                {t('landing.contact.subtitle')}
+              </p>
+            </div>
+
+            <div className="bg-white rounded-[2rem] shadow-xl p-8 md:p-12 border border-gray-100">
+              <form onSubmit={handleContactSubmit} className="space-y-6">
+                <div className="grid md:grid-cols-2 gap-6">
+                  <div className="space-y-2">
+                    <label className="text-sm font-medium text-gray-700 ml-1">Name</label>
+                    <input
+                      type="text"
+                      value={contactForm.name}
+                      onChange={(e) => setContactForm(prev => ({ ...prev, name: e.target.value }))}
+                      placeholder={t('landing.contact.placeholders.name')}
+                      className="w-full px-5 py-4 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:bg-white transition-all outline-none"
+                      required
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <label className="text-sm font-medium text-gray-700 ml-1">Email</label>
+                    <input
+                      type="email"
+                      value={contactForm.email}
+                      onChange={(e) => setContactForm(prev => ({ ...prev, email: e.target.value }))}
+                      placeholder={t('landing.contact.placeholders.email')}
+                      className="w-full px-5 py-4 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:bg-white transition-all outline-none"
+                      required
+                    />
+                  </div>
+                </div>
+                <div className="space-y-2">
+                  <label className="text-sm font-medium text-gray-700 ml-1">Message</label>
+                  <textarea
+                    rows={5}
+                    value={contactForm.message}
+                    onChange={(e) => setContactForm(prev => ({ ...prev, message: e.target.value }))}
+                    placeholder={t('landing.contact.placeholders.message')}
+                    className="w-full px-5 py-4 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:bg-white transition-all outline-none resize-none"
+                    required
+                  />
+                </div>
+                <button
+                  type="submit"
+                  disabled={contactStatus === 'sending' || contactStatus === 'success'}
+                  className="w-full py-4 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-xl shadow-lg shadow-blue-600/20 transition-all duration-300 disabled:opacity-70"
+                >
+                  {contactStatus === 'sending' ? (
+                    <span className="flex items-center justify-center gap-2">
+                      <div className="h-5 w-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                      Sending...
+                    </span>
+                  ) : contactStatus === 'success' ? (
+                    "Message Sent Successfully!"
+                  ) : (
+                    t('landing.contact.button.send')
+                  )}
+                </button>
+              </form>
+            </div>
+          </div>
+        </section>
       </main>
 
-      {/* Latest Blog Posts - Enhanced */}
-      <section className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            className="text-center mb-8"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-          >
-            <h2 className="text-4xl lg:text-5xl mb-4 font-medium text-gray-900">
-              {t('landing.blog.title')}
-            </h2>
-            <p className="text-xl text-black max-w-3xl mx-auto">
-              {t('landing.blog.subtitle')}
-            </p>
-          </motion.div>
-          <div className="bg-white rounded-3xl p-8 border">
-            <LatestPosts />
-          </div>
-        </div>
-      </section>
-
-      {/* FAQ Section - Enhanced */}
-      <section id="faq" className="py-20 bg-white">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            className="text-center mb-8"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-          >
-            <h2 className="text-4xl lg:text-5xl mb-4 font-medium text-gray-900">
-              {t('landing.faq.title')}
-            </h2>
-            <p className="text-xl text-black ">
-              {t('landing.faq.subtitle')}
-            </p>
-          </motion.div>
-
-          <div className="space-y-4">
-            {faqs.map((faq, idx) => (
-              <motion.div
-                key={idx}
-                className="bg-white rounded-2xl border border-blue-100 hover:border-black transition-all duration-300"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: idx * 0.1 }}
-                viewport={{ once: true }}
-              >
-                <button
-                  onClick={() => toggleFAQ(idx)}
-                  className="w-full p-6 text-left flex justify-between items-center group"
-                >
-                  <h3 className="text-black group-hover:font-medium transition-colors">
-                    {faq.question}
-                  </h3>
-                  <motion.div
-                    animate={{ rotate: openFAQ === idx ? 180 : 0 }}
-                    transition={{ duration: 0.3 }}
-                  >
-                    <svg className="w-5 h-5 text-blue-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                    </svg>
-                  </motion.div>
-                </button>
-                <AnimatePresence>
-                  {openFAQ === idx && (
-                    <motion.div
-                      initial={{ opacity: 0, height: 0 }}
-                      animate={{ opacity: 1, height: "auto" }}
-                      exit={{ opacity: 0, height: 0 }}
-                      transition={{ duration: 0.3 }}
-                      className="overflow-hidden"
-                    >
-                      <div className="px-6 pb-6">
-                        <p className="text-black leading-relaxed">
-                          {faq.answer}
-                        </p>
-                      </div>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-  <p className="py-10 text-center">{t("faq1.question")}{" "}<a href="/faq" className="text-blue-700 underline">
-        {t("faq1.cta")}
-      </a>
-    </p>
-      </section>
-
-      {/* Final CTA Section */}
-      <section
-        className="relative py-20 bg-cover bg-center bg-no-repeat"
-        style={{ backgroundImage: "url('/Images/call.png')" }}
-      >
-        {/* Dark overlay ONLY inside this section */}
-        <div className="absolute inset-0 bg-black/40"></div>
-
-        {/* Content above overlay */}
-        <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-            className="space-y-8"
-          >
-            <h2 className="text-4xl lg:text-6xl font-bold text-white">
-              {t('landing.finalCta.title')}
-            </h2>
-
-            <p className="text-xl lg:text-2xl text-white max-w-2xl mx-auto">
-              {t('landing.finalCta.subtitle')}
-            </p>
-
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <motion.button
-                onClick={onGetStarted}
-                className="px-8 py-4 bg-blue-700 hover:bg-blue-600 rounded-2xl text-white text-lg font-semibold "
-                whileHover={{ scale: 1.05, y: -2 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                <span className="flex items-center space-x-3">
-                  <span>{t('landing.finalCta.startNow')}</span>
-                  <ArrowRight className="h-5 w-5" />
-                </span>
-              </motion.button>
-
-              <motion.a
-                href="#templates"
-                className="px-8 py-4 border-2 rounded-2xl text-white font-semibold transition-all duration-300"
-                whileHover={{ scale: 1.05 }}
-              >
-                {t('landing.finalCta.browseTemplates')}
-              </motion.a>
-            </div>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Contact Section */}
-      <section id="contact" className="py-8 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
-          <motion.div
-            className="text-center mb-8"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-          >
-            <h2 className="text-4xl lg:text-5xl mb-4 font-medium text-gray-900">
-              {t('landing.contact.title')}
-            </h2>
-            <p className="text-xl text-black max-w-4xl mx-auto">
-              {t('landing.contact.subtitle')}
-            </p>
-          </motion.div>
-
-          <div>
-            <div>
-              {/* Contact Information */}
-              <motion.div
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.6 }}
-                viewport={{ once: true }}
-                className="space-y-8"
-              >
-                {/* Your contact info here */}
-              </motion.div>
-
-              {/* Quick Contact Form */}
-              <motion.div
-                initial={{ opacity: 0, x: 20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.6 }}
-                viewport={{ once: true }}
-                className="mx-auto w-full max-w-3xl" // <-- CENTERING HAPPENS HERE
-              >
-                <div className="backdrop-blur-sm rounded-2xl p-8">
-                  <h3 className="text-2xl mb-6 flex items-center text-black">
-                    {t('landing.contact.formTitle')}
-                  </h3>
-
-                  <form onSubmit={handleContactSubmit} className="space-y-6">
-                    <div>
-                      <input
-                        type="text"
-                        value={contactForm.name}
-                        onChange={(e) => setContactForm(prev => ({ ...prev, name: e.target.value }))}
-                        placeholder={t('landing.contact.placeholders.name')}
-                        className="w-full px-4 py-3 bg-white border border-blue-200 rounded-lg text-gray-900 placeholder-gray-500 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors"
-                        required
-                      />
-                    </div>
-                    <div>
-                      <input
-                        type="email"
-                        value={contactForm.email}
-                        onChange={(e) => setContactForm(prev => ({ ...prev, email: e.target.value }))}
-                        placeholder={t('landing.contact.placeholders.email')}
-                        className="w-full px-4 py-3 bg-white border border-blue-200 rounded-lg text-gray-900 placeholder-gray-500 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors"
-                        required
-                      />
-                    </div>
-                    <div>
-                      <textarea
-                        rows={4}
-                        value={contactForm.message}
-                        onChange={(e) => setContactForm(prev => ({ ...prev, message: e.target.value }))}
-                        placeholder={t('landing.contact.placeholders.message')}
-                        className="w-full px-4 py-3 bg-white border border-blue-200 rounded-lg text-gray-900 placeholder-gray-500 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors resize-vertical"
-                        required
-                      />
-                    </div>
-                    <button
-                      type="submit"
-                      disabled={contactStatus === 'sending' || contactStatus === 'success'}
-                      className="w-full flex items-center justify-center space-x-2 px-6 py-3 bg-blue-700 hover:bg-blue-600 rounded-lg transition-all duration-200 shadow-lg font-semibold text-white disabled:opacity-50"
-                    >
-                      {contactStatus === 'sending' ? (
-                        <>
-                          <div className="h-5 w-5 border-2 border-white border-t-transparent rounded-full animate-spin" />
-                          <span>{t('landing.contact.button.sending')}</span>
-                        </>
-                      ) : contactStatus === 'success' ? (
-                        <span>{t('landing.contact.button.success')}</span>
-                      ) : (
-                        <>
-                          <span>{t('landing.contact.button.send')}</span>
-                        </>
-                      )}
-                    </button>
-                  </form>
-                </div>
-              </motion.div>
-            </div>
-          </div>
-        </div>
-      </section>
-
       <Footer onGetStarted={onGetStarted} />
-
     </div>
   );
+}
+
+// Helper Component for clean code
+function FeatureRow({ title, desc, points, imgSrc, reversed = false, navigate, btnText }: any) {
+  return (
+    <motion.div 
+      className={`flex flex-col ${reversed ? 'lg:flex-row-reverse' : 'lg:flex-row'} items-center gap-16 lg:gap-24`}
+      initial={{ opacity: 0, y: 50 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.8 }}
+      viewport={{ once: true, margin: "-100px" }}
+    >
+      <div className="flex-1">
+        <h3 className="text-3xl font-medium text-gray-900 mb-6">{title}</h3>
+        <p className="text-lg text-gray-600 mb-8 leading-relaxed">{desc}</p>
+        <ul className="space-y-4 mb-10">
+          {points.map((point: string, i: number) => (
+            <li key={i} className="flex items-start gap-3 text-gray-700">
+              <div className="mt-1 min-w-[20px] text-blue-600">
+                <Shield className="w-5 h-5" />
+              </div>
+              {point}
+            </li>
+          ))}
+        </ul>
+        <button
+          onClick={() => navigate("/about")}
+          className="flex items-center gap-2 text-blue-600 font-semibold hover:gap-4 transition-all"
+        >
+          {btnText} <ArrowRight className="w-5 h-5" />
+        </button>
+      </div>
+      <div className="flex-1 w-full">
+        <div className="relative rounded-3xl overflow-hidden shadow-2xl border border-gray-100 bg-white">
+           <img src={imgSrc} alt={title} className="w-full h-auto object-cover transform hover:scale-105 transition-transform duration-700" />
+        </div>
+      </div>
+    </motion.div>
+  )
 }
