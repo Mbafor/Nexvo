@@ -647,7 +647,8 @@ export default function TechTemplate({ data }: TechTemplateProps) {
       Object.values(item).some(val => val && val !== '' && (typeof val !== 'object' || Object.keys(val).length > 0))
     );
 
-  const getSkillWidth = (level: string) => {
+  const getSkillWidth = (level: string | undefined) => {
+    if (!level) return '50%';
     switch (level.toLowerCase()) {
       case 'expert': return '100%';
       case 'advanced': return '80%';
@@ -735,13 +736,13 @@ export default function TechTemplate({ data }: TechTemplateProps) {
             {hasContent(data.skills || []) && (
               <View style={styles.sidebarSection}>
                 <Text style={styles.sidebarTitle}>Tech Stack</Text>
-                {(data.skills || []).map(skill => (
+                {(data.skills || []).filter(skill => skill && skill.name).map(skill => (
                   <View key={skill.id} style={styles.skillItem}>
                     <Text style={styles.skillName}>{skill.name}</Text>
                     <View style={styles.skillBarContainer}>
                       <View style={{...styles.skillBar, width: getSkillWidth(skill.level)}} />
                     </View>
-                    <Text style={styles.skillLevel}>{skill.level}</Text>
+                    <Text style={styles.skillLevel}>{skill.level || 'Intermediate'}</Text>
                   </View>
                 ))}
               </View>
