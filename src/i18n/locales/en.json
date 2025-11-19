@@ -4,25 +4,31 @@
     "common": {
       "readMore": "Read More"
     },
+    
         "blog": {
       "title": "Latest Career Insights",
       "subtitle": "Stay ahead with expert tips, resume guides, and the latest recruitment trends to help you land your dream job."
         },
     
       "hero": {
-      "title_start": "Build Your",
-      "title_highlight": "Perfect CV",
-      "title_end": "in Minutes",
-      "subtitle_start": "Create ATS-optimized, professional CVs that land interviews at top companies.",
-      "subtitle_highlight": "No signup required.",
-      "cta": "Create Your CV Free",
-      "stats": {
-        "cvsCreated": "CVs Created",
-        "successRate": "Success Rate",
-        "avgResponse": "Average Response",
-        "countries": "Countries"
-      }
-    },
+        "title_start": "Build Your",
+        "title_highlight": "Perfect CV",
+        "title_end": "in Minutes",
+        "phrases": {
+          "outstanding": "outstanding CV",
+          "professional": "professional CV",
+          "winning": "winning CV"
+        },
+        "subtitle_start": "Create ATS-optimized, professional CVs that land interviews at top companies.",
+        "subtitle_highlight": "No signup required.",
+        "cta": "Create Your CV Free",
+        "stats": {
+          "cvsCreated": "CVs Created",
+          "successRate": "Success Rate",
+          "avgResponse": "Average Response",
+          "countries": "Countries"
+        }
+      },
     "whyChooseUs": {
       "title": "Why Choose Us",
       "subtitle": "Our platform doesn’t just help you build resumes — it helps you build confidence, clarity, and credibility.",

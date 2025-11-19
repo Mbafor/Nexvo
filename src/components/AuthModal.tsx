@@ -142,7 +142,11 @@ export default function AuthModal({ isOpen, onClose, onSuccess }: AuthModalProps
   };
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4 sm:p-6">
+    /* CHANGED: Changed z-50 to z-[9999] 
+       This forces the modal to have a z-index of 9999, ensuring it sits
+       above your header (which likely has z-50 or z-100).
+    */
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-[9999] p-4 sm:p-6">
       <div className="bg-white rounded-2xl shadow-2xl max-w-md w-full p-4 sm:p-6 lg:p-8 relative max-h-[95vh] overflow-y-auto">
         <button
           onClick={onClose}
@@ -153,7 +157,7 @@ export default function AuthModal({ isOpen, onClose, onSuccess }: AuthModalProps
         </button>
 
         <div className="mb-4 sm:mb-6">
-          {hasPendingDownload}
+          {/* Removed {hasPendingDownload} - boolean cannot be rendered directly in JSX */}
           
           <h2 className="text-xl sm:text-2xl font-bold text-slate-900 mb-2">
             {getModalTitle()}

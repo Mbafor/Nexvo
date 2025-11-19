@@ -10,6 +10,7 @@ import Header from "../components/common/Header";
 import Footer from "../components/common/Footer";
 import { useNavigate } from "react-router-dom";
 
+
 const useCountUp = (target: number, duration = 2000) => {
   const [count, setCount] = useState(0);
 
@@ -87,7 +88,6 @@ function CarouselTestimonials() {
           initial={{ opacity: 0, x: 50 }}
           animate={{ opacity: 1, x: 0 }}
           exit={{ opacity: 0, x: -50 }}
-          transition={{ duration: 0.5 }}
           className="bg-white rounded-[2rem] shadow-xl p-8 md:p-12 border border-blue-50 relative z-10"
         >
           <div className="flex flex-col items-center text-center">
@@ -156,12 +156,26 @@ interface LandingPageProps {
 export default function LandingPage({ onGetStarted, onSignIn }: LandingPageProps) {
   const { t } = useTranslation();
   const navigate = useNavigate();
+  // Rotating hero phrases
+  const rotatingPhrases = [
+    t('landing.hero.phrases.outstanding', 'outstanding CV'),
+    t('landing.hero.phrases.professional', 'professional CV'),
+    t('landing.hero.phrases.winning', 'winning CV'),
+  ];
+  const [phraseIndex, setPhraseIndex] = useState(0);
+
+  useEffect(() => {
+    const id = setInterval(() => {
+      setPhraseIndex((i) => (i + 1) % rotatingPhrases.length);
+    }, 3000);
+    return () => clearInterval(id);
+  }, []);
   const [openFAQ, setOpenFAQ] = useState<number | null>(null);
   const [contactForm, setContactForm] = useState({ name: '', email: '', message: '' });
   const [contactStatus, setContactStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle');
   
   const stats = [
-    { value: 10000, suffix: "K+", label: t('landing.hero.stats.cvsCreated') },
+    { value: 1000, suffix: "K+", label: t('landing.hero.stats.cvsCreated') },
     { value: 95, suffix: "%", label: t('landing.hero.stats.successRate') },
     { value: 24, suffix: "h", label: t('landing.hero.stats.avgResponse') },
     { value: 150, suffix: "+", label: t('landing.hero.stats.countries') },
@@ -275,7 +289,18 @@ export default function LandingPage({ onGetStarted, onSignIn }: LandingPageProps
                   className="text-5xl lg:text-7xl font-semibold tracking-tight leading-[1.1]"
                 >
                   <span className="text-gray-900">
-                    {t('landing.hero.title_start')} <span className="text-blue-600 inline-block">{t('landing.hero.title_highlight')}</span> {t('landing.hero.title_end')}
+                    {t('landing.hero.title_start')}{' '}
+                    <motion.span
+                      key={phraseIndex}
+                      initial={{ opacity: 0, y: 6 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -6 }}
+                      transition={{ duration: 0.35 }}
+                      className="text-blue-600 inline-block"
+                    >
+                      {rotatingPhrases[phraseIndex]}
+                    </motion.span>{' '}
+                    {t('landing.hero.title_end')}
                   </span>
                 </motion.h1>
 
@@ -355,7 +380,7 @@ export default function LandingPage({ onGetStarted, onSignIn }: LandingPageProps
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true }}
-                className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-32"
+                className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-12 py-1"
             >
                 {stats.map((stat, idx) => {
                     const count = useCountUp(stat.value, 2500); 

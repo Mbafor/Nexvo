@@ -9,19 +9,24 @@
     },
   
     "hero": {
-      "title_start": "Crea tu",
-      "title_highlight": "CV Perfecto",
-      "title_end": "en Minutos",
-      "subtitle_start": "Crea CVs profesionales optimizados para ATS que consiguen entrevistas en las mejores empresas.",
-      "subtitle_highlight": "No se requiere registro.",
-      "cta": "Crea tu CV gratis",
-      "stats": {
-        "cvsCreated": "CVs Creados",
-        "successRate": "Tasa de Éxito",
-        "avgResponse": "Respuesta Promedio",
-        "countries": "Países"
-      }
+    "title_start": "Crea tu",
+    "title_highlight": "CV perfecto",
+    "title_end": "en minutos",
+    "phrases": {
+      "outstanding": "CV excepcional",
+      "professional": "CV profesional",
+      "winning": "CV ganador"
     },
+    "subtitle_start": "Crea currículums profesionales y optimizados para ATS que te consigan entrevistas en las mejores empresas.",
+    "subtitle_highlight": "No requiere registro.",
+    "cta": "Crea tu CV gratis",
+    "stats": {
+      "cvsCreated": "CVs creados",
+      "successRate": "Tasa de éxito",
+      "avgResponse": "Tiempo de respuesta",
+      "countries": "Países"
+    }
+},
     "whyChooseUs": {
       "title": "Por qué elegirnos",
       "subtitle": "Nuestra plataforma no solo te ayuda a crear currículums, te ayuda a construir confianza, claridad y credibilidad.",

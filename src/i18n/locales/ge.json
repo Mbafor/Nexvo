@@ -8,19 +8,24 @@
       "subtitle": "Bleiben Sie einen Schritt voraus mit Expertentipps, Lebenslauf-Ratgebern und den neuesten Rekrutierungstrends für Ihren Traumjob."
     },
    
-    "hero": {
-      "title_start": "Erstelle deinen",
-      "title_highlight": "perfekten Lebenslauf",
-      "title_end": "in Minuten",
-      "subtitle_start": "Erstelle ATS-optimierte, professionelle Lebensläufe, die dir Vorstellungsgespräche bei Top-Unternehmen sichern.",
-      "subtitle_highlight": "Keine Anmeldung erforderlich.",
-      "cta": "Lebenslauf kostenlos erstellen",
-      "stats": {
-        "cvsCreated": "Erstellte Lebensläufe",
-        "successRate": "Erfolgsquote",
-        "avgResponse": "Durchschn. Antwort",
-        "countries": "Länder"
-      }
+  "hero": {
+    "title_start": "Erstellen Sie Ihren",
+    "title_highlight": "perfekten Lebenslauf",
+    "title_end": "in Minuten",
+    "phrases": {
+      "outstanding": "hervorragenden Lebenslauf",
+      "professional": "professionellen Lebenslauf",
+      "winning": "überzeugenden Lebenslauf"
+    },
+    "subtitle_start": "Erstellen Sie ATS-optimierte, professionelle Lebensläufe, die Ihnen Vorstellungsgespräche bei Top-Unternehmen sichern.",
+    "subtitle_highlight": "Keine Anmeldung erforderlich.",
+    "cta": "Lebenslauf kostenlos erstellen",
+    "stats": {
+      "cvsCreated": "Erstellte Lebensläufe",
+      "successRate": "Erfolgsquote",
+      "avgResponse": "Ø Antwortzeit",
+      "countries": "Länder"
+    }
     },
     "whyChooseUs": {
       "title": "Warum wir?",

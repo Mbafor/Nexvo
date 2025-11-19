@@ -80,10 +80,6 @@ export default function Header({ onSignIn }: HeaderProps) {
         
         {/* 1. Logo (REVISED: Image Insertion and Size) */}
         <Link to="/" className="inline-block z-50 relative">
-          {/* Header logos should be smaller than footer logos.
-            Using h-8 (32px) on mobile and h-10 (40px) on desktop for standard header size.
-            The old text styling classes were removed from the Link.
-          */}
           <img 
             src="/Images/main_logo.png" 
             alt="Nexvo Logo" 
@@ -125,6 +121,7 @@ export default function Header({ onSignIn }: HeaderProps) {
 
         {/* Mobile Hamburger Button (Kept same) */}
         <div className="md:hidden flex items-center">
+          <LanguageSelector /> 
           <button 
             onClick={() => setIsMobileMenuOpen(true)} 
             className="p-2 text-gray-600 hover:bg-gray-100 rounded-xl transition-colors"
@@ -132,7 +129,9 @@ export default function Header({ onSignIn }: HeaderProps) {
           >
             <Menu className="h-7 w-7" />
           </button>
+           
         </div>
+         
       </div>
 
       {/* Full Screen Mobile Menu Overlay (Requires Mobile Logo Update) */}
@@ -229,13 +228,6 @@ export default function Header({ onSignIn }: HeaderProps) {
                   </button>
                 )}
 
-                {/* Mobile Language Selector (New) */}
-                <div className="mb-4 pt-2"> {/* Added pt-2 for slight vertical spacing */}
-                    <h4 className="text-sm font-semibold text-gray-500 mb-2">{t('header.selectLanguage', 'Select Language')}</h4>
-                    <div className="w-full bg-white border border-gray-200 rounded-xl overflow-hidden">
-                        <LanguageSelector className="w-full p-3 text-lg" />
-                    </div>
-                </div>
               </div>
             </div>
           </motion.div>

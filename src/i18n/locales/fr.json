@@ -7,21 +7,27 @@
       "title": "Derniers conseils de carrière",
       "subtitle": "Gardez une longueur d'avance grâce à des conseils d'experts, des guides de CV et les dernières tendances du recrutement pour décrocher le poste de vos rêves."
     },
-  
-    "hero": {
-      "title_start": "Créez votre",
-      "title_highlight": "CV Parfait",
-      "title_end": "en Minutes",
-      "subtitle_start": "Créez des CV professionnels optimisés pour les ATS qui décrochent des entretiens dans les meilleures entreprises.",
-      "subtitle_highlight": "Aucune inscription requise.",
-      "cta": "Créez votre CV gratuitement",
-      "stats": {
-        "cvsCreated": "CV créés",
-        "successRate": "Taux de réussite",
-        "avgResponse": "Réponse moyenne",
-        "countries": "Pays"
-      }
-    },
+
+   "hero": {
+       "title_start": "Créez votre",
+    "title_highlight": "CV parfait",
+    "title_end": "en quelques minutes",
+    "phrases": {
+      "outstanding": "CV exceptionnel",
+      "professional": "CV professionnel",
+      "winning": "CV gagnant"
+        },
+        "subtitle_start": "Créez des CV professionnels et optimisés pour les ATS qui vous permettent de décrocher des entretiens dans les meilleures entreprises.",
+    "subtitle_highlight": "Aucune inscription requise.",
+    "cta": "Créez votre CV gratuitement",
+    "stats": {
+      "cvsCreated": "CV créés",
+      "successRate": "Taux de réussite",
+      "avgResponse": "Délai de réponse",
+      "countries": "Pays"
+        }
+      },
+    
     "whyChooseUs": {
       "title": "Pourquoi nous choisir",
       "subtitle": "Notre plateforme ne vous aide pas seulement à créer des CV — elle vous aide à gagner en confiance, clarté et crédibilité.",
