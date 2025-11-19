@@ -87,7 +87,7 @@ export default function TermsConditions() {
               </h2>
               <p>
                 <Trans i18nKey="terms.sections.privacy.para1">
-                  QuickCV is committed to protecting your privacy. We collect personal information necessary to provide and improve the Service, including registration details, usage data, and technical information. Please review our <Link to="/privacy" className="text-blue-700 hover:underline">Privacy Policy</Link> for detailed information on how your data is collected, used, stored, and shared.
+                  Nexvo is committed to protecting your privacy. We collect personal information necessary to provide and improve the Service, including registration details, usage data, and technical information. Please review our <Link to="/privacy" className="text-blue-700 hover:underline">Privacy Policy</Link> for detailed information on how your data is collected, used, stored, and shared.
                 </Trans>
               </p>
               <p>{t('terms.sections.privacy.para2')}</p>

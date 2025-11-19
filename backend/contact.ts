@@ -32,13 +32,13 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
     // Send email to admin (mbaforfoghang@gmail.com)
     const adminEmailResult = await resend.emails.send({
-      from: 'noreply@quickcv.app', // You'll need to set up domain verification in Resend
+      from: 'noreply@Nexvo.app', // You'll need to set up domain verification in Resend
       to: ['mbaforfoghang@gmail.com'],
-      subject: `[QuickCV Contact] ${subject || 'New Contact Form Submission'}`,
+      subject: `[Nexvo Contact] ${subject || 'New Contact Form Submission'}`,
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #e1e5e9; border-radius: 8px;">
           <header style="background: #2563eb; color: white; padding: 20px; border-radius: 8px 8px 0 0; margin: -20px -20px 20px -20px;">
-            <h1 style="margin: 0; font-size: 24px;">QuickCV Contact Form</h1>
+            <h1 style="margin: 0; font-size: 24px;">Nexvo Contact Form</h1>
             <p style="margin: 5px 0 0 0; opacity: 0.9;">Ticket ID: ${ticketId}</p>
           </header>
           
@@ -57,7 +57,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
           </div>
           
           <footer style="margin-top: 20px; text-align: center; color: #6b7280; font-size: 12px;">
-            <p>This email was sent from the QuickCV contact form.</p>
+            <p>This email was sent from the Nexvo contact form.</p>
             <p>Reply directly to this email to respond to ${name}.</p>
           </footer>
         </div>
@@ -67,9 +67,9 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
     // Send confirmation email to user
     const userConfirmationResult = await resend.emails.send({
-      from: 'noreply@quickcv.app',
+      from: 'noreply@Nexvo.app',
       to: [email],
-      subject: `Thank you for contacting QuickCV - Ticket #${ticketId}`,
+      subject: `Thank you for contacting Nexvo - Ticket #${ticketId}`,
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #e1e5e9; border-radius: 8px;">
           <header style="background: #2563eb; color: white; padding: 20px; border-radius: 8px 8px 0 0; margin: -20px -20px 20px -20px;">
@@ -80,7 +80,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
           <div style="background: #f0f9ff; padding: 20px; border-radius: 8px; margin-bottom: 20px; border-left: 4px solid #2563eb;">
             <h2 style="margin: 0 0 10px 0; color: #1e293b; font-size: 18px;">Hi ${name}!</h2>
             <p style="margin: 0; line-height: 1.6; color: #374151;">
-              Thank you for reaching out to QuickCV. We've received your message and will respond as soon as possible.
+              Thank you for reaching out to Nexvo. We've received your message and will respond as soon as possible.
             </p>
           </div>
           
@@ -110,7 +110,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
           <footer style="margin-top: 20px; text-align: center; color: #6b7280; font-size: 12px;">
             <p>This is an automated confirmation. Please do not reply to this email.</p>
             <p>For urgent matters, contact us directly at <a href="mailto:mbaforfoghang@gmail.com">mbaforfoghang@gmail.com</a></p>
-            <p>© 2025 QuickCV. All rights reserved.</p>
+            <p>© 2025 Nexvo. All rights reserved.</p>
           </footer>
         </div>
       `,

@@ -253,7 +253,7 @@ export const createSocialShareUrl = (
 
   switch (platform) {
     case 'twitter':
-      return `https://twitter.com/intent/tweet?url=${encodeURIComponent(url)}&text=${encodeURIComponent(title)}&via=QuickCV`;
+      return `https://twitter.com/intent/tweet?url=${encodeURIComponent(url)}&text=${encodeURIComponent(title)}&via=Nexvo`;
     
     case 'facebook':
       return `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`;

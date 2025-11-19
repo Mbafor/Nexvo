@@ -97,11 +97,11 @@
     },
     "testimonials": {
       "title": "Was Nutzer sagen",
-      "subtitle": "Echte Erfahrungen von Fachleuten, die mit QuickCV ihren Traumjob gefunden haben.",
+      "subtitle": "Echte Erfahrungen von Fachleuten, die mit Nexvo ihren Traumjob gefunden haben.",
       "list": [
         {
           "role": "Softwareingenieur bei Google",
-          "review": "Ich habe meinen Traumjob bei Google innerhalb von 2 Wochen nach Nutzung von QuickCV bekommen. Die ATS-Optimierung funktioniert wirklich!"
+          "review": "Ich habe meinen Traumjob bei Google innerhalb von 2 Wochen nach Nutzung von Nexvo bekommen. Die ATS-Optimierung funktioniert wirklich!"
         },
         {
           "role": "Marketing Director bei Meta",
@@ -123,7 +123,7 @@
       "subtitle": "Alles, was du wissen musst, um deinen perfekten Lebenslauf zu erstellen",
       "list": [
         {
-          "question": "Wie stellt QuickCV die ATS-Kompatibilität sicher?",
+          "question": "Wie stellt Nexvo die ATS-Kompatibilität sicher?",
           "answer": "Unsere Vorlagen werden mit über 50 großen ATS-Systemen getestet, darunter Workday, Greenhouse und BambooHR. Wir verwenden saubere Formatierungen, Standardschriften und bewährte Strukturen, die ATS-Scans mit einer Genauigkeit von über 95 % bestehen."
         },
         {
@@ -131,7 +131,7 @@
           "answer": "Absolut! Jede Vorlage verfügt über branchenspezifische Variationen und Anpassungsoptionen. Du kannst Farben, Schriftarten und Layouts anpassen und dabei die ATS-Kompatibilität beibehalten."
         },
         {
-          "question": "Was unterscheidet QuickCV von anderen Lebenslauf-Buildern?",
+          "question": "Was unterscheidet Nexvo von anderen Lebenslauf-Buildern?",
           "answer": "Wir konzentrieren uns auf drei Kernbereiche: ATS-Optimierung, professionelles Design und Geschwindigkeit. Unsere Vorlagen werden von HR-Profis erstellt und haben eine nachgewiesene Erfolgsbilanz bei Bewerbungen bei Top-Unternehmen."
         },
         {
@@ -150,7 +150,7 @@
     },
     "finalCta": {
       "title": "Bereit für deinen Traumjob?",
-      "subtitle": "Schließe dich 50.000+ Profis an, die ihren perfekten Lebenslauf erfolgreich mit QuickCV erstellt haben",
+      "subtitle": "Schließe dich 50.000+ Profis an, die ihren perfekten Lebenslauf erfolgreich mit Nexvo erstellt haben",
       "startNow": "Jetzt Lebenslauf bauen",
       "browseTemplates": "Vorlagen durchsuchen"
     },
@@ -422,7 +422,7 @@
   "footer": {
     "tagline": "Erstelle professionelle, ATS-optimierte Lebensläufe, die dir Vorstellungsgespräche bei Top-Unternehmen sichern.",
     "followUs": "Folge uns",
-    "copyright": "© {{year}} QuickCV. Alle Rechte vorbehalten.",
+    "copyright": "© {{year}} Nexvo. Alle Rechte vorbehalten.",
     "columns": {
       "product": {
         "title": "Produkt",
@@ -464,7 +464,7 @@
   "about": {
     "mission": {
       "title": "Unsere Mission",
-      "description": "QuickCV wurde gegründet, um Fachleuten weltweit zu helfen, indem wir moderne, ATS-optimierte Lebenslaufvorlagen und Tools bereitstellen, mit denen Kandidaten ihre Fähigkeiten präsentieren und Vorstellungsgespräche bei Top-Unternehmen erhalten können. Unser Ziel ist es, den Zugang zu Tools für den Karriereerfolg für jeden zu demokratisieren, unabhängig von Standort oder Erfahrungsgrad."
+      "description": "Nexvo wurde gegründet, um Fachleuten weltweit zu helfen, indem wir moderne, ATS-optimierte Lebenslaufvorlagen und Tools bereitstellen, mit denen Kandidaten ihre Fähigkeiten präsentieren und Vorstellungsgespräche bei Top-Unternehmen erhalten können. Unser Ziel ist es, den Zugang zu Tools für den Karriereerfolg für jeden zu demokratisieren, unabhängig von Standort oder Erfahrungsgrad."
     },
     "stats": {
       "cvs": {
@@ -486,7 +486,7 @@
     },
     "whatWeDo": {
       "title": "Was wir tun",
-      "description": "QuickCV kombiniert schönes Design mit ATS-Optimierung, um sicherzustellen, dass dein Lebenslauf moderne Rekrutierungssoftware passiert und Personalverantwortlichen ins Auge fällt. Wir bieten einen benutzerfreundlichen Builder, mit dem Fachleute in wenigen Minuten überzeugende Lebensläufe erstellen können.",
+      "description": "Nexvo kombiniert schönes Design mit ATS-Optimierung, um sicherzustellen, dass dein Lebenslauf moderne Rekrutierungssoftware passiert und Personalverantwortlichen ins Auge fällt. Wir bieten einen benutzerfreundlichen Builder, mit dem Fachleute in wenigen Minuten überzeugende Lebensläufe erstellen können.",
       "points": [
         "Professionell gestaltete Lebenslaufvorlagen",
         "ATS-freundliche Layouts zum Bestehen automatisierter Screenings",
@@ -518,7 +518,7 @@
     },
     "impact": {
       "title": "Unser Einfluss",
-      "description": "Seit dem Start hat QuickCV Tausenden von Fachleuten weltweit geholfen, überzeugende Lebensläufe zu erstellen, die ihre Einladungsquoten erhöhen und das Karrierewachstum beschleunigen.",
+      "description": "Seit dem Start hat Nexvo Tausenden von Fachleuten weltweit geholfen, überzeugende Lebensläufe zu erstellen, die ihre Einladungsquoten erhöhen und das Karrierewachstum beschleunigen.",
       "points": [
         "Höhere Rücklaufquoten bei Bewerbungen",
         "Schnellerer Erfolg bei der Jobsuche",
@@ -531,11 +531,11 @@
       "members": {
         "joshua": {
           "role": "Co-Founder & CEO",
-          "bio": "Joshua leitet QuickCV mit der Vision, Fachleute weltweit zu stärken."
+          "bio": "Joshua leitet Nexvo mit der Vision, Fachleute weltweit zu stärken."
         },
         "alain": {
           "role": "COO",
-          "bio": "Yohnjie überwacht Technologie und Produktentwicklung und sorgt dafür, dass QuickCV modern und benutzerfreundlich bleibt."
+          "bio": "Yohnjie überwacht Technologie und Produktentwicklung und sorgt dafür, dass Nexvo modern und benutzerfreundlich bleibt."
         }
       }
     }
@@ -545,7 +545,7 @@
       "title_start": "Nimm",
       "title_highlight": "Kontakt",
       "title_end": "mit uns auf",
-      "subtitle": "Hast du Fragen zu QuickCV? Brauchst du Hilfe bei deinem Lebenslauf? Möchtest du mit uns zusammenarbeiten? Wir sind hier, um zu helfen, und freuen uns, von dir zu hören."
+      "subtitle": "Hast du Fragen zu Nexvo? Brauchst du Hilfe bei deinem Lebenslauf? Möchtest du mit uns zusammenarbeiten? Wir sind hier, um zu helfen, und freuen uns, von dir zu hören."
     },
     "info": {
       "sectionTitle": "Kontaktinformationen",
@@ -622,7 +622,7 @@
   "faq": {
     "hero": {
       "title": "Häufig gestellte Fragen",
-      "subtitle": "Finde Antworten auf häufige Fragen zu QuickCV, unseren Funktionen und wie man den perfekten Lebenslauf erstellt."
+      "subtitle": "Finde Antworten auf häufige Fragen zu Nexvo, unseren Funktionen und wie man den perfekten Lebenslauf erstellt."
     },
     "search": {
       "placeholder": "FAQs durchsuchen..."
@@ -657,20 +657,20 @@
     },
     "questions": {
       "q1": {
-        "question": "Was ist QuickCV und wie funktioniert es?",
-        "answer": "QuickCV ist ein Online-Lebenslauf-Builder, der dir hilft, in wenigen Minuten professionelle, ATS-optimierte Lebensläufe zu erstellen. Wähle einfach eine Vorlage, fülle deine Informationen über unsere geführten Formulare aus und lade deinen Lebenslauf als PDF oder DOCX herunter. Unsere Plattform nutzt moderne Designprinzipien und Best Practices der Personalbeschaffung, damit dein Lebenslauf heraussticht."
+        "question": "Was ist Nexvo und wie funktioniert es?",
+        "answer": "Nexvo ist ein Online-Lebenslauf-Builder, der dir hilft, in wenigen Minuten professionelle, ATS-optimierte Lebensläufe zu erstellen. Wähle einfach eine Vorlage, fülle deine Informationen über unsere geführten Formulare aus und lade deinen Lebenslauf als PDF oder DOCX herunter. Unsere Plattform nutzt moderne Designprinzipien und Best Practices der Personalbeschaffung, damit dein Lebenslauf heraussticht."
       },
       "q2": {
         "question": "Wie schnell kann ich einen professionellen Lebenslauf erstellen?",
         "answer": "Die meisten Nutzer stellen ihren Lebenslauf in 8–12 Minuten fertig. Unsere intelligenten Formulare schlagen Inhalte automatisch vor und unser KI-Assistent hilft dir, deine Beschreibungen für maximale Wirkung zu optimieren. Die genaue Zeit hängt davon ab, wie viele Informationen du vorbereitet hast und welche Vorlage du wählst."
       },
       "q3": {
-        "question": "Muss ich ein Konto erstellen, um QuickCV zu nutzen?",
+        "question": "Muss ich ein Konto erstellen, um Nexvo zu nutzen?",
         "answer": "Keine Anmeldung erforderlich, um mit dem Bau deines Lebenslaufs zu beginnen! Du kannst deinen ersten Lebenslauf erstellen und herunterladen, ohne ein Konto zu erstellen. Die Erstellung eines kostenlosen Kontos ermöglicht es dir jedoch, deinen Fortschritt zu speichern, später auf deinen Lebenslauf zuzugreifen und jederzeit Aktualisierungen vorzunehmen."
       },
       "q4": {
-        "question": "Ist QuickCV wirklich kostenlos?",
-        "answer": "Ja! QuickCV bietet eine kostenlose Stufe, die Zugang zu professionellen Vorlagen, grundlegenden Anpassungsoptionen und PDF-Downloads beinhaltet. Premium-Funktionen wie erweiterte Vorlagen, DOCX-Exporte und bevorzugter Support sind mit unseren kostenpflichtigen Plänen verfügbar."
+        "question": "Ist Nexvo wirklich kostenlos?",
+        "answer": "Ja! Nexvo bietet eine kostenlose Stufe, die Zugang zu professionellen Vorlagen, grundlegenden Anpassungsoptionen und PDF-Downloads beinhaltet. Premium-Funktionen wie erweiterte Vorlagen, DOCX-Exporte und bevorzugter Support sind mit unseren kostenpflichtigen Plänen verfügbar."
       },
       "q5": {
         "question": "Wie viele Lebenslaufvorlagen sind verfügbar?",
@@ -693,8 +693,8 @@
         "answer": "Ja! Wenn du ein Konto erstellst, wird dein Lebenslauf automatisch gespeichert und du kannst jederzeit zurückkehren, um ihn zu bearbeiten. Du kannst Informationen aktualisieren, Vorlagen ändern, die Formatierung anpassen und aktualisierte Versionen herunterladen, wann immer nötig."
       },
       "q10": {
-        "question": "Funktioniert QuickCV auf mobilen Geräten?",
-        "answer": "Ja! QuickCV ist vollständig responsiv und funktioniert nahtlos auf Smartphones, Tablets und Desktop-Computern. Du kannst deinen Lebenslauf von jedem Gerät mit Internetverbindung aus erstellen, bearbeiten und herunterladen."
+        "question": "Funktioniert Nexvo auf mobilen Geräten?",
+        "answer": "Ja! Nexvo ist vollständig responsiv und funktioniert nahtlos auf Smartphones, Tablets und Desktop-Computern. Du kannst deinen Lebenslauf von jedem Gerät mit Internetverbindung aus erstellen, bearbeiten und herunterladen."
       },
       "q11": {
         "question": "Wie sicher sind meine persönlichen Daten?",
@@ -726,7 +726,7 @@
       },
       "q18": {
         "question": "Bietet ihr Karriereberatung oder Lebenslauf-Checks an?",
-        "answer": "Während sich QuickCV auf die technischen Aspekte der Lebenslauferstellung konzentriert, arbeiten wir mit Karriereexperten zusammen, um Beratung zu bieten. Unser Blog bietet Karrieretipps, und Premium-Nutzer erhalten Zugang zu Lebenslauf-Checklisten und branchenspezifischen Ratschlägen."
+        "answer": "Während sich Nexvo auf die technischen Aspekte der Lebenslauferstellung konzentriert, arbeiten wir mit Karriereexperten zusammen, um Beratung zu bieten. Unser Blog bietet Karrieretipps, und Premium-Nutzer erhalten Zugang zu Lebenslauf-Checklisten und branchenspezifischen Ratschlägen."
       },
       "q19": {
         "question": "Was, wenn ich auf ein technisches Problem stoße?",
@@ -746,7 +746,7 @@
     "sections": {
       "overview": {
         "title": "1. Übersicht",
-        "content": "QuickCV verpflichtet sich, Ihre Privatsphäre zu respektieren und Ihre persönlichen Daten zu schützen. Diese Datenschutzerklärung beschreibt die Arten von Informationen, die wir sammeln, wie wir sie verwenden und schützen, sowie Ihre Rechte bezüglich Ihrer Daten. Durch die Nutzung unserer Dienste stimmen Sie den Bedingungen dieser Datenschutzerklärung zu. Sie gilt für alle Benutzer, einschließlich Besucher, registrierte Benutzer und Kunden, die von überall auf der Welt auf QuickCV zugreifen."
+        "content": "Nexvo verpflichtet sich, Ihre Privatsphäre zu respektieren und Ihre persönlichen Daten zu schützen. Diese Datenschutzerklärung beschreibt die Arten von Informationen, die wir sammeln, wie wir sie verwenden und schützen, sowie Ihre Rechte bezüglich Ihrer Daten. Durch die Nutzung unserer Dienste stimmen Sie den Bedingungen dieser Datenschutzerklärung zu. Sie gilt für alle Benutzer, einschließlich Besucher, registrierte Benutzer und Kunden, die von überall auf der Welt auf Nexvo zugreifen."
       },
       "collection": {
         "title": "2. Informationen, die wir sammeln",
@@ -764,7 +764,7 @@
         "title": "3. Wie wir Ihre Informationen verwenden",
         "content": "Gesammelte Informationen werden verantwortungsvoll verwendet, um:",
         "list": [
-          "Den QuickCV-Dienst bereitzustellen, zu betreiben und zu warten.",
+          "Den Nexvo-Dienst bereitzustellen, zu betreiben und zu warten.",
           "Ihren Lebenslauf genau zu erstellen und zu formatieren.",
           "Das Benutzererlebnis zu verbessern und zu personalisieren.",
           "Wichtige Service-Updates oder Kontomitteilungen zu kommunizieren.",
@@ -800,7 +800,7 @@
       },
       "thirdParty": {
         "title": "9. Dienste von Drittanbietern",
-        "content": "QuickCV kann Dienste von Drittanbietern wie Google Analytics oder Social Logins integrieren. Wir empfehlen, deren Datenschutzrichtlinien zu überprüfen, um zu erfahren, wie sie mit Ihren Daten umgehen."
+        "content": "Nexvo kann Dienste von Drittanbietern wie Google Analytics oder Social Logins integrieren. Wir empfehlen, deren Datenschutzrichtlinien zu überprüfen, um zu erfahren, wie sie mit Ihren Daten umgehen."
       },
       "international": {
         "title": "10. Internationale Datenübertragungen",
@@ -808,7 +808,7 @@
       },
       "children": {
         "title": "11. Privatsphäre von Kindern",
-        "content": "QuickCV ist nicht für Kinder unter 13 Jahren bestimmt. Wir sammeln nicht wissentlich Daten von Minderjährigen. Wenn Sie glauben, dass ein Kind persönliche Informationen übermittelt hat, kontaktieren Sie uns sofort."
+        "content": "Nexvo ist nicht für Kinder unter 13 Jahren bestimmt. Wir sammeln nicht wissentlich Daten von Minderjährigen. Wenn Sie glauben, dass ein Kind persönliche Informationen übermittelt hat, kontaktieren Sie uns sofort."
       },
       "changes": {
         "title": "12. Änderungen an dieser Richtlinie",
@@ -828,51 +828,51 @@
     "sections": {
       "acceptance": {
         "title": "1. Annahme der Bedingungen",
-        "para1": "Durch den Zugriff auf oder die Nutzung von QuickCV bestätigen Sie, dass Sie mindestens 18 Jahre alt sind oder die Zustimmung eines Elternteils oder Erziehungsberechtigten haben und die volle Befugnis besitzen, diese Bedingungen zu akzeptieren. Sie stimmen zu, alle geltenden Gesetze, Regeln und Vorschriften im Zusammenhang mit Ihrer Nutzung des Dienstes einzuhalten. QuickCV behält sich das Recht vor, diese Bedingungen jederzeit zu ändern oder zu aktualisieren, und Ihre fortgesetzte Nutzung des Dienstes stellt die Annahme dieser Änderungen dar.",
+        "para1": "Durch den Zugriff auf oder die Nutzung von Nexvo bestätigen Sie, dass Sie mindestens 18 Jahre alt sind oder die Zustimmung eines Elternteils oder Erziehungsberechtigten haben und die volle Befugnis besitzen, diese Bedingungen zu akzeptieren. Sie stimmen zu, alle geltenden Gesetze, Regeln und Vorschriften im Zusammenhang mit Ihrer Nutzung des Dienstes einzuhalten. Nexvo behält sich das Recht vor, diese Bedingungen jederzeit zu ändern oder zu aktualisieren, und Ihre fortgesetzte Nutzung des Dienstes stellt die Annahme dieser Änderungen dar.",
         "para2": "Diese Bedingungen gelten für alle Benutzer, einschließlich Einzelpersonen, Unternehmen und anderer juristischer Personen. Sie decken jeden Aspekt des Dienstes ab, einschließlich, aber nicht beschränkt auf Kontoerstellung, Inhaltseinreichung, Zahlung, Kommunikation und Teilnahme an damit verbundenen Veranstaltungen oder Programmen. Die Nichteinhaltung dieser Bedingungen kann zur Aussetzung oder Kündigung Ihres Kontos und gegebenenfalls zu rechtlichen Schritten führen."
       },
       "overview": {
         "title": "2. Leistungsübersicht",
-        "para1": "QuickCV ist eine Online-Plattform, die Tools zur Erstellung von Lebensläufen und Resümees bereitstellt, um Benutzern zu helfen, professionelle, hochwertige Lebensläufe effizient zu erstellen. Der Dienst umfasst vorgefertigte Vorlagen, Bearbeitungsfunktionen und herunterladbare Ausgaben in mehreren Formaten. Während wir bestrebt sind, einen konsistenten und zuverlässigen Dienst aufrechtzuerhalten, kann QuickCV bestimmte Funktionen ohne vorherige Ankündigung aktualisieren, aussetzen oder einstellen. Einige Funktionen können je nach Abonnementtyp oder Benutzerplan eingeschränkt sein.",
+        "para1": "Nexvo ist eine Online-Plattform, die Tools zur Erstellung von Lebensläufen und Resümees bereitstellt, um Benutzern zu helfen, professionelle, hochwertige Lebensläufe effizient zu erstellen. Der Dienst umfasst vorgefertigte Vorlagen, Bearbeitungsfunktionen und herunterladbare Ausgaben in mehreren Formaten. Während wir bestrebt sind, einen konsistenten und zuverlässigen Dienst aufrechtzuerhalten, kann Nexvo bestimmte Funktionen ohne vorherige Ankündigung aktualisieren, aussetzen oder einstellen. Einige Funktionen können je nach Abonnementtyp oder Benutzerplan eingeschränkt sein.",
         "para2": "Wir zielen darauf ab, genaue und aktuelle Tools bereitzustellen; wir geben jedoch keine Garantien hinsichtlich der Vollständigkeit, Genauigkeit oder Eignung von Materialien, die über den Dienst verfügbar sind. Benutzer sind dafür verantwortlich, den von ihnen erstellten Inhalt zu überprüfen und sicherzustellen, dass er ihren persönlichen oder beruflichen Anforderungen entspricht."
       },
       "accounts": {
         "title": "3. Benutzerkonten",
-        "para1": "Um auf bestimmte Funktionen von QuickCV zuzugreifen, müssen Sie möglicherweise ein Konto registrieren. Sie stimmen zu, während der Registrierung genaue, aktuelle und vollständige Informationen bereitzustellen und die Sicherheit Ihrer Anmeldeinformationen zu wahren. Sie sind für alle Aktivitäten verantwortlich, die unter Ihrem Konto stattfinden, einschließlich Interaktionen, Kommunikation und Inhalts-Uploads.",
-        "para2": "Sie stimmen zu, QuickCV unverzüglich über jede unbefugte Nutzung Ihres Kontos oder Sicherheitsverletzungen zu informieren. QuickCV behält sich das Recht vor, jedes Konto nach eigenem Ermessen auszusetzen oder zu kündigen, insbesondere wenn das Konto verwendet wird, um diese Bedingungen zu verletzen, geistiges Eigentum zu verletzen oder sich an illegalen Aktivitäten zu beteiligen."
+        "para1": "Um auf bestimmte Funktionen von Nexvo zuzugreifen, müssen Sie möglicherweise ein Konto registrieren. Sie stimmen zu, während der Registrierung genaue, aktuelle und vollständige Informationen bereitzustellen und die Sicherheit Ihrer Anmeldeinformationen zu wahren. Sie sind für alle Aktivitäten verantwortlich, die unter Ihrem Konto stattfinden, einschließlich Interaktionen, Kommunikation und Inhalts-Uploads.",
+        "para2": "Sie stimmen zu, Nexvo unverzüglich über jede unbefugte Nutzung Ihres Kontos oder Sicherheitsverletzungen zu informieren. Nexvo behält sich das Recht vor, jedes Konto nach eigenem Ermessen auszusetzen oder zu kündigen, insbesondere wenn das Konto verwendet wird, um diese Bedingungen zu verletzen, geistiges Eigentum zu verletzen oder sich an illegalen Aktivitäten zu beteiligen."
       },
       "usage": {
         "title": "4. Zulässige Nutzung",
-        "para1": "Sie stimmen zu, QuickCV verantwortungsbewusst und ethisch zu nutzen. Zu den verbotenen Aktivitäten gehören unter anderem das Übertragen von schädlichem oder bösartigem Code, der Versuch, unbefugten Zugriff auf die Konten anderer Benutzer zu erhalten, die Beteiligung an betrügerischen oder irreführenden Aktivitäten oder die Verletzung von Rechten an geistigem Eigentum. Sie dürfen den Dienst nicht nutzen, um andere zu belästigen, zu bedrohen oder einzuschüchtern. QuickCV behält sich das Recht vor, Verstöße zu untersuchen und geeignete Maßnahmen zu ergreifen, einschließlich rechtlicher Schritte.",
-        "para2": "Benutzer sind allein verantwortlich für den Inhalt, den sie über QuickCV generieren, hochladen oder teilen. Wir unterstützen oder garantieren keinen von Benutzern erstellten Inhalt, und wir sind nicht verantwortlich für Streitigkeiten, die aus benutzergenerierten Inhalten entstehen."
+        "para1": "Sie stimmen zu, Nexvo verantwortungsbewusst und ethisch zu nutzen. Zu den verbotenen Aktivitäten gehören unter anderem das Übertragen von schädlichem oder bösartigem Code, der Versuch, unbefugten Zugriff auf die Konten anderer Benutzer zu erhalten, die Beteiligung an betrügerischen oder irreführenden Aktivitäten oder die Verletzung von Rechten an geistigem Eigentum. Sie dürfen den Dienst nicht nutzen, um andere zu belästigen, zu bedrohen oder einzuschüchtern. Nexvo behält sich das Recht vor, Verstöße zu untersuchen und geeignete Maßnahmen zu ergreifen, einschließlich rechtlicher Schritte.",
+        "para2": "Benutzer sind allein verantwortlich für den Inhalt, den sie über Nexvo generieren, hochladen oder teilen. Wir unterstützen oder garantieren keinen von Benutzern erstellten Inhalt, und wir sind nicht verantwortlich für Streitigkeiten, die aus benutzergenerierten Inhalten entstehen."
       },
       "ip": {
         "title": "5. Geistiges Eigentum",
-        "para1": "Alle Designs, Vorlagen, Software, Logos und proprietären Technologien, die über QuickCV verfügbar gemacht werden, sind Eigentum von QuickCV oder seinen Lizenzgebern und durch weltweite Gesetze zum geistigen Eigentum geschützt. Benutzer behalten das Eigentum an ihren persönlichen Inhalten, die mit dem Dienst erstellt wurden, wie Lebensläufe. Benutzern wird jedoch nur eine begrenzte, nicht exklusive, nicht übertragbare Lizenz gewährt, die Materialien von QuickCV streng für persönliche oder berufliche Zwecke zu nutzen.",
-        "para2": "Jegliches unbefugte Kopieren, Weiterverbreiten oder Modifizieren von QuickCV-Materialien ist strengstens untersagt. Benutzer stimmen zu, keine Urheberrechts- oder Eigentumshinweise aus dem Dienstinhalt zu entfernen oder zu ändern."
+        "para1": "Alle Designs, Vorlagen, Software, Logos und proprietären Technologien, die über Nexvo verfügbar gemacht werden, sind Eigentum von Nexvo oder seinen Lizenzgebern und durch weltweite Gesetze zum geistigen Eigentum geschützt. Benutzer behalten das Eigentum an ihren persönlichen Inhalten, die mit dem Dienst erstellt wurden, wie Lebensläufe. Benutzern wird jedoch nur eine begrenzte, nicht exklusive, nicht übertragbare Lizenz gewährt, die Materialien von Nexvo streng für persönliche oder berufliche Zwecke zu nutzen.",
+        "para2": "Jegliches unbefugte Kopieren, Weiterverbreiten oder Modifizieren von Nexvo-Materialien ist strengstens untersagt. Benutzer stimmen zu, keine Urheberrechts- oder Eigentumshinweise aus dem Dienstinhalt zu entfernen oder zu ändern."
       },
       "privacy": {
         "title": "6. Datenschutz",
-        "para1": "QuickCV verpflichtet sich zum Schutz Ihrer Privatsphäre. Wir sammeln persönliche Informationen, die notwendig sind, um den Dienst bereitzustellen und zu verbessern, einschließlich Registrierungsdetails, Nutzungsdaten und technischer Informationen. Bitte lesen Sie unsere <0>Datenschutzerklärung</0> für detaillierte Informationen darüber, wie Ihre Daten gesammelt, verwendet, gespeichert und geteilt werden.",
-        "para2": "Wir implementieren starke technische, administrative und physische Sicherheitsvorkehrungen, um Ihre persönlichen Daten vor unbefugtem Zugriff, Offenlegung, Änderung oder Zerstörung zu schützen. Sie können den Zugriff auf, die Korrektur oder Löschung Ihrer persönlichen Daten gemäß geltendem Recht beantragen. QuickCV kann auch anonymisierte oder aggregierte Daten für Forschung und Analyse verwenden, um unseren Dienst zu verbessern."
+        "para1": "Nexvo verpflichtet sich zum Schutz Ihrer Privatsphäre. Wir sammeln persönliche Informationen, die notwendig sind, um den Dienst bereitzustellen und zu verbessern, einschließlich Registrierungsdetails, Nutzungsdaten und technischer Informationen. Bitte lesen Sie unsere <0>Datenschutzerklärung</0> für detaillierte Informationen darüber, wie Ihre Daten gesammelt, verwendet, gespeichert und geteilt werden.",
+        "para2": "Wir implementieren starke technische, administrative und physische Sicherheitsvorkehrungen, um Ihre persönlichen Daten vor unbefugtem Zugriff, Offenlegung, Änderung oder Zerstörung zu schützen. Sie können den Zugriff auf, die Korrektur oder Löschung Ihrer persönlichen Daten gemäß geltendem Recht beantragen. Nexvo kann auch anonymisierte oder aggregierte Daten für Forschung und Analyse verwenden, um unseren Dienst zu verbessern."
       },
       "payments": {
         "title": "7. Zahlungen und Abrechnung",
-        "para1": "Bestimmte Funktionen oder Inhalte auf QuickCV können kostenpflichtig sein. Alle Gebühren sind in US-Dollar angegeben, sofern nicht anders angegeben. Die Zahlungsabwicklung erfolgt über sichere Drittanbieter. Benutzer sind dafür verantwortlich, genaue Abrechnungsinformationen und rechtzeitige Zahlungen sicherzustellen. QuickCV behält sich das Recht vor, den Zugriff auf kostenpflichtige Funktionen bei Nichtzahlung auszusetzen.",
-        "para2": "Rückerstattungen, falls vorhanden, werden gemäß unserer Rückerstattungsrichtlinie ausgestellt. Benutzer sollten die Richtlinie vor dem Abonnieren sorgfältig prüfen. QuickCV ist nicht verantwortlich für Gebühren Dritter, einschließlich Bankgebühren oder Zahlungsabwicklungsgebühren."
+        "para1": "Bestimmte Funktionen oder Inhalte auf Nexvo können kostenpflichtig sein. Alle Gebühren sind in US-Dollar angegeben, sofern nicht anders angegeben. Die Zahlungsabwicklung erfolgt über sichere Drittanbieter. Benutzer sind dafür verantwortlich, genaue Abrechnungsinformationen und rechtzeitige Zahlungen sicherzustellen. Nexvo behält sich das Recht vor, den Zugriff auf kostenpflichtige Funktionen bei Nichtzahlung auszusetzen.",
+        "para2": "Rückerstattungen, falls vorhanden, werden gemäß unserer Rückerstattungsrichtlinie ausgestellt. Benutzer sollten die Richtlinie vor dem Abonnieren sorgfältig prüfen. Nexvo ist nicht verantwortlich für Gebühren Dritter, einschließlich Bankgebühren oder Zahlungsabwicklungsgebühren."
       },
       "liability": {
         "title": "8. Haftungsbeschränkung",
-        "para1": "Der Dienst wird „wie besehen“ und ohne Garantien jeglicher Art, ob ausdrücklich oder stillschweigend, bereitgestellt. QuickCV garantiert keinen ununterbrochenen, fehlerfreien oder sicheren Betrieb. Soweit gesetzlich zulässig, haftet QuickCV nicht für indirekte, zufällige, spezielle, Folge- oder Strafschäden, die aus oder im Zusammenhang mit der Nutzung des Dienstes entstehen, selbst wenn auf die Möglichkeit solcher Schäden hingewiesen wurde.",
-        "para2": "Die Gesamthaftung von QuickCV gegenüber einem Benutzer für Ansprüche, die aus dem Dienst entstehen, darf den Betrag nicht überschreiten, den der Benutzer in den zwölf (12) Monaten vor dem Anspruch gezahlt hat. Diese Beschränkung gilt für alle Ansprüche, einschließlich, aber nicht beschränkt auf Fahrlässigkeit, Vertragsbruch oder falsche Darstellung."
+        "para1": "Der Dienst wird „wie besehen“ und ohne Garantien jeglicher Art, ob ausdrücklich oder stillschweigend, bereitgestellt. Nexvo garantiert keinen ununterbrochenen, fehlerfreien oder sicheren Betrieb. Soweit gesetzlich zulässig, haftet Nexvo nicht für indirekte, zufällige, spezielle, Folge- oder Strafschäden, die aus oder im Zusammenhang mit der Nutzung des Dienstes entstehen, selbst wenn auf die Möglichkeit solcher Schäden hingewiesen wurde.",
+        "para2": "Die Gesamthaftung von Nexvo gegenüber einem Benutzer für Ansprüche, die aus dem Dienst entstehen, darf den Betrag nicht überschreiten, den der Benutzer in den zwölf (12) Monaten vor dem Anspruch gezahlt hat. Diese Beschränkung gilt für alle Ansprüche, einschließlich, aber nicht beschränkt auf Fahrlässigkeit, Vertragsbruch oder falsche Darstellung."
       },
       "termination": {
         "title": "9. Beendigung",
-        "para1": "QuickCV behält sich das Recht vor, Benutzerkonten nach eigenem Ermessen auszusetzen, einzuschränken oder zu kündigen, einschließlich bei Verstößen gegen diese Bedingungen oder geltende Gesetze. Mit der Beendigung erlöschen alle Rechte zum Zugriff oder zur Nutzung des Dienstes sofort. Benutzer können jederzeit die Kontoschließung beantragen. Bestimmungen, die die Beendigung überdauern sollten, wie geistige Eigentumsrechte, Haftungsausschlüsse und Haftungsbeschränkungen, bleiben in Kraft."
+        "para1": "Nexvo behält sich das Recht vor, Benutzerkonten nach eigenem Ermessen auszusetzen, einzuschränken oder zu kündigen, einschließlich bei Verstößen gegen diese Bedingungen oder geltende Gesetze. Mit der Beendigung erlöschen alle Rechte zum Zugriff oder zur Nutzung des Dienstes sofort. Benutzer können jederzeit die Kontoschließung beantragen. Bestimmungen, die die Beendigung überdauern sollten, wie geistige Eigentumsrechte, Haftungsausschlüsse und Haftungsbeschränkungen, bleiben in Kraft."
       },
       "modifications": {
         "title": "10. Änderungen der Bedingungen",
-        "para1": "QuickCV kann diese Bedingungen regelmäßig aktualisieren, um Änderungen in Gesetzen, Geschäftspraktiken oder der Dienstfunktionalität widerzuspiegeln. Aktualisierte Bedingungen treten sofort nach Veröffentlichung auf dieser Seite in Kraft. Benutzer werden ermutigt, diese Seite regelmäßig zu überprüfen. Die fortgesetzte Nutzung des Dienstes stellt die Annahme der aktualisierten Bedingungen dar."
+        "para1": "Nexvo kann diese Bedingungen regelmäßig aktualisieren, um Änderungen in Gesetzen, Geschäftspraktiken oder der Dienstfunktionalität widerzuspiegeln. Aktualisierte Bedingungen treten sofort nach Veröffentlichung auf dieser Seite in Kraft. Benutzer werden ermutigt, diese Seite regelmäßig zu überprüfen. Die fortgesetzte Nutzung des Dienstes stellt die Annahme der aktualisierten Bedingungen dar."
       },
       "law": {
         "title": "11. Geltendes Recht",
@@ -1179,7 +1179,7 @@
     },
     "steps": {
       "welcome": {
-        "title": "🎉 Willkommen im QuickCV Builder!",
+        "title": "🎉 Willkommen im Nexvo Builder!",
         "content": "Lass uns eine kurze Tour machen, damit du deinen perfekten Lebenslauf in Minuten erstellen kannst. Diese Führung zeigt dir alle wichtigen Funktionen."
       },
       "navigation": {

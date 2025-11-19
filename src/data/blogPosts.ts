@@ -9,7 +9,7 @@ export const authors: Author[] = [
   {
     id: "mbafor-joshua",
     name: "Mbafor Joshua",
-    email: "mbafor.joshua@quickcv.com",
+    email: "mbafor.joshua@Nexvo.com",
     avatar: "/images/authors/mbafor-joshua.jpg",
     // UPDATED: Namespace changed to 'resources.'
     bio: "resources.authors.mbafor_joshua.bio",
@@ -24,7 +24,7 @@ export const authors: Author[] = [
   {
     id: "sarah-chen",
     name: "Sarah Chen",
-    email: "sarah.chen@quickcv.com",
+    email: "sarah.chen@Nexvo.com",
     avatar: "/images/authors/sarah-chen.jpg",
     // UPDATED: Namespace changed to 'resources.'
     bio: "resources.authors.sarah_chen.bio",

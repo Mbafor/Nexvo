@@ -137,7 +137,7 @@ const BlogPost: React.FC = () => {
   
   return (
     <BlogLayout 
-      title={`${post.title} - QuickCV Blog`}
+      title={`${post.title} - Nexvo Blog`}
       description={post.subtitle || ''}
     >
       {/* Reading Progress Bar */}

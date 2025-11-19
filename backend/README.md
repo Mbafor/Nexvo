@@ -1,6 +1,6 @@
 # Backend API
 
-This folder contains the backend API endpoints for the QuickCV application.
+This folder contains the backend API endpoints for the Nexvo application.
 
 ## Structure
 

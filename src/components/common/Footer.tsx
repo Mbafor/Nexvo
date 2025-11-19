@@ -4,7 +4,7 @@ import {
   Linkedin,
   Twitter,
 } from "lucide-react";
-import { useTranslation } from 'react-i18next'; // Import added
+import { useTranslation } from 'react-i18next';
 import LanguageSelector from "../LanguageSelector";
 
 interface FooterProps {
@@ -28,11 +28,17 @@ export default function Footer({ onGetStarted }: FooterProps) {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Main Footer Content */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-6">
-          {/* Company Info */}
-          <div className="sm:col-span-2 lg:col-span-1 space-y-4 text-center sm:text-left">
-            <h3 className="text-xl lg:text-2xl font-medium text-blue-700">
-              QuickCV
-            </h3>
+          
+          {/* Company Info - Logo and Tagline (ENLARGED & FIXED LAYOUT) */}
+          <div className="sm:col-span-2 lg:col-span-1 flex flex-col gap-y-3 text-center sm:text-left">
+            <Link to="/" className="inline-block z-50 relative mx-auto sm:mx-0">
+              {/* Logo Height: h-16 (mobile), sm:h-18 (tablet), lg:h-20 (desktop - 80px) */}
+              <img
+                src="/Images/main_logo.png"
+                alt="Nexvo Logo"
+                className="h-14 sm:h-18 lg:h-16 w-auto" 
+              />
+            </Link>
             <p className="text-gray-600 leading-relaxed text-sm lg:text-base max-w-sm mx-auto sm:mx-0">
               {t('footer.tagline')}
             </p>
@@ -130,47 +136,45 @@ export default function Footer({ onGetStarted }: FooterProps) {
           </div>
         </div>
 
-        {/* Social Links */}
-       {/* Social Links + Language Selector Row */}
-<div className="mt-10 flex flex-col sm:flex-row sm:items-center sm:justify-between">
+        {/* Social Links + Language Selector Row */}
+        <div className="mt-10 flex flex-col sm:flex-row sm:items-center sm:justify-between">
+          {/* Social Links (left on desktop, center on mobile) */}
+          <div className="text-center sm:text-left">
+            <h4 className="font-semibold text-gray-800 text-sm lg:text-base block py-1">
+              {t('footer.followUs')}
+            </h4>
 
-  {/* Social Links (left on desktop, center on mobile) */}
-  <div className="text-center sm:text-left">
-    <h4 className="font-semibold text-gray-800 text-sm lg:text-base block py-1">
-      {t('footer.followUs')}
-    </h4>
+            <div className="flex justify-center sm:justify-start space-x-5 mt-2">
+              <a
+                href="https://linkedin.com/company/Nexvo"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center justify-center transition-colors"
+              >
+                <Linkedin className="h-5 w-5 text-gray-700 hover:text-blue-600" />
+              </a>
+              <a
+                href="https://twitter.com/Nexvo"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center justify-center transition-colors"
+              >
+                <Twitter className="h-5 w-5 text-gray-700 hover:text-blue-600" />
+              </a>
+              <a
+                href="mailto:mbaforfoghang@gmail.com"
+                className="flex items-center justify-center transition-colors"
+              >
+                <Mail className="h-5 w-5 text-gray-700 hover:text-blue-600" />
+              </a>
+            </div>
+          </div>
 
-    <div className="flex justify-center sm:justify-start space-x-5 mt-2">
-      <a
-        href="https://linkedin.com/company/quickcv"
-        target="_blank"
-        rel="noopener noreferrer"
-        className="flex items-center justify-center transition-colors"
-      >
-        <Linkedin className="h-5 w-5 text-gray-700 hover:text-blue-600" />
-      </a>
-      <a
-        href="https://twitter.com/quickcv"
-        target="_blank"
-        rel="noopener noreferrer"
-        className="flex items-center justify-center transition-colors"
-      >
-        <Twitter className="h-5 w-5 text-gray-700 hover:text-blue-600" />
-      </a>
-      <a
-        href="mailto:mbaforfoghang@gmail.com"
-        className="flex items-center justify-center transition-colors"
-      >
-        <Mail className="h-5 w-5 text-gray-700 hover:text-blue-600" />
-      </a>
-    </div>
-  </div>
-
-  {/* Language Selector (right on desktop, center on mobile) */}
-  <div className="mt-6 sm:mt-0 flex justify-center sm:justify-end">
-    <LanguageSelector className="scale-90 sm:scale-100" />
-  </div>
-</div>
+          {/* Language Selector (right on desktop, center on mobile) */}
+          <div className="mt-6 sm:mt-0 flex justify-center sm:justify-end">
+            <LanguageSelector className="scale-90 sm:scale-100" />
+          </div>
+        </div>
 
 
         {/* Bottom Bar */}
@@ -179,7 +183,7 @@ export default function Footer({ onGetStarted }: FooterProps) {
             <p className="text-gray-500 text-sm text-center sm:text-left">
               {t('footer.copyright', { year: new Date().getFullYear() })}
             </p>
-      
+
           </div>
         </div>
       </div>

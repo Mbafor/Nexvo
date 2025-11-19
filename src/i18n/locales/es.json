@@ -85,11 +85,11 @@
     },
     "testimonials": {
       "title": "Lo que dice la gente",
-      "subtitle": "Experiencias reales de profesionales que consiguieron el trabajo de sus sueños usando QuickCV.",
+      "subtitle": "Experiencias reales de profesionales que consiguieron el trabajo de sus sueños usando Nexvo.",
       "list": [
         {
           "role": "Ingeniero de Software en Google",
-          "review": "Conseguí el trabajo de mis sueños en Google a las 2 semanas de usar QuickCV. ¡La optimización ATS realmente funciona!"
+          "review": "Conseguí el trabajo de mis sueños en Google a las 2 semanas de usar Nexvo. ¡La optimización ATS realmente funciona!"
         },
         {
           "role": "Director de Marketing en Meta",
@@ -111,7 +111,7 @@
       "subtitle": "Todo lo que necesitas saber sobre cómo crear tu CV perfecto",
       "list": [
         {
-          "question": "¿Cómo asegura QuickCV la compatibilidad con ATS?",
+          "question": "¿Cómo asegura Nexvo la compatibilidad con ATS?",
           "answer": "Nuestras plantillas son probadas con más de 50 sistemas ATS principales, incluidos Workday, Greenhouse y BambooHR. Usamos un formato limpio, fuentes estándar y estructuras probadas que pasan los escaneos ATS con más del 95% de precisión."
         },
         {
@@ -119,7 +119,7 @@
           "answer": "¡Absolutamente! Cada plantilla viene con variaciones específicas de la industria y opciones de personalización. Puedes ajustar colores, fuentes y diseños manteniendo la compatibilidad con ATS."
         },
         {
-          "question": "¿Qué hace diferente a QuickCV de otros creadores de CV?",
+          "question": "¿Qué hace diferente a Nexvo de otros creadores de CV?",
           "answer": "Nos enfocamos en tres áreas clave: optimización ATS, diseño profesional y velocidad. Nuestras plantillas son creadas por profesionales de RR.HH. y tienen un historial comprobado de conseguir entrevistas en las mejores empresas."
         },
         {
@@ -138,7 +138,7 @@
     },
     "finalCta": {
       "title": "¿Listo para conseguir el trabajo de tus sueños?",
-      "subtitle": "Únete a más de 50,000 profesionales que han creado exitosamente su CV perfecto con QuickCV",
+      "subtitle": "Únete a más de 50,000 profesionales que han creado exitosamente su CV perfecto con Nexvo",
       "startNow": "Empezar a construir ahora",
       "browseTemplates": "Explorar plantillas"
     },
@@ -410,7 +410,7 @@
   "footer": {
     "tagline": "Crea CVs profesionales optimizados para ATS que consiguen entrevistas en las mejores empresas.",
     "followUs": "Síguenos",
-    "copyright": "© {{year}} QuickCV. Todos los derechos reservados.",
+    "copyright": "© {{year}} Nexvo. Todos los derechos reservados.",
     "columns": {
       "product": {
         "title": "Producto",
@@ -452,7 +452,7 @@
   "about": {
     "mission": {
       "title": "Nuestra Misión",
-      "description": "QuickCV fue fundado para empoderar a profesionales en todo el mundo proporcionando plantillas de CV modernas y optimizadas para ATS y herramientas que ayudan a los candidatos a mostrar sus habilidades y conseguir entrevistas en las mejores empresas. Nuestro objetivo es democratizar el acceso a herramientas de éxito profesional para todos, independientemente de su ubicación o nivel de experiencia."
+      "description": "Nexvo fue fundado para empoderar a profesionales en todo el mundo proporcionando plantillas de CV modernas y optimizadas para ATS y herramientas que ayudan a los candidatos a mostrar sus habilidades y conseguir entrevistas en las mejores empresas. Nuestro objetivo es democratizar el acceso a herramientas de éxito profesional para todos, independientemente de su ubicación o nivel de experiencia."
     },
     "stats": {
       "cvs": {
@@ -474,7 +474,7 @@
     },
     "whatWeDo": {
       "title": "Lo Que Hacemos",
-      "description": "QuickCV combina un diseño hermoso con optimización ATS para asegurar que tu CV pase el software de reclutamiento moderno y capte la atención de los gerentes de contratación. Ofrecemos un constructor fácil de usar que permite a los profesionales elaborar CVs de alto impacto en minutos.",
+      "description": "Nexvo combina un diseño hermoso con optimización ATS para asegurar que tu CV pase el software de reclutamiento moderno y capte la atención de los gerentes de contratación. Ofrecemos un constructor fácil de usar que permite a los profesionales elaborar CVs de alto impacto en minutos.",
       "points": [
         "Plantillas de CV diseñadas profesionalmente",
         "Diseños amigables con ATS para pasar la evaluación automatizada",
@@ -506,7 +506,7 @@
     },
     "impact": {
       "title": "Nuestro Impacto",
-      "description": "Desde su lanzamiento, QuickCV ha ayudado a miles de profesionales en todo el mundo a elaborar CVs convincentes que aumentan sus tasas de entrevista y aceleran el crecimiento de su carrera.",
+      "description": "Desde su lanzamiento, Nexvo ha ayudado a miles de profesionales en todo el mundo a elaborar CVs convincentes que aumentan sus tasas de entrevista y aceleran el crecimiento de su carrera.",
       "points": [
         "Tasas de respuesta a entrevistas más altas",
         "Éxito más rápido en la búsqueda de empleo",
@@ -519,11 +519,11 @@
       "members": {
         "joshua": {
           "role": "Cofundador y CEO",
-          "bio": "Joshua lidera QuickCV con la visión de empoderar a profesionales en todo el mundo."
+          "bio": "Joshua lidera Nexvo con la visión de empoderar a profesionales en todo el mundo."
         },
         "alain": {
           "role": "COO",
-          "bio": "Yohnjie supervisa la tecnología y el desarrollo de productos, asegurando que QuickCV siga siendo moderno y fácil de usar."
+          "bio": "Yohnjie supervisa la tecnología y el desarrollo de productos, asegurando que Nexvo siga siendo moderno y fácil de usar."
         }
       }
     }
@@ -533,7 +533,7 @@
       "title_start": "Ponte en",
       "title_highlight": "Contacto",
       "title_end": "con Nosotros",
-      "subtitle": "¿Tienes preguntas sobre QuickCV? ¿Necesitas ayuda con tu CV? ¿Quieres asociarte con nosotros? Estamos aquí para ayudar y nos encantaría saber de ti."
+      "subtitle": "¿Tienes preguntas sobre Nexvo? ¿Necesitas ayuda con tu CV? ¿Quieres asociarte con nosotros? Estamos aquí para ayudar y nos encantaría saber de ti."
     },
     "info": {
       "sectionTitle": "Información de Contacto",
@@ -610,7 +610,7 @@
   "faq": {
     "hero": {
       "title": "Preguntas Frecuentes",
-      "subtitle": "Encuentra respuestas a preguntas comunes sobre QuickCV, nuestras características y cómo crear el CV perfecto."
+      "subtitle": "Encuentra respuestas a preguntas comunes sobre Nexvo, nuestras características y cómo crear el CV perfecto."
     },
     "search": {
       "placeholder": "Buscar preguntas frecuentes..."
@@ -645,20 +645,20 @@
     },
     "questions": {
       "q1": {
-        "question": "¿Qué es QuickCV y cómo funciona?",
-        "answer": "QuickCV es un constructor de CV en línea que te ayuda a crear currículums profesionales optimizados para ATS en minutos. Simplemente elige una plantilla, completa tu información usando nuestros formularios guiados y descarga tu CV en formato PDF o DOCX. Nuestra plataforma utiliza principios de diseño moderno y mejores prácticas de contratación para asegurar que tu CV se destaque."
+        "question": "¿Qué es Nexvo y cómo funciona?",
+        "answer": "Nexvo es un constructor de CV en línea que te ayuda a crear currículums profesionales optimizados para ATS en minutos. Simplemente elige una plantilla, completa tu información usando nuestros formularios guiados y descarga tu CV en formato PDF o DOCX. Nuestra plataforma utiliza principios de diseño moderno y mejores prácticas de contratación para asegurar que tu CV se destaque."
       },
       "q2": {
         "question": "¿Qué tan rápido puedo crear un CV profesional?",
         "answer": "La mayoría de los usuarios completan su CV en 8-12 minutos. Nuestros formularios inteligentes sugieren contenido automáticamente y nuestro asistente de IA ayuda a optimizar tus descripciones para lograr el máximo impacto. El tiempo exacto depende de cuánta información tengas preparada y qué plantilla elijas."
       },
       "q3": {
-        "question": "¿Necesito crear una cuenta para usar QuickCV?",
+        "question": "¿Necesito crear una cuenta para usar Nexvo?",
         "answer": "¡No se requiere registro para empezar a construir tu CV! Puedes crear y descargar tu primer CV sin crear una cuenta. Sin embargo, crear una cuenta gratuita te permite guardar tu progreso, acceder a tu CV más tarde y hacer actualizaciones cuando sea necesario."
       },
       "q4": {
-        "question": "¿Es QuickCV realmente gratuito?",
-        "answer": "¡Sí! QuickCV ofrece un nivel gratuito que incluye acceso a plantillas profesionales, opciones básicas de personalización y descargas en PDF. Las características premium como plantillas avanzadas, exportaciones DOCX y soporte prioritario están disponibles con nuestros planes pagos."
+        "question": "¿Es Nexvo realmente gratuito?",
+        "answer": "¡Sí! Nexvo ofrece un nivel gratuito que incluye acceso a plantillas profesionales, opciones básicas de personalización y descargas en PDF. Las características premium como plantillas avanzadas, exportaciones DOCX y soporte prioritario están disponibles con nuestros planes pagos."
       },
       "q5": {
         "question": "¿Cuántas plantillas de CV están disponibles?",
@@ -681,8 +681,8 @@
         "answer": "¡Sí! Si creas una cuenta, tu CV se guarda automáticamente y puedes volver a editarlo en cualquier momento. Puedes actualizar información, cambiar plantillas, ajustar el formato y descargar versiones actualizadas cuando sea necesario."
       },
       "q10": {
-        "question": "¿Funciona QuickCV en dispositivos móviles?",
-        "answer": "¡Sí! QuickCV es totalmente responsivo y funciona perfectamente en teléfonos inteligentes, tabletas y computadoras de escritorio. Puedes crear, editar y descargar tu CV desde cualquier dispositivo con conexión a internet."
+        "question": "¿Funciona Nexvo en dispositivos móviles?",
+        "answer": "¡Sí! Nexvo es totalmente responsivo y funciona perfectamente en teléfonos inteligentes, tabletas y computadoras de escritorio. Puedes crear, editar y descargar tu CV desde cualquier dispositivo con conexión a internet."
       },
       "q11": {
         "question": "¿Qué tan segura está mi información personal?",
@@ -714,7 +714,7 @@
       },
       "q18": {
         "question": "¿Proporcionan asesoramiento profesional o servicios de revisión de CV?",
-        "answer": "Aunque QuickCV se enfoca en los aspectos técnicos de la creación de CV, nos asociamos con expertos en carreras para brindar orientación. Nuestro blog presenta consejos de carrera, y los usuarios premium tienen acceso a listas de verificación de revisión de CV y asesoramiento específico de la industria."
+        "answer": "Aunque Nexvo se enfoca en los aspectos técnicos de la creación de CV, nos asociamos con expertos en carreras para brindar orientación. Nuestro blog presenta consejos de carrera, y los usuarios premium tienen acceso a listas de verificación de revisión de CV y asesoramiento específico de la industria."
       },
       "q19": {
         "question": "¿Qué pasa si encuentro un problema técnico?",
@@ -734,7 +734,7 @@
     "sections": {
       "overview": {
         "title": "1. Visión General",
-        "content": "QuickCV se compromete a respetar tu privacidad y proteger tus datos personales. Esta Política de Privacidad describe los tipos de información que recopilamos, cómo la usamos y protegemos, y tus derechos con respecto a tus datos. Al usar nuestros servicios, aceptas los términos de esta Política de Privacidad. Se aplica a todos los usuarios, incluidos visitantes, usuarios registrados y clientes que acceden a QuickCV desde cualquier parte del mundo."
+        "content": "Nexvo se compromete a respetar tu privacidad y proteger tus datos personales. Esta Política de Privacidad describe los tipos de información que recopilamos, cómo la usamos y protegemos, y tus derechos con respecto a tus datos. Al usar nuestros servicios, aceptas los términos de esta Política de Privacidad. Se aplica a todos los usuarios, incluidos visitantes, usuarios registrados y clientes que acceden a Nexvo desde cualquier parte del mundo."
       },
       "collection": {
         "title": "2. Información que Recopilamos",
@@ -752,7 +752,7 @@
         "title": "3. Cómo Usamos Tu Información",
         "content": "La información recopilada se utiliza responsablemente para:",
         "list": [
-          "Proporcionar, operar y mantener el servicio de QuickCV.",
+          "Proporcionar, operar y mantener el servicio de Nexvo.",
           "Crear y formatear tu CV con precisión.",
           "Mejorar y personalizar la experiencia del usuario.",
           "Comunicar actualizaciones importantes del servicio o avisos de la cuenta.",
@@ -788,7 +788,7 @@
       },
       "thirdParty": {
         "title": "9. Servicios de Terceros",
-        "content": "QuickCV puede integrar servicios de terceros como Google Analytics o inicios de sesión sociales. Recomendamos revisar sus políticas de privacidad para saber cómo manejan tus datos."
+        "content": "Nexvo puede integrar servicios de terceros como Google Analytics o inicios de sesión sociales. Recomendamos revisar sus políticas de privacidad para saber cómo manejan tus datos."
       },
       "international": {
         "title": "10. Transferencias Internacionales de Datos",
@@ -796,7 +796,7 @@
       },
       "children": {
         "title": "11. Privacidad de los Niños",
-        "content": "QuickCV no está destinado a niños menores de 13 años. No recopilamos datos de menores a sabiendas. Si crees que un niño ha enviado información personal, contáctanos inmediatamente."
+        "content": "Nexvo no está destinado a niños menores de 13 años. No recopilamos datos de menores a sabiendas. Si crees que un niño ha enviado información personal, contáctanos inmediatamente."
       },
       "changes": {
         "title": "12. Cambios a Esta Política",
@@ -816,51 +816,51 @@
     "sections": {
       "acceptance": {
         "title": "1. Aceptación de Términos",
-        "para1": "Al acceder o usar QuickCV, afirmas que tienes al menos 18 años, o tienes el consentimiento de un padre o tutor, y tienes plena autoridad para aceptar estos Términos. Aceptas cumplir con todas las leyes, reglas y regulaciones aplicables en relación con tu uso del Servicio. QuickCV se reserva el derecho de modificar o actualizar estos Términos en cualquier momento, y tu uso continuo del Servicio constituye la aceptación de esos cambios.",
+        "para1": "Al acceder o usar Nexvo, afirmas que tienes al menos 18 años, o tienes el consentimiento de un padre o tutor, y tienes plena autoridad para aceptar estos Términos. Aceptas cumplir con todas las leyes, reglas y regulaciones aplicables en relación con tu uso del Servicio. Nexvo se reserva el derecho de modificar o actualizar estos Términos en cualquier momento, y tu uso continuo del Servicio constituye la aceptación de esos cambios.",
         "para2": "Estos Términos se aplican a todos los usuarios, incluidos individuos, empresas y otras entidades legales. Cubren cada aspecto del Servicio, incluyendo, pero no limitado a, creación de cuenta, envío de contenido, pago, comunicaciones y participación en cualquier evento o programa asociado. El incumplimiento de estos Términos puede resultar en la suspensión o terminación de tu cuenta y remedios legales donde sea apropiado."
       },
       "overview": {
         "title": "2. Visión General del Servicio",
-        "para1": "QuickCV es una plataforma en línea que proporciona herramientas de creación de CV y currículums diseñadas para ayudar a los usuarios a crear CVs profesionales y de alta calidad de manera eficiente. El Servicio incluye plantillas prediseñadas, funciones de edición y salida descargable en múltiples formatos. Si bien nos esforzamos por mantener un Servicio consistente y confiable, QuickCV puede actualizar, suspender o descontinuar ciertas características sin previo aviso. Alguna funcionalidad puede estar limitada según tu tipo de suscripción o plan de usuario.",
+        "para1": "Nexvo es una plataforma en línea que proporciona herramientas de creación de CV y currículums diseñadas para ayudar a los usuarios a crear CVs profesionales y de alta calidad de manera eficiente. El Servicio incluye plantillas prediseñadas, funciones de edición y salida descargable en múltiples formatos. Si bien nos esforzamos por mantener un Servicio consistente y confiable, Nexvo puede actualizar, suspender o descontinuar ciertas características sin previo aviso. Alguna funcionalidad puede estar limitada según tu tipo de suscripción o plan de usuario.",
         "para2": "Nuestro objetivo es proporcionar herramientas precisas y actualizadas; sin embargo, no ofrecemos garantías con respecto a la integridad, precisión o idoneidad de cualquier material disponible a través del Servicio. Los usuarios son responsables de verificar el contenido que producen y asegurarse de que cumpla con sus requisitos personales o profesionales."
       },
       "accounts": {
         "title": "3. Cuentas de Usuario",
-        "para1": "Para acceder a ciertas características de QuickCV, es posible que debas registrarte para obtener una cuenta. Aceptas proporcionar información precisa, actual y completa durante el registro y mantener la seguridad de tus credenciales de inicio de sesión. Eres responsable de toda la actividad que ocurra bajo tu cuenta, incluidas las interacciones, comunicaciones y cargas de contenido.",
-        "para2": "Aceptas notificar inmediatamente a QuickCV de cualquier uso no autorizado de tu cuenta o cualquier brecha de seguridad. QuickCV se reserva el derecho de suspender o terminar cualquier cuenta a nuestra discreción, particularmente si la cuenta se utiliza para violar estos Términos, infringir la propiedad intelectual o participar en actividades ilegales."
+        "para1": "Para acceder a ciertas características de Nexvo, es posible que debas registrarte para obtener una cuenta. Aceptas proporcionar información precisa, actual y completa durante el registro y mantener la seguridad de tus credenciales de inicio de sesión. Eres responsable de toda la actividad que ocurra bajo tu cuenta, incluidas las interacciones, comunicaciones y cargas de contenido.",
+        "para2": "Aceptas notificar inmediatamente a Nexvo de cualquier uso no autorizado de tu cuenta o cualquier brecha de seguridad. Nexvo se reserva el derecho de suspender o terminar cualquier cuenta a nuestra discreción, particularmente si la cuenta se utiliza para violar estos Términos, infringir la propiedad intelectual o participar en actividades ilegales."
       },
       "usage": {
         "title": "4. Uso Aceptable",
-        "para1": "Aceptas usar QuickCV de manera responsable y ética. Las actividades prohibidas incluyen, entre otras, transmitir código dañino o malicioso, intentar obtener acceso no autorizado a las cuentas de otros usuarios, participar en actividades fraudulentas o engañosas, o violar derechos de propiedad intelectual. No puedes usar el Servicio para acosar, amenazar o intimidar a otros. QuickCV se reserva el derecho de investigar cualquier violación y tomar las medidas apropiadas, incluida la acción legal.",
-        "para2": "Los usuarios son los únicos responsables del contenido que generan, suben o comparten a través de QuickCV. No respaldamos ni garantizamos ningún contenido creado por los usuarios, y no somos responsables de disputas que surjan del contenido generado por el usuario."
+        "para1": "Aceptas usar Nexvo de manera responsable y ética. Las actividades prohibidas incluyen, entre otras, transmitir código dañino o malicioso, intentar obtener acceso no autorizado a las cuentas de otros usuarios, participar en actividades fraudulentas o engañosas, o violar derechos de propiedad intelectual. No puedes usar el Servicio para acosar, amenazar o intimidar a otros. Nexvo se reserva el derecho de investigar cualquier violación y tomar las medidas apropiadas, incluida la acción legal.",
+        "para2": "Los usuarios son los únicos responsables del contenido que generan, suben o comparten a través de Nexvo. No respaldamos ni garantizamos ningún contenido creado por los usuarios, y no somos responsables de disputas que surjan del contenido generado por el usuario."
       },
       "ip": {
         "title": "5. Propiedad Intelectual",
-        "para1": "Todos los diseños, plantillas, software, logotipos y tecnología patentada disponibles a través de QuickCV son propiedad de QuickCV o sus licenciantes y están protegidos bajo las leyes de propiedad intelectual en todo el mundo. Los usuarios conservan la propiedad de su contenido personal creado utilizando el Servicio, como CVs y currículums. Sin embargo, a los usuarios se les otorga solo una licencia limitada, no exclusiva e intransferible para usar los materiales de QuickCV estrictamente para fines personales o profesionales.",
-        "para2": "Cualquier copia, redistribución o modificación no autorizada de los materiales de QuickCV está estrictamente prohibida. Los usuarios aceptan no eliminar ni alterar ningún aviso de derechos de autor o de propiedad del contenido del Servicio."
+        "para1": "Todos los diseños, plantillas, software, logotipos y tecnología patentada disponibles a través de Nexvo son propiedad de Nexvo o sus licenciantes y están protegidos bajo las leyes de propiedad intelectual en todo el mundo. Los usuarios conservan la propiedad de su contenido personal creado utilizando el Servicio, como CVs y currículums. Sin embargo, a los usuarios se les otorga solo una licencia limitada, no exclusiva e intransferible para usar los materiales de Nexvo estrictamente para fines personales o profesionales.",
+        "para2": "Cualquier copia, redistribución o modificación no autorizada de los materiales de Nexvo está estrictamente prohibida. Los usuarios aceptan no eliminar ni alterar ningún aviso de derechos de autor o de propiedad del contenido del Servicio."
       },
       "privacy": {
         "title": "6. Privacidad y Protección de Datos",
-        "para1": "QuickCV se compromete a proteger tu privacidad. Recopilamos información personal necesaria para proporcionar y mejorar el Servicio, incluidos detalles de registro, datos de uso e información técnica. Por favor revisa nuestra <0>Política de Privacidad</0> para obtener información detallada sobre cómo se recopilan, usan, almacenan y comparten tus datos.",
-        "para2": "Implementamos fuertes salvaguardas técnicas, administrativas y físicas para proteger tus datos personales contra acceso no autorizado, divulgación, alteración o destrucción. Puedes solicitar acceso a, corrección de, o eliminación de tus datos personales de acuerdo con la ley aplicable. QuickCV también puede utilizar datos anonimizados o agregados para investigación y análisis con el fin de mejorar nuestro Servicio."
+        "para1": "Nexvo se compromete a proteger tu privacidad. Recopilamos información personal necesaria para proporcionar y mejorar el Servicio, incluidos detalles de registro, datos de uso e información técnica. Por favor revisa nuestra <0>Política de Privacidad</0> para obtener información detallada sobre cómo se recopilan, usan, almacenan y comparten tus datos.",
+        "para2": "Implementamos fuertes salvaguardas técnicas, administrativas y físicas para proteger tus datos personales contra acceso no autorizado, divulgación, alteración o destrucción. Puedes solicitar acceso a, corrección de, o eliminación de tus datos personales de acuerdo con la ley aplicable. Nexvo también puede utilizar datos anonimizados o agregados para investigación y análisis con el fin de mejorar nuestro Servicio."
       },
       "payments": {
         "title": "7. Pagos y Facturación",
-        "para1": "Ciertas características o contenido en QuickCV pueden requerir pago. Todas las tarifas están denominadas en dólares estadounidenses a menos que se indique lo contrario. El procesamiento de pagos se maneja a través de proveedores externos seguros. Los usuarios son responsables de asegurar información de facturación precisa y pagos puntuales. QuickCV se reserva el derecho de suspender el acceso a funciones pagas por falta de pago.",
-        "para2": "Los reembolsos, si los hay, se emiten de acuerdo con nuestra política de reembolso. Los usuarios deben revisar la política cuidadosamente antes de suscribirse. QuickCV no es responsable de cargos de terceros, incluidas tarifas bancarias o tarifas de procesamiento de pagos."
+        "para1": "Ciertas características o contenido en Nexvo pueden requerir pago. Todas las tarifas están denominadas en dólares estadounidenses a menos que se indique lo contrario. El procesamiento de pagos se maneja a través de proveedores externos seguros. Los usuarios son responsables de asegurar información de facturación precisa y pagos puntuales. Nexvo se reserva el derecho de suspender el acceso a funciones pagas por falta de pago.",
+        "para2": "Los reembolsos, si los hay, se emiten de acuerdo con nuestra política de reembolso. Los usuarios deben revisar la política cuidadosamente antes de suscribirse. Nexvo no es responsable de cargos de terceros, incluidas tarifas bancarias o tarifas de procesamiento de pagos."
       },
       "liability": {
         "title": "8. Limitación de Responsabilidad",
-        "para1": "El Servicio se proporciona \"tal cual\" y sin garantías de ningún tipo, ya sean expresas o implícitas. QuickCV no garantiza un funcionamiento ininterrumpido, libre de errores o seguro. En la medida máxima permitida por la ley, QuickCV no es responsable de daños indirectos, incidentales, especiales, consecuentes o punitivos que surjan de o estén relacionados con el uso del Servicio, incluso si se ha advertido de la posibilidad de tales daños.",
-        "para2": "La responsabilidad total de QuickCV hacia un usuario por cualquier reclamo que surja del Servicio no excederá la cantidad pagada por el usuario en los doce (12) meses anteriores al reclamo. Esta limitación se aplica a todos los reclamos, incluidos, entre otros, negligencia, incumplimiento de contrato o tergiversación."
+        "para1": "El Servicio se proporciona \"tal cual\" y sin garantías de ningún tipo, ya sean expresas o implícitas. Nexvo no garantiza un funcionamiento ininterrumpido, libre de errores o seguro. En la medida máxima permitida por la ley, Nexvo no es responsable de daños indirectos, incidentales, especiales, consecuentes o punitivos que surjan de o estén relacionados con el uso del Servicio, incluso si se ha advertido de la posibilidad de tales daños.",
+        "para2": "La responsabilidad total de Nexvo hacia un usuario por cualquier reclamo que surja del Servicio no excederá la cantidad pagada por el usuario en los doce (12) meses anteriores al reclamo. Esta limitación se aplica a todos los reclamos, incluidos, entre otros, negligencia, incumplimiento de contrato o tergiversación."
       },
       "termination": {
         "title": "9. Terminación",
-        "para1": "QuickCV se reserva el derecho de suspender, restringir o terminar cuentas de usuario a nuestra discreción, incluso por violaciones de estos Términos o leyes aplicables. Al momento de la terminación, todos los derechos de acceso o uso del Servicio cesan inmediatamente. Los usuarios pueden solicitar el cierre de la cuenta en cualquier momento. Las disposiciones que deberían sobrevivir a la terminación, como los derechos de propiedad intelectual, descargos de responsabilidad y limitaciones de responsabilidad, permanecen en vigor."
+        "para1": "Nexvo se reserva el derecho de suspender, restringir o terminar cuentas de usuario a nuestra discreción, incluso por violaciones de estos Términos o leyes aplicables. Al momento de la terminación, todos los derechos de acceso o uso del Servicio cesan inmediatamente. Los usuarios pueden solicitar el cierre de la cuenta en cualquier momento. Las disposiciones que deberían sobrevivir a la terminación, como los derechos de propiedad intelectual, descargos de responsabilidad y limitaciones de responsabilidad, permanecen en vigor."
       },
       "modifications": {
         "title": "10. Modificaciones a los Términos",
-        "para1": "QuickCV puede actualizar estos Términos periódicamente para reflejar cambios en la ley, prácticas comerciales o funcionalidad del Servicio. Los Términos actualizados entran en vigor inmediatamente después de su publicación en esta página. Se anima a los usuarios a revisar esta página regularmente. El uso continuo del Servicio constituye la aceptación de los Términos actualizados."
+        "para1": "Nexvo puede actualizar estos Términos periódicamente para reflejar cambios en la ley, prácticas comerciales o funcionalidad del Servicio. Los Términos actualizados entran en vigor inmediatamente después de su publicación en esta página. Se anima a los usuarios a revisar esta página regularmente. El uso continuo del Servicio constituye la aceptación de los Términos actualizados."
       },
       "law": {
         "title": "11. Ley Aplicable",
@@ -1182,7 +1182,7 @@
     },
     "steps": {
       "welcome": {
-        "title": "🎉 ¡Bienvenido al Constructor QuickCV!",
+        "title": "🎉 ¡Bienvenido al Constructor Nexvo!",
         "content": "Hagamos un recorrido rápido para ayudarte a crear tu CV perfecto en minutos. Este tour guiado te mostrará todas las características clave."
       },
       "navigation": {

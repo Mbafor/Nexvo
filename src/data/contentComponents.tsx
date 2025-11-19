@@ -136,7 +136,7 @@ export const authors = {
   'mbafor-joshua': {
     id: 'mbafor-joshua',
     name: 'Mbafor Joshua',
-    email: 'mbafor.joshua@quickcv.com',
+    email: 'mbafor.joshua@Nexvo.com',
     avatar: '/images/authors/mbafor-joshua.jpg',
     bio: 'Senior Product Manager and Career Coach with 8+ years of experience helping professionals land their dream jobs. Passionate about modern recruitment trends and CV optimization.',
     title: 'Senior Product Manager & Career Coach',
@@ -150,7 +150,7 @@ export const authors = {
   'sarah-chen': {
     id: 'sarah-chen',
     name: 'Sarah Chen',
-    email: 'sarah.chen@quickcv.com',
+    email: 'sarah.chen@Nexvo.com',
     avatar: '/images/authors/sarah-chen.jpg',
     bio: 'HR Director at Fortune 500 companies with expertise in talent acquisition and modern recruitment strategies. Helps job seekers understand what recruiters really want.',
     title: 'HR Director & Recruitment Expert',

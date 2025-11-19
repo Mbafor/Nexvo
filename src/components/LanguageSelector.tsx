@@ -17,6 +17,7 @@ export default function LanguageSelector({ className = '' }: LanguageSelectorPro
   const { i18n } = useTranslation();
   const [isOpen, setIsOpen] = useState(false);
 
+  // Find the currently selected language object
   const currentLanguage = languages.find(lang => lang.code === i18n.language) || languages[0];
 
   const handleLanguageChange = (languageCode: string) => {
@@ -31,12 +32,21 @@ export default function LanguageSelector({ className = '' }: LanguageSelectorPro
     <div className={`relative ${className}`}>
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="flex items-center space-x-1 sm:space-x-2 px-2 sm:px-3 py-2 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors text-sm"
+        // REVISED: Added space-x-1 and classes for the short code
+        className="flex items-center space-x-1 px-3 py-2 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
       >
-        <Globe className="h-4 w-4 text-gray-600 flex-shrink-0" />
-        <span className="text-base sm:text-lg">{currentLanguage.flag}</span>
-        <span className="hidden sm:inline text-xs sm:text-sm font-medium text-gray-700">{currentLanguage.name}</span>
-        <ChevronDown className={`h-3 w-3 sm:h-4 sm:w-4 text-gray-600 transition-transform flex-shrink-0 ${isOpen ? 'rotate-180' : ''}`} />
+        {/* 1. Globe icon */}
+        <Globe className="h-5 w-5 text-gray-600 flex-shrink-0" />
+        
+        {/* 2. Short Code (e.g., "en") */}
+        <span className="text-sm font-semibold uppercase text-gray-800">
+          {currentLanguage.code}
+        </span>
+        
+        {/* 3. Chevron Down icon */}
+        <ChevronDown 
+          className={`h-4 w-4 text-gray-600 transition-transform flex-shrink-0 ${isOpen ? 'rotate-180' : ''}`} 
+        />
       </button>
 
       {isOpen && (
