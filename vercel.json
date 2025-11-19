@@ -47,8 +47,9 @@
       ]
     }
   ],
-  "env": {
-    "OPENAI_API_KEY": "@openai_api_key",
-    "RESEND_API_KEY": "@resend_api_key"
+  "build": {
+    "env": {
+      "NODE_ENV": "production"
+    }
   }
 }

@@ -15,7 +15,7 @@
     "esModuleInterop": true
   },
   "include": [
-    "backend/**/*"
+    "./**/*"
   ],
   "exclude": [
     "node_modules",
