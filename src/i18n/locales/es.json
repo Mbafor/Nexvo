@@ -1204,75 +1204,86 @@
       }
     }
   },
+  
+  "common3": {
+    "back": "Atrás",
+    "save": "Guardar"
+  },
   "preview": {
-    "hero": {
-      "title": "Elige Tu Plantilla Perfecta",
-      "subtitle": "Cada plantilla está diseñada profesionalmente para hacerte destacar. Selecciona la que mejor represente tu historia profesional."
+    "header": {
+      "title": "Finalizar y Exportar"
+    },
+    "gallery": {
+      "title": "Elegir Plantilla",
+      "subtitle": "Selecciona el diseño que mejor se adapte a tu industria y personalidad."
     },
     "actions": {
-      "backToEditor": "Volver al Editor",
-      "signInToDownload": "Inicia sesión para descargar",
-      "gallery": "Galería",
-      "preview": "Vista Previa",
       "downloadPdf": "Descargar PDF",
-      "getStarted": "Comenzar",
+      "getStarted": "Empezar",
+      "preview": "Vista Previa",
+      "gallery": "Galería",
       "backToGallery": "Volver a la Galería",
-      "previewSelected": "Previsualizar Seleccionada"
+      "previewSelected": "Ver Selección"
     },
-    "alerts": {
-      "missingName": "Por favor proporciona tu nombre completo en Información Personal antes de descargar.",
-      "generateError": "Error al generar CV. Revisa la consola para más detalles."
-    },
-    "card": {
-      "featuresLabel": "CARACTERÍSTICAS",
-      "selected": "Seleccionada",
-      "selectTemplate": "Seleccionar Plantilla"
-    },
-    "panel": {
-      "title": "Vista Previa en Vivo",
-      "templateSuffix": "Plantilla"
+    "tabs": {
+      "templates": "Plantillas",
+      "preview": "Vista Previa"
     },
     "categories": {
       "professional": "Profesional",
-      "creative": "Creativa",
+      "creative": "Creativo",
       "leadership": "Liderazgo",
       "minimal": "Minimalista",
       "technology": "Tecnología",
-      "atsReady": "Lista para ATS"
+      "atsReady": "Optimizado ATS"
+    },
+    "alerts": {
+      "missingName": "Por favor, introduce tu nombre completo en la sección de Información Personal antes de descargar.",
+      "generateError": "Ocurrió un error al generar el PDF. Por favor, verifica tus datos e inténtalo de nuevo."
     },
     "templates": {
       "modern": {
-        "name": "Profesional Moderno",
-        "description": "Diseño limpio y contemporáneo con jerarquía visual perfecta",
-        "features": ["Diseño de dos columnas", "Indicadores de progreso", "Tipografía moderna"]
+        "name": "Élite Moderna",
+        "description": "Un diseño equilibrado y pulido con líneas limpias y acentos azules. Perfecto para roles corporativos y profesionales.",
+        "features": ["Tipografía limpia", "Acento en encabezado", "Soporte para foto"]
       },
       "creative": {
         "name": "Estudio Creativo",
-        "description": "Diseño audaz y artístico que muestra tu creatividad",
-        "features": ["Encabezado artístico", "Elementos visuales", "Diseño creativo"]
+        "description": "Tipografía audaz y un diseño único de dos columnas diseñado para destacar. Ideal para diseñadores y marketing.",
+        "features": ["Diseño de 2 columnas", "Encabezado audaz", "Jerarquía visual"]
       },
       "executive": {
-        "name": "Élite Ejecutiva",
-        "description": "Diseño sofisticado para posiciones de liderazgo",
-        "features": ["Estilo de lujo", "Diseño premium", "Acentos dorados"]
+        "name": "El Ejecutivo",
+        "description": "Autoritario y optimizado. Un diseño centrado de alto impacto para puestos de alta dirección y C-Suite.",
+        "features": ["Alineación centrada", "Enfoque en resumen ejecutivo", "Minimalista"]
       },
       "minimalist": {
-        "name": "Minimalista Puro",
-        "description": "Diseño ultra limpio centrado en la claridad del contenido",
-        "features": ["Tipografía limpia", "Espacio en blanco", "Simplicidad elegante"]
+        "name": "Nórdico Limpio",
+        "description": "Menos es más. Un diseño simplificado centrado en la tipografía que deja que tu experiencia hable por sí misma.",
+        "features": ["Espacio en blanco", "Sin iconos", "Fuentes clásicas"]
       },
       "tech": {
-        "name": "Desarrollador Tech",
-        "description": "Diseño moderno inspirado en terminales para profesionales de tecnología",
-        "features": ["Estilo de terminal", "Acentos neón", "Estética de desarrollador"]
+        "name": "Tech Stack",
+        "description": "Optimizado para desarrolladores. Presenta una barra lateral distinta para habilidades técnicas y certificaciones.",
+        "features": ["Barras de habilidades", "Diseño con barra lateral", "Enfoque en proyectos"]
       },
       "ats": {
-        "name": "Optimizado ATS",
-        "description": "Compatibilidad perfecta con sistemas de seguimiento de candidatos",
-        "features": ["Compatible con ATS", "Estructura limpia", "Formato profesional"]
+        "name": "Estándar ATS",
+        "description": "Ingeniería para máxima legibilidad automática. El formato simple asegura que tu CV pase los filtros automatizados.",
+        "features": ["100% Legible por ATS", "Columna única", "Fuentes estándar"]
       }
+    },
+    "card": {
+      "featuresLabel": "Características",
+      "selected": "Seleccionado",
+      "selectTemplate": "Seleccionar Plantilla"
+    },
+    "panel": {
+      "title": "Vista Previa",
+      "templateSuffix": "Plantilla"
     }
-  },
+  }
+,
   "dashboard": {
     "user": {
       "defaultName": "Usuario Profesional"
@@ -1813,4 +1824,29 @@
     "question": "¿Tienes preguntas sin responder?",
     "cta": "Preguntas frecuentes"
 }
+,
+
+  "cvContent": {
+    "summary": "Resumen Profesional",
+    "education": "Educación",
+    "degreeIn": "en",
+    "present": "Actualidad",
+    "skills": "Habilidades",
+    "skillsTechnical": "Técnicas",
+    "skillsSoft": "Blandas",
+    "projects": "Proyectos Destacados",
+    "techStack": "Tecnologías",
+    "experience": "Experiencia Profesional",
+    "certifications": "Certificaciones",
+    "languages": "Idiomas",
+    "achievements": "Logros y Premios",
+    "volunteer": "Voluntariado",
+    "references": "Referencias",
+    "positionAt": "en",
+    "email": "Correo",
+    "phone": "Teléfono",
+    "interests": "Intereses",
+    "portfolio": "Portafolio/Sitio Web",
+    "linkedin": "LinkedIn"
+  }
 }

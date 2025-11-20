@@ -1229,76 +1229,75 @@
   }
 , 
 
-
+  "common3": {
+    "back": "Back",
+    "save": "Save"
+  },
   "preview": {
-    "hero": {
-      "title": "Choose Your Perfect Template",
-      "subtitle": "Each template is professionally designed to make you stand out. Select the one that best represents your professional story."
+    "header": {
+      "title": "Finalize & Export"
+    },
+    "gallery": {
+      "title": "Choose Template",
+      "subtitle": "Select a design that best fits your industry and personality."
     },
     "actions": {
-      "backToEditor": "Back to Editor",
-      "signInToDownload": "Sign in to download",
-      "gallery": "Gallery",
-      "preview": "Preview",
       "downloadPdf": "Download PDF",
       "getStarted": "Get Started",
+      "preview": "Preview",
+      "gallery": "Gallery",
       "backToGallery": "Back to Gallery",
       "previewSelected": "Preview Selected"
     },
-    "alerts": {
-      "missingName": "Please provide your full name in Personal Info before downloading.",
-      "generateError": "Failed to generate CV. Check console for details."
-    },
-    "card": {
-      "featuresLabel": "FEATURES",
-      "selected": "Selected",
-      "selectTemplate": "Select Template"
-    },
-    "panel": {
-      "title": "Live Preview",
-      "templateSuffix": "Template"
+    "tabs": {
+      "templates": "Templates",
+      "preview": "Preview"
     },
     "categories": {
       "professional": "Professional",
       "creative": "Creative",
       "leadership": "Leadership",
-      "minimal": "Minimal",
-      "technology": "Technology",
-      "atsReady": "ATS-Ready"
+      "minimal": "Minimalist",
+      "technology": "Tech / IT",
+      "atsReady": "ATS Optimized"
+    },
+    "alerts": {
+      "missingName": "Please enter your Full Name in the Personal Info section before downloading.",
+      "generateError": "An error occurred while generating the PDF. Please check your data and try again."
     },
     "templates": {
       "modern": {
-        "name": "Modern Professional",
-        "description": "Clean, contemporary design with perfect visual hierarchy",
-        "features": ["Two-column layout", "Progress indicators", "Modern typography"]
+        "name": "Modern Elite",
+        "description": "A balanced, polished design with clean lines and blue accents. Perfect for corporate and general professional roles.",
+        "features": ["Clean Typography", "Header Accent", "Photo Support"]
       },
       "creative": {
         "name": "Creative Studio",
-        "description": "Bold, artistic design that showcases your creativity",
-        "features": ["Artistic header", "Visual elements", "Creative layout"]
+        "description": "Bold typography and a unique two-column layout designed to stand out. Ideal for designers, marketers, and artists.",
+        "features": ["2-Column Layout", "Bold Header", "Visual Hierarchy"]
       },
       "executive": {
-        "name": "Executive Elite",
-        "description": "Sophisticated design for leadership positions",
-        "features": ["Luxury styling", "Premium layout", "Gold accents"]
+        "name": "The Executive",
+        "description": "Authoritative and streamlined. A centered, high-impact layout designed for C-Suite and senior management positions.",
+        "features": ["Center Alignment", "Executive Summary Focus", "Minimalist"]
       },
       "minimalist": {
-        "name": "Pure Minimalist",
-        "description": "Ultra-clean design focusing on content clarity",
-        "features": ["Clean typography", "White space", "Elegant simplicity"]
+        "name": "Nordic Clean",
+        "description": "Less is more. A stripped-back, typography-focused template that lets your experience speak for itself.",
+        "features": ["Whitespace Heavy", "No Icons", "Classic Fonts"]
       },
       "tech": {
-        "name": "Tech Developer",
-        "description": "Modern terminal-inspired design for tech professionals",
-        "features": ["Terminal styling", "Neon accents", "Developer aesthetics"]
+        "name": "Tech Stack",
+        "description": "Optimized for developers. Features a distinct sidebar for technical skills, languages, and certifications.",
+        "features": ["Skill Bars", "Sidebar Layout", "Project Focused"]
       },
       "ats": {
-        "name": "ATS Optimized",
-        "description": "Perfect compatibility with applicant tracking systems",
-        "features": ["ATS compatible", "Clean structure", "Professional format"]
+        "name": "ATS Standard",
+        "description": "Engineered for maximum machine readability. Simple formatting ensures your CV passes automated screening tools.",
+        "features": ["100% Parse Rate", "Single Column", "Standard Fonts"]
       }
     }
-  }, 
+  },
 
 
 
@@ -1629,5 +1628,29 @@
     "faq1": {
     "question": "Do you have unanswered questions?",
     "cta": "FAQ"
+  }
+,
+  "cvContent": {
+    "summary": "Professional Summary",
+    "education": "Education",
+    "degreeIn": "in",
+    "present": "Present",
+    "skills": "Skills",
+    "skillsTechnical": "Technical",
+    "skillsSoft": "Soft Skills",
+    "projects": "Key Projects",
+    "techStack": "Tech",
+    "experience": "Professional Experience",
+    "certifications": "Certifications",
+    "languages": "Languages",
+    "achievements": "Achievements & Awards",
+    "volunteer": "Volunteer Experience",
+    "references": "References",
+    "positionAt": "at",
+    "email": "Email",
+    "phone": "Phone",
+    "interests": "Interests",
+    "portfolio": "Portfolio/Website",
+    "linkedin": "LinkedIn"
   }
 }

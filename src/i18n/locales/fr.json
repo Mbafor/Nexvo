@@ -1453,76 +1453,86 @@
   }
 ,
 
+
+  "common3": {
+    "back": "Retour",
+    "save": "Enregistrer"
+  },
   "preview": {
-    "hero": {
-      "title": "Choisissez votre modèle parfait",
-      "subtitle": "Chaque modèle est conçu professionnellement pour vous faire ressortir. Sélectionnez celui qui représente le mieux votre parcours professionnel."
+    "header": {
+      "title": "Finaliser et Exporter"
+    },
+    "gallery": {
+      "title": "Choisir un modèle",
+      "subtitle": "Sélectionnez le design qui correspond le mieux à votre secteur et votre personnalité."
     },
     "actions": {
-      "backToEditor": "Retour à l'éditeur",
-      "signInToDownload": "Connectez-vous pour télécharger",
-      "gallery": "Galerie",
-      "preview": "Aperçu",
       "downloadPdf": "Télécharger PDF",
       "getStarted": "Commencer",
+      "preview": "Aperçu",
+      "gallery": "Galerie",
       "backToGallery": "Retour à la galerie",
-      "previewSelected": "Aperçu sélectionné"
+      "previewSelected": "Aperçu de la sélection"
     },
-    "alerts": {
-      "missingName": "Veuillez indiquer votre nom complet dans Informations personnelles avant de télécharger.",
-      "generateError": "Échec de la génération du CV. Vérifiez la console pour les détails."
-    },
-    "card": {
-      "featuresLabel": "CARACTÉRISTIQUES",
-      "selected": "Sélectionné",
-      "selectTemplate": "Sélectionner le modèle"
-    },
-    "panel": {
-      "title": "Aperçu en direct",
-      "templateSuffix": "Modèle"
+    "tabs": {
+      "templates": "Modèles",
+      "preview": "Aperçu"
     },
     "categories": {
       "professional": "Professionnel",
       "creative": "Créatif",
-      "leadership": "Leadership",
-      "minimal": "Minimal",
-      "technology": "Technologie",
-      "atsReady": "Compatible ATS"
+      "leadership": "Direction",
+      "minimal": "Minimaliste",
+      "technology": "Tech / IT",
+      "atsReady": "Optimisé ATS"
+    },
+    "alerts": {
+      "missingName": "Veuillez saisir votre nom complet dans la section Informations personnelles avant de télécharger.",
+      "generateError": "Une erreur s'est produite lors de la génération du PDF. Veuillez vérifier vos données et réessayer."
     },
     "templates": {
       "modern": {
-        "name": "Professionnel Moderne",
-        "description": "Design épuré et contemporain avec une hiérarchie visuelle parfaite",
-        "features": ["Mise en page en deux colonnes", "Indicateurs de progression", "Typographie moderne"]
+        "name": "Élite Moderne",
+        "description": "Un design équilibré et soigné avec des lignes épurées et des accents bleus. Parfait pour les rôles corporatifs.",
+        "features": ["Typographie soignée", "Accent sur l'en-tête", "Photo incluse"]
       },
       "creative": {
         "name": "Studio Créatif",
-        "description": "Design audacieux et artistique mettant en valeur votre créativité",
-        "features": ["En-tête artistique", "Éléments visuels", "Mise en page créative"]
+        "description": "Une typographie audacieuse et une mise en page unique à deux colonnes pour se démarquer. Idéal pour les designers et le marketing.",
+        "features": ["Mise en page 2 colonnes", "En-tête audacieux", "Hiérarchie visuelle"]
       },
       "executive": {
-        "name": "Elite Exécutive",
-        "description": "Design sophistiqué pour les postes de leadership",
-        "features": ["Style luxueux", "Mise en page premium", "Accents dorés"]
+        "name": "L'Exécutif",
+        "description": "Autoritaire et rationalisé. Une mise en page centrée à fort impact conçue pour les postes de direction et C-Suite.",
+        "features": ["Alignement centré", "Focus résumé exécutif", "Minimaliste"]
       },
       "minimalist": {
-        "name": "Minimaliste Pur",
-        "description": "Design ultra-épuré axé sur la clarté du contenu",
-        "features": ["Typographie claire", "Espaces blancs", "Simplicité élégante"]
+        "name": "Épure Nordique",
+        "description": "Moins c'est plus. Un modèle dépouillé, axé sur la typographie, qui laisse parler votre expérience.",
+        "features": ["Beaucoup d'espace blanc", "Sans icônes", "Polices classiques"]
       },
       "tech": {
-        "name": "Développeur Tech",
-        "description": "Design moderne inspiré des terminaux pour les professionnels tech",
-        "features": ["Style terminal", "Accents néon", "Esthétique développeur"]
+        "name": "Tech Stack",
+        "description": "Optimisé pour les développeurs. Comprend une barre latérale distincte pour les compétences techniques et certifications.",
+        "features": ["Barres de compétences", "Barre latérale", "Focus projets"]
       },
       "ats": {
-        "name": "Optimisé ATS",
-        "description": "Compatibilité parfaite avec les systèmes de suivi des candidatures",
-        "features": ["Compatible ATS", "Structure claire", "Format professionnel"]
+        "name": "Standard ATS",
+        "description": "Conçu pour une lisibilité machine maximale. Un formatage simple garantit que votre CV passe les outils de sélection automatisés.",
+        "features": ["100% Compatible ATS", "Colonne unique", "Polices standard"]
       }
+    },
+    "card": {
+      "featuresLabel": "Caractéristiques",
+      "selected": "Sélectionné",
+      "selectTemplate": "Choisir ce modèle"
+    },
+    "panel": {
+      "title": "Aperçu en direct",
+      "templateSuffix": "Modèle"
     }
   }
-, 
+  ,
 
 
 
@@ -1854,5 +1864,30 @@
     "faq1": {
     "question": "Avez-vous des questions sans réponse ?",
     "cta": "FAQ"
+  }
+,
+
+  "cvContent": {
+    "summary": "Résumé Professionnel",
+    "education": "Formation",
+    "degreeIn": "en",
+    "present": "Présent",
+    "skills": "Compétences",
+    "skillsTechnical": "Techniques",
+    "skillsSoft": "Qualités Humaines",
+    "projects": "Projets Clés",
+    "techStack": "Technologies",
+    "experience": "Expérience Professionnelle",
+    "certifications": "Certifications",
+    "languages": "Langues",
+    "achievements": "Réalisations et Prix",
+    "volunteer": "Bénévolat",
+    "references": "Références",
+    "positionAt": "chez",
+    "email": "E-mail",
+    "phone": "Tél",
+    "interests": "Centres d'intérêt",
+    "portfolio": "Portfolio/Site Web",
+    "linkedin": "LinkedIn"
   }
 }

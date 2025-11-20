@@ -1201,73 +1201,83 @@
       }
     }
   },
+  
+  "common3": {
+    "back": "Zurück",
+    "save": "Speichern"
+  },
   "preview": {
-    "hero": {
-      "title": "Wähle deine perfekte Vorlage",
-      "subtitle": "Jede Vorlage ist professionell gestaltet, damit du herausstichst. Wähle die, die deine berufliche Geschichte am besten repräsentiert."
+    "header": {
+      "title": "Abschließen & Exportieren"
+    },
+    "gallery": {
+      "title": "Vorlage wählen",
+      "subtitle": "Wählen Sie das Design, das am besten zu Ihrer Branche und Persönlichkeit passt."
     },
     "actions": {
-      "backToEditor": "Zurück zum Editor",
-      "signInToDownload": "Anmelden zum Download",
-      "gallery": "Galerie",
-      "preview": "Vorschau",
-      "downloadPdf": "PDF herunterladen",
+      "downloadPdf": "PDF Herunterladen",
       "getStarted": "Loslegen",
+      "preview": "Vorschau",
+      "gallery": "Galerie",
       "backToGallery": "Zurück zur Galerie",
       "previewSelected": "Auswahl ansehen"
     },
+    "tabs": {
+      "templates": "Vorlagen",
+      "preview": "Vorschau"
+    },
+    "categories": {
+      "professional": "Professionell",
+      "creative": "Kreativ",
+      "leadership": "Führung",
+      "minimal": "Minimalistisch",
+      "technology": "Tech / IT",
+      "atsReady": "ATS-Optimiert"
+    },
     "alerts": {
-      "missingName": "Bitte gib deinen vollständigen Namen in den Persönlichen Daten an, bevor du herunterlädst.",
-      "generateError": "Fehler beim Generieren des CV. Prüfe die Konsole für Details."
+      "missingName": "Bitte geben Sie Ihren vollständigen Namen im Abschnitt Persönliche Daten ein, bevor Sie herunterladen.",
+      "generateError": "Beim Erstellen des PDFs ist ein Fehler aufgetreten. Bitte überprüfen Sie Ihre Daten und versuchen Sie es erneut."
+    },
+    "templates": {
+      "modern": {
+        "name": "Moderne Elite",
+        "description": "Ein ausgewogenes, elegantes Design mit klaren Linien und blauen Akzenten. Perfekt für Unternehmensrollen.",
+        "features": ["Klare Typografie", "Kopfzeilen-Akzent", "Mit Foto"]
+      },
+      "creative": {
+        "name": "Kreativ-Studio",
+        "description": "Fette Typografie und ein einzigartiges zweispaltiges Layout, um aufzufallen. Ideal für Designer und Marketing.",
+        "features": ["2-Spalten-Layout", "Markante Kopfzeile", "Visuelle Hierarchie"]
+      },
+      "executive": {
+        "name": "The Executive",
+        "description": "Autoritär und gestrafft. Ein zentriertes Layout mit hoher Wirkung für C-Suite und Führungspositionen.",
+        "features": ["Zentrierte Ausrichtung", "Fokus auf Zusammenfassung", "Minimalistisch"]
+      },
+      "minimalist": {
+        "name": "Nordisch Klar",
+        "description": "Weniger ist mehr. Eine reduzierte, typografieorientierte Vorlage, die Ihre Erfahrung für sich sprechen lässt.",
+        "features": ["Viel Weißraum", "Keine Icons", "Klassische Schriften"]
+      },
+      "tech": {
+        "name": "Tech Stack",
+        "description": "Optimiert für Entwickler. Mit einer separaten Seitenleiste für technische Fähigkeiten und Zertifizierungen.",
+        "features": ["Skill-Balken", "Seitenleisten-Layout", "Projektfokus"]
+      },
+      "ats": {
+        "name": "ATS Standard",
+        "description": "Entwickelt für maximale Maschinenlesbarkeit. Einfache Formatierung stellt sicher, dass Ihr Lebenslauf automatische Tools besteht.",
+        "features": ["100% ATS-Lesbar", "Einzelspalte", "Standard-Schriften"]
+      }
     },
     "card": {
-      "featuresLabel": "FUNKTIONEN",
+      "featuresLabel": "Funktionen",
       "selected": "Ausgewählt",
       "selectTemplate": "Vorlage wählen"
     },
     "panel": {
       "title": "Live-Vorschau",
       "templateSuffix": "Vorlage"
-    },
-    "categories": {
-      "professional": "Professionell",
-      "creative": "Kreativ",
-      "leadership": "Führung",
-      "minimal": "Minimal",
-      "technology": "Technologie",
-      "atsReady": "ATS-Bereit"
-    },
-    "templates": {
-      "modern": {
-        "name": "Modern Professional",
-        "description": "Sauberes, zeitgemäßes Design mit perfekter visueller Hierarchie",
-        "features": ["Zweispalten-Layout", "Fortschrittsanzeigen", "Moderne Typografie"]
-      },
-      "creative": {
-        "name": "Creative Studio",
-        "description": "Mutiges, künstlerisches Design, das deine Kreativität zeigt",
-        "features": ["Künstlerischer Header", "Visuelle Elemente", "Kreatives Layout"]
-      },
-      "executive": {
-        "name": "Executive Elite",
-        "description": "Anspruchsvolles Design für Führungspositionen",
-        "features": ["Luxus-Styling", "Premium-Layout", "Gold-Akzente"]
-      },
-      "minimalist": {
-        "name": "Pure Minimalist",
-        "description": "Ultrareines Design mit Fokus auf Inhaltsklarheit",
-        "features": ["Saubere Typografie", "Weißraum", "Elegante Einfachheit"]
-      },
-      "tech": {
-        "name": "Tech Developer",
-        "description": "Modernes Terminal-inspiriertes Design für Tech-Profis",
-        "features": ["Terminal-Styling", "Neon-Akzente", "Entwickler-Ästhetik"]
-      },
-      "ats": {
-        "name": "ATS Optimized",
-        "description": "Perfekte Kompatibilität mit Bewerbermanagementsystemen",
-        "features": ["ATS kompatibel", "Saubere Struktur", "Professionelles Format"]
-      }
     }
   },
   "dashboard": {
@@ -1811,5 +1821,30 @@
     "faq1": {
     "question": "Hast du unbeantwortete Fragen?",
     "cta": "FAQ"
+  }
+,
+
+  "cvContent": {
+    "summary": "Berufliches Profil",
+    "education": "Ausbildung",
+    "degreeIn": "in",
+    "present": "Heute",
+    "skills": "Fähigkeiten",
+    "skillsTechnical": "Fachkompetenzen",
+    "skillsSoft": "Soziale Kompetenzen",
+    "projects": "Wichtige Projekte",
+    "techStack": "Technologien",
+    "experience": "Berufserfahrung",
+    "certifications": "Zertifizierungen",
+    "languages": "Sprachen",
+    "achievements": "Erfolge & Auszeichnungen",
+    "volunteer": "Ehrenamtliche Tätigkeit",
+    "references": "Referenzen",
+    "positionAt": "bei",
+    "email": "E-Mail",
+    "phone": "Tel",
+    "interests": "Interessen",
+    "portfolio": "Portfolio/Webseite",
+    "linkedin": "LinkedIn"
   }
 }
