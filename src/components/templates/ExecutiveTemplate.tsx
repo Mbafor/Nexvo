@@ -1,868 +1,441 @@
-// Executive Elite Template - Sophisticated Design for Senior Leadership Positions
+// "The Jessica" - Modern Top-Banner Template (Image Replica)
 import { CVData } from '../../types/cv';
-import { Document, Page, View, Text, StyleSheet, Image } from '@react-pdf/renderer';
+import { Document, Page, View, Text, StyleSheet, Link } from '@react-pdf/renderer';
 
-interface ExecutiveTemplateProps {
+interface TemplateProps {
   data: CVData;
 }
+
+// Helper to render clean bullet points
+const renderBulletPoints = (text: string | undefined, style: any) => {
+  if (!text || !text.trim()) return null;
+  
+  const lines = text.split('\n').filter(line => line.trim());
+  
+  return (
+    <View>
+      {lines.map((line, index) => {
+        const trimmedLine = line.trim();
+        const bulletText = trimmedLine.startsWith('•') || trimmedLine.startsWith('-') 
+          ? trimmedLine.substring(1).trim() 
+          : trimmedLine;
+        
+        return (
+          <View key={index} style={{ flexDirection: 'row', marginBottom: 2 }}>
+             <Text style={{ width: 10, fontSize: 12, color: '#000000' }}>•</Text>
+             <Text style={[style, { flex: 1 }]}>{bulletText}</Text>
+          </View>
+        );
+      })}
+    </View>
+  );
+};
 
 const styles = StyleSheet.create({
   page: {
     fontFamily: 'Helvetica',
-    padding: 0,
+    padding: 0, // Zero padding to allow full-width banner
     backgroundColor: '#ffffff',
-    color: '#1a1a1a',
-    fontSize: 11,
-    lineHeight: 1.6,
+    fontSize: 10,
+    lineHeight: 1.5,
+    color: '#000000',
   },
-  
-  // Header with Profile Image Support
-  headerContainer: {
-    backgroundColor: '#1a202c',
-    paddingVertical: 35,
-    paddingHorizontal: 40,
-    marginBottom: 0,
-    position: 'relative',
-  },
-  headerAccent: {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    right: 0,
-    height: 4,
-    backgroundColor: '#d4af37',
-  },
-  headerContent: {
+
+  // --- TOP BANNER (Light Blue) ---
+  topBanner: {
+    backgroundColor: '#dbeafe', // Light Powder Blue (Matches image)
+    paddingVertical: 15,
+    paddingHorizontal: 30,
     flexDirection: 'row',
-    alignItems: 'center',
     justifyContent: 'center',
-    marginBottom: 20,
-    flexWrap: 'wrap',
-    gap: 15,
-  },
-  profileImageContainer: {
-    marginRight: 20,
-  },
-  profileImage: {
-    width: 70,
-    height: 70,
-    borderRadius: 35,
-    borderWidth: 3,
-    borderColor: '#d4af37',
-  },
-  nameSection: {
-    flex: 1,
     alignItems: 'center',
-    justifyContent: 'center',
-    minWidth: 200,
-    maxWidth: '100%',
-    marginTop: 0,
-    marginBottom: 0,
-  },
-  name: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    color: '#ffffff',
-    marginBottom: 4,
-    letterSpacing: 1,
-    textAlign: 'center',
-    maxWidth: 350,
-    lineHeight: 1.1,
-    alignSelf: 'center',
-    paddingHorizontal: 8,
-  },
-  contactGrid: {
-    flexDirection: 'row',
     flexWrap: 'wrap',
-    justifyContent: 'space-around',
-    marginTop: 16,
-    paddingTop: 20,
-    borderTopWidth: 1,
-    borderTopColor: '#2d3748',
-    gap: 8,
+    marginBottom: 25,
   },
   contactItem: {
+    flexDirection: 'row',
     alignItems: 'center',
-    flex: 1,
-    minWidth: 120,
-    maxWidth: 180,
+    marginHorizontal: 8,
   },
-  contactLabel: {
+  contactText: {
     fontSize: 9,
-    color: '#a0aec0',
-    marginBottom: 4,
-    textTransform: 'uppercase',
-    letterSpacing: 0.5,
+    color: '#1f2937', // Dark Grey
+    fontWeight: 'medium',
   },
-  contactValue: {
-    fontSize: 10,
-    color: '#ffffff',
+  separator: {
+    color: '#3b82f6', // Blue separator
+    marginHorizontal: 5,
     fontWeight: 'bold',
-    textAlign: 'center',
-    flexWrap: 'wrap',
-    maxWidth: '100%',
-    lineHeight: 1.3,
   },
 
-  // Main Content Area
-  contentArea: {
-    padding: 50,
-    paddingTop: 40,
+  // --- NAME SECTION ---
+  nameContainer: {
+    alignItems: 'center',
+    marginBottom: 30,
+    paddingHorizontal: 30,
   },
-
-  // Executive Summary - Premium Box
-  executiveSummary: {
-    marginBottom: 35,
-    padding: 25,
-    backgroundColor: '#f8f9fa',
-    borderRadius: 12,
-    borderLeftWidth: 6,
-    borderLeftColor: '#d4af37',
-    shadowColor: '#000000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.1,
-    shadowRadius: 4,
-  },
-  summaryTitle: {
-    fontSize: 16,
-    fontWeight: 'bold',
-    color: '#1a202c',
-    marginBottom: 12,
+  name: {
+    fontSize: 32,
+    fontWeight: 'normal', // The image uses a clean, non-bold font for the name
+    color: '#000000',
     textTransform: 'uppercase',
-    letterSpacing: 1,
+    letterSpacing: 4, // Wide letter spacing like the image
+    marginBottom: 5,
   },
-  summaryText: {
+  role: {
     fontSize: 12,
-    color: '#2d3748',
-    lineHeight: 1.8,
-    textAlign: 'justify',
+    color: '#4b5563',
+    textTransform: 'uppercase',
+    letterSpacing: 2,
+  },
+
+  // --- SECTION LAYOUT (Left Rail Header) ---
+  sectionContainer: {
+    marginBottom: 20,
+    paddingHorizontal: 30,
+  },
+  // The thick blue line above each section
+  sectionLine: {
+    height: 2,
+    backgroundColor: '#bfdbfe', // Light Blue Line
+    width: '100%',
+    marginBottom: 12,
+  },
+  sectionContentRow: {
+    flexDirection: 'row',
   },
   
-  // Section Styling - Executive Level
-  section: {
-    marginBottom: 10,
-    paddingBottom: 0,
+  // Left Column (Header) - 25%
+  leftColumn: {
+    width: '25%',
+    paddingRight: 10,
   },
   sectionTitle: {
-    fontSize: 18,
+    fontSize: 10,
     fontWeight: 'bold',
-    color: '#1a202c',
-    marginBottom: 15,
+    color: '#000000',
     textTransform: 'uppercase',
-    letterSpacing: 1.2,
-    paddingBottom: 8,
-    borderBottomWidth: 3,
-    borderBottomColor: '#d4af37',
-    position: 'relative',
+    letterSpacing: 1,
+    lineHeight: 1.4,
   },
-  sectionTitleAccent: {
-    position: 'absolute',
-    bottom: -3,
-    left: 0,
-    width: 60,
-    height: 3,
-    backgroundColor: '#1a202c',
+
+  // Right Column (Body) - 75%
+  rightColumn: {
+    width: '75%',
   },
   
-  // Experience - Executive Focused
-  experienceItem: {
-    marginBottom: 18,
-    paddingBottom: 15,
-    borderBottomWidth: 1,
-    borderBottomColor: '#e2e8f0',
-    position: 'relative',
-  },
-  experienceHeader: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'flex-start',
-    marginBottom: 12,
-  },
-  experienceLeft: {
-    flex: 2,
-  },
-  experienceRight: {
-    flex: 1,
-    alignItems: 'flex-end',
-  },
-  positionTitle: {
-    fontSize: 15,
-    fontWeight: 'bold',
-    color: '#1a202c',
-    marginBottom: 4,
-    letterSpacing: 0.5,
-  },
-  companyName: {
-    fontSize: 13,
-    color: '#d4af37',
-    fontWeight: 'bold',
-    marginBottom: 3,
-  },
-  companyLocation: {
-    fontSize: 11,
-    color: '#4a5568',
-    fontStyle: 'italic',
-  },
-  dateRange: {
-    fontSize: 11,
-    color: '#2d3748',
-    fontWeight: 'bold',
-    textAlign: 'right',
-    backgroundColor: '#f7fafc',
-    paddingHorizontal: 12,
-    paddingVertical: 6,
-    borderRadius: 6,
-  },
-  achievementBullet: {
-    fontSize: 11,
-    marginLeft: 20,
-    marginBottom: 6,
-    color: '#2d3748',
-    lineHeight: 1.6,
-    position: 'relative',
-  },
-  bulletIcon: {
-    position: 'absolute',
-    left: -15,
-    color: '#d4af37',
-    fontWeight: 'bold',
-  },
-  
-  // Skills - Clean Comma-Separated Format
-  skillCategoryTitle: {
-    fontSize: 13,
-    fontWeight: 'bold',
-    color: '#1a202c',
-    marginBottom: 10,
-    textTransform: 'uppercase',
-    letterSpacing: 0.5,
-    paddingBottom: 4,
-    borderBottomWidth: 2,
-    borderBottomColor: '#d4af37',
-  },
-  skillListText: {
-    fontSize: 11,
-    color: '#2d3748',
-    lineHeight: 1.6,
+  // --- CONTENT STYLES ---
+  summaryText: {
+    fontSize: 10,
     textAlign: 'justify',
-    marginBottom: 8,
+    color: '#000000',
+    lineHeight: 1.6,
   },
   
-  // Education - Premium Layout
-  educationItem: {
+  // Work History Block
+  jobBlock: {
+    marginBottom: 12,
+  },
+  jobHeaderRow: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginBottom: 12,
-    paddingBottom: 12,
-    borderBottomWidth: 1,
-    borderBottomColor: '#e2e8f0',
-    backgroundColor: '#f8f9fa',
-    padding: 12,
-    borderRadius: 8,
-    borderLeftWidth: 4,
-    borderLeftColor: '#d4af37',
-  },
-  educationLeft: {
-    flex: 2,
-  },
-  educationRight: {
-    flex: 1,
-    alignItems: 'flex-end',
-  },
-  degree: {
-    fontSize: 13,
-    fontWeight: 'bold',
-    color: '#1a202c',
-    marginBottom: 4,
-  },
-  institution: {
-    fontSize: 11,
-    color: '#d4af37',
-    fontWeight: 'bold',
+    alignItems: 'baseline',
     marginBottom: 2,
   },
-  educationDetails: {
-    fontSize: 10,
-    color: '#4a5568',
-  },
-  graduationYear: {
+  jobTitle: {
     fontSize: 11,
-    color: '#2d3748',
     fontWeight: 'bold',
-    backgroundColor: '#ffffff',
-    paddingHorizontal: 10,
-    paddingVertical: 4,
-    borderRadius: 4,
-    textAlign: 'right',
+    color: '#000000',
   },
-  
-  // Achievements - Executive Showcase
-  achievementBox: {
-    backgroundColor: '#1a202c',
-    padding: 20,
-    marginBottom: 15,
-    borderRadius: 10,
-    borderLeftWidth: 6,
-    borderLeftColor: '#d4af37',
-    position: 'relative',
-  },
-  achievementTitle: {
-    fontSize: 13,
-    fontWeight: 'bold',
-    color: '#ffffff',
-    marginBottom: 6,
-  },
-  achievementDate: {
+  companyName: {
     fontSize: 10,
-    color: '#d4af37',
-    fontWeight: 'bold',
-    textTransform: 'uppercase',
-    textAlign: 'right',
-    backgroundColor: '#ffffff',
-    paddingHorizontal: 8,
-    paddingVertical: 4,
-    borderRadius: 4,
-  },
-  achievementDesc: {
-    fontSize: 11,
-    color: '#a0aec0',
-    lineHeight: 1.6,
-  },
-  achievementAccent: {
-    position: 'absolute',
-    top: 15,
-    right: 15,
-    width: 40,
-    height: 40,
-    borderRadius: 20,
-    backgroundColor: '#d4af37',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  achievementIcon: {
-    fontSize: 18,
-    color: '#1a202c',
-    fontWeight: 'bold',
-  },
-  
-  // Projects - Strategic Display
-  projectCard: {
-    backgroundColor: '#f8f9fa',
-    padding: 18,
-    marginBottom: 15,
-    borderRadius: 8,
-    borderTopWidth: 4,
-    borderTopColor: '#d4af37',
-  },
-  projectTitle: {
-    fontSize: 13,
-    fontWeight: 'bold',
-    color: '#1a202c',
-    marginBottom: 6,
-  },
-  projectDate: {
-    fontSize: 10,
-    color: '#4a5568',
+    color: '#4b5563',
     fontStyle: 'italic',
-    textAlign: 'right',
-    backgroundColor: '#ffffff',
-    paddingHorizontal: 8,
-    paddingVertical: 4,
-    borderRadius: 4,
-    fontWeight: 'bold',
   },
-  projectDescription: {
-    fontSize: 10,
-    color: '#2d3748',
-    lineHeight: 1.5,
-    marginBottom: 4,
-  },
-  projectTech: {
+  dateText: {
     fontSize: 9,
-    color: '#d4af37',
-    fontWeight: 'bold',
-    marginTop: 8,
+    color: '#000000',
     textTransform: 'uppercase',
+    textAlign: 'right',
   },
-  
-  // Certifications - Executive Grid
-  certificationGrid: {
+  descriptionText: {
+    fontSize: 10,
+    color: '#000000',
+    lineHeight: 1.5,
+  },
+
+  // Skills Grid
+  skillGrid: {
     flexDirection: 'row',
     flexWrap: 'wrap',
-    marginTop: 15,
   },
-  certificationItem: {
-    width: '50%',
-    marginBottom: 12,
-    paddingRight: 15,
-  },
-  certificationText: {
-    fontSize: 10,
-    color: '#2d3748',
-    paddingLeft: 15,
-    paddingVertical: 8,
-    borderLeftWidth: 3,
-    borderLeftColor: '#d4af37',
-    backgroundColor: '#f8f9fa',
-    borderRadius: 4,
-    fontWeight: 'bold',
-    textAlign: 'center',
-  },
-  
-  // Languages - Premium Display
-  languageItem: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    marginBottom: 10,
-    paddingVertical: 8,
-    paddingHorizontal: 15,
-    backgroundColor: '#f8f9fa',
-    borderRadius: 6,
-    borderLeftWidth: 4,
-    borderLeftColor: '#d4af37',
-  },
-  languageName: {
-    fontSize: 12,
-    color: '#1a202c',
-    fontWeight: 'bold',
-    textAlign: 'center',
-  },
-  languageLevel: {
-    fontSize: 10,
-    color: '#d4af37',
-    fontWeight: 'bold',
-    textTransform: 'uppercase',
-    backgroundColor: '#ffffff',
-    paddingHorizontal: 8,
-    paddingVertical: 3,
-    borderRadius: 3,
-    textAlign: 'center',
-  },
-  
-  // References - Executive Style
-  referenceCard: {
-    backgroundColor: '#1a202c',
-    padding: 18,
-    marginBottom: 15,
-    borderRadius: 8,
-    borderTopWidth: 4,
-    borderTopColor: '#d4af37',
-  },
-  referenceName: {
-    fontSize: 13,
-    fontWeight: 'bold',
-    color: '#ffffff',
+  skillItem: {
+    width: '50%', // 2 Columns for skills within the right pane
     marginBottom: 4,
+    flexDirection: 'row',
+    alignItems: 'center',
   },
-  referenceTitle: {
-    fontSize: 11,
-    color: '#d4af37',
-    fontWeight: 'bold',
-    marginBottom: 6,
-  },
-  referenceContact: {
+  skillBullet: {
+    marginRight: 6,
     fontSize: 10,
-    color: '#a0aec0',
+    color: '#000000',
   },
-  
-  // Interests - Executive Level
-  interestText: {
-    fontSize: 11,
-    color: '#2d3748',
-    textAlign: 'justify',
-    lineHeight: 1.6,
-    marginTop: 10,
-    paddingLeft: 15,
-    borderLeftWidth: 3,
-    borderLeftColor: '#d4af37',
-    backgroundColor: '#f8f9fa',
-    padding: 15,
-    borderRadius: 6,
+  skillText: {
+    fontSize: 10,
+    color: '#000000',
+  },
+
+  // Education
+  eduBlock: {
+    marginBottom: 8,
   },
 });
 
-export default function ExecutiveTemplate({ data }: ExecutiveTemplateProps) {
-  // Comprehensive text cleaning function to remove all paragraph symbols and unwanted characters
-  const cleanText = (text: string) => {
-    if (!text) return '';
-    return text
-      .replace(/¶/g, '') // Regular paragraph symbol
-      .replace(/\u00B6/g, '') // Unicode paragraph symbol
-      .replace(/\u2029/g, '') // Unicode paragraph separator
-      .replace(/\u2028/g, '') // Unicode line separator
-      .replace(/\u000C/g, '') // Form feed
-      .replace(/\u0085/g, '') // Next line
-      .replace(/[\u00A7\u00B6\u00A9\u00AE\u2122]/g, '') // Section, paragraph, copyright, registered, trademark symbols
-      .replace(/[¬•‣▪◦·]/g, '') // Additional unwanted symbols
-      .replace(/\u00B0/g, '') // Degree symbol (sometimes appears)
-      .replace(/[\u2030-\u2070]/g, '') // Various Unicode symbols that might appear
-      .replace(/[\r\n]+/g, '\n') // Normalize line breaks
-      .replace(/[ \t]+/g, ' ') // Normalize spaces and tabs but preserve newlines
-      .trim();
-  };
-
-  const formatDate = (date?: string) => {
-    if (!date) return '';
-    const [year, month] = date.split('-');
-    const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-    return `${months[parseInt(month)-1]} ${year}`;
-  };
-
-  const hasContent = (arr: any[]) =>
-    arr && arr.length > 0 && arr.some(item =>
-      Object.values(item).some(val => val && val !== '' && (typeof val !== 'object' || Object.keys(val).length > 0))
-    );
+export default function JessicaTemplate({ data }: TemplateProps) {
+  const renderSeparator = () => <Text style={styles.separator}>|</Text>;
+  const has = (arr: any[] | undefined) => arr && arr.length > 0;
 
   return (
     <Document>
       <Page size="A4" style={styles.page}>
         
-        {/* Luxury Executive Header */}
-        <View style={styles.headerContainer}>
-          <View style={styles.headerAccent} />
+        {/* --- TOP BANNER (Contact) --- */}
+        <View style={styles.topBanner}>
+          {data.personalInfo.location && (
+            <>
+               <View style={styles.contactItem}>
+                 <Text style={styles.contactText}>{data.personalInfo.location}</Text>
+               </View>
+               {renderSeparator()}
+            </>
+          )}
           
-          <View style={styles.headerContent}>
-            {data.personalInfo.photo && (
-              <View style={styles.profileImageContainer}>
-                <Image style={styles.profileImage} src={data.personalInfo.photo} />
-              </View>
-            )}
-            
-            <View style={styles.nameSection}>
-              <Text style={styles.name}>
-                {data.personalInfo.fullName}
-              </Text>
-            </View>
-          </View>
+          {data.personalInfo.phone && (
+            <>
+               <View style={styles.contactItem}>
+                 <Text style={styles.contactText}>{data.personalInfo.phone}</Text>
+               </View>
+               {renderSeparator()}
+            </>
+          )}
           
-          <View style={styles.contactGrid}>
-            {data.personalInfo.email && (
-              <View style={styles.contactItem}>
-                <Text style={styles.contactLabel}>Email</Text>
-                <Text style={styles.contactValue}>{data.personalInfo.email}</Text>
-              </View>
-            )}
-            {data.personalInfo.phone && (
-              <View style={styles.contactItem}>
-                <Text style={styles.contactLabel}>Phone</Text>
-                <Text style={styles.contactValue}>{data.personalInfo.phone}</Text>
-              </View>
-            )}
-            {data.personalInfo.location && (
-              <View style={styles.contactItem}>
-                <Text style={styles.contactLabel}>Location</Text>
-                <Text style={styles.contactValue}>{data.personalInfo.location}</Text>
-              </View>
-            )}
-            {data.personalInfo.linkedin && (
-              <View style={styles.contactItem}>
-                <Text style={styles.contactLabel}>LinkedIn</Text>
-                <Text style={styles.contactValue}>{data.personalInfo.linkedin}</Text>
-              </View>
-            )}
-            {data.personalInfo.website && (
-              <View style={styles.contactItem}>
-                <Text style={styles.contactLabel}>Website</Text>
-                <Text style={styles.contactValue}>{data.personalInfo.website}</Text>
-              </View>
-            )}
-          </View>
+          {data.personalInfo.email && (
+             <View style={styles.contactItem}>
+               <Text style={styles.contactText}>{data.personalInfo.email}</Text>
+             </View>
+          )}
+
+          {/* Optional: Add LinkedIn/Web if space permits, or add a second row */}
+          {data.personalInfo.linkedin && (
+            <>
+              {renderSeparator()}
+              <Link src={data.personalInfo.linkedin} style={[styles.contactItem, { textDecoration: 'none' }]}>
+                 <Text style={styles.contactText}>LinkedIn</Text>
+              </Link>
+            </>
+          )}
         </View>
 
-        {/* Main Content Area */}
-        <View style={styles.contentArea}>
-          
-          {/* Professional Profile */}
-          {data.personalInfo.summary && (
-            <View style={styles.executiveSummary}>
-              <Text style={styles.summaryTitle}>Professional Profile</Text>
-              <Text style={styles.summaryText}>{cleanText(data.personalInfo.summary)}</Text>
-            </View>
-          )}
+        {/* --- NAME HEADER --- */}
+        <View style={styles.nameContainer}>
+          <Text style={styles.name}>{data.personalInfo.fullName}</Text>
+        </View>
 
-          {/* Professional Experience */}
-          {hasContent(data.experience || []) && (
-            <View style={styles.section}>
-              <Text style={styles.sectionTitle}>Executive Experience</Text>
-              <View style={styles.sectionTitleAccent} />
-              {(data.experience || []).map(exp => (
-                <View key={exp.id} style={styles.experienceItem}>
-                  <View style={styles.experienceHeader}>
-                    <View style={styles.experienceLeft}>
-                      <Text style={styles.positionTitle}>{exp.position}</Text>
-                      <Text style={styles.companyName}>{exp.company}</Text>
-                      {exp.location && (
-                        <Text style={styles.companyLocation}>{exp.location}</Text>
-                      )}
+        {/* --- PROFESSIONAL SUMMARY --- */}
+        {data.personalInfo.summary && (
+          <View style={styles.sectionContainer}>
+            <View style={styles.sectionLine} />
+            <View style={styles.sectionContentRow}>
+              <View style={styles.leftColumn}>
+                <Text style={styles.sectionTitle}>SUMMARY</Text>
+              </View>
+              <View style={styles.rightColumn}>
+                <Text style={styles.summaryText}>{data.personalInfo.summary}</Text>
+              </View>
+            </View>
+          </View>
+        )}
+
+        {/* --- SKILLS --- */}
+        {has(data.skills) && (
+          <View style={styles.sectionContainer}>
+            <View style={styles.sectionLine} />
+            <View style={styles.sectionContentRow}>
+              <View style={styles.leftColumn}>
+                <Text style={styles.sectionTitle}>SKILLS</Text>
+              </View>
+              <View style={styles.rightColumn}>
+                <View style={styles.skillGrid}>
+                  {data.skills?.map((skill, i) => (
+                    <View key={i} style={styles.skillItem}>
+                      <Text style={styles.skillBullet}>•</Text>
+                      <Text style={styles.skillText}>{skill.name}</Text>
                     </View>
-                    <View style={styles.experienceRight}>
-                      <Text style={styles.dateRange}>
-                        {formatDate(exp.startDate)} - {exp.current ? 'Present' : formatDate(exp.endDate)}
-                      </Text>
-                    </View>
-                  </View>
-                  {exp.description && cleanText(exp.description).split('\n')
-                    .map(line => line.trim())
-                    .filter(line => line.length > 0)
-                    .map((line, idx) => {
-                    // Add bullet if line doesn't already start with one
-                    const bulletLine = line.startsWith('•') || line.startsWith('-') || line.startsWith('*')
-                      ? line
-                      : `• ${line}`;
-                    
-                    return (
-                      <View key={idx} style={styles.achievementBullet}>
-                        <Text style={styles.bulletIcon}>▶</Text>
-                        <Text style={{ marginLeft: 15 }}>{bulletLine}</Text>
+                  ))}
+                </View>
+              </View>
+            </View>
+          </View>
+        )}
+
+        {/* --- WORK HISTORY --- */}
+        {has(data.experience) && (
+          <View style={styles.sectionContainer}>
+            <View style={styles.sectionLine} />
+            <View style={styles.sectionContentRow}>
+              <View style={styles.leftColumn}>
+                <Text style={styles.sectionTitle}>WORK HISTORY</Text>
+              </View>
+              <View style={styles.rightColumn}>
+                {data.experience?.map((exp, i) => (
+                  <View key={i} style={styles.jobBlock} wrap={false}>
+                    <View style={styles.jobHeaderRow}>
+                      <View>
+                        <Text style={styles.jobTitle}>{exp.position}</Text>
+                        <Text style={styles.companyName}>
+                           {exp.company} {exp.location ? `- ${exp.location}` : ''}
+                        </Text>
                       </View>
-                    );
-                  })}
-                </View>
-              ))}
-            </View>
-          )}
-
-          {/* Core Competencies */}
-          {hasContent(data.skills || []) && (
-            <View style={styles.section}>
-              <Text style={styles.sectionTitle}>Core Competencies</Text>
-              <View style={styles.sectionTitleAccent} />
-              
-              {/* Technical Skills */}
-              {(data.skills || []).filter(skill => skill.type === 'technical').length > 0 && (
-                <View style={{ marginBottom: 15 }}>
-                  <Text style={styles.skillCategoryTitle}>Technical</Text>
-                  <Text style={styles.skillListText}>
-                    {(data.skills || [])
-                      .filter(skill => skill.type === 'technical')
-                      .map(skill => skill.name)
-                      .join(', ')}
-                  </Text>
-                </View>
-              )}
-              
-              {/* Soft Skills */}
-              {(data.skills || []).filter(skill => skill.type === 'soft').length > 0 && (
-                <View>
-                  <Text style={styles.skillCategoryTitle}>Leadership & Management</Text>
-                  <Text style={styles.skillListText}>
-                    {(data.skills || [])
-                      .filter(skill => skill.type === 'soft')
-                      .map(skill => skill.name)
-                      .join(', ')}
-                  </Text>
-                </View>
-              )}
-            </View>
-          )}
-
-          {/* Key Achievements */}
-          {hasContent(data.achievements || []) && (
-            <View style={styles.section}>
-              <Text style={styles.sectionTitle}>Key Achievements</Text>
-              <View style={styles.sectionTitleAccent} />
-              {(data.achievements || []).map((ach, index) => (
-                <View key={ach.id} style={styles.achievementBox}>
-                  <View style={styles.achievementAccent}>
-                    <Text style={styles.achievementIcon}>{(index + 1).toString()}</Text>
-                  </View>
-                  <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 8 }}>
-                    <Text style={styles.achievementTitle}>{ach.title}</Text>
-                    {ach.date && <Text style={styles.achievementDate}>{formatDate(ach.date)}</Text>}
-                  </View>
-                  {ach.description && cleanText(ach.description).split('\n')
-                    .map(line => line.trim())
-                    .filter(line => line.length > 0)
-                    .map((line, idx) => {
-                    // Add bullet if line doesn't already start with one
-                    const bulletLine = line.startsWith('•') || line.startsWith('-') || line.startsWith('*')
-                      ? line
-                      : `• ${line}`;
-                    
-                    return (
-                      <Text key={idx} style={styles.achievementDesc}>{bulletLine}</Text>
-                    );
-                  })}
-                </View>
-              ))}
-            </View>
-          )}
-
-          {/* Education */}
-          {hasContent(data.education || []) && (
-            <View style={styles.section}>
-              <Text style={styles.sectionTitle}>Education</Text>
-              <View style={styles.sectionTitleAccent} />
-              {(data.education || []).map(edu => (
-                <View key={edu.id} style={styles.educationItem}>
-                  <View style={styles.educationLeft}>
-                    <Text style={styles.degree}>{edu.degree} in {edu.field}</Text>
-                    <Text style={styles.institution}>{edu.institution}</Text>
-                    {edu.description && cleanText(edu.description).split('\n')
-                      .map(line => line.trim())
-                      .filter(line => line.length > 0)
-                      .map((line, idx) => {
-                      // Add bullet if line doesn't already start with one
-                      const bulletLine = line.startsWith('•') || line.startsWith('-') || line.startsWith('*')
-                        ? line
-                        : `• ${line}`;
-                      
-                      return (
-                        <Text key={idx} style={styles.educationDetails}>{bulletLine}</Text>
-                      );
-                    })}
-                  </View>
-                  <View style={styles.educationRight}>
-                    <Text style={styles.graduationYear}>
-                      {edu.current ? 'In Progress' : formatDate(edu.endDate)}
-                    </Text>
-                  </View>
-                </View>
-              ))}
-            </View>
-          )}
-
-          {/* Strategic Projects */}
-          {hasContent(data.projects || []) && (
-            <View style={styles.section}>
-              <Text style={styles.sectionTitle}>Strategic Initiatives</Text>
-              <View style={styles.sectionTitleAccent} />
-              {(data.projects || []).map(proj => (
-                <View key={proj.id} style={styles.projectCard}>
-                  <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 8 }}>
-                    <Text style={styles.projectTitle}>{proj.name}</Text>
-                    {proj.startDate && (
-                      <Text style={styles.projectDate}>
-                        {formatDate(proj.startDate)} - {proj.endDate ? formatDate(proj.endDate) : 'Ongoing'}
+                      <Text style={styles.dateText}>
+                         {exp.startDate} - {exp.endDate || 'Present'}
                       </Text>
-                    )}
-                  </View>
-                  {proj.description && cleanText(proj.description).split('\n')
-                    .map(line => line.trim())
-                    .filter(line => line.length > 0)
-                    .map((line, idx) => {
-                    // Add bullet if line doesn't already start with one
-                    const bulletLine = line.startsWith('•') || line.startsWith('-') || line.startsWith('*')
-                      ? line
-                      : `• ${line}`;
-                    
-                    return (
-                      <Text key={idx} style={styles.projectDescription}>{bulletLine}</Text>
-                    );
-                  })}
-                  {proj.technologies && (
-                    <Text style={styles.projectTech}>
-                      Technologies: {typeof proj.technologies === 'string' 
-                        ? proj.technologies 
-                        : proj.technologies.join(', ')
-                      }
-                    </Text>
-                  )}
-                </View>
-              ))}
-            </View>
-          )}
-
-          {/* Languages */}
-          {hasContent(data.languages || []) && (
-            <View style={styles.section}>
-              <Text style={styles.sectionTitle}>Languages</Text>
-              <View style={styles.sectionTitleAccent} />
-              {(data.languages || []).map(lang => (
-                <View key={lang.id} style={styles.languageItem}>
-                  <Text style={styles.languageName}>{lang.name}</Text>
-                  <Text style={styles.languageLevel}>{lang.level}</Text>
-                </View>
-              ))}
-            </View>
-          )}
-
-          {/* Professional Certifications */}
-          {hasContent(data.certifications || []) && (
-            <View style={styles.section}>
-              <Text style={styles.sectionTitle}>Certifications</Text>
-              <View style={styles.sectionTitleAccent} />
-              <View style={styles.certificationGrid}>
-                {(data.certifications || []).map((cert, index) => (
-                  <View key={index} style={styles.certificationItem}>
-                    <Text style={styles.certificationText}>{cert}</Text>
+                    </View>
+                    {renderBulletPoints(exp.description, styles.descriptionText)}
                   </View>
                 ))}
               </View>
             </View>
-          )}
+          </View>
+        )}
 
-          {/* Volunteer Experience */}
-          {hasContent(data.volunteerWork || []) && (
-            <View style={styles.section}>
-              <Text style={styles.sectionTitle}>Board & Volunteer Leadership</Text>
-              <View style={styles.sectionTitleAccent} />
-              {(data.volunteerWork || []).map(vol => (
-                <View key={vol.id} style={styles.experienceItem}>
-                  <View style={styles.experienceHeader}>
-                    <View style={styles.experienceLeft}>
-                      <Text style={styles.positionTitle}>{vol.role}</Text>
-                      <Text style={styles.companyName}>{vol.organization}</Text>
-                    </View>
-                    <View style={styles.experienceRight}>
-                      <Text style={styles.dateRange}>
-                        {formatDate(vol.startDate)} - {vol.current ? 'Present' : formatDate(vol.endDate)}
+        {/* --- PROJECTS --- */}
+        {has(data.projects) && (
+          <View style={styles.sectionContainer}>
+            <View style={styles.sectionLine} />
+            <View style={styles.sectionContentRow}>
+              <View style={styles.leftColumn}>
+                <Text style={styles.sectionTitle}>PROJECTS</Text>
+              </View>
+              <View style={styles.rightColumn}>
+                {data.projects?.map((proj, i) => (
+                  <View key={i} style={styles.jobBlock} wrap={false}>
+                    <View style={styles.jobHeaderRow}>
+                      <Text style={styles.jobTitle}>{proj.name}</Text>
+                      <Text style={styles.dateText}>
+                         {proj.startDate} - {proj.endDate || 'Present'}
                       </Text>
                     </View>
+                    {renderBulletPoints(proj.description, styles.descriptionText)}
+                    {proj.technologies && (
+                      <Text style={{ fontSize: 9, fontStyle: 'italic', marginTop: 2, color: '#4b5563' }}>
+                        Tech: {Array.isArray(proj.technologies) ? proj.technologies.join(', ') : proj.technologies}
+                      </Text>
+                    )}
                   </View>
-                  {vol.description && cleanText(vol.description).split('\n')
-                    .map(line => line.trim())
-                    .filter(line => line.length > 0)
-                    .map((line, idx) => {
-                    // Add bullet if line doesn't already start with one
-                    const bulletLine = line.startsWith('•') || line.startsWith('-') || line.startsWith('*')
-                      ? line
-                      : `• ${line}`;
-                    
-                    return (
-                      <View key={idx} style={styles.achievementBullet}>
-                        <Text style={styles.bulletIcon}>▶</Text>
-                        <Text style={{ marginLeft: 15 }}>{bulletLine}</Text>
+                ))}
+              </View>
+            </View>
+          </View>
+        )}
+
+        {/* --- EDUCATION --- */}
+        {has(data.education) && (
+          <View style={styles.sectionContainer}>
+             <View style={styles.sectionLine} />
+             <View style={styles.sectionContentRow}>
+               <View style={styles.leftColumn}>
+                 <Text style={styles.sectionTitle}>EDUCATION</Text>
+               </View>
+               <View style={styles.rightColumn}>
+                 {data.education?.map((edu, i) => (
+                   <View key={i} style={styles.eduBlock}>
+                     <View style={styles.jobHeaderRow}>
+                        <Text style={styles.jobTitle}>
+                          {edu.degree} {edu.field ? `in ${edu.field}` : ''}
+                        </Text>
+                        <Text style={styles.dateText}>{edu.endDate}</Text>
+                     </View>
+                     <Text style={styles.companyName}>{edu.institution}</Text>
+                     {edu.description && <Text style={[styles.descriptionText, { marginTop: 2 }]}>{edu.description}</Text>}
+                   </View>
+                 ))}
+               </View>
+             </View>
+          </View>
+        )}
+
+        {/* --- VOLUNTEER --- */}
+        {has(data.volunteerWork) && (
+           <View style={styles.sectionContainer}>
+             <View style={styles.sectionLine} />
+             <View style={styles.sectionContentRow}>
+               <View style={styles.leftColumn}>
+                 <Text style={styles.sectionTitle}>VOLUNTEER</Text>
+               </View>
+               <View style={styles.rightColumn}>
+                 {data.volunteerWork?.map((vol, i) => (
+                   <View key={i} style={styles.jobBlock}>
+                     <View style={styles.jobHeaderRow}>
+                       <Text style={styles.jobTitle}>{vol.role}</Text>
+                       <Text style={styles.dateText}>
+                         {vol.startDate} - {vol.endDate || 'Present'}
+                       </Text>
+                     </View>
+                     <Text style={styles.companyName}>{vol.organization}</Text>
+                     {renderBulletPoints(vol.description, styles.descriptionText)}
+                   </View>
+                 ))}
+               </View>
+             </View>
+           </View>
+        )}
+
+        {/* --- ACHIEVEMENTS --- */}
+        {has(data.achievements) && (
+           <View style={styles.sectionContainer}>
+             <View style={styles.sectionLine} />
+             <View style={styles.sectionContentRow}>
+               <View style={styles.leftColumn}>
+                 <Text style={styles.sectionTitle}>AWARDS</Text>
+               </View>
+               <View style={styles.rightColumn}>
+                 {data.achievements?.map((ach, i) => (
+                   <View key={i} style={{ marginBottom: 6 }}>
+                      <View style={styles.jobHeaderRow}>
+                        <Text style={styles.jobTitle}>{ach.title}</Text>
+                        <Text style={styles.dateText}>{ach.date}</Text>
                       </View>
-                    );
-                  })}
-                </View>
-              ))}
-            </View>
-          )}
+                      {ach.description && <Text style={styles.descriptionText}>{ach.description}</Text>}
+                   </View>
+                 ))}
+               </View>
+             </View>
+           </View>
+        )}
+        
+        {/* --- REFERENCES --- */}
+        {has(data.references) && (
+           <View style={styles.sectionContainer}>
+             <View style={styles.sectionLine} />
+             <View style={styles.sectionContentRow}>
+               <View style={styles.leftColumn}>
+                 <Text style={styles.sectionTitle}>REFERENCES</Text>
+               </View>
+               <View style={styles.rightColumn}>
+                 {data.references?.map((ref, i) => (
+                   <View key={i} style={{ marginBottom: 8 }}>
+                     <Text style={styles.jobTitle}>{ref.name}</Text>
+                     <Text style={styles.companyName}>
+                       {ref.position}, {ref.company}
+                     </Text>
+                     {ref.email && <Text style={styles.descriptionText}>{ref.email}</Text>}
+                   </View>
+                 ))}
+               </View>
+             </View>
+           </View>
+        )}
 
-          {/* References */}
-          {hasContent(data.references || []) && (
-            <View style={styles.section}>
-              <Text style={styles.sectionTitle}>Executive References</Text>
-              <View style={styles.sectionTitleAccent} />
-              {(data.references || []).map(ref => (
-                <View key={ref.id} style={styles.referenceCard}>
-                  <Text style={styles.referenceName}>{ref.name}</Text>
-                  <Text style={styles.referenceTitle}>
-                    {ref.position}{ref.company ? ` at ${ref.company}` : ''}
-                  </Text>
-                  <Text style={styles.referenceContact}>
-                    {ref.email ? `Email: ${ref.email}` : ''}{ref.email && ref.phone ? ' | ' : ''}{ref.phone ? `Phone: ${ref.phone}` : ''}
-                  </Text>
-                </View>
-              ))}
-            </View>
-          )}
-
-          {/* Professional Interests */}
-          {hasContent(data.hobbies || []) && (
-            <View style={styles.section}>
-              <Text style={styles.sectionTitle}>Professional Interests</Text>
-              <View style={styles.sectionTitleAccent} />
-              <Text style={styles.interestText}>
-                {(data.hobbies || []).join(' • ')}
-              </Text>
-            </View>
-          )}
-          
-        </View>
       </Page>
     </Document>
   );
