@@ -34,15 +34,22 @@ export default function AIRewriteButton({
       return;
     }
     
+    console.log('🤖 AI Rewrite initiated:', { textLength: text.length, context });
     setOriginalText(text); // <-- Save the original text
     setRewriteState('loading');
     setError(null);
 
     try {
       const newRewrittenText = await rewriteWithAI(text, context);
+      console.log('✅ AI Rewrite completed:', { 
+        originalLength: text.length, 
+        rewrittenLength: newRewrittenText.length,
+        improved: newRewrittenText !== text
+      });
       onRewrite(newRewrittenText); // <-- IMMEDIATELY update the form
       setRewriteState('rewritten'); // Show "Revert/Try Again" buttons
     } catch (err) {
+      console.error('❌ AI Rewrite error:', err);
       setError(err instanceof Error ? err.message : 'Failed to rewrite');
       setRewriteState('idle'); // Go back to the start
     }
@@ -54,14 +61,20 @@ export default function AIRewriteButton({
   const handleTryAgain = async () => {
     if (!originalText) return; // Should never happen
     
+    console.log('🔄 AI Rewrite - Try Again:', { textLength: originalText.length, context });
     setRewriteState('loading');
     setError(null);
 
     try {
       const newRewrittenText = await rewriteWithAI(originalText, context);
+      console.log('✅ AI Rewrite - Try Again completed:', { 
+        originalLength: originalText.length, 
+        rewrittenLength: newRewrittenText.length 
+      });
       onRewrite(newRewrittenText); // <-- IMMEDIATELY update the form
       setRewriteState('rewritten'); // Go back to "Revert/Try Again"
     } catch (err) {
+      console.error('❌ AI Rewrite - Try Again error:', err);
       setError(err instanceof Error ? err.message : 'Failed to rewrite');
       setRewriteState('rewritten'); // Stay on "Revert/Try Again"
     }

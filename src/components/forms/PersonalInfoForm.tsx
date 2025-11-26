@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next';
 import { PersonalInfo } from '../../types/cv';
-import AIRewriteButton from '../common/AIRewriteButton.tsx';
+import AIRewriteButton from '../common/AIRewriteButton';
 
 interface PersonalInfoFormProps {
   data: PersonalInfo;

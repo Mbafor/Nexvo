@@ -152,6 +152,8 @@ export async function parseURLToCV(url: string): Promise<Partial<CVData>> {
   }
 }
 
+
+
 // Helper function to validate and clean parsed data
 function validateAndCleanParsedData(data: Partial<CVData>): Partial<CVData> {
   const cleaned: Partial<CVData> = {

@@ -2,7 +2,7 @@ import { Plus, Trash2 } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { Education } from "../../types/cv";
 import BulletPointTextarea from "../common/BulletPointTextarea";
-import AIRewriteButton from "../common/AIRewriteButton.tsx";
+import AIRewriteButton from "../common/AIRewriteButton";
 
 interface EducationFormProps {
   data: Education[];

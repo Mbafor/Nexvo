@@ -47,17 +47,36 @@ export default function CVUploadBar({ onParsed }: CVUploadBarProps) {
 
   const processFile = async (file: File) => {
     setError(null); setSuccess(null); setIsLoading(true);
+    console.log('🔍 Processing file:', file.name, 'Size:', file.size, 'Type:', file.type);
+    
     try {
+      console.log('📄 Extracting text from file...');
       const extractedText = await extractTextFromFile(file);
-      if (!extractedText || extractedText.trim().length < 50) throw new Error('Could not read text from file.');
+      console.log('📝 Extracted text length:', extractedText?.length);
+      
+      if (!extractedText || extractedText.trim().length < 50) {
+        throw new Error('Could not read enough text from file. Please ensure the file contains readable CV content.');
+      }
+      
+      console.log('🤖 Parsing CV data with AI...');
       const parsedData = await parseTextToCV(extractedText);
-      if (!parsedData.personalInfo?.fullName && !parsedData.experience?.length) throw new Error('No CV data found in file.');
+      console.log('✅ Parsed data:', {
+        hasPersonalInfo: !!parsedData.personalInfo?.fullName,
+        hasExperience: !!parsedData.experience?.length,
+        hasEducation: !!parsedData.education?.length,
+        hasSkills: !!parsedData.skills?.length
+      });
+      
+      if (!parsedData.personalInfo?.fullName && !parsedData.experience?.length) {
+        throw new Error('No CV data found in file. Please ensure the file contains proper CV/resume content.');
+      }
       
       onParsed(parsedData);
-      setSuccess(`Successfully imported "${file.name}"`);
+      setSuccess(`Successfully imported "${file.name}" - Found ${Object.keys(parsedData).length} sections`);
       setTimeout(() => setSuccess(null), 5000);
     } catch (err: any) {
-      setError(err?.message || 'Failed to parse file.');
+      console.error('❌ File processing error:', err);
+      setError(err?.message || 'Failed to parse file. Please try a different file or format.');
     } finally {
       setIsLoading(false);
     }
@@ -67,23 +86,35 @@ export default function CVUploadBar({ onParsed }: CVUploadBarProps) {
   const handleLinkedinSubmit = async (e?: React.FormEvent) => {
     e?.preventDefault();
     if (!linkedinUrl.trim() || !linkedinUrl.includes('linkedin.com')) {
-      setError('Please enter a valid LinkedIn URL');
+      setError('Please enter a valid LinkedIn URL (e.g., https://www.linkedin.com/in/username)');
       return;
     }
 
     setShowLinkedinModal(false); // Close modal
     setError(null); setSuccess(null); setIsLoading(true);
+    console.log('🔗 Processing LinkedIn URL:', linkedinUrl);
 
     try {
+      console.log('🤖 Parsing LinkedIn profile with AI...');
       const parsedData = await parseURLToCV(linkedinUrl);
-      if (!parsedData.personalInfo?.fullName && !parsedData.experience?.length) throw new Error('Could not extract profile data.');
+      console.log('✅ LinkedIn parsed data:', {
+        hasPersonalInfo: !!parsedData.personalInfo?.fullName,
+        hasExperience: !!parsedData.experience?.length,
+        hasEducation: !!parsedData.education?.length,
+        hasSkills: !!parsedData.skills?.length
+      });
+      
+      if (!parsedData.personalInfo?.fullName && !parsedData.experience?.length) {
+        throw new Error('Could not extract profile data. Please ensure the LinkedIn profile is public and contains work experience.');
+      }
       
       onParsed(parsedData);
-      setSuccess('LinkedIn profile imported successfully');
+      setSuccess(`LinkedIn profile imported successfully - Found ${Object.keys(parsedData).length} sections`);
       setLinkedinUrl('');
       setTimeout(() => setSuccess(null), 5000);
     } catch (err: any) {
-      setError(err?.message || 'Failed to import LinkedIn profile.');
+      console.error('❌ LinkedIn parsing error:', err);
+      setError(err?.message || 'Failed to import LinkedIn profile. Please ensure the profile is public and try again.');
     } finally {
       setIsLoading(false);
     }

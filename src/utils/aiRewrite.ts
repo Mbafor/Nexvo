@@ -21,7 +21,8 @@ export async function rewriteWithAI(text: string, context: string = 'professiona
     const timeoutId = setTimeout(() => controller.abort(), TIMEOUT_MS);
 
     try {
-      const resp = await fetch('/api/rewrite', {
+      const apiUrl = '/api/rewrite';
+      const resp = await fetch(apiUrl, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ text, context }),

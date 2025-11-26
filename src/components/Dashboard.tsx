@@ -1,7 +1,7 @@
 // Advanced Professional Dashboard Component
 // Google-level enterprise dashboard with comprehensive CV management
 
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { 
   Download, 
   Edit, 
@@ -39,10 +39,10 @@ import {
   Send,
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { useTranslation } from 'react-i18next'; // Import added
+import { useTranslation } from 'react-i18next'; 
 import { useAuth } from '../context';
 import { CVData, TemplateType } from '../types/cv';
-import { getUserCVDownloads, deleteCVDownload, saveCVDownload, CVDownloadRecord } from '../lib/firestore';
+import { getUserCVDownloads, deleteCVDownload, saveCVDownload, CVDownloadRecord, getUserCVDraft } from '../lib/firestore';
 import { generatePDFBlob } from '../lib/pdfGenerator';
 import { saveAs } from 'file-saver';
 import { blogPosts } from '../data/blogPosts';
@@ -55,13 +55,22 @@ interface DashboardProps {
   onEditCV?: (cvData: CVData) => void;
 }
 
+// Mock CVPreview component for dashboard
+const CVPreview = ({ cvData, templateType, className, onEdit }: any) => (
+  <div className={`bg-gray-100 rounded border border-gray-200 flex flex-col items-center justify-center text-gray-400 text-xs p-4 cursor-pointer hover:bg-gray-50 ${className}`} style={{ height: '200px' }} onClick={onEdit}>
+    <div className="mb-2">{cvData.personalInfo.fullName || 'Untitled CV'}</div>
+    <div className="text-gray-500">{templateType} template</div>
+  </div>
+);
+
 type ViewMode = 'grid' | 'list';
 type SidebarTab = 'dashboard' | 'analytics' | 'templates' | 'resources' | 'settings' | 'help';
 
 export default function Dashboard({ onCreateNew, onEditCV }: DashboardProps) {
-  const { t } = useTranslation(); // Hook initialized
+  const { t } = useTranslation(); 
   const { user, loading: authLoading, signOut } = useAuth();
   const [cvHistory, setCVHistory] = useState<CVDownloadRecord[]>([]);
+  // Removed unused cvDraft state
   const [loading, setLoading] = useState(true);
   const [isDownloading, setIsDownloading] = useState<string | null>(null);
   const [activeTab, setActiveTab] = useState<SidebarTab>('dashboard');
@@ -90,7 +99,6 @@ export default function Dashboard({ onCreateNew, onEditCV }: DashboardProps) {
   const [isSubmittingContact, setIsSubmittingContact] = useState(false);
   const [contactSubmitStatus, setContactSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
 
-  // Available templates moved inside component for translation
   const availableTemplates: { type: TemplateType; name: string; description: string; preview: string; color: string; category: string }[] = [
     {
       type: 'modern',
@@ -143,7 +151,6 @@ export default function Dashboard({ onCreateNew, onEditCV }: DashboardProps) {
   ];
 
   useEffect(() => {
-    // Only load CV history when user is authenticated and loading is complete
     if (!authLoading) {
       loadCVHistory();
     }
@@ -171,7 +178,6 @@ export default function Dashboard({ onCreateNew, onEditCV }: DashboardProps) {
     if (authLoading) return;
 
     if (!user) {
-      // Check for unsaved CV in localStorage
       const localCV = localStorage.getItem('cvData');
       
       if (localCV) {
@@ -179,7 +185,6 @@ export default function Dashboard({ onCreateNew, onEditCV }: DashboardProps) {
           const cvData = JSON.parse(localCV);
           
           if (cvData.personalInfo.fullName) {
-            // Create a temporary record for display
             const tempRecord: CVDownloadRecord = {
               id: 'local-temp',
               fileName: `${cvData.personalInfo.fullName}_CV_Draft.pdf`,
@@ -209,23 +214,27 @@ export default function Dashboard({ onCreateNew, onEditCV }: DashboardProps) {
     }
     
     try {
-      const downloads = await getUserCVDownloads(user.uid);
-      setCVHistory(downloads);
+      const [downloads] = await Promise.all([
+        getUserCVDownloads(user.uid),
+        getUserCVDraft(user.uid)
+      ]);
       
-      // Calculate advanced stats
+      setCVHistory(downloads);
+      // CV draft loading functionality can be added later if needed
+      
       const templatesUsed = new Set(downloads.map((d: CVDownloadRecord) => d.templateType)).size;
       const lastDownload = downloads.length > 0 ? downloads[0].downloadedAt : null;
       const thisMonth = new Date();
       thisMonth.setMonth(thisMonth.getMonth());
-      const thisMonthDownloads = downloads.filter(d => d.downloadedAt >= thisMonth).length;
+      const thisMonthDownloads = downloads.filter((d: CVDownloadRecord) => d.downloadedAt >= thisMonth).length;
       
       setStats({
         totalDownloads: downloads.length,
         templatesUsed,
         lastDownload,
         thisMonthDownloads,
-        totalViews: downloads.length * 3, // Simulated
-        avgRating: 4.8 // Simulated
+        totalViews: downloads.length * 3,
+        avgRating: 4.8
       });
     } catch (error) {
       console.error('❌ Failed to load CV data:', error);
@@ -392,7 +401,6 @@ export default function Dashboard({ onCreateNew, onEditCV }: DashboardProps) {
   };
 
   const getTemplateDisplayName = (template: TemplateType): string => {
-    // We use the translated names from availableTemplates array
     const templateObj = availableTemplates.find(t => t.type === template);
     return templateObj ? templateObj.name : template;
   };
@@ -534,7 +542,6 @@ export default function Dashboard({ onCreateNew, onEditCV }: DashboardProps) {
     </div>
   );
 
-  // Show authentication loading state
   if (authLoading) {
     return (
       <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50 flex items-center justify-center">
@@ -575,7 +582,6 @@ export default function Dashboard({ onCreateNew, onEditCV }: DashboardProps) {
       {/* Advanced Sidebar */}
       <div className="hidden lg:flex lg:w-64 bg-white shadow-xl border-r border-gray-200 flex-col h-full">
         {/* Desktop Sidebar Content */}
-        {/* Logo & User */}
         <div className="p-6 border-b border-gray-200">
           <div className="flex items-center space-x-3">
             <div className="h-10 w-10 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-xl flex items-center justify-center shadow-lg">
@@ -592,7 +598,6 @@ export default function Dashboard({ onCreateNew, onEditCV }: DashboardProps) {
           </div>
         </div>
 
-        {/* Navigation */}
         <nav className="flex-1 p-4 space-y-2 overflow-y-auto">
           {[
             { id: 'dashboard', icon: BarChart3, label: t('dashboard.nav.dashboard'), badge: cvHistory.length },
@@ -626,7 +631,6 @@ export default function Dashboard({ onCreateNew, onEditCV }: DashboardProps) {
           ))}
         </nav>
 
-        {/* Quick Actions */}
         <div className="p-4 border-t border-gray-200 space-y-2">
           <button
             onClick={onCreateNew}
@@ -654,7 +658,6 @@ export default function Dashboard({ onCreateNew, onEditCV }: DashboardProps) {
         }}
         className="fixed lg:hidden w-80 bg-white shadow-xl border-r border-gray-200 flex flex-col z-50 h-full"
       >
-        {/* Mobile Close Button */}
         <div className="flex justify-end p-4 border-b border-gray-200">
           <button
             onClick={() => setIsMobileMenuOpen(false)}
@@ -664,7 +667,6 @@ export default function Dashboard({ onCreateNew, onEditCV }: DashboardProps) {
           </button>
         </div>
 
-        {/* Logo & User */}
         <div className="p-4 border-b border-gray-200">
           <div className="flex items-center space-x-3">
             <div className="h-10 w-10 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-xl flex items-center justify-center shadow-lg">
@@ -681,7 +683,6 @@ export default function Dashboard({ onCreateNew, onEditCV }: DashboardProps) {
           </div>
         </div>
 
-        {/* Navigation */}
         <nav className="flex-1 p-3 space-y-1 overflow-y-auto">
           {[
             { id: 'dashboard', icon: BarChart3, label: t('dashboard.nav.dashboard'), badge: cvHistory.length },
@@ -715,7 +716,6 @@ export default function Dashboard({ onCreateNew, onEditCV }: DashboardProps) {
           ))}
         </nav>
 
-        {/* Quick Actions */}
         <div className="p-3 border-t border-gray-200 space-y-2">
           <button
             onClick={onCreateNew}
@@ -847,7 +847,6 @@ export default function Dashboard({ onCreateNew, onEditCV }: DashboardProps) {
                 </div>
               </div>
 
-              {/* Email Verification Banner */}
               <EmailVerificationBanner />
 
               {/* Stats Grid - Mobile Responsive */}
@@ -1002,29 +1001,45 @@ export default function Dashboard({ onCreateNew, onEditCV }: DashboardProps) {
                           initial={{ opacity: 0, x: -20 }}
                           animate={{ opacity: 1, x: 0 }}
                           transition={{ delay: index * 0.1 }}
-                          className={`${viewMode === 'grid' ? 'bg-gray-50 rounded-xl p-4 lg:p-6 hover:shadow-lg' : 'flex items-center justify-between p-3 lg:p-4 border border-gray-200 rounded-lg hover:bg-gray-50'} transition-all cursor-pointer relative`}
+                          className={viewMode === 'grid' 
+                            ? "bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden relative group hover:shadow-md transition-shadow" 
+                            : "bg-white rounded-xl shadow-sm p-4 flex items-center justify-between hover:shadow-md transition-shadow relative"
+                          }
                         >
-                          {/* Selection Checkbox */}
-                          <div className="absolute top-2 lg:top-3 left-2 lg:left-3">
-                            <input
-                              type="checkbox"
-                              checked={selectedCVs.includes(record.id)}
-                              onChange={() => toggleCVSelection(record.id)}
-                              className="h-4 w-4 text-blue-700 focus:ring-blue-500 border-gray-300 rounded"
-                            />
-                          </div>
-
                           {viewMode === 'grid' ? (
                             <>
-                              <div className="pt-6 lg:pt-6">
-                                <div className="flex items-center justify-between mb-3 lg:mb-4">
-                                  <div className="h-10 w-10 lg:h-12 lg:w-12 bg-blue-100 rounded-lg flex items-center justify-center">
-                                    <FileText className="h-5 w-5 lg:h-6 lg:w-6 text-blue-700" />
-                                  </div>
+                              {/* Grid View: Image Area Container */}
+                              <div className="relative">
+                                {/* Selection Checkbox */}
+                                <div className="absolute top-2 lg:top-3 left-2 lg:left-3 z-10">
+                                  <input
+                                    type="checkbox"
+                                    checked={selectedCVs.includes(record.id)}
+                                    onChange={() => toggleCVSelection(record.id)}
+                                    className="h-4 w-4 text-blue-700 focus:ring-blue-500 border-gray-300 rounded"
+                                  />
+                                </div>
+                                
+                                {/* CV Preview Image */}
+                                <CVPreview
+                                  cvData={record.cvData}
+                                  templateType={record.templateType}
+                                  fileName={record.fileName}
+                                  downloadedAt={record.downloadedAt}
+                                  viewMode={viewMode}
+                                  onEdit={() => {
+                                    localStorage.setItem('cvData', JSON.stringify(record.cvData));
+                                    window.location.href = '/builder';
+                                  }}
+                                  className="pt-6"
+                                />
+
+                                {/* Action Menu (Top Right) */}
+                                <div className="absolute top-8 right-2 z-20">
                                   <div className="relative">
                                     <button
                                       onClick={() => setShowActionMenu(showActionMenu === record.id ? null : record.id)}
-                                      className="p-2 hover:bg-gray-200 rounded-lg transition-colors"
+                                      className="p-2 bg-white/80 hover:bg-white rounded-lg transition-colors shadow-sm"
                                     >
                                       <MoreVertical className="h-4 w-4 text-gray-600" />
                                     </button>
@@ -1063,7 +1078,10 @@ export default function Dashboard({ onCreateNew, onEditCV }: DashboardProps) {
                                     </AnimatePresence>
                                   </div>
                                 </div>
-                                
+                              </div>
+                              
+                              {/* Grid View: Meta Info Footer */}
+                              <div className="p-4 border-t border-gray-100">
                                 <h3 className="font-semibold text-gray-900 mb-2 truncate text-sm lg:text-base">{record.fileName}</h3>
                                 <div className="space-y-2">
                                   <span className={`inline-block px-2 py-1 rounded-full text-xs font-medium ${getTemplateColor(record.templateType)}`}>
@@ -1076,6 +1094,7 @@ export default function Dashboard({ onCreateNew, onEditCV }: DashboardProps) {
                               </div>
                             </>
                           ) : (
+                            // List View Content
                             <>
                               <div className="flex items-center space-x-3 lg:space-x-4 ml-6 lg:ml-8 min-w-0 flex-1">
                                 <div className="h-8 w-8 lg:h-10 lg:w-10 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0">

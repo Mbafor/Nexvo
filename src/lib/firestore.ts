@@ -1,4 +1,4 @@
-import { collection, addDoc, query, where, getDocs, deleteDoc, doc, Timestamp, orderBy } from 'firebase/firestore';
+import { collection, addDoc, query, where, getDocs, deleteDoc, doc, Timestamp, orderBy, setDoc, updateDoc } from 'firebase/firestore';
 import { db } from './firebase';
 import { CVData, TemplateType } from '../types/cv';
 
@@ -18,6 +18,16 @@ export interface CVDownloadRecord {
   templateType: TemplateType;
   downloadedAt: Date;
   fileName: string;
+}
+
+export interface CVDraft {
+  id?: string;
+  userId: string;
+  email: string;
+  cvData: CVData;
+  lastModified: Timestamp;
+  createdAt: Timestamp;
+  isDraft: boolean;
 }
 
 // Save a CV download record
@@ -101,4 +111,76 @@ export const getUserCVDownloads = async (userId: string): Promise<CVDownloadReco
 // Delete a CV download record
 export const deleteCVDownload = async (downloadId: string): Promise<void> => {
   await deleteDoc(doc(db, 'cv_downloads', downloadId));
+};
+
+// Save or update a CV draft (auto-save functionality)
+export const saveCVDraft = async (
+  userId: string,
+  email: string,
+  cvData: CVData
+): Promise<string> => {
+  console.log('🔥 Firestore: Auto-saving CV draft...');
+  console.log('👤 User ID:', userId);
+  console.log('📧 Email:', email);
+  console.log('📄 CV Name:', cvData.personalInfo.fullName);
+  
+  try {
+    // Use a consistent document ID based on user ID for automatic overwriting
+    const draftId = `draft_${userId}`;
+    const draftRef = doc(db, 'cv_drafts', draftId);
+    
+    const cvDraft: Omit<CVDraft, 'id'> = {
+      userId,
+      email,
+      cvData,
+      lastModified: Timestamp.now(),
+      createdAt: Timestamp.now(),
+      isDraft: true,
+    };
+
+    await setDoc(draftRef, cvDraft, { merge: true });
+    console.log('✅ Firestore: CV draft auto-saved successfully');
+    return draftId;
+  } catch (error) {
+    console.error('❌ Firestore: Failed to auto-save CV draft:', error);
+    throw error;
+  }
+};
+
+// Get user's current CV draft
+export const getUserCVDraft = async (userId: string): Promise<CVDraft | null> => {
+  console.log('🔥 Firestore: Getting CV draft for user:', userId);
+  
+  try {
+    const draftId = `draft_${userId}`;
+    const q = query(
+      collection(db, 'cv_drafts'), 
+      where('userId', '==', userId),
+      orderBy('lastModified', 'desc')
+    );
+    const querySnapshot = await getDocs(q);
+    
+    if (querySnapshot.empty) {
+      console.log('📄 Firestore: No CV draft found for user');
+      return null;
+    }
+    
+    const docSnap = querySnapshot.docs[0];
+    const data = docSnap.data() as Omit<CVDraft, 'id'>;
+    
+    console.log('✅ Firestore: CV draft found, last modified:', data.lastModified.toDate());
+    return {
+      id: docSnap.id,
+      ...data
+    };
+  } catch (error) {
+    console.error('❌ Firestore: Failed to get CV draft:', error);
+    return null;
+  }
+};
+
+// Delete user's CV draft
+export const deleteCVDraft = async (userId: string): Promise<void> => {
+  const draftId = `draft_${userId}`;
+  await deleteDoc(doc(db, 'cv_drafts', draftId));
 };

@@ -19,6 +19,10 @@ import {
   microsoftProvider,
 } from '../lib/firebase';
 import { sendWelcomeMessage } from '../utils/emailService';
+import { downloadIntentService } from '../utils/downloadIntent';
+import { generatePDFBlob } from '../lib/pdfGenerator';
+import { saveCVDownload } from '../lib/firestore';
+import { saveAs } from 'file-saver';
 
 interface AuthContextType {
   user: User | null;
@@ -36,14 +40,70 @@ interface AuthContextType {
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
+// Helper function to extract name from email
+const extractNameFromEmail = (email: string): string => {
+  if (!email) return 'Professional User';
+  
+  const localPart = email.split('@')[0];
+  
+  // Handle common patterns like firstname.lastname, firstname_lastname, firstnamelastname
+  const nameParts = localPart
+    .replace(/[._-]/g, ' ')
+    .split(' ')
+    .map(part => part.charAt(0).toUpperCase() + part.slice(1).toLowerCase())
+    .filter(part => part.length > 1); // Filter out single letters
+  
+  if (nameParts.length >= 2) {
+    return nameParts.slice(0, 2).join(' '); // First and last name
+  } else if (nameParts.length === 1) {
+    return nameParts[0]; // Just first name
+  }
+  
+  return 'Professional User'; // Fallback
+};
+
 export function AuthProvider({ children }: { children: ReactNode }) {
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (user) => {
+    const unsubscribe = onAuthStateChanged(auth, async (user) => {
       console.log('🔐 Auth state changed:', user ? `Signed in as ${user.email}` : 'Signed out');
       setUser(user);
+      
+      // Handle auto-download and redirect on sign in
+      if (user) {
+        try {
+          const result = await downloadIntentService.executePendingIntent(
+            async (cvData, templateType) => {
+              console.log('🚀 Auto-downloading CV for authenticated user...');
+              const blob = await generatePDFBlob(cvData, templateType);
+              const fileName = `${cvData.personalInfo.fullName?.replace(/\s+/g, '_') || 'CV'}_${templateType}.pdf`;
+              saveAs(blob, fileName);
+            },
+            user.uid,
+            user.email || ''
+          );
+          
+          if (result.executed) {
+            console.log('✅ CV downloaded and saved to dashboard');
+            // Redirect to dashboard after successful download
+            setTimeout(() => {
+              window.location.href = '/dashboard';
+            }, 1000);
+          } else {
+            // Check URL for verification redirect
+            const urlParams = new URLSearchParams(window.location.search);
+            if (urlParams.get('verified') === 'true' || window.location.pathname.includes('verify-email')) {
+              console.log('📧 Email verification redirect detected');
+              window.location.href = '/dashboard';
+            }
+          }
+        } catch (error) {
+          console.error('❌ Failed to execute auto-download:', error);
+        }
+      }
+      
       setLoading(false);
     });
 
@@ -58,9 +118,10 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       
       // Send welcome message for new users
       if (result.user.metadata.creationTime === result.user.metadata.lastSignInTime) {
+        const displayName = result.user.displayName || extractNameFromEmail(result.user.email || '');
         sendWelcomeMessage({
           email: result.user.email || '',
-          fullName: result.user.displayName || 'Professional',
+          fullName: displayName,
           signUpMethod: 'google'
         });
       }
@@ -78,9 +139,10 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       
       // Send welcome message for new users
       if (result.user.metadata.creationTime === result.user.metadata.lastSignInTime) {
+        const displayName = result.user.displayName || extractNameFromEmail(result.user.email || '');
         sendWelcomeMessage({
           email: result.user.email || '',
-          fullName: result.user.displayName || 'Professional',
+          fullName: displayName,
           signUpMethod: 'facebook'
         });
       }
@@ -98,9 +160,10 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       
       // Send welcome message for new users
       if (result.user.metadata.creationTime === result.user.metadata.lastSignInTime) {
+        const displayName = result.user.displayName || extractNameFromEmail(result.user.email || '');
         sendWelcomeMessage({
           email: result.user.email || '',
-          fullName: result.user.displayName || 'Professional',
+          fullName: displayName,
           signUpMethod: 'apple'
         });
       }
@@ -118,9 +181,10 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       
       // Send welcome message for new users
       if (result.user.metadata.creationTime === result.user.metadata.lastSignInTime) {
+        const displayName = result.user.displayName || extractNameFromEmail(result.user.email || '');
         sendWelcomeMessage({
           email: result.user.email || '',
-          fullName: result.user.displayName || 'Professional',
+          fullName: displayName,
           signUpMethod: 'microsoft'
         });
       }
@@ -135,17 +199,16 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       console.log('📧 Attempting email sign-up for:', email);
       const result = await createUserWithEmailAndPassword(auth, email, password);
       
-      // Update user profile with full name if provided
-      if (fullName) {
-        await updateProfile(result.user, {
-          displayName: fullName
-        });
-        console.log('👤 User profile updated with name:', fullName);
-      }
+      // Update user profile with full name if provided, otherwise extract from email
+      const displayName = fullName || extractNameFromEmail(email);
+      await updateProfile(result.user, {
+        displayName: displayName
+      });
+      console.log('👤 User profile updated with name:', displayName);
       
       // Send email verification
       await sendEmailVerification(result.user, {
-        url: `${window.location.origin}/verify-email?verified=true`,
+        url: `${window.location.origin}/dashboard?verified=true`,
         handleCodeInApp: false
       });
       
@@ -154,7 +217,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       // Send welcome message
       sendWelcomeMessage({
         email: result.user.email || email,
-        fullName: fullName || 'Professional',
+        fullName: displayName,
         signUpMethod: 'email'
       });
       
@@ -176,6 +239,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       } else {
         console.log('✅ Email verified user signed in:', email);
       }
+      
+      // Auto-download and redirect will be handled in onAuthStateChanged
       
     } catch (error) {
       console.error('❌ Email sign-in failed:', error);

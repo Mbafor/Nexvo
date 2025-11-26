@@ -1,18 +1,6 @@
 {
   "rewrites": [
     {
-      "source": "/api/parse-cv",
-      "destination": "/backend/parse-cv"
-    },
-    {
-      "source": "/api/rewrite", 
-      "destination": "/backend/rewrite"
-    },
-    {
-      "source": "/api/contact",
-      "destination": "/backend/contact"
-    },
-    {
       "source": "/(.*)",
       "destination": "/index.html"
     }

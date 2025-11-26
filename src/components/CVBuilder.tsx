@@ -14,6 +14,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import { CVData } from "../types/cv";
 import { useAuth } from "../context/AuthContext";
+import { saveCVDraft, getUserCVDraft } from "../lib/firestore";
 
 // Forms
 import PersonalInfoForm from "./forms/PersonalInfoForm";
@@ -120,15 +121,33 @@ export default function CVBuilder({
 
   // Load saved CV data and sections once on mount
   useEffect(() => {
-    const savedCV = localStorage.getItem("cvData");
-    if (savedCV) {
-      try {
-        const parsed = JSON.parse(savedCV) as CVData;
-        onUpdateCVData(parsed);
-      } catch (err) {
-        console.error("Failed to parse saved CV:", err);
+    const loadCVData = async () => {
+      if (user) {
+        // For authenticated users, try to load from Firestore first
+        try {
+          const draft = await getUserCVDraft(user.uid);
+          if (draft) {
+            console.log('📄 Loaded CV from Firestore draft');
+            onUpdateCVData(draft.cvData);
+            return;
+          }
+        } catch (error) {
+          console.error('❌ Failed to load CV from Firestore:', error);
+        }
       }
-    }
+      
+      // Fallback to localStorage
+      const savedCV = localStorage.getItem("cvData");
+      if (savedCV) {
+        try {
+          const parsed = JSON.parse(savedCV) as CVData;
+          onUpdateCVData(parsed);
+          console.log('📄 Loaded CV from localStorage');
+        } catch (err) {
+          console.error("Failed to parse saved CV:", err);
+        }
+      }
+    };
 
     const savedSections = localStorage.getItem("cvSections");
     if (savedSections) {
@@ -140,18 +159,33 @@ export default function CVBuilder({
         console.error("Failed to parse saved sections:", err);
       }
     }
-  }, []);
+    
+    loadCVData();
+  }, [user, onUpdateCVData]);
 
-  // Simple auto-save to localStorage
+  // Auto-save to localStorage and Firestore
   useEffect(() => {
     if (saveTimeoutRef.current) window.clearTimeout(saveTimeoutRef.current);
 
     setAutoSaveStatus('saving');
     
-    saveTimeoutRef.current = window.setTimeout(() => {
+    saveTimeoutRef.current = window.setTimeout(async () => {
       try {
-        // Use the same key that load/preview logic reads from: 'cvData'
+        // Always save to localStorage for offline access
         localStorage.setItem('cvData', JSON.stringify(cvData));
+        
+        // Also save to Firestore for authenticated users
+        if (user && user.email) {
+          try {
+            await saveCVDraft(user.uid, user.email, cvData);
+            console.log('💾 CV auto-saved to both localStorage and Firestore');
+          } catch (firestoreError) {
+            console.error('❌ Failed to save to Firestore, but localStorage succeeded:', firestoreError);
+          }
+        } else {
+          console.log('💾 CV auto-saved to localStorage only (user not authenticated)');
+        }
+        
         setAutoSaveStatus('saved');
       } catch (err) {
         console.error('Error auto-saving CV:', err);
@@ -162,7 +196,7 @@ export default function CVBuilder({
     return () => {
       if (saveTimeoutRef.current) window.clearTimeout(saveTimeoutRef.current);
     };
-  }, [cvData]);
+  }, [cvData, user]);
 
   // Keyboard navigation support
   useEffect(() => {
