@@ -1,5 +1,5 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node';
-import OpenAI from 'openai';
+import { GoogleGenerativeAI } from '@google/generative-ai';
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
   // Handle CORS for development
@@ -15,9 +15,9 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     return res.status(405).json({ error: 'Method not allowed' });
   }
 
-  const OPENAI_KEY = process.env.OPENAI_API_KEY;
-  if (!OPENAI_KEY) {
-    return res.status(500).json({ error: 'Server misconfiguration: OPENAI_API_KEY is missing' });
+  const GEMINI_API_KEY = process.env.GEMINI_API_KEY;
+  if (!GEMINI_API_KEY) {
+    return res.status(500).json({ error: 'Server misconfiguration: GEMINI_API_KEY is missing' });
   }
 
   try {
@@ -75,10 +75,11 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       return res.status(400).json({ error: 'Text content is too long (max 75,000 characters)' });
     }
 
-    const client = new OpenAI({ apiKey: OPENAI_KEY });
+    const genAI = new GoogleGenerativeAI(GEMINI_API_KEY);
+    const model = genAI.getGenerativeModel({ model: 'gemini-1.5-flash' });
 
     // Updated schema to match TypeScript types exactly
-    const system = `You are an expert CV/Resume data extractor. Extract information from unstructured text and return ONLY valid JSON matching this exact schema:
+    const prompt = `You are an expert CV/Resume data extractor. Extract information from unstructured text and return ONLY valid JSON matching this exact schema:
 
 {
   "personalInfo": {
@@ -181,21 +182,15 @@ IMPORTANT RULES:
 4. Dates must be YYYY-MM format
 5. Boolean fields must be true/false
 6. Skills should be categorized as "technical" or "soft"
-7. Extract as much relevant information as possible`;
+7. Extract as much relevant information as possible
 
-    const user = `Extract CV information from this content:\n\n${inputText}`;
+Extract CV information from this content:
 
-    const response = await client.chat.completions.create({
-      model: 'gpt-4o-mini', // Updated to better model
-      messages: [
-        { role: 'system', content: system },
-        { role: 'user', content: user },
-      ],
-      temperature: 0.1, // Low temperature for consistent parsing
-      max_tokens: 2500, // Increased for comprehensive parsing
-    });
+${inputText}`;
 
-    const raw = response.choices?.[0]?.message?.content || '';
+    const result = await model.generateContent(prompt);
+    const response = await result.response;
+    const raw = response.text();
     console.log('AI Raw Response:', raw.substring(0, 200) + '...');
 
     // Enhanced JSON extraction
@@ -259,7 +254,7 @@ IMPORTANT RULES:
     console.error('CV parse-cv error:', error);
     
     // Enhanced error response
-    if (error.name === 'OpenAIError' || error.type === 'insufficient_quota') {
+    if (error.message?.includes('quota') || error.message?.includes('limit')) {
       return res.status(429).json({ 
         error: 'AI service temporarily unavailable. Please try again in a few minutes.',
         type: 'rate_limit'
