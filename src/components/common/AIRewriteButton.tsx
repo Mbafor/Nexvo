@@ -1,7 +1,8 @@
+
+import { rewriteWithAI } from '../../utils/aiRewrite';
 // components/AIRewriteButton.tsx
 import { useState } from 'react';
 import { Wand2, Loader2, RefreshCw, RotateCcw } from 'lucide-react';
-import { rewriteWithAI } from '../../utils/aiRewrite';
 
 interface AIRewriteButtonProps {
   text: string; // The current text from the form
