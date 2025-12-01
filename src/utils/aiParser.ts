@@ -9,7 +9,7 @@ interface ParseResponse {
 
 export async function parseTextToCV(text: string): Promise<Partial<CVData>> {
   if (!text || !text.trim()) throw new Error('No text provided to parse');
-  if (text.length < 50) throw new Error('Text is too short to parse meaningfully. Please provide more detailed CV content.');
+  if (text.length < 20) throw new Error('Text is too short to parse meaningfully. Please provide more detailed CV content.');
 
   console.log('🔍 Parsing CV text...', { length: text.length });
 
@@ -21,7 +21,7 @@ export async function parseTextToCV(text: string): Promise<Partial<CVData>> {
 
     try {
       const controller = new AbortController();
-      const timeoutId = setTimeout(() => controller.abort(), 30000);
+      const timeoutId = setTimeout(() => controller.abort(), 60000);
 
       const res = await fetch('/api/parse-cv', {
         method: 'POST',
@@ -82,7 +82,7 @@ export async function parseURLToCV(url: string): Promise<Partial<CVData>> {
 
   try {
     const controller = new AbortController();
-    const timeoutId = setTimeout(() => controller.abort(), 45000);
+    const timeoutId = setTimeout(() => controller.abort(), 90000);
 
     const res = await fetch('/api/parse-cv', {
       method: 'POST',
